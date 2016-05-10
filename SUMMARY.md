@@ -48,6 +48,4 @@
    * [Breaking trust relationship with a third party API](security/breaking_trust_relationship_with_a_third_party_api.md)
    * [Preventing Malleability attacks](security/preventing_malleability_attacks.md)
    * [Protecting your private keys](security/protecting_your_private_keys.md)
-* test
-   * foo
 
