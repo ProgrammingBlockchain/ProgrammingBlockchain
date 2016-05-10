@@ -9,6 +9,7 @@
    * [Diagrams](introduction/diagrams.md)
    * [Project Setup](introduction/project_setup.md)
    * [License: CC (ASA 3U)](introduction/license_cc_asa_3u.md)
+* [Foreword](introduction/foreword.md)
 * [II. Bitcoin transfer](bitcoin_transfer/README.md)
    * [Bitcoin Address](bitcoin_transfer/bitcoin_address.md)
    * [Transaction](bitcoin_transfer/transaction.md)
@@ -47,5 +48,4 @@
    * [Protecting your private keys](security/protecting_your_private_keys.md)
 * [README](README.md)
 * [Cover](cover.md)
-* [Foreword](introduction/foreword.md)
 
