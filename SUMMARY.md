@@ -22,7 +22,7 @@
    * [Is it random enough?](key_storage_and_generation/is_it_random_enough.md)
    * [Key Encryption](key_storage_and_generation/key_encryption.md)
    * [Key Generation](key_storage_and_generation/key_generation.md)
-* [Other types of ownership](other_types_of_ownership/README.md)
+* [IV. Other types of ownership](other_types_of_ownership/README.md)
    * [P2PK[H] (Pay to Public Key [Hash])](other_types_of_ownership/p2pk[h]_pay_to_public_key_[hash].md)
    * [P2WPKH (Pay to Witness Public Key Hash)](other_types_of_ownership/p2wpkh_pay_to_witness_public_key_hash.md)
    * [Multi Sig](other_types_of_ownership/multi_sig.md)
