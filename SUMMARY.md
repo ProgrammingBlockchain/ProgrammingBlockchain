@@ -1,6 +1,7 @@
 # Summary
 
 * [README](README.md)
+* [Cover](cover.md)
 * [I. Introduction](introduction/README.md)
    * [Foreword](introduction/foreword.md)
    * [Why Blockchain Programming and not Bitcoin Programming?](introduction/why_blockchain_programming_and_not_bitcoin_program.md)
@@ -47,5 +48,4 @@
    * [Breaking trust relationship with a third party API](security/breaking_trust_relationship_with_a_third_party_api.md)
    * [Preventing Malleability attacks](security/preventing_malleability_attacks.md)
    * [Protecting your private keys](security/protecting_your_private_keys.md)
-* [Cover](cover.md)
 
