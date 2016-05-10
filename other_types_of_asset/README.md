@@ -1,0 +1,1 @@
+# Other types of asset {#other-types-of-asset}

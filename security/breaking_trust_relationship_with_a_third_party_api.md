@@ -1,0 +1,1 @@
+## Breaking trust relationship with a third party API {#breaking-trust-relationship-with-a-third-party-api}
