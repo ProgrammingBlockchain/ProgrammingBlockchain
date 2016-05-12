@@ -1,6 +1,5 @@
 # Summary
 
-* [README](README.md)
 * [Cover](cover.md)
 * [Foreword](foreword.md)
 * [Introduction](introduction/README.md)
