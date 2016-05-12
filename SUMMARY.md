@@ -2,7 +2,7 @@
 
 * [README](README.md)
 * [Cover](cover.md)
-* [Foreword](introduction/foreword.md)
+* [Foreword](foreword.md)
 * [Introduction](introduction/README.md)
    * [Why do people hate new technologies (Bitcoin)?](introduction/why_do_people_hate_bitcoin.md)
    * [Why Blockchain Programming and not Bitcoin Programming?](introduction/why_blockchain_programming_and_not_bitcoin_program.md)
