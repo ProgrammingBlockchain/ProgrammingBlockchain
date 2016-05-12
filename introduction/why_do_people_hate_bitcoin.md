@@ -1,4 +1,5 @@
-# Why do people hate Bitcoin?
+# Why do people hate new technologies, like Bitcoin?
+
 
 
 > Because it feels like one giant scam. What if I came up to you and said 'hey look, I have this digital file and I'm saying it's worth $1000, oh and just a few years ago I bought it for $0.01, but I didn't do anything with it since then, it's just more valuable now'.
