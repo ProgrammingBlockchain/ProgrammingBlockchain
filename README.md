@@ -1,3 +1,2 @@
-Github: https://github.com/ProgrammingBlockchain/ProgrammingBlockchain
-
-Gitbook link: https://www.gitbook.com/book/programmingblockchain/programmingblockchain
+[The book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
+[The book on Gitbook](https://www.gitbook.com/book/programmingblockchain/programmingblockchain) (You can download pdf, epub, mobi versions here.)
