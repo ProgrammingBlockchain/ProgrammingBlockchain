@@ -1,4 +1,6 @@
-![E:\Downloads\Bitcoin.png](assets/edownloadsbitcoin.png)
+
+![](assets/bitcoin.png)
+
 # Programming The Blockchain in C**\#**
 _Authored by Nicolas Dorier  
 Creator of NBitcoin, The .NET Bitcoin Framework_
