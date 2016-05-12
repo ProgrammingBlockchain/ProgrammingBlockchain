@@ -12,7 +12,7 @@
    * [Diagrams](introduction/diagrams.md)
    * [Project Setup](introduction/project_setup.md)
    * [License: CC (ASA 3U)](introduction/license_cc_asa_3u.md)
-* [II. Bitcoin transfer](bitcoin_transfer/README.md)
+* [Bitcoin transfer](bitcoin_transfer/README.md)
    * [Bitcoin Address](bitcoin_transfer/bitcoin_address.md)
    * [Transaction](bitcoin_transfer/transaction.md)
    * [Blockchain](bitcoin_transfer/blockchain.md)
