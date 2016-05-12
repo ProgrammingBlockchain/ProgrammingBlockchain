@@ -14,5 +14,4 @@ Given many of us are familiar with multi-level marketing schemes, we immediately
   
 As a developer you will find the complexity, described above appealing. You might want to make it simpler, more accessible to people. Or you choose to work on the cutting edges, making this technology more powerful and even more complex.  
 
-If you succeed to understand this technology you will find countless opportunities.  
-And what better way is there to understand something, but coding it?
+If you succeed to understand this technology you will find countless opportunities. And what better way is there to understand something, but coding it?
