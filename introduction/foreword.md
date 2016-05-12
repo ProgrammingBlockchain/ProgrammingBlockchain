@@ -25,7 +25,7 @@ Let me warn you: learning about Bitcoin is like taking the red pill from _The Ma
 ---
 
 
-**Editor's note (nopara73):** This is what happened to me, too. After reading the first edition of the book, I contacted Nicolas if he can use some help. Turned out he does, so I flied across the world, to Tokyo, where he lives and started working under his guidance. This resulted the second, community edition of this book, hosted on GitHub.
+_**Editor's note (nopara73):** This is what happened to me, too. After reading the first edition of the book, I contacted Nicolas if he can use some help. Turned out he does, so I flied across the world, to Tokyo, where he lives and started working under his guidance. This resulted the second, community edition of this book, hosted on GitHub._
 
 ---
 
@@ -37,7 +37,7 @@ This book will take you from basic to advanced use of the Blockchain. It will no
 
 ---
 
-**Fact:** Satoshi Nakamoto once described Bitcoin as "boring grey in colour."
+_**Fact:** Satoshi Nakamoto once described Bitcoin as "boring grey in colour."_
 
 ---
 
