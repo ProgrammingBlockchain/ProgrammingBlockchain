@@ -11,5 +11,5 @@ The .NET framework is popular in corporate environments. We also believe this is
 
 The authors of this book have over 15 years combined experience with C#. It is our go-to language for any project for fun or profit.  
 
-> Fact: We have not been paid by Microsoft. It’s not too late to change that.
+> **Fact:** We have not been paid by Microsoft. It’s not too late to change that.
 
