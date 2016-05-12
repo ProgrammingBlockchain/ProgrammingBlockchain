@@ -23,6 +23,6 @@ Let me warn you: learning about the Blockchain is like taking the red pill from 
 
 This book will take you from basic to advanced use of the Blockchain. It will not teach you how to use an API (such as the RPC API provided with Bitcoin Core), but it will teach you how to make such an API.
 
-> FACT: Satoshi Nakamoto once described Bitcoin as “boring grey in colour.”
+> FACT: Satoshi Nakamoto once described Bitcoin as "boring grey in colour."
 
 While programming to an API can assist in getting an application up quickly, the developer is limited to innovations that can take place against the API. By fully understanding the Blockchain, the developer is empowered to unleash its full potential.
