@@ -5,6 +5,6 @@ Most of the diagrams will have the same shape, they must be read by interpreting
 For example, the following diagram should be read as  
 ```Key + Password = EncryptedKey```  
 ```EncryptedKey + Password = Key```
+![](assets/encrypted-key.png)
 
-
-Code is nice, but sometimes a picture is worth a thousand words. Don’t worry, we’ll also write the code. )
+Code is nice, but sometimes a picture worths a thousand words. (Don’t worry, we’ll also write the code.)
