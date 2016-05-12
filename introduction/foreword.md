@@ -15,14 +15,16 @@ An extract in _Fountain Head_ by Ayn Rand resonated with me.
 > "Your strength?"  
 > "Your work." He tossed the branch aside. "The material the earth offers you and what you make of it..."  
 
-I think the Blockchain is like the tree branch. For outsiders, it feels like a boring and useless collection of bits. For programmers and entrepreneurs, it is a marvelous raw material that can be shaped with our imagination. We give it meaning and purpose.
+I think The Blockchain is like the tree branch. For outsiders, it feels like a boring and useless collection of bits. For programmers and entrepreneurs, it is a marvelous raw material that can be shaped with our imagination. We give it meaning and purpose.
 
 Just as you need to know about wood to make a bow, spear or cane from a branch, you need to learn about programming to shape the Blockchain. My hope is that you will discover how much your skill and intelligence can shape that useless collection of bits.
 
-Let me warn you: learning about the Blockchain is like taking the red pill from _The Matrix._ You may find yourself ready to quit your job to work on it full time.
+Let me warn you: learning about Bitcoin is like taking the red pill from _The Matrix._ You may find yourself ready to quit your job to work on it full time.  
+
+> **Personal note (nopara73):** This is what happened to me, too. After reading the first edition of the book, I contacted Nicolas if he can use some help. Turned out he does, so I flied across the world, to Tokyo, where he lives and started working under his guidance. This resulted the second, community edition of this book, hosted on GitHub.
 
 This book will take you from basic to advanced use of the Blockchain. It will not teach you how to use an API (such as the RPC API provided with Bitcoin Core), but it will teach you how to make such an API.
 
-> FACT: Satoshi Nakamoto once described Bitcoin as "boring grey in colour."
+> **FACT:** Satoshi Nakamoto once described Bitcoin as "boring grey in colour."
 
 While programming to an API can assist in getting an application up quickly, the developer is limited to innovations that can take place against the API. By fully understanding the Blockchain, the developer is empowered to unleash its full potential.
