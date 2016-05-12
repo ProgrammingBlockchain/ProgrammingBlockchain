@@ -3,8 +3,8 @@
 * [README](README.md)
 * [Cover](cover.md)
 * [Foreword](introduction/foreword.md)
+   * Why do people hate Bitcoin?
 * [Introduction](introduction/README.md)
-   * [Foreword](introduction/foreword.md)
    * [Why Blockchain Programming and not Bitcoin Programming?](introduction/why_blockchain_programming_and_not_bitcoin_program.md)
    * [Why C#?](introduction/why_c.md)
    * [Pre-requisites](introduction/pre-requisites.md)
