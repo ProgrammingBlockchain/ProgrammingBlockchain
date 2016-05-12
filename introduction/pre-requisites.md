@@ -10,7 +10,7 @@
 ### Tools {#tools}
 
 *   [Visual Studio](https://www.visualstudio.com/)
-*   [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) - Some parts of the book needs this. 
+*   [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) - You will need this to complete some exercises of this book.
 
 ---
 
