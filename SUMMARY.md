@@ -49,4 +49,5 @@
    * [Preventing Malleability attacks](security/preventing_malleability_attacks.md)
    * [Protecting your private keys](security/protecting_your_private_keys.md)
 * test
+   * foo
 
