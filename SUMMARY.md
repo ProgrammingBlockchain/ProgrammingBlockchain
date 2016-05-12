@@ -1,6 +1,5 @@
 # Summary
 
-* [Cover](cover.md)
 * [Foreword](foreword.md)
 * [Introduction](introduction/README.md)
    * [Why do people hate new technologies (Bitcoin)?](introduction/why_do_people_hate_bitcoin.md)
