@@ -9,13 +9,7 @@ The .NET framework is popular in corporate environments. We also believe this is
 *   C# is closely related to Java and C++. As such, it can be easily read by developers who already know C syntax.
 *   Nicolas Dorier, one of the authors of this book, created the most popular Bitcoin Framework for .NET, called [NBitcoin](https://github.com/MetacoSA/NBitcoin).
 
-The authors of this book have over 15 years combined experience with C#. It is our go-to language for any project for fun or profit.
+The authors of this book have over 15 years combined experience with C#. It is our go-to language for any project for fun or profit.  
 
-
-
----
-
-_**Fact:** We have not been paid by Microsoft. It’s not too late to change that._
-
----
+> Fact: We have not been paid by Microsoft. It’s not too late to change that.
 
