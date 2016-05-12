@@ -14,7 +14,7 @@
 
 ---
 
-**Tip:** If disk-space is an issue, consider running Bitcoin Core in pruning mode. It is practically the same as a full node (including security), except it throws away some of the old history.
+_**Tip:** If disk-space is an issue, consider running Bitcoin Core in pruning mode. It is practically the same as a full node (including security), except it throws away some of the old history._
 
 ---
 
