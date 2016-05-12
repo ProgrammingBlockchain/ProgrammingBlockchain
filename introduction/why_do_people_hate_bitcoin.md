@@ -1,4 +1,4 @@
-# Why do people hate new technologies, like Bitcoin?
+# Why do people hate new technologies (Bitcoin)?{#why-do-people-hate-new-technologies-bitcoin}
 
 
 
