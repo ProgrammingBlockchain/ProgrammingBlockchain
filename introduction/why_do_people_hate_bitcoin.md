@@ -12,4 +12,7 @@ Given many of us are familiar with multi-level marketing schemes, we immediately
 
 [Source](https://www.reddit.com/r/Bitcoin/comments/2oh2t9/why_do_people_hate_a_technology_bitcoin/cmn42d3)  
   
-As a developer you will find the complexity, described above appealing. You might want to make it simpler, more accessible to people. Or you choose to work on the cutting edges, making this technology more powerful and even more complex. If you succeed to understand this technology you will find countless opportunities. And what better way is there to understand something, but coding it?
+As a developer you will find the complexity, described above appealing. You might want to make it simpler, more accessible to people. Or you choose to work on the cutting edges, making this technology more powerful and even more complex.  
+
+If you succeed to understand this technology you will find countless opportunities.  
+And what better way is there to understand something, but coding it?
