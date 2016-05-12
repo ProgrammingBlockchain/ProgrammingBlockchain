@@ -10,4 +10,11 @@
 ### Tools {#tools}
 
 *   [Visual Studio](https://www.visualstudio.com/)
-*   [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) - You should have this synchronized before beginning.
+*   [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) - Some parts of the book requires this. 
+
+---
+
+**Tip:** If disk-space is an issue, consider running Bitcoin Core in pruning mode. It is practically the same as a full node (including security), except it throws away some of the old history.
+
+---
+
