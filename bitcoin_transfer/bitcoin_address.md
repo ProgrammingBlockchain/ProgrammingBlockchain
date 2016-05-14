@@ -1,10 +1,28 @@
 ## Bitcoin Address {#bitcoin-address}
 
 You know that your **Bitcoin Address** is what you share to the world to get paid.  
-
-You probably know that your wallet software uses a **private key** to spend the money you received on this address.
-
-A Bitcoin Address is made up of a **Base58check** encoded combination of your **public key’s hash** and some information about the network the address is for. The Base58Check encoding has some neat features, such as checksums to prevent typos and a lack of ambiguous characters such as “0” and “O.”
+![](../assets/BitcoinAddress.png)  
+You probably know that your wallet software uses a **private key** to spend the money you received on this address.  
+![](../assets/PrivateKey.png)  
+In code:  
+```cs  
+Key privateKey = new Key();
+```  
+Your **public key** is a hash of your private key.  
+![](../assets/PrivKeyPubKey.png)  
+```cs 
+Key privateKey = new Key();
+var publicKey = privateKey.PubKey;
+```  
+You can get the hash of your public key, like this:  
+```cs 
+var publicKeyHash = publicKey.Hash;
+```  
+A Bitcoin Address is made up of a **Base58check** encoded combination of your **public key’s hash** and some information about the network the address is for.  
+```cs 
+var bitcoinAddress = publicKeyHash.GetAddress(Network.Main);
+  ```  
+The Base58Check encoding has some neat features, such as checksums to prevent typos and a lack of ambiguous characters such as “0” and “O.”
 
 Fact: **TestNet** is a bitcoin network for development purposes, the bitcoin on this network are worth nothing. **MainNet** is the bitcoin network everybody knows.
 
