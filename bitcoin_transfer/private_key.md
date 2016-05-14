@@ -29,7 +29,7 @@ BitcoinPubKeyAddress bitcoinPubicKey = publicKey.GetAddress(Network.Main); //
 //PubKey samePublicKey = bitcoinPubicKey.ItIsNotPossible;
 ```  
 
-**Exercise:** 
+### Exercise:
 1. Generate a private key on the mainnet and note it.
 2. Get the corresponding address and send some bitcoins to it..  
 
