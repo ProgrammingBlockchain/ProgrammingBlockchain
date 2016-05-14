@@ -4,11 +4,15 @@ You know that your **Bitcoin Address** is what you share to the world to get pai
 ![](../assets/BitcoinAddress.png)  
 You probably know that your wallet software uses a **private key** to spend the money you received on this address.  
 ![](../assets/PrivateKey.png)  
-In code:  
+With code:  
 ```cs  
-Key privateKey = new Key();
+var privateKey = new Key(); // generate a random private key
+var mainNetPrivateKey = privateKey.GetBitcoinSecret(Network.Main);  // get our private key on the mainnet
+var testNetPrivateKey = privateKey.GetBitcoinSecret(Network.TestNet);  // get our private key on the testnet
+Console.WriteLine(mainNetPrivateKey); // L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn
+Console.WriteLine(testNetPrivateKey); // cVY5auviDh8LmYUW8AfafseD6p6uFoZrP7GjS3rzAerpRKE9Wmuz
 ```  
-Your **public key** is a hash of your private key.  
+From the private key, we use elliptic curve multiplication, a one-way cryptographic function, to generate a **public key**.  
 ![](../assets/PrivKeyPubKey.png)  
 ```cs 
 Key privateKey = new Key();
