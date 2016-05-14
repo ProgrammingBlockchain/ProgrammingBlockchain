@@ -18,9 +18,9 @@ Note that it is easy to go from Bitcoin Secret to Private Key. It is important t
 Process this information by examining the similarities between this two codeblock:  
 
 ```cs
+Key privateKey = new Key(); // generate a random private key
 BitcoinSecret bitcoinPrivateKey = privateKey.GetWif(Network.Main); // L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn
 Key samePrivateKey = bitcoinPrivateKey.PrivateKey;
-Console.WriteLine(privateKey == samePrivateKey); // True
 ```  
 
 ```cs
