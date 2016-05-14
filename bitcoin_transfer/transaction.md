@@ -1,22 +1,32 @@
 ## Transaction {#transaction}
 
-Before we begin, remember to create a new chapter class.
+> ([Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook/)) Transactions are the most important part of the bitcoin system. Everything else in bitcoin is designed to ensure that transactions can be created, propagated on the network, validated, and finally added to the global ledger of transactions (the blockchain). Transactions are data structures that encode the transfer of value between participants in the bitcoin system. Each transaction is a public entry in bitcoin’s blockchain, the global double-entry bookkeeping ledger.
 
-A **transaction** is a transfer of bitcoin. A transaction may have no recipient, or it may have several. The same can be said for senders! On the Blockchain, the sender and recipient are always abstracted with a scriptPubKey, as we demonstrated in Chapter 10\. We will move forward under the assumption that you’ve completed Lesson 4 and the associated exercises. If you have not completed the exercises, please send money to the address that you generated before continuing.
+A transaction may have no recipient, or it may have several. **The same can be said for senders!** On the Blockchain, the sender and recipient are always abstracted with a ScriptPubKey, as we demonstrated in previous chapters.  
 
-If you used Bitcoin Core your transactions tab will show the transaction, like this:
+If you use Bitcoin Core your Transactions tab will show the transaction, like this:
 
-For now we’re interested in the **Transaction** ID. In this case, it’s f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
+![](../assets/BitcoinCoreTransaction.png)  
 
-The TransactionId is defined by SHA256(SHA256(txbytes))
+For now we are interested in the **Transaction ID**. In this case, it is ```f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94```  
 
-Do NOT use the TransactionId to handle unconfirmed transactions. The TransactionId can be manipulated before it is confirmed. This is known as “Transaction Malleability.”
+> **Note:** The TransactionId is defined by SHA256(SHA256(txbytes))
 
-You can review the transaction on a website like Blockchain.info, but as a developer you will probably want a service that is easier to query and parse. At the time of this writing, we find Blockr.io to be a good service for the task.
+> **Note:** Do NOT use the TransactionId to handle unconfirmed transactions. The TransactionId can be manipulated before it is confirmed. This is known as “Transaction Malleability.”
 
-If you go to http://btc.blockr.io/api/v1/tx/raw/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94 you will see the raw bytes of your transaction.
+You can review the transaction on a blockexplorer like Blockchain.info: https://blockchain.info/tx/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94 
+But as a developer you will probably want a service that is easier to query and parse.  
+As a C# developer and an NBitcoin user Nicolas Dorier's [QBit Ninja](http://docs.qbitninja.apiary.io/) will definitely be your best choice. It is an open source web service API to query the blockchain and for tracking wallets.  
+QBit Ninja depends on [NBitcoin.Indexer](https://github.com/MetacoSA/NBitcoin.Indexer) which rely on Microsoft Azure Storage. C# developers are expected to use the [NuGet client package](http://www.nuget.org/packages/QBitninja.Client) instead of developping a wrapper around this API.  
 
-NBitcoin queries blockr and parses the information for you so you don’t have to do it manually.
+If you go to http://api.qbit.ninja/transactions/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94 you will see the raw bytes of your transaction.  
+
+![](../assets/RawTx.png)  
+
+Quickly close the tab, before it scares you away from the computer. QBit Ninja queries the API and parses the information for you so you don’t have to do it manually.  
+Go ahaead and install **QBitNinja.Client** NuGet package.  
+
+![](../assets/QBitNuGet.png)  
 
 "hash": "4ebf7f7ca0a5dafd10b9bd74d8cb93a6eb0831bcb637fec8e8aabf842f1c2688",
 
