@@ -28,7 +28,7 @@ Go ahaead and install **QBitNinja.Client** NuGet package.
 
 ![](../assets/QBitNuGet.png)  
 
-
+Now let's see the code:
 
 "hash": "4ebf7f7ca0a5dafd10b9bd74d8cb93a6eb0831bcb637fec8e8aabf842f1c2688",
 
