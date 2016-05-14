@@ -1,4 +1,4 @@
-## Foreword {#foreword}
+# Foreword {#foreword}
 
 An extract in _Fountain Head_ by Ayn Rand resonated with me.
 
