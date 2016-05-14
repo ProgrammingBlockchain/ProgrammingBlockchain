@@ -1,4 +1,4 @@
-# Payment script {#payment-script}
+# Payment script (ScriptPubKey) {#payment-script}
 You might not know that as far as the Blockchain is concerned, there is no such thing as a Bitcoin Address. Internally, the Bitcoin protocol identifies the recipient of Bitcoin by a payment script, we call it **ScriptPubKey**.  
 
 ![](../assets/ScriptPubKey.png)  
@@ -7,21 +7,25 @@ A ScriptPubKey may look like this:
 
 It is a short script that explains what conditions must be met to claim ownership of bitcoins. We will go into the types of instructions that can be given in a ScriptPubKey as we move through the lessons of this book.  
 
-We are able to generate the scriptPubKey from the Bitcoin Address. This is a step that all bitcoin clients do to translate the “human friendly” Bitcoin Address to the Blockchain readable address.
+We are able to generate the ScriptPubKey from the Bitcoin Address. This is a step that all bitcoin clients do to translate the “human friendly” Bitcoin Address to the Blockchain readable address.
 
 ![](../assets/BitcoinAddressToScriptPubKey.png)  
 
 ```cs 
+var publicKeyHash = new KeyId("14836dbe7f38c5ac3d49e8d790af808a4ee9edcf");
+
+var testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
+var mainNetAddress = publicKeyHash.GetAddress(Network.Main);
+
 Console.WriteLine(mainNetAddress.ScriptPubKey); // OP_DUP OP_HASH160 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf OP_EQUALVERIFY OP_CHECKSIG
 Console.WriteLine(testNetAddress.ScriptPubKey); // OP_DUP OP_HASH160 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf OP_EQUALVERIFY OP_CHECKSIG
-Console.WriteLine(publicKeyHash); // 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf
 ```  
 
 Notice the ScriptPubKey for testnet and mainnet address is the same?  
 Notice the ScriptPubKey contains the hash of the public key?  
 We will not go into the details yet, but note that the ScriptPubKey appears to have nothing to do with the Bitcoin Address, but it does show the hash of the public key.  
 
-Bitcoin Addresses are composed of a network identifier and the hash of a public key. Knowing this, it is possible to generate a bitcoin address from the scriptPubKey and the network identifier.
+Bitcoin Addresses are composed of a network identifier and the hash of a public key. Knowing this, it is possible to generate a bitcoin address from the ScriptPubKey and the network identifier.
 
 ```cs
 var paymentScript = publicKeyHash.ScriptPubKey;
@@ -40,7 +44,7 @@ Console.WriteLine(mainNetAddress == sameMainNetAddress2); // True
 
 > **Note:** The payment script (ScriptPubKey) not necessarily contains the hashed public key(s) permitted to spend the bitcoin.  
 
-So now you understand the relationship between a Private Key, a Public Key, a Public Key Hash, a Bitcoin Address and a ScriptPubKey. Let me sum it up with the whole diagram and the corresponding code:  
+So now you understand the relationship between a Private Key, a Public Key, a Public Key Hash, a Bitcoin Address and a ScriptPubKey.
 
 
 
@@ -72,11 +76,7 @@ Console.WriteLine(isPublicKeyNetworkIndependent); // True
 
 
 
-So now you understand the relationship between a Private Key, a Public Key, a Public Key Hash, a Bitcoin Address and a scriptPubKey.
-
 Private keys are often represented in Base58Check called a **Bitcoin Secret** (also known as **Wallet Import Format** or simply **WIF**), like Bitcoin Addresses.
-
-For the rest of the book you will use an address that you have generated for yourself.
 
 Note that it is easy to go from Bitcoin Secret to Private Key. It is important to remember that it is impossible to go from a Bitcoin Address to Public Key because the Bitcoin Address contains a hash of the Public Key, not the Public Key itself.
 
