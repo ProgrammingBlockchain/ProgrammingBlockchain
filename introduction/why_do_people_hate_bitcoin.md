@@ -1,4 +1,4 @@
-# Why this book?{#why-do-people-hate-new-technologies-bitcoin}
+## Why this book?{#why-do-people-hate-new-technologies-bitcoin}
 
 Understanding Bitcoin is quite a challenge. You might be completely unfamiliar with it. You might be heavily invested, following the news for years, already became completely addicted, but still the whole thing feels like a big mess. Or you feel like you understand it, but you are lacking of practical knowledge. If you fell into any of the these categories, we believe this book is the best investment for your time.  
 
