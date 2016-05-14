@@ -23,7 +23,17 @@ Console.WriteLine(publicKey); // 0251036303164f6c458e9f7abecb4e55e5ce9ec2b2f1d06
 
 > **Fact:** TestNet is a Bitcoin network for development purposes. Bitcoins on this network worth nothing.  MainNet is the bitcoin network everybody knows.  
 
-A Bitcoin Address is made up of a **Base58check** encoded combination of your **public key’s hash** and some information about the network the address is for.  
+You can magically get your **bitcoin address** from your public key and by specifying the **network**. *(You should enjoy this magic now, because I will clear it up shortly.)*  
+
+![](../assets/PubKeyToAddr.png)  
+
+```cs 
+Console.WriteLine(publicKey.GetAddress(Network.Main)); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
+Console.WriteLine(publicKey.GetAddress(Network.TestNet)); // n3zWAo2eBnxLr3ueohXnuAa8mTVBhxmPhq
+```  
+
+**More accurately a bitcoin address is made up of a Base58check encoded combination of your public key’s hash and some information about the network the address is for:**  
+
 ```cs 
 var publicKeyHash = publicKey.Hash;
 Console.WriteLine(publicKeyHash); // f6889b21b5540353a29ed18c45ea0031280c42cf
@@ -31,7 +41,9 @@ BitcoinAddress mainNetAddress = publicKeyHash.GetAddress(Network.Main);
 BitcoinAddress testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
 Console.WriteLine(mainNetAddress); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
 Console.WriteLine(testNetAddress); // n3zWAo2eBnxLr3ueohXnuAa8mTVBhxmPhq
-  ``` 
+```  
+
+
 
 
 ```cs  
