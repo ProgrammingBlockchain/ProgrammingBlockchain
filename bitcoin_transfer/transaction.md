@@ -118,14 +118,52 @@ TxOut txOut = new TxOut(twentyOneBtc, scriptPubKey);
 
 Every out has an address defined by the transaction ID and index called the **Outpoint**.  
 
+![](../assets/OutPoint.png)
 
+For example, the Outpoint of the out with 13.19683492 BTC in our transaction is (4788c5ef8ffd0463422bcafdfab240f5bf0be690482ceccde79c51cfce209edd, 0).  
 
-For example, the Outpoint of the out with 0.01 BTC in my transaction is (71049fd47ba2107db70d53b127cae4ff0a37b4ab, 1).
+```cs
+OutPoint firstOutPoint = spentCoins.First().Outpoint;
+Console.WriteLine(firstOutPoint.Hash); // 4788c5ef8ffd0463422bcafdfab240f5bf0be690482ceccde79c51cfce209edd
+Console.WriteLine(firstOutPoint.N); // 0
+```  
 
-Now let’s take a look at the in (aka **TxIn**, **Inputs**) of the transaction:
+Now let’s take a closer look at the in (aka **TxIn**, **Inputs**) of the transaction:  
 
-The TxIn is composed of the Outpoint of the prev_out being spent and of a **ScriptSig** also called “Proof of Ownership.” In my case, the prev_out Outpoint is (7def8a69a7a2c14948f3c4b9033b7b30f230308b, 0)
+![](../assets/TxIn.png)
 
-By replacing the transaction ID in the code we wrote for Lesson1 we can review the information associated with that transaction. We could continue to trace the transaction IDs back in this manner until we reach the bitcoins’ **coinbase,** the block where they were mined.
+The TxIn is composed of the Outpoint of the prev_out being spent and of a **ScriptSig** also called “Proof of Ownership.” In our tx there are actually 9 inputs joined together into one transaction. It is called coinjoin.  
 
-In our example, the prev_out was for a total of .1 BTC. In this transaction .0899 BTC and .01 BTC were sent. That means 0.0001 BTC (or 0.1 - (0.0899+0.01)) is not accounted for! The difference between the inputs and outputs are called **Transaction Fees** or **Miner’s Fees**. This is the money that the miner collects for including a given transaction in a block.
+```cs
+Console.WriteLine(transaction.Inputs.Count); // 9
+```  
+
+With the previous outpoint's transaction ID we can review the information associated with that transaction.  
+```cs
+OutPoint firstPreviousOutPoint = transaction.Inputs.First().PrevOut;
+var firstPreviousTransactionResponse = client.GetTransaction(firstPreviousOutPoint.Hash).Result;
+Console.WriteLine(firstPreviousTransactionResponse.IsCoinbase); // False
+NBitcoin.Transaction firstPreviousTransaction = firstPreviousTransactionResponse.Transaction;
+```  
+
+We could continue to trace the transaction IDs back in this manner until we reach the bitcoins’ **coinbase,** the block where they were mined.  
+**Exercise:** Trace back the first transactions to it's coinbase!  
+Hint: After a few minutes and 30-40 transaction, I gave up tracing back.  
+Yes, you've guessed right, it is not the most efficient way to do this, but a good exercise.  
+
+In our example, the outputs were for a total of 13.19**70**3492 BTC.  
+
+```cs
+Money spentAmount = Money.Zero;
+foreach (var spentCoin in spentCoins)
+{
+spentAmount = (Money)spentCoin.Amount.Add(spentAmount);
+}
+Console.WriteLine(spentAmount.ToDecimal(MoneyUnit.BTC)); // 13.19703492
+```  
+
+In this transaction 13.19**68**3492 BTC were received.  
+
+**Exercise:** Get the total received amount, as I have been done with the spent amount.  
+
+That means 0.0002 BTC (or 13.19**70**3492 - 13.19**68**3492) is not accounted for! The difference between the inputs and outputs are called **Transaction Fees** or **Miner’s Fees**. This is the money that the miner collects for including a given transaction in a block.  
