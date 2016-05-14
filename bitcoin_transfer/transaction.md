@@ -23,8 +23,7 @@ If you go to http://api.qbit.ninja/transactions/f13dc48fb035bbf0a6e989a26b3ecb57
 
 ![](../assets/RawTx.png)  
 
-Quickly close the tab, before it scares you away from the computer. QBit Ninja queries the API and parses the information for you so you don’t have to do it manually.  
-Go ahaead and install **QBitNinja.Client** NuGet package.  
+Quickly close the tab, before it scares you away, QBit Ninja queries the API and parses the information so go ahaead and install **QBitNinja.Client** NuGet package.  
 
 ![](../assets/QBitNuGet.png)  
 
@@ -45,23 +44,83 @@ The type of **transactionResponse** is **GetTransactionResponse**. It lives unde
 NBitcoin.Transaction transaction = transactionResponse.Transaction;
 ```  
 
-Basically **QBitNinja's GetTransactionResponse** class is higher level abstraction of a transaction, most of the time it will be enough to use that.
-An example getting back the transaction id from both classes:  
+Basically **QBitNinja's GetTransactionResponse** class is higher level abstraction of a transaction, most of the time it will be enough to use that.  
+Let's see an example getting back the transaction id with both classes:  
 
 ```cs
 Console.WriteLine(transactionResponse.TransactionId); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 Console.WriteLine(transaction.GetHash()); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 ```  
 
+The relevant parts for now are the **inputs** and **outputs**. You can see that out 13.19683492 Bitcoin has been sent to a ScriptPubKey:
+
+```cs
+List<ICoin> receivedCoins = transactionResponse.ReceivedCoins;
+foreach (var coin in receivedCoins)
+{
+    Money amount = coin.Amount;
+
+    Console.WriteLine(amount.ToDecimal(MoneyUnit.BTC));
+    var paymentScript = coin.GetScriptCode();
+    Console.WriteLine(paymentScript);  // It's the ScriptPubKey
+    var address = coin.GetScriptCode().GetDestinationAddress(Network.Main);
+    Console.WriteLine(address);
+    Console.WriteLine();
+}
+```  
+
+We have written out some information about the RECEIVED COINS (amount, scriptpubkey, address) using QBitNinja's GetTransactionResponse class.
+**Exercise**: Write out the same information about the SPENT COINS (amount, scriptpubkey, address) using QBitNinja's GetTransactionResponse class.!  
+
+Let's see how we can get the same information about the RECEIVED COINS (amount, scriptpubkey, address) using NBitcoin's Transaction class.
+
+```cs
+var outputs = transaction.Outputs;
+foreach (TxOut output in outputs)
+{
+    Money amount = output.Value;
+
+    Console.WriteLine(amount.ToDecimal(MoneyUnit.BTC));
+    var paymentScript = output.ScriptPubKey;
+    Console.WriteLine(paymentScript);  // It's the ScriptPubKey
+    var address = paymentScript.GetDestinationAddress(Network.Main);
+    Console.WriteLine(address);
+    Console.WriteLine();
+}
+```  
+
+Now let's examine the **inputs**. If you look at them you will notice a previous output is referenced. Each input shows you which previous out has been spent in order to fund this transaction.
+
+```cs
+var inputs = transaction.Inputs;
+foreach (TxIn input in inputs)
+{
+    OutPoint previousOutpoint = input.PrevOut;
+    Console.WriteLine(previousOutpoint.Hash); // hash of prev tx
+    Console.WriteLine(previousOutpoint.N); // idx of out from prev tx, that has been spent in the current tx
+    Console.WriteLine();
+}
+```  
+
+The terms **TxOut**, **Output** and **out** are synonymous.  
+Not to be confused with **OutPoint**, but more on this later.
+
+In summary, the TxOut represents an amount of bitcoin and a **ScriptPubKey**. (Recipient)  
+
+![](../assets/TxOut.png)  
+As illustration let's create a txout with 21 bitcoin from the first ScriptPubKey in our current transaction:  
+
+```cs  
+Money twentyOneBtc = new Money(21, MoneyUnit.BTC);
+var scriptPubKey = transaction.Outputs.First().ScriptPubKey;
+TxOut txOut = new TxOut(twentyOneBtc, scriptPubKey);
+```  
+
+Every out has an address defined by the transaction ID and index called the **Outpoint**.  
 
 
-The relevant parts for now are **in** and **out**. You can see that in out 0.0899 Bitcoin has been sent to a scriptPubKey, and 0.01 has been sent to another. (**Exercise**: Verify the public key hash in this ScriptPubKey is the same as the one associated with your paymentAddress)
 
-If you look at the **in** you will notice a **prev_out** (previous **out**) is referenced. Each in show you which previous out has been spent in order to fund this transaction. The terms **TxOut** and **Output** are synonymous with out.
-
-In summary, the TxOut represents an amount of bitcoin and a **ScriptPubKey**. (Recipient)
-
-Every outhas an address defined by the transaction ID andindex called the **Outpoint**. For example, the Outpoint of the out with 0.01 BTC in my transaction is (71049fd47ba2107db70d53b127cae4ff0a37b4ab, 1).
+For example, the Outpoint of the out with 0.01 BTC in my transaction is (71049fd47ba2107db70d53b127cae4ff0a37b4ab, 1).
 
 Now let’s take a look at the in (aka **TxIn**, **Inputs**) of the transaction:
 
