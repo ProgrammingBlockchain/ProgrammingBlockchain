@@ -5,7 +5,7 @@ You know that your **Bitcoin Address** is what you share to the world to get pai
 You probably know that your wallet software uses a **private key** to spend the money you received on this address.  
 ![](../assets/PrivateKey.png)  
 
-The keys are not stored in the network and they can be generated without access to the Internet.  
+The keys are not stored on the network and they can be generated without access to the Internet.  
 
 With code:  
 ```cs  
