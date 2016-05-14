@@ -27,8 +27,8 @@ A Bitcoin Address is made up of a **Base58check** encoded combination of your **
 ```cs 
 var publicKeyHash = publicKey.Hash;
 Console.WriteLine(publicKeyHash); // f6889b21b5540353a29ed18c45ea0031280c42cf
-var mainNetAddress = publicKeyHash.GetAddress(Network.Main);
-var testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
+BitcoinAddress mainNetAddress = publicKeyHash.GetAddress(Network.Main);
+BitcoinAddress testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
 Console.WriteLine(mainNetAddress); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
 Console.WriteLine(testNetAddress); // n3zWAo2eBnxLr3ueohXnuAa8mTVBhxmPhq
   ``` 
