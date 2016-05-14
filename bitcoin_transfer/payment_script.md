@@ -1,2 +1,2 @@
-# Payment script
+# Payment script {#payment-script}
 
