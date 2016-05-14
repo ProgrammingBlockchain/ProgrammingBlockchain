@@ -4,28 +4,53 @@ You know that your **Bitcoin Address** is what you share to the world to get pai
 ![](../assets/BitcoinAddress.png)  
 You probably know that your wallet software uses a **private key** to spend the money you received on this address.  
 ![](../assets/PrivateKey.png)  
+
+The keys are not stored in the network and they can be generated without access to the Internet.  
+
 With code:  
 ```cs  
-var privateKey = new Key(); // generate a random private key
-var mainNetPrivateKey = privateKey.GetBitcoinSecret(Network.Main);  // get our private key on the mainnet
-var testNetPrivateKey = privateKey.GetBitcoinSecret(Network.TestNet);  // get our private key on the testnet
+Key privateKey = new Key(); // generate a random private key
+```  
+> **([Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook/))** The size of bitcoin’s private key space, 2256 is an unfathomably large number. It is approximately 1077 in decimal. For comparison, the visible universe is estimated to contain 1080 atoms.  
+Keys come in pairs consisting of a private (secret) key and a public key. Think of the public key as similar to a bank account number and the private key as similar to the secret PIN, or signature on a check that provides control over the account. These digital keys are very rarely seen by the users of bitcoin. For the most part, they are stored inside the wallet file and managed by the bitcoin wallet software.  
+From the private key, we use elliptic curve multiplication, a one-way cryptographic function, to generate a **public key**.  
+
+![](../assets/PrivKeyPubKey.png)  
+```cs 
+PubKey publicKey = privateKey.PubKey;
+Console.WriteLine(publicKey); // 0251036303164f6c458e9f7abecb4e55e5ce9ec2b2f1d06d633c9653a07976560c
+```  
+
+> **Fact:** TestNet is a Bitcoin network for development purposes. Bitcoins on this network worth nothing.  MainNet is the bitcoin network everybody knows.  
+
+A Bitcoin Address is made up of a **Base58check** encoded combination of your **public key’s hash** and some information about the network the address is for.  
+```cs 
+var publicKeyHash = publicKey.Hash;
+Console.WriteLine(publicKeyHash); // f6889b21b5540353a29ed18c45ea0031280c42cf
+var mainNetAddress = publicKeyHash.GetAddress(Network.Main);
+var testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
+Console.WriteLine(mainNetAddress); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
+Console.WriteLine(testNetAddress); // n3zWAo2eBnxLr3ueohXnuAa8mTVBhxmPhq
+  ``` 
+
+
+```cs  
+Key privateKey = new Key(); // generate a random private key
+var mainNetPrivateKey = privateKey.GetBitcoinSecret(Network.Main);  // get our private key for the mainnet
+var testNetPrivateKey = privateKey.GetBitcoinSecret(Network.TestNet);  // get our private key for the testnet
 Console.WriteLine(mainNetPrivateKey); // L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn
 Console.WriteLine(testNetPrivateKey); // cVY5auviDh8LmYUW8AfafseD6p6uFoZrP7GjS3rzAerpRKE9Wmuz
 ```  
-From the private key, we use elliptic curve multiplication, a one-way cryptographic function, to generate a **public key**.  
-![](../assets/PrivKeyPubKey.png)  
 ```cs 
-Key privateKey = new Key();
-var publicKey = privateKey.PubKey;
+PubKey publicKey = privateKey.PubKey;
+Console.WriteLine(publicKey); // 0251036303164f6c458e9f7abecb4e55e5ce9ec2b2f1d06d633c9653a07976560c
+bool isPublicKeyNetworkIndependent =
+    (publicKey == mainNetPrivateKey.PubKey)
+    &&
+    (publicKey == testNetPrivateKey.PubKey);
+Console.WriteLine(isPublicKeyNetworkIndependent); // True
 ```  
-You can get the hash of your public key, like this:  
-```cs 
-var publicKeyHash = publicKey.Hash;
-```  
-A Bitcoin Address is made up of a **Base58check** encoded combination of your **public key’s hash** and some information about the network the address is for.  
-```cs 
-var bitcoinAddress = publicKeyHash.GetAddress(Network.Main);
-  ```  
+ 
 The Base58Check encoding has some neat features, such as checksums to prevent typos and a lack of ambiguous characters such as “0” and “O.”
 
 Fact: **TestNet** is a bitcoin network for development purposes, the bitcoin on this network are worth nothing. **MainNet** is the bitcoin network everybody knows.
