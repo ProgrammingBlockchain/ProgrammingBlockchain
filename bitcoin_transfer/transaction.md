@@ -28,57 +28,32 @@ Go ahaead and install **QBitNinja.Client** NuGet package.
 
 ![](../assets/QBitNuGet.png)  
 
-Now let's see the code:
+Query the transaction by id:
 
-"hash": "4ebf7f7ca0a5dafd10b9bd74d8cb93a6eb0831bcb637fec8e8aabf842f1c2688",
+```cs
+// Create a client
+QBitNinjaClient client = new QBitNinjaClient(Network.Main);
+// Parse transaction id to NBitcoin.uint256 so the client can eat it
+var transactionId = uint256.Parse("f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94");
+// Query the transaction
+GetTransactionResponse transactionResponse = client.GetTransaction(transactionId).Result;
+```  
 
-"ver": 1,
+The type of **transactionResponse** is **GetTransactionResponse**. It lives under QBitNinja.Client.Models namespace. You can get **NBitcoin.Transaction** type from it:  
 
-"vin_sz": 1,
+```cs
+NBitcoin.Transaction transaction = transactionResponse.Transaction;
+```  
 
-"vout_sz": 2,
+Basically **QBitNinja's GetTransactionResponse** class is higher level abstraction of a transaction, most of the time it will be enough to use that.
+An example getting back the transaction id from both classes:  
 
-"lock_time": 0,
+```cs
+Console.WriteLine(transactionResponse.TransactionId); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
+Console.WriteLine(transaction.GetHash()); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
+```  
 
-"size": 225,
 
-"in": [
-
-{
-
-"prev_out": {
-
-"hash": "bf7d91ac70917f98b497927e1b07267507652b206df14ecdba2e9390b9bffc65",
-
-"n": 0
-
-},
-
-"scriptSig": "3044022069b6b0f1a8d453bdb89e3ad475232b8e01d2851e7b53acab3f830f40e80b3b5102203c049867975360020293c735d48b4a2dda003aa781c1d8ccd2c7af290dcd11de01 02e3538427350039e67ea99e935cefb740badf3d09ebc301b0bc9d1bb0301a3417"
-
-}
-
-],
-
-"out": [
-
-{
-
-"value": "0.08990000",
-
-"scriptPubKey": "OP_DUP OP_HASH160 5b1d720daf0e95e37d0eaedd282b6ed9a40bab71 OP_EQUALVERIFY OP_CHECKSIG"
-
-},
-
-{
-
-"value": "0.01000000",
-
-"scriptPubKey": "OP_DUP OP_HASH160 71049fd47ba2107db70d53b127cae4ff0a37b4ab OP_EQUALVERIFY OP_CHECKSIG"
-
-}
-
-]
 
 The relevant parts for now are **in** and **out**. You can see that in out 0.0899 Bitcoin has been sent to a scriptPubKey, and 0.01 has been sent to another. (**Exercise**: Verify the public key hash in this ScriptPubKey is the same as the one associated with your paymentAddress)
 
