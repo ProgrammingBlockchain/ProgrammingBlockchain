@@ -19,6 +19,7 @@
    * [“The Blockchain is more than just Bitcoin”](bitcoin_transfer/the_blockchain_is_more_than_just_bitcoin.md)
    * [Spend your coin](bitcoin_transfer/spend_your_coin.md)
    * [Proof of ownership as an authentication method](bitcoin_transfer/proof_of_ownership_as_an_authentication_method.md)
+   * Payment script
 * [Key Storage and Generation](key_storage_and_generation/README.md)
    * [Is it random enough?](key_storage_and_generation/is_it_random_enough.md)
    * [Key Encryption](key_storage_and_generation/key_encryption.md)
