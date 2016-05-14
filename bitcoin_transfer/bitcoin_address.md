@@ -42,6 +42,10 @@ BitcoinAddress testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
 Console.WriteLine(mainNetAddress); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
 Console.WriteLine(testNetAddress); // n3zWAo2eBnxLr3ueohXnuAa8mTVBhxmPhq
 ```  
+The Base58Check encoding has some neat features, such as checksums to prevent typos and a lack of ambiguous characters such as "0" and "O".
+
+
+
 
 
 
@@ -63,7 +67,7 @@ bool isPublicKeyNetworkIndependent =
 Console.WriteLine(isPublicKeyNetworkIndependent); // True
 ```  
  
-The Base58Check encoding has some neat features, such as checksums to prevent typos and a lack of ambiguous characters such as “0” and “O.”
+
 
 Fact: **TestNet** is a bitcoin network for development purposes, the bitcoin on this network are worth nothing. **MainNet** is the bitcoin network everybody knows.
 
