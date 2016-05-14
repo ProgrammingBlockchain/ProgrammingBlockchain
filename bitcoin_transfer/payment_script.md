@@ -1,4 +1,4 @@
-# Payment script (ScriptPubKey) {#payment-script}
+## Payment script (ScriptPubKey) {#payment-script}
 You might not know that as far as the Blockchain is concerned, there is no such thing as a Bitcoin Address. Internally, the Bitcoin protocol identifies the recipient of Bitcoin by a payment script, we call it **ScriptPubKey**.  
 
 ![](../assets/ScriptPubKey.png)  
