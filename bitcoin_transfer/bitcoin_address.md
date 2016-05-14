@@ -11,8 +11,6 @@ With code:
 ```cs  
 Key privateKey = new Key(); // generate a random private key
 ```  
-> **([Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook/))** The size of bitcoin’s private key space, 2256 is an unfathomably large number. It is approximately 1077 in decimal. For comparison, the visible universe is estimated to contain 1080 atoms.  
-Keys come in pairs consisting of a private (secret) key and a public key. Think of the public key as similar to a bank account number and the private key as similar to the secret PIN, or signature on a check that provides control over the account. These digital keys are very rarely seen by the users of bitcoin. For the most part, they are stored inside the wallet file and managed by the bitcoin wallet software.  
 From the private key, we use elliptic curve multiplication, a one-way cryptographic function, to generate a **public key**.  
 
 ![](../assets/PrivKeyPubKey.png)  
@@ -34,15 +32,41 @@ Console.WriteLine(publicKey.GetAddress(Network.TestNet)); // n3zWAo2eBnxLr3ueohX
 
 **More accurately a bitcoin address is made up of a Base58check encoded combination of your public key’s hash and some information about the network the address is for:**  
 
+![](../assets/PubKeyHashToBitcoinAddress.png)  
+
 ```cs 
 var publicKeyHash = publicKey.Hash;
 Console.WriteLine(publicKeyHash); // f6889b21b5540353a29ed18c45ea0031280c42cf
 BitcoinAddress mainNetAddress = publicKeyHash.GetAddress(Network.Main);
 BitcoinAddress testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
+```  
+
+The Base58Check encoding has some neat features, such as checksums to prevent typos and a lack of ambiguous characters such as '0' and 'O'.  
+
+```cs 
 Console.WriteLine(mainNetAddress); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
 Console.WriteLine(testNetAddress); // n3zWAo2eBnxLr3ueohXnuAa8mTVBhxmPhq
 ```  
-The Base58Check encoding has some neat features, such as checksums to prevent typos and a lack of ambiguous characters such as "0" and "O".
+
+> **Fact:** Practicing Bitcoin Programming on MainNet makes mistakes more memorable.  
+
+You might not know that as far as the Blockchain is concerned, there is no such thing as a Bitcoin Address. Internally, the Bitcoin protocol identifies the recipient of Bitcoin by a payment script, we call it **ScriptPubKey**.  
+
+![](../assets/ScriptPubKey.png)  
+A ScriptPubKey may look like this:  
+```OP_HASH160 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf OP_EQUALVERIFY OP_CHECKSIG```  
+
+It is a short script that explains what conditions must be met to claim ownership of bitcoins. We will go into the types of instructions that can be given in a ScriptPubKey as we move through the lessons of this book.  
+
+![](../assets/BitcoinAddressToScriptPubKey.png)  
+
+```cs 
+Console.WriteLine(mainNetAddress.ScriptPubKey); // OP_DUP OP_HASH160 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf OP_EQUALVERIFY OP_CHECKSIG
+Console.WriteLine(testNetAddress.ScriptPubKey); // OP_DUP OP_HASH160 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf OP_EQUALVERIFY OP_CHECKSIG
+```  
+
+A ScriptPubKey may contain the hashed public key(s) permitted to spend the bitcoin.
+
 
 
 
@@ -69,11 +93,7 @@ Console.WriteLine(isPublicKeyNetworkIndependent); // True
  
 
 
-Fact: **TestNet** is a bitcoin network for development purposes, the bitcoin on this network are worth nothing. **MainNet** is the bitcoin network everybody knows.
 
-You might not know that as far as the Blockchain is concerned, there is no such thing as a Bitcoin Address. Internally, the Bitcoin protocol identifies the recipient of Bitcoin by a **ScriptPubKey**. A ScriptPubKey is a short script that explains what conditions must be met to claim ownership of bitcoins. We will go into the types of instructions that can be given in a ScriptPubKey as we move through the lessons of this book. The ScriptPubKey may contain the hashed public key(s) permitted to spend the bitcoin.
-
-Fact: Practicing Bitcoin Programming on MainNet makes mistakes more memorable.
 
 This diagram illustrates the relationships between the public key, private key, bitcoin address, and the ScriptPubKey.
 
