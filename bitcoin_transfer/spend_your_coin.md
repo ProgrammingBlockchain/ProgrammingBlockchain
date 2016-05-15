@@ -93,9 +93,14 @@ var hallOfTheMakers = new BitcoinPubKeyAddress("mzp4No5cmCXjZUpf112B1XWsvWBfws5b
 ```  
 
 ### How much?
+If you want to send **0.5 BTC** from a transaction input with **1 BTC** you actually have to spend all!   
+As the diagram shows below, your transaction specifies  **0.5** BTC to Hall of The Makers and **0.4999** back to you.  
+What happens to the remaining **0.0001 BTC**? This is the miner fee in order to incentivize them to add this transaction into their next block.
+
+![](../assets/SpendTx.png)  
 
 You can check the address I am working with on my example (I am working on the testnet): http://tbtc.blockr.io/address/info/mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv  
-We as that you send **0.004 BTC**, and since you spent **0.01 BTC**, you want **0.006 BTC** back. You will also give some fees to the miners to incentivize them to add this transaction into their next block. So you will take back **0.0059 BTC**.
+
 
 Now add your feedback! This must be less than 40 bytes, or it will crash the application.
 
