@@ -13,7 +13,7 @@ If you noticed a bug, but you do not want or cannot fix it, just open an issue [
 3. Edit file
 4. Make a pull request
 
-## How can I write or revise a new chapter? Aka extensive contributing to the book
+## How can I write a new chapter? Aka extensive contributing to the book
 1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
 2. Fork
 3. Clone your fork
