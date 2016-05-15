@@ -18,9 +18,9 @@ Let's quickly find on the [Internet](https://en.bitcoin.it/wiki/Genesis_block) t
 
 ```cs
 var address = new BitcoinPubKeyAddress("1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa");
-bool IsCraigWrightSatoshi = address.VerifyMessage(message, signature);
+bool isCraigWrightSatoshi = address.VerifyMessage(message, signature);
 
-Console.WriteLine("Is Craig Wright Satoshi? " + IsCraigWrightSatoshi);
+Console.WriteLine("Is Craig Wright Satoshi? " + isCraigWrightSatoshi);
 ```  
 
 SPOILER ALERT! The bool will be false.   
