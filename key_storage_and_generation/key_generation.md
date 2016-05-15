@@ -34,19 +34,38 @@ This **PassphraseCode** can be given to your key generator in WIF format.
 
 So, as a user that want to delegate key creation, first you will create the **PassphraseCode**.
 
+![](../assets/PassphraseCode.png)  
+
+```cs
+var passphraseCode = new BitcoinPassphraseCode("my secret", Network.Main, null);
+```
+
 You then give this **passphraseCode** to your third party key generator.
 
 The key generator will then generate new encrypted keys for you.
 
-This **EncryptedKeyResult** have lots of information:
+![](../assets/PassphraseCodeToEncryptedKeys.png)  
 
-First: the **generated bitcoin address**, then an **EncryptedKey** as we have seen in the **Key Encryption** part, and last but not the least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond effectively to your password.
+```cs
+EncryptedKeyResult encryptedKey1 = passphraseCode.GenerateEncryptedSecret();
+```  
 
-1PjHUAuSnZjLRoJrC9HnhsGj4RdDCoTFUm
+This **EncryptedKeyResult** have lots of information:  
 
-6PnUmv2YPEnb6NtzqQmE9o6M5w8xAeod94VyzhhGPe9qaT63Rxzk9VLUmS
+![](../assets/EncryptedKeyResult.png)  
 
-cfrm38VUVzCzhvJGAX22WtNdtmNwsCBHNj6Bx82QfW7NEUHRMBANaxDZxPCdXzjFouQXQLiskvF
+First: the **generated bitcoin address**,  
+```cs
+Console.WriteLine(encryptedKey1.GeneratedAddress); // 14KZsAVLwafhttaykXxCZt95HqadPXuz73
+```  
+then an **EncryptedKey** as we have seen in the **Key Encryption** part,  
+```cs
+Console.WriteLine(encryptedKey1.EncryptedKey); // 6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
+```  
+and last but not the least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond effectively to your password.
+```cs
+Console.WriteLine(encryptedKey1.ConfirmationCode); // cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
+```  
 
 As the owner, once you receive these info, you need to check that the key generator did not cheat by using **ConfirmationCode.Check**, then get your private key with your password.
 
