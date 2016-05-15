@@ -85,11 +85,11 @@ The donation address of this book is: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https
 This money goes into my "Coffee and Sushi Wallet" that will keep me fed and compliant while writing the rest of the book.  
 If you succeed to complete this challange you will be able to find your contribution among **Hall of the Makers** on http://n.bitcoin.ninja/ (ordered by generosity).  
 ```cs
-var hallOfTheMakers = new BitcoinPubKeyAddress("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
+var hallOfTheMakersAddress = new BitcoinPubKeyAddress("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
 ```  
 If you are working on the testnet, send the testnet coins to any testnet address.
 ```cs
-var hallOfTheMakers = new BitcoinPubKeyAddress("mzp4No5cmCXjZUpf112B1XWsvWBfws5bbB");
+var hallOfTheMakersAddress = new BitcoinPubKeyAddress("mzp4No5cmCXjZUpf112B1XWsvWBfws5bbB");
 ```  
 
 ### How much?
@@ -99,78 +99,83 @@ What happens to the remaining **0.0001 BTC**? This is the miner fee in order to 
 
 ![](../assets/SpendTx.png)  
 
-You can check the address I am working with on my example (I am working on the testnet): http://tbtc.blockr.io/address/info/mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv  
-
-
-Now add your feedback! This must be less than 40 bytes, or it will crash the application.
-
+```cs
+TxOut hallOfTheMakersTxOut = new TxOut()
 {
+    Value = new Money((decimal)0.5, MoneyUnit.BTC),
+    ScriptPubKey = hallOfTheMakersAddress.ScriptPubKey
+};
 
-"hash": "258ed68ac5a813fe95a6366d94701314f59af1446dda2360cf6f8e505e3fd1b6",
-
-"ver": 1,
-
-"vin_sz": 1,
-
-"vout_sz": 3,
-
-"lock_time": 0,
-
-"size": 166,
-
-"in": [
-
+TxOut changeBackTxOut = new TxOut()
 {
+    Value = new Money((decimal)0.4999, MoneyUnit.BTC),
+    ScriptPubKey = bitcoinPrivateKey.ScriptPubKey
+};
 
-"prev_out": {
+transaction.Outputs.Add(hallOfTheMakersTxOut);
+transaction.Outputs.Add(changeBackTxOut);
+```  
 
-"hash": "4ebf7f7ca0a5dafd10b9bd74d8cb93a6eb0831bcb637fec8e8aabf842f1c2688",
+We can do some finetuning here.  
+You can check the address on a blockexplorer I am working with on this whole chapter example (I am working on the testnet):   http://tbtc.blockr.io/address/info/mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv  
 
-"n": 1
+```cs
+// How much you want to TO
+var hallOfTheMakersAmount = new Money((decimal)0.5, MoneyUnit.BTC);
+/* At the time of writing the mining fee is 0.05usd
+ * Depending on the market price and
+ * On the currently advised mining fee,
+ * You may consider to increase or decrease it
+*/
+var minerFee = new Money((decimal)0.0001, MoneyUnit.BTC);
+// How much you want to spend FROM
+var txInAmount = (Money)receivedCoins[(int) outPointToSpend.N].Amount;
+Money changeBackAmount = txInAmount - hallOfTheMakersAmount - minerFee;
+```
 
-},
-
-"scriptSig": ""
-
-}
-
-],
-
-"out": [
-
+Let's add our calculated values to our TxOuts:  
+```cs
+TxOut hallOfTheMakersTxOut = new TxOut()
 {
+    Value = hallOfTheMakersAmount,
+    ScriptPubKey = hallOfTheMakersAddress.ScriptPubKey
+};
 
-"value": "0.00400000",
-
-"scriptPubKey": "OP_DUP OP_HASH160 c81e8e7b7ffca043b088a992795b15887c961592 OP_EQUALVERIFY OP_CHECKSIG"
-
-},
-
+TxOut changeBackTxOut = new TxOut()
 {
+    Value = changeBackAmount,
+    ScriptPubKey = bitcoinPrivateKey.ScriptPubKey
+};
+```  
 
-"value": "0.00590000",
+And add them to our transaction:  
+```cs
+transaction.Outputs.Add(hallOfTheMakersTxOut);
+transaction.Outputs.Add(changeBackTxOut);
+```  
 
-"scriptPubKey": "OP_DUP OP_HASH160 71049fd47ba2107db70d53b127cae4ff0a37b4ab OP_EQUALVERIFY OP_CHECKSIG"
+### Message on The Blockchain
 
-},
+Now add your feedback! This must be less than 40 bytes, or it will crash the application.  
+This feedback, along with your transaction will appear (after transaction is confirmed) in the [Hall of The Makers](http://n.bitcoin.ninja/). 
 
+```cs
+var message = "nopara73 loves NBitcoin!";
+var bytes = Encoding.UTF8.GetBytes(message);
+transaction.Outputs.Add(new TxOut()
 {
+    Value = Money.Zero,
+    ScriptPubKey = TxNullDataTemplate.Instance.GenerateScriptPubKey(bytes)
+});
+```  
 
-"value": "0.00000000",
+### Sign your transaction
 
-"scriptPubKey": "OP_RETURN 42696c6c20537472616974206973207570646174696e672073637265656e73686f74732e"
+Now that we have created the transaction, we must sign it. In other words, you will have to prove that you own the TxOut that you referenced in the input.  
 
-}
+Signing can be [complicated](https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png), but we’ll make it simple.
 
-]
-
-}
-
-Now that we have created the transaction, we must sign it. In other words, you will have to prove that you own the TxOut that you referenced in the input.
-
-Signing can be complicated. Refer to [https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png](https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png) for details. But we’ll make it simple.
-
-First insert the scriptPubKey in the **scriptSig.**Since the scriptPubKey is nothing but **paymentAddress.ScriptPubKey** this is simple.Then you need to give your private key for signing.
+First insert the ScriptPubKey in the **scriptSig.**Since the scriptPubKey is nothing but **paymentAddress.ScriptPubKey** this is simple.Then you need to give your private key for signing.
 
 "in": [
 
