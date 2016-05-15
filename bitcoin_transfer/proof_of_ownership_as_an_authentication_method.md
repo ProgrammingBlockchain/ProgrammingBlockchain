@@ -1,25 +1,41 @@
 ## Proof of ownership as an authentication method {#proof-of-ownership-as-an-authentication-method}
+> [[2016.05.02](https://www.youtube.com/watch?v=dZNtbAFnr-0)] My name is Craig Wright and I am about to demonstrate a signing of a message with the public key that is associated with the first transaction ever done in Bitcoin.  
 
-When I will release the next chapters, I will authenticate you with the key you used to pay me.
+```cs
+var bitcoinPrivateKey = new BitcoinSecret("KzgjNRhcJ3HRjxVdFhv14BrYUKrYBzdoxQyR2iJBHG9SNGGgbmtC");
 
-Do you remember when I said:
+var message = "I am Craig Wright";
+string signature = bitcoinPrivateKey.PrivateKey.SignMessage(message);
+Console.WriteLine(signature); // IN5v9+3HGW1q71OqQ1boSZTm0/DCiMpI8E4JB1nD67TCbIVMRk/e3KrTT9GvOuu3NGN0w8R2lWOV2cxnBp + Of8c =
+```  
 
-**Address:** 1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB**Signature:** H1jiXPzun3rXi0N9v9R5fAWrfEae9WPmlL5DJBj1eTStSvpKdRR8Io6/uT9tGH/3OnzG6ym5yytuWoA9ahkC3dQ=**Message:** Nicolas Dorier Book Funding Address
+You may remember Craig Wright, who really wanted us to believe he is Satoshi Nakamoto.  
+He had successfully convinced a handful of influential Bitcoin people and journalists with some social engineering.  
+Fortunately digital signatures do not work that way.  
+Let's quickly find on the [Internet](https://en.bitcoin.it/wiki/Genesis_block) the first ever bitcoin address, associated with the genesis book: [1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa](https://blockchain.info/address/1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa) and verify his claim:  
 
-This constitute proof that I own the private key of the book.
+```cs
+var address = new BitcoinPubKeyAddress("1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa");
+bool IsCraigWrightSatoshi = address.VerifyMessage(message, signature);
 
-You can verify that this is true with the following code.
+Console.WriteLine("Is Craig Wright Satoshi? " + IsCraigWrightSatoshi);
+```  
 
-True
+SPOILER ALERT! The bool will be false.   
 
-And this is what I will use to authenticate you.
+Here is how you prove you are the owner of an address without moving coins:  
 
-So if I give you the challenge:
+**Address:**  
+[1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://blockchain.info/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB)  
+**Message:**  
+Nicolas Dorier Book Funding Address  
+**Signature:**  
+H1jiXPzun3rXi0N9v9R5fAWrfEae9WPmlL5DJBj1eTStSvpKdRR8Io6/uT9tGH/3OnzG6ym5yytuWoA9ahkC3dQ=  
 
-**Message**: “Prove me you are 1LUtd66PcpPx64GERqufPygYEWBQR2PUN6”
+This constitutes proof that Nicolas Dorier owns the private key of the book.  
+**Exercise:** Verify that Nicolas sensei is not lying!  
 
-You can prove it with your private key in the following way
-
-True
-
-This is how you’ll be prompted to prove your identity on [http://blockchainprogramming.azurewebsites.net/](http://blockchainprogramming.azurewebsites.net/)
+### Sidenote
+Do you know how PGP works? Pretty similar, right?  
+Maybe this can be the foundation of a more user friendly PGP alternative.  
+Please build it on top of NBitcoin:)
