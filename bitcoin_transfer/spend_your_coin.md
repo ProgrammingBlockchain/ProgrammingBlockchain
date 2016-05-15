@@ -94,7 +94,7 @@ var hallOfTheMakers = new BitcoinPubKeyAddress("mzp4No5cmCXjZUpf112B1XWsvWBfws5b
 
 ### How much?
 If you want to send **0.5 BTC** from a transaction input with **1 BTC** you actually have to spend all!   
-As the diagram shows below, your transaction specifies  **0.5** BTC to Hall of The Makers and **0.4999** back to you.  
+As the diagram shows below, your transaction output specifies  **0.5** BTC to Hall of The Makers and **0.4999** back to you.  
 What happens to the remaining **0.0001 BTC**? This is the miner fee in order to incentivize them to add this transaction into their next block.
 
 ![](../assets/SpendTx.png)  
