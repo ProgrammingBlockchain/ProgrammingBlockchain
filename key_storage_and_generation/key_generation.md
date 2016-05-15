@@ -2,30 +2,35 @@
 
 ### Like the good ol’ days {#like-the-good-ol-days}
 
-First, why generating several keys?The main reason is privacy. Since you can see the balance of all addresses, it is better to use a new address for each transaction.
+First, why generating several keys?  
+The main reason is privacy. Since you can see the balance of all addresses, it is better to use a new address for each transaction.  
 
-However, in practice, you can also generate keys for each contact. Because this make a simple way to identify your payer without leaking too much privacy.
+However, in practice, you can also generate keys for each contact. Because this make a simple way to identify your payer without leaking too much privacy.  
 
 You can generate key, like you did from the beginning:
 
-However, you have two problems with that:
+```cs
+var privateKey = new Key()
+```  
 
-*   All backup of your wallet that you have will become outdated when you generate a new key.
-*   You can’t delegate the address creation process to an untrusted peer
+However, you have two problems with that:  
 
-If you are developing a web wallet and generate key on behalf of your users, and one user get hack, he will immediately start suspecting you.
+*   All backup of your wallet that you have will become outdated when you generate a new key.  
+*   You cannot delegate the address creation process to an untrusted peer.  
 
-### BIP38 (part 2) {#bip38-part-2}
+If you are developing a web wallet and generate key on behalf of your users, and one user get hack, he will immediately start suspecting you.  
 
-We already saw BIP38 for encrypting a key, however this BIP is in reality two ideas in one document.
+### BIP38 (Part 2) {#bip38-part-2}
 
-The second part of the BIP, show how you can delegate Key and Addresss creation to an untrusted peer. It will fix one of our concern.
+We already saw BIP38 for encrypting a key, however this BIP is in reality two ideas in one document.  
 
-The idea is to generate a **PassphraseCode** to the key generator. With this **PassphraseCode**, he will be able to generate Encrypted keys on your behalf, without knowing your password, nor any private key.
+The second part of the BIP, show how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concern.  
 
-This **PassphraseCode** can be given to your key generator in WIF format.
+The idea is to generate a **PassphraseCode** to the key generator. With this **PassphraseCode**, he will be able to generate Encrypted keys on your behalf, without knowing your password, nor any private key.  
 
-Tip: In NBitcoin, all types prefixed by “Bitcoin” are Base58 (WIF) data
+This **PassphraseCode** can be given to your key generator in WIF format.  
+
+> **Tip**: In NBitcoin, all types prefixed by “Bitcoin” are Base58 (WIF) data.  
 
 So, as a user that want to delegate key creation, first you will create the **PassphraseCode**.
 
