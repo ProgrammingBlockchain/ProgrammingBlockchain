@@ -24,7 +24,7 @@ If you noticed a bug, but you do not want or cannot fix it, just open an issue [
 8. Save files and Sync
 9. Make a pull request
 
-## Useful links
+## Links
 
 [The book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
 [The book on Gitbook](https://www.gitbook.com/book/programmingblockchain/programmingblockchain) (You can download pdf, epub, mobi versions here.)  
