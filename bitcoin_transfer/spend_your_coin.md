@@ -45,27 +45,21 @@ Console.WriteLine(transactionResponse.TransactionId); // e44587cf08b4f03b0e8b4ae
 Console.WriteLine(transactionResponse.Block.Confirmations);
 ```  
 
-In our case, we want to spend the second output:
-
-"out": [
-
+In our case, we want to spend the second output. Here's how we figured this out:  
+```cs
+var receivedCoins = transactionResponse.ReceivedCoins;
+OutPoint outPointToSpend = null;
+foreach (var coin in receivedCoins)
 {
-
-"value": "0.08990000",
-
-"scriptPubKey": "OP_DUP OP_HASH160 5b1d720daf0e95e37d0eaedd282b6ed9a40bab71 OP_EQUALVERIFY OP_CHECKSIG"
-
-},
-
-{
-
-"value": "0.01000000",
-
-"scriptPubKey": "OP_DUP OP_HASH160 71049fd47ba2107db70d53b127cae4ff0a37b4ab OP_EQUALVERIFY OP_CHECKSIG"
-
+    if (coin.TxOut.ScriptPubKey == bitcoinPrivateKey.ScriptPubKey)
+    {
+        outPointToSpend = coin.Outpoint;
+    }
 }
-
-]
+if(outPointToSpend == null)
+    throw new Exception("TxOut doesn't contain our ScriptPubKey");
+Console.WriteLine("We want to spend {0}. outpoint:", outPointToSpend.N + 1);
+```  
 
 For the payment you will need to reference this output in the transaction. You create a transaction as follows:
 
