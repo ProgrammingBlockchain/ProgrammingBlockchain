@@ -2,7 +2,7 @@
 
 ## How to read the book? 
 
-[Click here to read](https://programmingblockchain.gitbooks.io/programmingblockchain/content/).
+[Click here to read](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
 ## How to fix a typo? Aka quick contributing to the book
 1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
