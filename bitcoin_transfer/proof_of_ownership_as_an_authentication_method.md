@@ -2,7 +2,7 @@
 > [[2016.05.02](https://www.youtube.com/watch?v=dZNtbAFnr-0)] My name is Craig Wright and I am about to demonstrate a signing of a message with the public key that is associated with the first transaction ever done in Bitcoin.  
 
 ```cs
-var bitcoinPrivateKey = new BitcoinSecret(XXXXXXXXXXXXXXXXXXXXX);
+var bitcoinPrivateKey = new BitcoinSecret("XXXXXXXXXXXXXXXXXXXXXXXXXX");
 
 var message = "I am Craig Wright";
 string signature = bitcoinPrivateKey.PrivateKey.SignMessage(message);
