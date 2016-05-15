@@ -45,7 +45,11 @@ Console.WriteLine(transactionResponse.TransactionId); // e44587cf08b4f03b0e8b4ae
 Console.WriteLine(transactionResponse.Block.Confirmations);
 ```  
 
-In our case, we want to spend the second outpoint. Here's how we figured this out:  
+Now we have every information for creating our transactions. The main questions are: **from where, to where and how much?**
+
+### From where?
+
+In our case, we want to spend the second outpoint. Here's how we have figured this out:  
 ```cs
 var receivedCoins = transactionResponse.ReceivedCoins;
 OutPoint outPointToSpend = null;
@@ -71,9 +75,27 @@ transaction.Inputs.Add(new TxIn()
 });
 ```  
 
-Now let’s take care about the Outputs. We as that you send **0.004 BTC**, and since you spent **0.01 BTC**, you want **0.006 BTC** back. You will also give some fees to the miners to incentivize them to add this transaction into their next block. So you will take back **0.0059 BTC**.
+### To where?
 
-The book’s donation address is: 1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB
+Do you remember the main questions? **From where, to where and how much?**  
+Constructing **TxIn** and adding to the transaction was the answer the "from where" question.  
+Constructing **TxOut** and adding to the transaction is the answer for the remaining ones.  
+
+The donation address of this book is: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://blockchain.info/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB)  
+This money goes into my "Coffee and Sushi Wallet" that will keep me fed and compliant while writing the rest of the book.  
+If you succeed to complete this challange you will be able to find your contribution among **Hall of the Makers** on http://n.bitcoin.ninja/ (ordered by generosity).  
+```cs
+var hallOfTheMakers = new BitcoinPubKeyAddress("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
+```  
+If you are working on the testnet, send the testnet coins to any testnet address.
+```cs
+var hallOfTheMakers = new BitcoinPubKeyAddress("mzp4No5cmCXjZUpf112B1XWsvWBfws5bbB");
+```  
+
+### How much?
+
+You can check the address I am working with on my example (I am working on the testnet): http://tbtc.blockr.io/address/info/mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv  
+We as that you send **0.004 BTC**, and since you spent **0.01 BTC**, you want **0.006 BTC** back. You will also give some fees to the miners to incentivize them to add this transaction into their next block. So you will take back **0.0059 BTC**.
 
 Now add your feedback! This must be less than 40 bytes, or it will crash the application.
 
