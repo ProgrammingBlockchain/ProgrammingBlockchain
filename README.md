@@ -1,16 +1,23 @@
-# Programming The Blockchain in C#  
+# Programming The Blockchain in C\#  (
 
-## How to read the book? 
+
+
+  
+
+## How can I read the book? 
 
 [Click here to read](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
-## How to fix a typo? Aka quick contributing to the book
+## I noticed a bug
+If you noticed a bug, but you do not want or cannot fix it, just open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
+
+## How can I fix a typo? Aka quick contributing to the book
 1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
 2. Fork
 3. Edit file
 4. Make a pull request
 
-## How to write a new chapter? Aka extensive contributing to the book
+## How can I write or revise a new chapter? Aka extensive contributing to the book
 1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
 2. Fork
 3. Clone your fork
