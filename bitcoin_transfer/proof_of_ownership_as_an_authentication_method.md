@@ -9,6 +9,8 @@ string signature = bitcoinPrivateKey.PrivateKey.SignMessage(message);
 Console.WriteLine(signature); // IN5v9+3HGW1q71OqQ1boSZTm0/DCiMpI8E4JB1nD67TCbIVMRk/e3KrTT9GvOuu3NGN0w8R2lWOV2cxnBp + Of8c =
 ```  
 
+Was that so hard?  
+
 You may remember Craig Wright, who really wanted us to believe he is Satoshi Nakamoto.  
 He had successfully convinced a handful of influential Bitcoin people and journalists with some social engineering.  
 Fortunately digital signatures do not work that way.  
