@@ -1,8 +1,4 @@
-# Programming The Blockchain in C\#  (
-
-
-
-  
+# Programming The Blockchain in C*#*
 
 ## How can I read the book? 
 
