@@ -1,8 +1,49 @@
 ## Spend your coin {#spend-your-coin}
 
-So now that you know what a bitcoin address, a ScriptPubKey, a private key, and a miner are you’ll make your first transaction by hand. Create a new class called Chapter14 and a method called Lesson1\. As you proceed through this chapter you will add code line by line as it is presented to build a method that will leave feedback for the book in a Twitter style message.
+So now that you know what a **bitcoin address**, a **ScriptPubKey**, a **private key**, and a **miner** are you will make your first **transaction** by hand.  
 
-Let’s start by looking at the transaction that that contains the TxOut that you want to spend as we did in Chapter 11\.
+As you proceed through this lesson you will add code line by line as it is presented to build a method that will leave feedback for the book in a Twitter style message.  
+
+Let’s start by looking at the **transaction** that contains the **TxOut** that you want to spend as we did previously:  
+
+Create a new **Console Project** (>.net45) and install **QBitNinja.Client** NuGet.  
+
+Have you already generated and noted a private key to yourself? Have you already get the corresponding bitcoin address and sent some funds there? If not, don't worry, I quickly reiterate how you can do it:  
+
+```cs
+var network = Network.Main;
+
+Key privateKey = new Key();
+var bitcoinPrivateKey = privateKey.GetWif(network);
+var address = bitcoinPrivateKey.GetAddress();
+
+Console.WriteLine(bitcoinPrivateKey);
+Console.WriteLine(address);
+```  
+
+Note the **bitcoinPrivateKey**, the **address**, send some coins there and note the transaction id (you can find it (probably) in your wallet software or with a blockexplorer, like [blockchain.info](http://blockchain.info/)).  
+
+Import your private key:  
+
+```cs
+var bitcoinPrivateKey = new 
+BitcoinSecret("cSZjE4aJNPpBtU6xvJ6J4iBzDgTmzTjbq8w2kqnYvAprBCyTsG4x");
+var network = bitcoinPrivateKey.Network;
+var address = bitcoinPrivateKey.GetAddress();
+
+Console.WriteLine(bitcoinPrivateKey); // cSZjE4aJNPpBtU6xvJ6J4iBzDgTmzTjbq8w2kqnYvAprBCyTsG4x
+Console.WriteLine(address); // mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv
+```  
+
+And finally get the transaction info:  
+```cs
+var client = new QBitNinjaClient(network);
+var transactionId = uint256.Parse("e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3");
+var transactionResponse = client.GetTransaction(transactionId).Result;
+
+Console.WriteLine(transactionResponse.TransactionId); // e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3
+Console.WriteLine(transactionResponse.Block.Confirmations);
+```  
 
 In our case, we want to spend the second output:
 
