@@ -45,7 +45,7 @@ Console.WriteLine(transactionResponse.TransactionId); // e44587cf08b4f03b0e8b4ae
 Console.WriteLine(transactionResponse.Block.Confirmations);
 ```  
 
-In our case, we want to spend the second output. Here's how we figured this out:  
+In our case, we want to spend the second outpoint. Here's how we figured this out:  
 ```cs
 var receivedCoins = transactionResponse.ReceivedCoins;
 OutPoint outPointToSpend = null;
@@ -61,7 +61,15 @@ if(outPointToSpend == null)
 Console.WriteLine("We want to spend {0}. outpoint:", outPointToSpend.N + 1);
 ```  
 
-For the payment you will need to reference this output in the transaction. You create a transaction as follows:
+For the payment you will need to reference this outpoint in the transaction. You create a transaction as follows:
+
+```cs
+var transaction = new Transaction();
+transaction.Inputs.Add(new TxIn()
+{
+    PrevOut = outPointToSpend
+});
+```  
 
 Now let’s take care about the Outputs. We as that you send **0.004 BTC**, and since you spent **0.01 BTC**, you want **0.006 BTC** back. You will also give some fees to the miners to incentivize them to add this transaction into their next block. So you will take back **0.0059 BTC**.
 
