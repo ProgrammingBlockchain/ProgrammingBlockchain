@@ -32,10 +32,8 @@ BitcoinPubKeyAddress bitcoinPubicKey = publicKey.GetAddress(Network.Main); // 1P
 
 ### Exercise:
 1. Generate a private key on the mainnet and note it.
-2. Get the corresponding address and send some bitcoins to it.    
-Send as much as you cannot afford to lose, so you will feel motivated and focused during the following few lessons.
-
-Working on the mainnet will make sure you are going to finish the next chapter. If you are less motivated don't possess any bitcoin just use the testnet. You can acquire testnet coins quickly, just google "get testnet bitcoins", they are also called **faucets**.  
+2. Get the corresponding address.
+3. Send bitcoins to it. As much as you cannot afford to lose, so it will keep you focused and motivated to get them back during the following lessons. 
 
 
  
