@@ -5,7 +5,7 @@
 [Click here to read](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
 ## I noticed a bug
-If you noticed a bug, but you do not want or cannot fix it, just open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
+If you notice a bug or mistake, but you do not want or cannot fix it, just open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
 
 ## How can I fix a typo? Aka quick contribution
 1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
