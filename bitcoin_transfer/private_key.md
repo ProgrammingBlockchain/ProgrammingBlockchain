@@ -15,7 +15,7 @@ bool WifIsBitcoinSecret = mainNetPrivateKey == privateKey.GetWif(Network.Main);
 Console.WriteLine(WifIsBitcoinSecret); // True
 ```  
 
-Note that it is easy to go from Bitcoin Secret to Private Key. It is important to remember that it is impossible to go from a Bitcoin Address to Public Key because the Bitcoin Address contains a hash of the Public Key, not the Public Key itself.  
+Note that it is easy to go from **BitcoinSecret** to private **Key**. On the other hand, it is impossible to go from a Bitcoin Address to Public Key because the Bitcoin Address contains a hash of the Public Key, not the Public Key itself.  
 Process this information by examining the similarities between this two codeblock:  
 
 ```cs
@@ -32,9 +32,8 @@ BitcoinPubKeyAddress bitcoinPubicKey = publicKey.GetAddress(Network.Main); // 1P
 
 ### Exercise:
 1. Generate a private key on the mainnet and note it.
-2. Get the corresponding address and send some bitcoins to it..  
-
-Send something like 1-10 USD worth of coins, you can increase when if you feel more confident;)  
+2. Get the corresponding address and send some bitcoins to it.    
+Send as much as you cannot afford to lose, so you will feel motivated and focused during the following few lessons.
 
 Working on the mainnet will make sure you are going to finish the next chapter. If you are less motivated don't possess any bitcoin just use the testnet. You can acquire testnet coins quickly, just google "get testnet bitcoins", they are also called **faucets**.  
 
