@@ -13,7 +13,7 @@
    * [Pre-requisites](introduction/pre-requisites.md)
    * [Project Setup](introduction/project_setup.md)
 * [Bitcoin transfer](bitcoin_transfer/README.md)
-   * [Bitcoin Address](bitcoin_transfer/bitcoin_address.md)
+   * [Bitcoin address](bitcoin_transfer/bitcoin_address.md)
    * [ScriptPubKey](bitcoin_transfer/payment_script.md)
    * [Private Key](bitcoin_transfer/private_key.md)
    * [Transaction](bitcoin_transfer/transaction.md)
