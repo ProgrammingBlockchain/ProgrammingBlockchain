@@ -14,7 +14,7 @@
    * [Project Setup](introduction/project_setup.md)
 * [Bitcoin transfer](bitcoin_transfer/README.md)
    * [Bitcoin Address](bitcoin_transfer/bitcoin_address.md)
-   * [Payment script](bitcoin_transfer/payment_script.md)
+   * [ScriptPubKey](bitcoin_transfer/payment_script.md)
    * [Private Key](bitcoin_transfer/private_key.md)
    * [Transaction](bitcoin_transfer/transaction.md)
    * [Blockchain](bitcoin_transfer/blockchain.md)
