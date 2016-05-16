@@ -1,6 +1,7 @@
 ## Private key {#private-key}
 
-Private keys are often represented in Base58Check called a **Bitcoin Secret** (also known as **Wallet Import Format** or simply **WIF**), like Bitcoin Addresses.
+Private keys are often represented in Base58Check called a **Bitcoin Secret** (also known as **Wallet Import Format** or simply **WIF**), like Bitcoin Addresses.  
+
 ![](../assets/BitcoinSecret.png)  
 
 ```cs  
