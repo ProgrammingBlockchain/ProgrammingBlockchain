@@ -11,7 +11,7 @@ With code:
 ```cs  
 Key privateKey = new Key(); // generate a random private key
 ```  
-From the private key, we use elliptic curve multiplication, a one-way cryptographic function, to generate a **public key**.  
+From the private key, we use a one-way cryptographic function, to generate a **public key**.  
 
 ![](../assets/PrivKeyPubKey.png)  
 ```cs 
@@ -19,9 +19,11 @@ PubKey publicKey = privateKey.PubKey;
 Console.WriteLine(publicKey); // 0251036303164f6c458e9f7abecb4e55e5ce9ec2b2f1d06d633c9653a07976560c
 ```  
 
-> **Fact:** TestNet is a Bitcoin network for development purposes. Bitcoins on this network worth nothing.  MainNet is the bitcoin network everybody knows.  
+There are two Bitcoin **networks**: 
+* **TestNet** is a Bitcoin network for development purposes. Bitcoins on this network worth nothing.  
+* **MainNet** is the Bitcoin network everybody uses.  
 
-You can magically get your **bitcoin address** from your public key and by specifying the **network**. *(You should enjoy this magic now, because I will clear it up shortly.)*  
+You can magically get your **bitcoin address** from your public key and the **network**. *(You should enjoy this magic now, because I will clear it up shortly.)*  
 
 ![](../assets/PubKeyToAddr.png)  
 
@@ -30,7 +32,7 @@ Console.WriteLine(publicKey.GetAddress(Network.Main)); // 1PUYsjwfNmX64wS368ZR5F
 Console.WriteLine(publicKey.GetAddress(Network.TestNet)); // n3zWAo2eBnxLr3ueohXnuAa8mTVBhxmPhq
 ```  
 
-**More accurately a bitcoin address is made up of a Base58check encoded combination of your public key’s hash and some information about the network the address is for:**  
+**Precisely a bitcoin address is made up of your public key’s hash plus the network then encoded into Base58Check:**  
 
 ![](../assets/PubKeyHashToBitcoinAddress.png)  
 
@@ -50,4 +52,4 @@ Console.WriteLine(mainNetAddress); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
 Console.WriteLine(testNetAddress); // n3zWAo2eBnxLr3ueohXnuAa8mTVBhxmPhq
 ```  
 
-> **Fact:** Practicing Bitcoin Programming on MainNet makes mistakes more memorable.  
+> **Tip:** Practicing Bitcoin Programming on MainNet makes mistakes more memorable.  
