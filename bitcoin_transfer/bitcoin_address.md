@@ -1,4 +1,4 @@
-## Bitcoin Address {#bitcoin-address}
+## Bitcoin address {#bitcoin-address}
 
 You know that your **Bitcoin Address** is what you share to the world to get paid.  
 ![](../assets/BitcoinAddress.png)  
