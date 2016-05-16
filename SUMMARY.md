@@ -15,7 +15,7 @@
 * [Bitcoin transfer](bitcoin_transfer/README.md)
    * [Bitcoin address](bitcoin_transfer/bitcoin_address.md)
    * [ScriptPubKey](bitcoin_transfer/payment_script.md)
-   * [Private Key](bitcoin_transfer/private_key.md)
+   * [Private key](bitcoin_transfer/private_key.md)
    * [Transaction](bitcoin_transfer/transaction.md)
    * [Blockchain](bitcoin_transfer/blockchain.md)
    * [“The Blockchain is more than just Bitcoin”](bitcoin_transfer/the_blockchain_is_more_than_just_bitcoin.md)
