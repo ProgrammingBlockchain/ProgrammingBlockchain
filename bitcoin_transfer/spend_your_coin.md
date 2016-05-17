@@ -169,6 +169,42 @@ transaction.Outputs.Add(new TxOut()
 });
 ```  
 
+Let's take a look at the whole transaction before signing:  
+
+```json
+{
+  "hash": "b7803df4b90fd615532bcbdb3b63eb1af5a2e4ae36f29a6fbf9f57d0a1842e0a",
+  "ver": 1,
+  "vin_sz": 1,
+  "vout_sz": 3,
+  "lock_time": 0,
+  "size": 154,
+  "in": [
+    {
+      "prev_out": {
+        "hash": "e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3",
+        "n": 1
+      },
+      "scriptSig": ""
+    }
+  ],
+  "out": [
+    {
+      "value": "0.50000000",
+      "scriptPubKey": "OP_DUP OP_HASH160 d3a689bc36464b9d74e1721fd321d4686eae594e OP_EQUALVERIFYOP_CHECKSIG"
+    },
+    {
+      "value": "0.62840112",
+      "scriptPubKey": "OP_DUP OP_HASH160 ce2c16edb74aef1caa6db0078af9d3a5b8fd12d1 OP_EQUALVERIFYOP_CHECKSIG"
+    },
+    {
+      "value": "0.00000000",
+      "scriptPubKey": "OP_RETURN 6e6f706172613733206c6f766573204e426974636f696e21"
+    }
+  ]
+}
+```  
+
 ### Sign your transaction
 
 Now that we have created the transaction, we must sign it. In other words, you will have to prove that you own the TxOut that you referenced in the input.  
