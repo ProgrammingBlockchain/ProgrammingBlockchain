@@ -318,7 +318,7 @@ This is a real shame it was labeled as **dark** since it solves partially the im
 
 In Dark Wallet terminology, here are the different actors:
 
-*   **Scanner** knows the **Scan Key**, a secret that allows him to detect the transactions that belong to the **Receiver**.
+*   **Scanner** knows the **Scan Key**, a secret that allows him to detect the transactions those belong to the **Receiver**.
 *   The **Receiver** knows the **Spend Key**, a secret that will allow him to spend the coins he receives from one of such transaction.
 *   The **Payer** knows the **StealthAddress** of the **Receiver**
 
