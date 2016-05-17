@@ -318,9 +318,9 @@ This is a real shame it was labeled as **dark** since it solves partially the im
 
 In Dark Wallet terminology, here are the different actors:
 
-*   **Scanner** knows the **Scan Key**, a secret that allows him to detect the transactions those belong to the **Receiver**.
-*   The **Receiver** knows the **Spend Key**, a secret that will allow him to spend the coins he receives from one of such transaction.
 *   The **Payer** knows the **StealthAddress** of the **Receiver**
+*   The **Receiver** knows the **Spend Key**, a secret that will allow him to spend the coins he receives from one of such transaction.
+*   **Scanner** knows the **Scan Key**, a secret that allows him to detect the transactions those belong to the **Receiver**.
 
 The rest is operational details.Underneath, this **StealthAddress** is composed of one or several **Spend PubKey** (for multi sig), and one **Scan PubKey**.  
 
@@ -339,13 +339,30 @@ BitcoinStealthAddress stealthAddress
         network: Network.Main);
 ```  
 
-The **payer**, will take your **StealthAddress**, generate a temporary key called **Ephem Key** and will generate a **Stealth Pub Key**, from which the Bitcoin address to which the payment will be done is generated.
+The **payer**, will take your **StealthAddress**, generate a temporary key called **Ephem Key** and will generate a **Stealth Pub Key**, from which the Bitcoin address to which the payment will be done is generated.  
+
+![](../assets/EphemKey.png) 
 
 Then, he will package the **Ephem PubKey** in a **Stealth Metadata** object embedded that in the OP_RETURN of the transaction (as we have done for the first challenge)
 
-He will also add the output to the generated bitcoin address. (the address of the **Stealth pub key**)
+He will also add the output to the generated bitcoin address. (the address of the **Stealth pub key**) 
 
-The creation of the **EphemKey** being an implementation details, you can omit it, NBitcoin will generate one automatically:
+![](../assets/StealthMetadata.png)  
+
+```cs
+var ephemKey = new Key();
+Transaction transaction = new Transaction();
+stealthAddress.SendTo(transaction, Money.Coins(1.0m), ephemKey);
+Console.WriteLine(transaction);
+```  
+
+The creation of the **EphemKey** being an implementation details, you can omit it, NBitcoin will generate one automatically:  
+
+```cs
+Transaction transaction = new Transaction();
+stealthAddress.SendTo(transaction, Money.Coins(1.0m));
+Console.WriteLine(transaction);
+```
 
 {
 
