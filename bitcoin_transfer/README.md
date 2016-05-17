@@ -1,2 +1,2 @@
 # Bitcoin transfer {#bitcoin-transfer}
-Have you ever realized that, the blockchain is basically a bunch of transactions? In Bitcoin, everything is designed to make sure that the transactions go through. During this chapter we are going to introduce you the basic concepts by guiding you through a creation of simple bitcoin transaction "by hand", in a low level.  The following chapters are basically extenstions, and creative combinations of these concepts.
+In Bitcoin, everything is designed to make sure that the transactions go through. During this chapter we are going to introduce you the basic concepts of Bitcoin by guiding you through a creation of simple bitcoin transaction "by hand", in a low level. 
