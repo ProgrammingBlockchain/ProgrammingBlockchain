@@ -277,15 +277,29 @@ ExtKey paymentKey = ceoKey.Derive(path);
 
 As you have seen, generating an HD keys is easy. However, what if we want as easy way to transmit such key by telephone or hand writing?
 
-Cold wallets like Trezor, generates the HD Keys from a sentence that can easily be written down. They call such sentence “the seed” or “mnemonic”. And it can eventually be protected by a password or a PIN.
+Cold wallets like Trezor, generates the HD Keys from a sentence that can easily be written down. They call such sentence “the seed” or “mnemonic”. And it can eventually be protected by a password or a PIN.  
+![](../assets/Trezor.png)  
 
-The language that you use to generate your easy to write sentence is called a **Wordlist**
+The language that you use to generate your easy to write sentence is called a **Wordlist**  
 
-minute put grant neglect anxiety case globe win famous correct turn link
+![](../assets/RootKey.png)  
+```cs
+Mnemonic mnemo = new Mnemonic(Wordlist.English, WordCount.Twelve);
+ExtKey hdRoot = mnemo.DeriveExtKey("my password");
+Console.WriteLine(mnemo);
+```  
 
-Now, if you have the mnemonic and the password, you can recover the **hdRoot** key.
+```minute put grant neglect anxiety case globe win famous correct turn link```  
 
-Currently supported **wordlist** are, English, Japanese, Spanish, Chinese (simplified an traditional).
+Now, if you have the mnemonic and the password, you can recover the **hdRoot** key.  
+
+```cs
+mnemo = new Mnemonic("minute put grant neglect anxiety case globe win famous correct turn link",
+                Wordlist.English);
+hdRoot = mnemo.DeriveExtKey("my password");
+```  
+
+Currently supported **wordlist** are, English, Japanese, Spanish, Chinese (simplified and traditional).  
 
 ### Dark Wallet {#dark-wallet}
 
