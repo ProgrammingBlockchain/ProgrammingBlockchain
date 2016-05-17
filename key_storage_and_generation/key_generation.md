@@ -18,7 +18,7 @@ However, you have two problems with that:
 *   All backup of your wallet that you have will become outdated when you generate a new key.  
 *   You cannot delegate the address creation process to an untrusted peer.  
 
-If you are developing a web wallet and generate key on behalf of your users, and one user get hack, he will immediately start suspecting you.  
+If you are developing a web wallet and generate key on behalf of your users, and one user get hacked, she will immediately start suspecting you.  
 
 ### BIP38 (Part 2) {#bip38-part-2}
 
@@ -26,7 +26,7 @@ We already saw BIP38 for encrypting a key, however this BIP is in reality two id
 
 The second part of the BIP, show how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concern.  
 
-The idea is to generate a **PassphraseCode** to the key generator. With this **PassphraseCode**, he will be able to generate Encrypted keys on your behalf, without knowing your password, nor any private key.  
+**The idea is to generate a PassphraseCode to the key generator. With this PassphraseCode, he will be able to generate encrypted keys on your behalf, without knowing your password, nor any private key. ** 
 
 This **PassphraseCode** can be given to your key generator in WIF format.  
 
@@ -40,14 +40,14 @@ So, as a user that want to delegate key creation, first you will create the **Pa
 var passphraseCode = new BitcoinPassphraseCode("my secret", Network.Main, null);
 ```
 
-You then give this **passphraseCode** to your third party key generator.
+**You then give this passphraseCode to a third party key generator.**
 
-The key generator will then generate new encrypted keys for you.
+The third party will then generate new encrypted keys for you.
 
 ![](../assets/PassphraseCodeToEncryptedKeys.png)  
 
 ```cs
-EncryptedKeyResult encryptedKey1 = passphraseCode.GenerateEncryptedSecret();
+EncryptedKeyResult encryptedKeyResult = passphraseCode.GenerateEncryptedSecret();
 ```  
 
 This **EncryptedKeyResult** have lots of information:  
@@ -56,18 +56,18 @@ This **EncryptedKeyResult** have lots of information:
 
 First: the **generated bitcoin address**,  
 ```cs
-Console.WriteLine(encryptedKey1.GeneratedAddress); // 14KZsAVLwafhttaykXxCZt95HqadPXuz73
+var generatedAddress = encryptedKeyResult.GeneratedAddress; // 14KZsAVLwafhttaykXxCZt95HqadPXuz73
 ```  
-then an **EncryptedKey** as we have seen in the **Key Encryption** part,  
+then the **EncryptedKey** itself, (as we have seen in the previous, **Key Encryption** lesson),  
 ```cs
-Console.WriteLine(encryptedKey1.EncryptedKey); // 6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
+var encryptedKey = encryptedKeyResult.EncryptedKey; // 6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
 ```  
 and last but not the least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond effectively to your password.
 ```cs
-Console.WriteLine(encryptedKey1.ConfirmationCode); // cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
+var confirmationCode = encryptedKeyResult.ConfirmationCode; // cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
 ```  
 
-As the owner, once you receive these info, you need to check that the key generator did not cheat by using **ConfirmationCode.Check**, then get your private key with your password.
+As the owner, once you receive these info, you need to check that the key generator did not cheat by using **ConfirmationCode.Check**, then get your private key with your password:
 
 ```cs
 Console.WriteLine(confirmationCode.Check("my secret", generatedAddress)); // True
@@ -78,7 +78,7 @@ Console.WriteLine(bitcoinPrivateKey); // KzzHhrkr39a7upeqHzYNNeJuaf1SVDBpxdFDuMv
 
 So, we have just seen how the third party can generate encrypted key on your behalf, without knowing your password and private key.
 
-![](../assets/ThirdPartyEncryptedKey.png)  
+![](../assets/ThirdPartyKeyGeneration.png)  
 
 However, one problem remains:
 
