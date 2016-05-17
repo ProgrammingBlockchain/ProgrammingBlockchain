@@ -148,9 +148,25 @@ PubKey 4 : xpub67uQd5a6WCY6JddPfiPKdrR49KYEuXUwwJJsL5rWGDDQkpPctdkrwMhXgQ2zWopsS
 
 So imagine that your payment server generate pubkey1, you can get the corresponding private key with your private master key.
 
-Generated address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
+```cs
+masterKey = new ExtKey();
+masterPubKey = masterKey.Neuter();
 
+//The payment server generate pubkey1
+ExtPubKey pubkey1 = masterPubKey.Derive((uint)1);
+
+//You get the private key of pubkey1
+ExtKey key1 = masterKey.Derive((uint)1);
+
+//Check it is legit
+Console.WriteLine("Generated address : " + pubkey1.PubKey.GetAddress(Network.Main));
+Console.WriteLine("Expected address : " + key1.PrivateKey.PubKey.GetAddress(Network.Main));
+```  
+
+```
+Generated address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
 Expected address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
+```  
 
 **ExtPubKey** is similar to **ExtKey** except that it holds a **PubKey** and not a **Key**.
 
