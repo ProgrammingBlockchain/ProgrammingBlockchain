@@ -170,6 +170,8 @@ Expected address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
 
 **ExtPubKey** is similar to **ExtKey** except that it holds a **PubKey** and not a **Key**.
 
+
+
 Now we have seen how Deterministic keys solve our problems, let’s speak about what the “hierarchical” is for.
 
 In the previous exercise, we have seen that by combining master key + index we could generate another key. We call this process **Derivation**, master key is the **parent key**, and the generated key is called **child key**.
