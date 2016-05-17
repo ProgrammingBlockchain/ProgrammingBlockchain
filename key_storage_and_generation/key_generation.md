@@ -170,7 +170,7 @@ Expected address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
 
 **ExtPubKey** is similar to **ExtKey** except that it holds a **PubKey** and not a **Key**.
 
-
+![](../assets/ExtPubKey.png)  
 
 Now we have seen how Deterministic keys solve our problems, let’s speak about what the “hierarchical” is for.
 
