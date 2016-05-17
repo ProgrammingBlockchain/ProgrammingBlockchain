@@ -224,11 +224,9 @@ Now that we have created the transaction, we must sign it. In other words, you w
 Signing can be [complicated](https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png), but we’ll make it simple.
 
 First let's revisit the **scriptSig** of **in**, how we can get it from code. Remember, we copypasted the address above from a blockexplorer, now let's get it from our QBitNinja transactionResponse:  
+
 ```cs
-int index = (int)transaction.Inputs[0].PrevOut.N;
-transaction.Inputs[0].ScriptSig = transactionResponse.ReceivedCoins[index].GetScriptCode();
-// Also OK:
-// transaction.Inputs[0].ScriptSig =  bitcoinPrivateKey.ScriptPubKey;
+transaction.Inputs[0].ScriptSig =  bitcoinPrivateKey.ScriptPubKey;
 ```  
 
 Then you need to give your private key for signing:  
