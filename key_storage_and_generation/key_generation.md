@@ -376,13 +376,11 @@ Console.WriteLine(transaction);
   "out": [
     {
       "value": "0.00000000",
-      "scriptPubKey": "OP_RETURN 060000000002b9266f15e8c6598e7f25d3262969a774df3
-2b9b0b50fea44fc8d914c68176f3e"
+      "scriptPubKey": "OP_RETURN 060000000002b9266f15e8c6598e7f25d3262969a774df32b9b0b50fea44fc8d914c68176f3e"
     },
     {
       "value": "1.00000000",
-      "scriptPubKey": "OP_DUP OP_HASH160 51f68af989f5bf24259c519829f46c7f2935b75
-6 OP_EQUALVERIFY OP_CHECKSIG"
+      "scriptPubKey": "OP_DUP OP_HASH16051f68af989f5bf24259c519829f46c7f2935b756 OP_EQUALVERIFY OP_CHECKSIG"
     }
   ]
 }
