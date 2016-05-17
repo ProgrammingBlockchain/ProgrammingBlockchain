@@ -69,10 +69,10 @@ foreach (var coin in receivedCoins)
 }
 ```  
 
-We have written out some information about the RECEIVED COINS (amount, scriptpubkey, address) using QBitNinja's GetTransactionResponse class.
-**Exercise**: Write out the same information about the SPENT COINS (amount, scriptpubkey, address) using QBitNinja's GetTransactionResponse class.!  
+We have written out some information about the RECEIVED COINS using QBitNinja's GetTransactionResponse class.
+**Exercise**: Write out the same information about the SPENT COINS using QBitNinja's GetTransactionResponse class.!  
 
-Let's see how we can get the same information about the RECEIVED COINS (amount, scriptpubkey, address) using NBitcoin's Transaction class.
+Let's see how we can get the same information about the RECEIVED COINS using NBitcoin's Transaction class.
 
 ```cs
 var outputs = transaction.Outputs;
@@ -116,11 +116,11 @@ var scriptPubKey = transaction.Outputs.First().ScriptPubKey;
 TxOut txOut = new TxOut(twentyOneBtc, scriptPubKey);
 ```  
 
-Every out has an address defined by the transaction ID and index called the **Outpoint**.  
+Every **TxOut** is addressed by the ID of the transaction which include it and its index inside it. We call such reference an **Outpoint**.  
 
 ![](../assets/OutPoint.png)
 
-For example, the Outpoint of the out with 13.19683492 BTC in our transaction is (4788c5ef8ffd0463422bcafdfab240f5bf0be690482ceccde79c51cfce209edd, 0).  
+For example, the **Outpoint** of the **TxOut** with 13.19683492 BTC in our transaction is (4788c5ef8ffd0463422bcafdfab240f5bf0be690482ceccde79c51cfce209edd, 0).  
 
 ```cs
 OutPoint firstOutPoint = spentCoins.First().Outpoint;
@@ -128,11 +128,11 @@ Console.WriteLine(firstOutPoint.Hash); // 4788c5ef8ffd0463422bcafdfab240f5bf0be6
 Console.WriteLine(firstOutPoint.N); // 0
 ```  
 
-Now let’s take a closer look at the in (aka **TxIn**, **Inputs**) of the transaction:  
+Now let’s take a closer look at the inputs (aka **TxIn**) of the transaction:  
 
 ![](../assets/TxIn.png)
 
-The TxIn is composed of the Outpoint of the prev_out being spent and of a **ScriptSig** also called “Proof of Ownership.” In our tx there are actually 9 inputs joined together into one transaction. It is called coinjoin.  
+The **TxIn** is composed of the **Outpoint** of the **TxOut** being spent and of the **ScriptSig** ( we can see the ScriptSig as the “Proof of Ownership”) In our transaction there are actually 9 inputs.  
 
 ```cs
 Console.WriteLine(transaction.Inputs.Count); // 9
@@ -141,13 +141,12 @@ Console.WriteLine(transaction.Inputs.Count); // 9
 With the previous outpoint's transaction ID we can review the information associated with that transaction.  
 ```cs
 OutPoint firstPreviousOutPoint = transaction.Inputs.First().PrevOut;
-var firstPreviousTransactionResponse = client.GetTransaction(firstPreviousOutPoint.Hash).Result;
-Console.WriteLine(firstPreviousTransactionResponse.IsCoinbase); // False
-NBitcoin.Transaction firstPreviousTransaction = firstPreviousTransactionResponse.Transaction;
+var firstPreviousTransaction = client.GetTransaction(firstPreviousOutPoint.Hash).Result.Transaction;
+Console.WriteLine(firstPreviousTransaction.IsCoinbase); // False
 ```  
 
 We could continue to trace the transaction IDs back in this manner until we reach the bitcoins’ **coinbase,** the block where they were mined.  
-**Exercise:** Trace back the first transactions to it's coinbase!  
+**Exercise:** Follow the first input of this transaction and its ancestors until you find a coinbase transaction!  
 Hint: After a few minutes and 30-40 transaction, I gave up tracing back.  
 Yes, you've guessed right, it is not the most efficient way to do this, but a good exercise.  
 
@@ -157,7 +156,7 @@ In our example, the outputs were for a total of 13.19**70**3492 BTC.
 Money spentAmount = Money.Zero;
 foreach (var spentCoin in spentCoins)
 {
-spentAmount = (Money)spentCoin.Amount.Add(spentAmount);
+    spentAmount = (Money)spentCoin.Amount.Add(spentAmount);
 }
 Console.WriteLine(spentAmount.ToDecimal(MoneyUnit.BTC)); // 13.19703492
 ```  
@@ -167,3 +166,8 @@ In this transaction 13.19**68**3492 BTC were received.
 **Exercise:** Get the total received amount, as I have been done with the spent amount.  
 
 That means 0.0002 BTC (or 13.19**70**3492 - 13.19**68**3492) is not accounted for! The difference between the inputs and outputs are called **Transaction Fees** or **Miner’s Fees**. This is the money that the miner collects for including a given transaction in a block.  
+
+```cs
+var fee = transaction.GetFee(spentCoins.ToArray());
+Console.WriteLine(fee);
+```
