@@ -388,11 +388,15 @@ Console.WriteLine(transaction);
 
 Then the payer add and signs the inputs, then sends the transaction on the network.
 
-The **Scanner** knowing the **StealthAddress** and the **Scan Key** can recover the **Stealth PubKey** and so expected **BitcoinAddress** payment.
+The **Scanner** knowing the **StealthAddress** and the **Scan Key** can recover the **Stealth PubKey** and so expected **BitcoinAddress** payment.  
+
+![](../assets/ScannerRecover.png)  
 
 Then the scanner checks if one of the output of the transaction correspond to such address. If it is, then **Scanner** notify the **Receiver** about the transaction.
 
-The **Receiver** can then get the private key of the address with his **Spend Key**.
+The **Receiver** can then get the private key of the address with his **Spend Key**.  
+
+![](../assets/ReceiverStealth.png)  
 
 The code explaining how, as a Scanner, to scan a transaction and how, as a Receiver, to uncover the private key, will be explained later in the **TransactionBuilder** part.
 
