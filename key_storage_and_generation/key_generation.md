@@ -184,13 +184,26 @@ This is why conceptually more generally you can say: Parent Key + KeyPath => Chi
 
 ![](../assets/Derive2.png)  
 
-In this diagram, you can derivate Child(1,1) from parent in two different way:
 
-Or
+In this diagram, you can derivate Child(1,1) from parent in two different way:  
 
-So in summary:
+```cs
+ExtKey parent = new ExtKey();
+ExtKey child11 = parent.Derive(1).Derive(1);
+```  
 
-It works the same for **ExtPubKey**.
+Or  
+
+```cs
+ExtKey parent = new ExtKey();
+ExtKey child11 = parent.Derive(new KeyPath("1/1"));
+```  
+
+So in summary:  
+
+![](../assets/DeriveKeyPath.png)  
+
+It works the same for **ExtPubKey**.  
 
 Why do you need hierarchical keys? Because it might be a nice way to classify the type of your keys for multi account purpose. More on [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
 
@@ -198,25 +211,67 @@ It also permit to segment account rights across an organization.
 
 Imagine you are CEO of a company. You want control over all wallet, but you don’t want that the Accounting department spend the money of the Marketing department.
 
-So your first idea would be to generate one hierarchy for each department.
+So your first idea would be to generate one hierarchy for each department.  
+
+![](../assets/CeoMarketingAccounting.png)  
 
 However, in such case, **Accounting** and **Marketing** would be able to recover the CEO’s private key.
 
-We define such child keys as **non-hardened**.
+We define such child keys as **non-hardened**.  
 
+![](../assets/NonHardened.png)  
+
+```cs
+ExtKey ceoKey = new ExtKey();
+Console.WriteLine("CEO: " + ceoKey.ToString(Network.Main));
+ExtKey accountingKey = ceoKey.Derive(0, hardened: false);
+
+ExtPubKey ceoPubkey = ceoKey.Neuter();
+
+//Recover ceo key with accounting private key and ceo public key
+ExtKey ceoKeyRecovered = accountingKey.GetParentExtKey(ceoPubkey);
+Console.WriteLine("CEO recovered: " + ceoKeyRecovered.ToString(Network.Main));
+```  
+
+```
 CEO: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuFVFpYaAt3gztYtZyXmy2hCVyVyxumdxfDBpoC
-
 CEO recovered: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuFVFpYaAt3gztYtZyXmy2hCVyVyxumdxfDBpoC
+```  
 
 In other words, a **non-hardened key** can “climb” the hierarchy.**Non-hardened key** should only be used for categorizing accounts that belongs to a **single control**.
 
 So in our case, the CEO should create a **hardened key**, so the accounting department will not be able to climb.
 
+```cs
+ExtKey ceoKey = new ExtKey();
+Console.WriteLine("CEO: " + ceoKey.ToString(Network.Main));
+ExtKey accountingKey = ceoKey.Derive(0, hardened: true);
+
+ExtPubKey ceoPubkey = ceoKey.Neuter();
+
+ExtKey ceoKeyRecovered = accountingKey.GetParentExtKey(ceoPubkey); //Crash
+```  
+
 You can also create hardened key by via the **ExtKey.Derivate**(**KeyPath)**, by using an apostrophe after a child’s index:
+
+```cs
+var nonHardened = new KeyPath("1/2/3");
+var hardened = new KeyPath("1/2/3'");
+```  
 
 So let’s imagine that the Accounting Department generate 1 parent key for each customer, and a child for each of the customer’s payment.
 
-As the CEO, you want to spend the money on one of these addresses. Here is how you would proceed.
+As the CEO, you want to spend the money on one of these addresses. Here is how you would proceed.  
+
+```cs
+ceoKey = new ExtKey();
+string accounting = "1'";
+int customerId = 5;
+int paymentId = 50;
+KeyPath path = new KeyPath(accounting + "/" + customerId + "/" + paymentId);
+//Path : "1'/5/50"
+ExtKey paymentKey = ceoKey.Derive(path);
+```  
 
 ### Mnemonic Code for HD Keys (BIP39) {#mnemonic-code-for-hd-keys-bip39}
 
