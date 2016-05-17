@@ -362,35 +362,31 @@ The creation of the **EphemKey** being an implementation details, you can omit i
 Transaction transaction = new Transaction();
 stealthAddress.SendTo(transaction, Money.Coins(1.0m));
 Console.WriteLine(transaction);
-```
+```  
 
+```json
 {
-
-….
-
-"in": [],
-
-"out": [
-
-{
-
-"value": "0.00000000",
-
-"scriptPubKey": "OP_RETURN 06000000000211e76c3de929f7d8b3473f6e41fc31016d7a3e56a47e9f541b0d1cc7fa3f8819"
-
-},
-
-{
-
-"value": "1.00000000",
-
-"scriptPubKey": "OP_DUP OP_HASH160 b4638a6b452bbfc6fdbb4e1e8c9f1952bbd18c39 OP_EQUALVERIFY OP_CHECKSIG"
-
+  "hash": "7772b0ad19acd1bd2b0330238a898fe021486315bd1e15f4154cd3931a4940f9",
+  "ver": 1,
+  "vin_sz": 0,
+  "vout_sz": 2,
+  "lock_time": 0,
+  "size": 93,
+  "in": [],
+  "out": [
+    {
+      "value": "0.00000000",
+      "scriptPubKey": "OP_RETURN 060000000002b9266f15e8c6598e7f25d3262969a774df3
+2b9b0b50fea44fc8d914c68176f3e"
+    },
+    {
+      "value": "1.00000000",
+      "scriptPubKey": "OP_DUP OP_HASH160 51f68af989f5bf24259c519829f46c7f2935b75
+6 OP_EQUALVERIFY OP_CHECKSIG"
+    }
+  ]
 }
-
-]
-
-}
+```  
 
 Then the payer add and signs the inputs, then sends the transaction on the network.
 
