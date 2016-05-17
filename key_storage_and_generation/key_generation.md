@@ -178,7 +178,11 @@ In the previous exercise, we have seen that by combining master key + index we c
 
 However, you can also derivate children from the child key. This is what the “hierarchical” stands for.
 
-This is why conceptually more generally you can say: Parent Key + KeyPath => Child Key
+This is why conceptually more generally you can say: Parent Key + KeyPath => Child Key  
+
+![](../assets/Derive1.png)  
+
+![](../assets/Derive2.png)  
 
 In this diagram, you can derivate Child(1,1) from parent in two different way:
 
