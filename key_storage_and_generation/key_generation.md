@@ -69,13 +69,16 @@ Console.WriteLine(encryptedKey1.ConfirmationCode); // cfrm38VUcrdt2zf1dCgf4e8gPN
 
 As the owner, once you receive these info, you need to check that the key generator did not cheat by using **ConfirmationCode.Check**, then get your private key with your password.
 
-True
-
-True
-
-L58tYn6FcC6Ra6iqTMggCaZupCgbRMdfvFjNUrKj5D9zgq6g685Z
+```cs
+Console.WriteLine(confirmationCode.Check("my secret", generatedAddress)); // True
+var bitcoinPrivateKey = encryptedKey.GetSecret("my secret");
+Console.WriteLine(bitcoinPrivateKey.GetAddress() == generatedAddress); // True
+Console.WriteLine(bitcoinPrivateKey); // KzzHhrkr39a7upeqHzYNNeJuaf1SVDBpxdFDuMvFKbFhcBytDF1R
+```  
 
 So, we have just seen how the third party can generate encrypted key on your behalf, without knowing your password and private key.
+
+![](../assets/ThirdPartyEncryptedKey.png)  
 
 However, one problem remains:
 
