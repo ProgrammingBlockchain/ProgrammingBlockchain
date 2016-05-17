@@ -169,7 +169,8 @@ transaction.Outputs.Add(new TxOut()
 });
 ```  
 
-Take a look at my whole transaction before signing:  
+To sum up take a look at my whole transaction before signing:  
+I have 3 **out**, 2 with **value**, 1 without **value** (with the message). You can notice the differences between the **scriptPubKey**s of the "normal" **out**s and the **scriptPubKey** of the **out** with the message:  
 
 ```json
 {
