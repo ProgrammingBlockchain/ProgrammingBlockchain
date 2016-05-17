@@ -61,9 +61,9 @@ foreach (var coin in receivedCoins)
     Money amount = coin.Amount;
 
     Console.WriteLine(amount.ToDecimal(MoneyUnit.BTC));
-    var paymentScript = coin.GetScriptCode();
+    var paymentScript = coin.ScriptPubKey;
     Console.WriteLine(paymentScript);  // It's the ScriptPubKey
-    var address = coin.GetScriptCode().GetDestinationAddress(Network.Main);
+    var address = paymentScript.GetDestinationAddress(Network.Main);
     Console.WriteLine(address);
     Console.WriteLine();
 }
