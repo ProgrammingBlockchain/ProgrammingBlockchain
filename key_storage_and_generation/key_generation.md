@@ -319,10 +319,25 @@ This is a real shame it was labeled as **dark** since it solves partially the im
 In Dark Wallet terminology, here are the different actors:
 
 *   **Scanner** knows the **Scan Key**, a secret that allows him to detect the transactions that belong to the **Receiver**.
-*   The **Receiver** knows the **Spend Key**, a secret that will allows him to spend the coins he receives from one of such transaction.
+*   The **Receiver** knows the **Spend Key**, a secret that will allow him to spend the coins he receives from one of such transaction.
 *   The **Payer** knows the **StealthAddress** of the **Receiver**
 
-The rest is operational details.Underneath, this **StealthAddress** is composed of one or several **Spend PubKey** (for multi sig), and one **Scan PubKey**.
+The rest is operational details.Underneath, this **StealthAddress** is composed of one or several **Spend PubKey** (for multi sig), and one **Scan PubKey**.  
+
+![](../assets/StealthAddress.png)  
+
+```cs
+var scanKey = new Key();
+var spendKey = new Key();
+BitcoinStealthAddress stealthAddress
+    = new BitcoinStealthAddress
+        (
+        scanKey: scanKey.PubKey,
+        pubKeys: new[] { spendKey.PubKey },
+        signatureCount: 1,
+        bitfield: null,
+        network: Network.Main);
+```  
 
 The **payer**, will take your **StealthAddress**, generate a temporary key called **Ephem Key** and will generate a **Stealth Pub Key**, from which the Bitcoin address to which the payment will be done is generated.
 
