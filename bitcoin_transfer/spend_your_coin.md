@@ -223,27 +223,51 @@ Now that we have created the transaction, we must sign it. In other words, you w
 
 Signing can be [complicated](https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png), but we’ll make it simple.
 
-First insert the ScriptPubKey in the **scriptSig.**Since the scriptPubKey is nothing but **paymentAddress.ScriptPubKey** this is simple.Then you need to give your private key for signing.
+First let's revisit the **scriptSig** of **in**, how we can get it from code. Remember, we copypasted the address above from a blockexplorer, now let's get it from our QBitNinja transactionResponse:  
+```cs
+int index = (int)transaction.Inputs[0].PrevOut.N;
+transaction.Inputs[0].ScriptSig = transactionResponse.ReceivedCoins[index].GetScriptCode();
+// Also OK:
+// transaction.Inputs[0].ScriptSig =  bitcoinPrivateKey.ScriptPubKey;
+```  
 
-"in": [
+Then you need to give your private key for signing:  
 
+```cs
+transaction.Sign(bitcoinPrivateKey, false);
+```  
+
+### Propagate your transactions
+Congratulations, you have signed your first transaction! Your transaction is ready to roll! All that is left is to propagate it to the network so the miners can see it.  
+#### With QBitNinja:  
+```cs
+BroadcastResponse broadcastResponse = client.Broadcast(transaction).Result;
+
+if (!broadcastResponse.Success)
 {
-
-"prev_out": {
-
-"hash": "4ebf7f7ca0a5dafd10b9bd74d8cb93a6eb0831bcb637fec8e8aabf842f1c2688",
-
-"n": 1
-
-},
-
-"scriptSig": "3045022100d4d8d4e1e3205399e0ab899e95bd6c7b65a094c9b86c4b020872428864a5c63502206f9d0b3084e4a7895de520069a939347909471ca118a43723fd8734cd8e8bcac01 03e0b917b43bb877ccb68c73c82165db6d01174f00972626c5bea62e64d57dea1a"
-
+    Console.WriteLine("ErrorCode: " + broadcastResponse.Error.ErrorCode);
+    Console.WriteLine("Error message: " + broadcastResponse.Error.Reason);
 }
+else
+{
+    Console.WriteLine("Success! You can check out the hash of the transaciton in any block explorer:");
+    Console.WriteLine(transaction.GetHash());
+}
+```  
 
-]
+#### With your own Bitcoin Core:  
 
-Congratulations, you have signed your first transaction! Your transaction is ready to roll! All that is left is to propagate it to the network so the miners can see it. Be sure to have Bitcoin Core running and then:
+```cs
+using (var node = Node.ConnectToLocal(network)) //Connect to the node
+{
+    node.VersionHandshake(); //Say hello
+                             //Advertize your transaction (send just the hash)
+    node.SendMessage(new InvPayload(InventoryType.MSG_TX, transaction.GetHash()));
+    //Send it
+    node.SendMessage(new TxPayload(transaction));
+    Thread.Sleep(500); //Wait a bit
+}
+```  
 
 The **using** code block will take care of closing the connection to the node. That it!
 
