@@ -82,7 +82,7 @@ So, we have just seen how the third party can generate encrypted key on your beh
 
 However, one problem remains:
 
-*   All backup of your wallet that you have will become outdated when you generate a new key,
+*   All backup of your wallet that you have will become outdated when you generate a new key.
 
 BIP 32, or Hierarchical Deterministic Wallets (HD wallets) proposes another solution, and is more widely supported.
 
