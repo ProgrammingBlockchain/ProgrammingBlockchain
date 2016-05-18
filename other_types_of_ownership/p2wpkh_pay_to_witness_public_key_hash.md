@@ -4,13 +4,15 @@ In 2015, Pieter Wuille introduced a new feature to bitcoin called **Segregated W
 
 There is several reason to use this new scheme, here is a summary, for more details go to [https://bitcoincore.org/en/2016/01/26/segwit-benefits/](https://bitcoincore.org/en/2016/01/26/segwit-benefits/)
 
-*   Third party Malleability Fix: Previously, a third party could change the transaction id of your transaction before it was confirmed. Not anymore.
-*   Linear sig hash scaling: Signing a transaction would require hashing the whole transaction for every input. This was a potential DDoS vector attack for large transactions.
-*   Signing of input values: The amount that is spent in an input is also signed, meaning the signer can’t be tricked about the amount of fee that is actually paid.
-*   Capacity increase: It will now be possible to have more than 1MB of transactions every 10 min, up to around 1.75.
-*   Fraud proof: Will be developed later, but SPV wallet will be able to validate more consensus rule than just following the longest chain.
+*   **Third party Malleability Fix:** Previously, a third party could change the transaction id of your transaction before it was confirmed. Not anymore.
+*   **Linear sig hash scaling:** Signing a transaction would require hashing the whole transaction for every input. This was a potential DDoS vector attack for large transactions.
+*   **Signing of input values:** The amount that is spent in an input is also signed, meaning the signer can’t be tricked about the amount of fee that is actually paid.
+*   **Capacity increase:** It will now be possible to have more than 1MB of transactions every 10 min, up to around 1.75.
+*   **Fraud proof:** Will be developed later, but SPV wallet will be able to validate more consensus rule than just following the longest chain.
 
-Before the transaction signature belonged to the calculation of the transaction id, not anymore.
+Before the transaction signature belonged to the calculation of the transaction id, not anymore.  
+
+![](../assets/segwit.png)
 
 The signature contains the same information as a P2PKH spending, but is located in the witness instead of the scriptSig. The **scriptPubKey** though, is modified from
 
