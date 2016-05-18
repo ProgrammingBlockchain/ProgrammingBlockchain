@@ -53,9 +53,9 @@ Pay to public key hash : OP_DUP OP_HASH160 0ae54d4cec828b722d8727cb70f4a6b0a8820
 
 These 2 types of payment are referred as **P2PK** (pay to public key) and **P2PKH** (pay to public key hash).
 
-Satoshi decided to use P2PKH instead of P2PK for two reasons:
+Satoshi later decided to use P2PKH instead of P2PK for two reasons:
 
 *   Elliptic Curve Cryptography, the cryptography used by your **public key** and **private key**) is vulnerable to a modified Shor's algorithm for solving the discrete logarithm problem on elliptic curves. In plain English, it means that, with a quantum computer, in theory, it is possible in some distant future to **retrieve a private key from a public key**.By publishing the public key only when the coin are spend, such attack is rendered ineffective. (assuming addresses are not reused)
 *   The hash being smaller (20 bytes), it is smaller to print, and easier to embed into small storage like a QR code.
 
-Nowadays, there is no reason to use P2PK directly, but it is still used in combination with P2SH. (see later)
+Nowadays, there is no reason to use P2PK directly, but it is still used in combination with P2SH, more on this later.
