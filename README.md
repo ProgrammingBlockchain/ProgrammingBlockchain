@@ -1,7 +1,5 @@
 # Programming The Blockchain in C*#*
 
-## How can I read the book? 
-
 [Click here to read](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
 ## I noticed a bug
