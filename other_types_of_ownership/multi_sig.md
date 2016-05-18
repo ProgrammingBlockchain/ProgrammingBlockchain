@@ -34,7 +34,7 @@ var received = new Transaction();
 received.Outputs.Add(new TxOut(Money.Coins(1.0m), scriptPubKey));
 ```  
 
-Satoshi and Alice agree to pay Nico 1.0 BTC for his services.
+Bob and Alice agree to pay Nico 1.0 BTC for his services.
 So the get the ```Coin``` they received from the transaction:  
 
 ```cs
@@ -50,16 +50,36 @@ BitcoinAddress nico = new Key().PubKey.GetAddress(Network.Main);
 TransactionBuilder builder = new TransactionBuilder();
 Transaction unsigned = 
     builder
-    .AddCoins(coin)
-    .Send(nico, Money.Coins(1.0m))
-    .BuildTransaction(sign: false);
+      .AddCoins(coin)
+      .Send(nico, Money.Coins(1.0m))
+      .BuildTransaction(sign: false);
 ```  
 
-The transaction is not currently signed.Here is how Alice signs it.
+The transaction is not yet signed. Here is how Alice signs it:  
 
-And then Satoshi
+```cs
+Transaction aliceSigned =
+    builder
+        .AddCoins(coin)
+        .AddKeys(alice)
+        .SignTransaction(unsigned);
+```  
 
-Now, Satoshi and Alice can combine their signature into one transaction.
+![](../assets/aliceSigned.png)  
+
+And then Bob:  
+
+```cs
+Transaction bobSigned =
+    builder
+        .AddCoins(coin)
+        .AddKeys(bob)
+        .SignTransaction(aliceSigned);
+```  
+
+![](../assets/bobSigned.png)  
+
+Now, Bob and Alice can combine their signature into one transaction.
 
 {
 
