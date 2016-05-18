@@ -14,44 +14,51 @@ Before the transaction signature belonged to the calculation of the transaction 
 
 ![](../assets/segwit.png)
 
-The signature contains the same information as a P2PKH spending, but is located in the witness instead of the scriptSig. The **scriptPubKey** though, is modified from
+The signature contains the same information as a P2PKH spending, but is located in the witness instead of the scriptSig. The ```scriptPubKey``` though, is modified from  
 
-OP_DUP OP_HASH160 **0067c8970e65107ffbb436a49edd8cb8eb6b567f** OP_EQUALVERIFY OP_CHECKSIG
+```
+OP_DUP OP_HASH160 0067c8970e65107ffbb436a49edd8cb8eb6b567f OP_EQUALVERIFY OP_CHECKSIG
+```  
 
-To
+To  
 
-0 **0067c8970e65107ffbb436a49edd8cb8eb6b567f**
+```
+0 0067c8970e65107ffbb436a49edd8cb8eb6b567f
+```  
 
-For nodes which did not upgrade, this looks like as two pushes on the stack. This means that any **scriptSig** can spend them. So even without the signatures, old nodes will consider such transactions valid. New nodes interprete the first push as the **witness version** and the second push as the **witness program**.
+For nodes which did not upgrade, this looks like as two pushes on the stack. This means that any ```scriptSig``` can spend them. So even without the signatures, old nodes will consider such transactions valid. New nodes interprete the first push as the **witness version** and the second push as the **witness program**.  
 
-But new nodes will require the signature to get the transaction verified.
+But new nodes will require the signature to get the transaction verified.  
 
-In NBitcoin, spending a P2WPKH output is not different from spending a normal P2PKH, to get the **ScriptPubKey** to use from a public key, use **PubKey.WitHash** instead of **PubKey.Hash**.
+**In NBitcoin, spending a P2WPKH output is not different from spending a normal P2PKH.  
+To get the ```ScriptPubKey``` to use from a public key, use ```PubKey.WitHash``` instead of ```PubKey.Hash```.**
 
-Which will output your something like
+```cs
+var key = new Key();
+Console.WriteLine(key.PubKey.WitHash.ScriptPubKey);
+```  
 
-0 **0067c8970e65107ffbb436a49edd8cb8eb6b567f**
+Which will output your something like  
 
-Signing the spending of such coin will be explained in the “Using the **TransactionBuilder** part”, and does not differ, in any way, from the code for signing a P2PKH output.
+```
+0 0067c8970e65107ffbb436a49edd8cb8eb6b567f
+```  
 
-The witness, similar to the scriptSig of P2PKH, and the scriptSig empty:
+Signing the spending of such coin will be explained in the “Using the ```TransactionBuilder``` part”, and does not differ, in any way, from the code for signing a P2PKH output.
 
+The ```witness```, similar to the ```scriptSig``` of P2PKH, and the ```scriptSig``` empty:  
+
+```json
 "in": [
-
 {
-
-"prev_out": {
-
-"hash": "725497eaef527567a0a18b310bbdd8300abe86f82153a39d2f87fef713dc8177",
-
-"n": 0
-
-},
-
-"scriptSig": "",
-
-"witness": "3044022079d443be2bd39327f92adf47a34e4b6ad7c82af182c71fe76ccd39743ced58cf0220149de3e8f11e47a989483f371d3799a710a7e862dd33c9bd842c417002a1c32901 0363f24cd2cb27bb35eb2292789ce4244d55ce580218fd81688197d4ec3b005a67"
-
+  "prev_out": 
+    {
+      "hash": "725497eaef527567a0a18b310bbdd8300abe86f82153a39d2f87fef713dc8177",
+      "n": 0
+    },
+  "scriptSig": "",
+  "witness": "3044022079d443be2bd39327f92adf47a34e4b6ad7c82af182c71fe76ccd39743ced58cf0220149de3e8f11e47a989483f371d3799a710a7e862dd33c9bd842c417002a1c32901 0363f24cd2cb27bb35eb2292789ce4244d55ce580218fd81688197d4ec3b005a67"
 }
+```  
 
 Once again, the semantic of P2WPKH is the same as the semantic of P2PKH, except that the signature is not placed at the same location as before.
