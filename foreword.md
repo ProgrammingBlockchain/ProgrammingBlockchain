@@ -21,10 +21,6 @@ Just as you need to know about wood to make a bow, spear or cane from a branch, 
 
 Let me warn you: learning about Bitcoin is like taking the red pill from _The Matrix._ You may find yourself ready to quit your job to work on it full time.  
 
-> This is what happened to me (nopara73), too.  
-> After reading the first edition of the book, I contacted Nicolas if he can use some help. Turned out he does, so I flied across the world, to Tokyo, where he lives and started working under his guidance.  
-> This resulted the second, community edition of this book, hosted on GitHub.
-
 This book will take you from basic to advanced use of the Blockchain. It will not teach you how to use an API (such as the RPC API provided with Bitcoin Core), but it will teach you how to make such an API.  
 
 > Satoshi Nakamoto once described Bitcoin as “boring grey in colour.”
