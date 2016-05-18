@@ -1,6 +1,6 @@
 # Programming The Blockchain in C*#*
 
-[Click here to read](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
+[Click here to read the book](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
 ## I noticed a bug
 If you notice a bug or mistake, but you do not want or cannot fix it, just open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
