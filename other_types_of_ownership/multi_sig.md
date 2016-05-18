@@ -2,7 +2,19 @@
 
 It is possible to have shared ownership on coins.For that you will create a **ScriptPubKey** that represent a **m-of-n multi sig**, this means that in order to spend the coins, **m** private keys will need to sign on the **n** different public key provided.
 
-Let’s see how it works, let’s create a multi sig with Bob, Alice, and Satoshi, and 2 of them needed to spend a coin.
+Let’s see how it works, let’s create a multi sig with Bob, Alice, and Satoshi, and 2 of them needed to spend a coin.  
+
+```cs
+Key bob = new Key();
+Key alice = new Key();
+Key satoshi = new Key();
+
+var scriptPubKey = PayToMultiSigTemplate
+    .Instance
+    .GenerateScriptPubKey(2, new[] { bob.PubKey, alice.PubKey, satoshi.PubKey });
+
+Console.WriteLine(scriptPubKey);
+```  
 
 2 0282213c7172e9dff8a852b436a957c1f55aa1a947f2571585870bfb12c0c15d61 036e9f73ca6929dec6926d8e319506cc4370914cd13d300e83fd9c3dfca3970efb 0324b9185ec3db2f209b620657ce0e9a792472d89911e0ac3fc1e5b5fc2ca7683d 3 OP_CHECKMULTISIG
 
