@@ -79,7 +79,16 @@ Transaction bobSigned =
 
 ![](../assets/bobSigned.png)  
 
-Now, Bob and Alice can combine their signature into one transaction.
+Now, Bob and Alice can combine their signature into one transaction.  
+
+```cs
+Transaction fullySigned =
+    builder
+        .AddCoins(coin)
+        .CombineSignatures(aliceSigned, bobSigned);
+```  
+
+![](../assets/fullySigned.png)  
 
 {
 
