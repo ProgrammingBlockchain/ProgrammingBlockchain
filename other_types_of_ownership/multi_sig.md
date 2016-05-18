@@ -90,42 +90,31 @@ Transaction fullySigned =
 
 ![](../assets/fullySigned.png)  
 
+```cs
+Console.WriteLine(fullySigned);
+```  
+
+```json
 {
-
-….
-
-"in": [
-
-{
-
-"prev_out": {
-
-"hash": "9df1e011984305b78210229a86b6ade9546dc69c4d25a6bee472ee7d62ea3c16",
-
-"n": 0
-
-},
-
-"scriptSig": "0 3045022100a14d47c762fe7c04b4382f736c5de0b038b8de92649987bc59bca83ea307b1a202203e38dcc9b0b7f0556a5138fd316cd28639243f05f5ca1afc254b883482ddb91f01 3044022044c9f6818078887587cac126c3c2047b6e5425758e67df64e8d682dfbe373a2902204ae7fda6ada9b7a11c4e362a0389b1bf90abc1f3488fe21041a4f7f14f1d856201"
-
+  ...
+  "in": [
+    {
+      "prev_out": {
+        "hash": "9df1e011984305b78210229a86b6ade9546dc69c4d25a6bee472ee7d62ea3c16",
+        "n": 0
+      },
+      "scriptSig": "0 3045022100a14d47c762fe7c04b4382f736c5de0b038b8de92649987bc59bca83ea307b1a202203e38dcc9b0b7f0556a5138fd316cd28639243f05f5ca1afc254b883482ddb91f01 3044022044c9f6818078887587cac126c3c2047b6e5425758e67df64e8d682dfbe373a2902204ae7fda6ada9b7a11c4e362a0389b1bf90abc1f3488fe21041a4f7f14f1d856201"
+    }
+  ],
+  "out": [
+    {
+      "value": "1.00000000",
+      "scriptPubKey": "OP_DUP OP_HASH160 d4a0f6c5b4bcbf2f5830eabed3daa7304fb794d6 OP_EQUALVERIFY OP_CHECKSIG"
+    }
+  ]
 }
 
-],
-
-"out": [
-
-{
-
-"value": "1.00000000",
-
-"scriptPubKey": "OP_DUP OP_HASH160 d4a0f6c5b4bcbf2f5830eabed3daa7304fb794d6 OP_EQUALVERIFY OP_CHECKSIG"
-
-}
-
-]
-
-}
-
+```  
 The transaction is now ready to be sent on the network.
 
 Even if the Bitcoin network supports multi sig as explained here, one question worth asking is: How can you ask to a user who has no clue about bitcoin to pay on satoshi/alice/bob multi sig, since such **scriptPubKey** can’t be represented by easy to use Bitcoin Address like we have seen before?
