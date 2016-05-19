@@ -92,4 +92,8 @@ Satoshi later decided to use P2PKH instead of P2PK for two reasons:
 
 Nowadays, there is no reason to use P2PK directly, but it is still used in combination with P2SH, more on this later.  
 
-> ([Discussion](https://www.reddit.com/r/Bitcoin/comments/4isxjr/petition_to_protect_satoshis_coins/d30we6f)) If the early use of P2PK will not be addressed, it will have a serious impact on the Bitcoin price. 
+> ([Discussion](https://www.reddit.com/r/Bitcoin/comments/4isxjr/petition_to_protect_satoshis_coins/d30we6f)) If the early use of P2PK will not be addressed, it will have a serious impact on the Bitcoin price.  
+
+### Exercise
+([nopara73](https://github.com/nopara73)) While reading this chapter I found the the abbreviations (P2PK, P2PKH, P2W, etc..) very confusing.  
+My trick was to force myself to pronounce the terms fully every time I encountered them during the following lessons. Suddenly everything made much more sense. I recommend you to do the same.
