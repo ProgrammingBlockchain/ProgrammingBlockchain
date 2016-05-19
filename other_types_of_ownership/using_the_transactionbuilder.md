@@ -8,7 +8,7 @@ With the **TransactionBuilder** you can:
 *   Spend any  
   *   **P2PK**, **P2PKH**,  
   *   **multi-sig**,  
-  *   **P2WPKH**, **P2WSH**.  
+  *   **P2WPK**, **P2WSH**.  
 *   Spend any **P2SH** on the previous redeem script.
 *   Spend Stealth Coin (dark wallet)
 *   Issue and transfer Colored Coins (open asset, in the following part)
