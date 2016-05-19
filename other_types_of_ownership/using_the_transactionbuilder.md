@@ -5,11 +5,11 @@ You have seen how the **TransactionBuilder** works when you have signed your fir
 We will see how you can harness its full power, for signing more complicated transactions.    
 
 With the **TransactionBuilder** you can:  
-*   Spend any 
-  *   **P2PK**, **P2PKH**, 
-  *   **multi-sig**, **P2SH**, 
-  *   **P2WPKH**, **P2WSH**.
-*   Spend any P2SH on the previous redeem script
+*   Spend any  
+  *   **P2PK**, **P2PKH**,  
+  *   **multi-sig**,  
+  *   **P2WPKH**, **P2WSH**.  
+*   Spend any **P2SH** on the previous redeem script.
 *   Spend Stealth Coin (dark wallet)
 *   Issue and transfer Colored Coins (open asset, in the following part)
 *   Combine partially signed transactions
