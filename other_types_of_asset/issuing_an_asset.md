@@ -12,7 +12,8 @@ Let’s see how I would code such feature.
 
 ### Issuance Coin {#issuance-coin}
 
-In Open Asset, the Asset ID is derived from the issuer **ScriptPubKey**.If you want to issue a Colored Coin, you need to prove ownership of such **ScriptPubKey**. And the only way to do that on the Blockchain is by spending a coin belonging to such **ScriptPubKey**.
+In Open Asset, the Asset ID is derived from the issuer's **ScriptPubKey**.  
+If you want to issue a Colored Coin, you need to prove ownership of such **ScriptPubKey**. And the only way to do that on the Blockchain is by spending a coin belonging to such **ScriptPubKey**.
 
 The coin that you will choose to spend for issuing colored coins is called “**Issuance Coin**” in **NBitcoin**.I want to emit an Asset from the book bitcoin address: **1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB**.
 
