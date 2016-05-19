@@ -20,19 +20,15 @@ I want to emit an Asset from the book bitcoin address: **1KF8kUVHK42XzgcmJF4Lxz4
 
 By taking a look at [my balance](http://rapidbase-test.azurewebsites.net/balances/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB?unspentOnly=true), I decided to use the following coin for issuing assets.  
 
+```json
 {
-
-"transactionId": "eb49a599c749c82d824caf9dd69c4e359261d49bbb0b9d6dc18c59bc9214e43b",
-
-"index": 0,
-
-"value": 2000000,
-
-"scriptPubKey": "76a914c81e8e7b7ffca043b088a992795b15887c96159288ac",
-
-"redeemScript": null
-
-}
+          "transactionId": "eb49a599c749c82d824caf9dd69c4e359261d49bbb0b9d6dc18c59bc9214e43b",
+          "index": 0,
+          "value": 2000000,
+          "scriptPubKey": "76a914c81e8e7b7ffca043b088a992795b15887c96159288ac",
+          "redeemScript": null
+} 
+```  
 
 Here is how to create my issuance coin.
 
