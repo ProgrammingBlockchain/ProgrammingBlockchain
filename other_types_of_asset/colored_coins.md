@@ -31,4 +31,4 @@ The innovation is that everyone can create and transfer its own asset without in
 **Open Asset** is the name of the protocol created by Flavien Charlon that describes how to **transfer** and **emit** colored coins on the Blockchain.  
 Other protocols exist, but Open Asset is the most easy and flexible and the only one supported by **NBitcoin**.
 
-In the rest of the book, I will not go in the details of the Open Asset protocol, the github page of the specification is better suited to this need.
+In the rest of the book, I will not go in the details of the Open Asset protocol, the GitHub page of the specification is better suited to this need.
