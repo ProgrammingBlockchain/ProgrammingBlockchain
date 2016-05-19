@@ -2,11 +2,12 @@
 
 ### Objective {#objective}
 
-For the purpose of this exercise, I will emit **BlockchainProgramming** coins. Owners of such coins will be able to download the Part 3 of this book just by sending them back to me.
+For the purpose of this exercise, I will emit **BlockchainProgramming** coins.  
 
-Don’t worry, the Part 3 will be available for everyone, but first to owners of **BlockchainProgramming** coins.I will send coins to people that gave me a tip, listed on the book’s website [http://blockchainprogramming.azurewebsites.net/](http://blockchainprogramming.azurewebsites.net/)
+I will send coins to people that gave me a tip, listed on the book’s website [http://blockchainprogramming.azurewebsites.net/](http://blockchainprogramming.azurewebsites.net/)
 
-You’ll get 1 coin every **0.004 BTC** you sent me + 1 coin if you added kind words.Let’s see how I would code such feature.
+You will get 1 BlockchainProgramming coin for every **0.004 BTC** you sent me + 1 coin if you added kind words.  
+Let’s see how I would code such feature.
 
 ### Issuance Coin {#issuance-coin}
 
