@@ -2,7 +2,7 @@
 
 While using **witness scriptPubKey** for your scripting needs is appealing, the reality is that most of nowadays wallets only support P2PKH or P2SH addresses.
 
-To harness the advantages of segwit, while being compatible with old software, P2W over P2SH is allowed. For old node, it will looks like a normal P2SH payment.
+To harness the advantages of segwit, while being compatible with old software, P2W over P2SH is allowed. For old node, it will look like a normal P2SH payment.
 
 You can transform any **P2W*** to a **P2W* over** **P2SH** by:
 
