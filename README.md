@@ -1,4 +1,5 @@
 # Programming The Blockchain in C*#*
+**Let's not talk Bitcoin, let's do Bitcoin!**
 
 
 ## [Click here to read the book](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
