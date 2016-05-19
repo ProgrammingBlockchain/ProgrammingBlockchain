@@ -1,4 +1,4 @@
-# Second (Communitry) Edition {#second-community-edition}
+# Second (Community) Edition {#second-community-edition}
 
 ([nopara73](https://github.com/nopara73)) I got sucked into Bitcoin in 2013. At the time everyone was talking about the countless great opportunities for developers, but I was not able to catch any of them.  
 Every time I tried to do any coding, I encountered countless walls, countless missing pieces and tremendous amount of work that is needed to be done before I could even start working on my idea.  
