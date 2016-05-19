@@ -66,31 +66,28 @@ OP_HASH160 d06c0058175952afecc56d26ed16558b1ed40e42 OP_EQUAL
 
 For 3\. the **‘other data’**, in the context of a P2WSH payment means the parameters of the **P2WSH redeem script** followed by a push of the **P2WSH redeem script**.
 
-"in": [
+```json
+  "in": [
+    {
+      "prev_out": {
+        "hash": "1d23fa744a26cf6433f0841e9de7e088cf95e6f953e584b98d0de6ef4216765f",
+        "n": 0
+      },
+      "scriptSig": "0020c54eb79829b2e26b71d15fd3b490b6e95cbdab361a45eed2cdfe642497480a6c",
+      "witness": "3045022100d7570c3bf87149a0be3ba2e8bfccbdd35c3da44f741695e9962014795fabc4fc02203183cfa55a85728520b0f1ac59ac3ffa1a8526634fe619f99fac0f76016f366e01 2103146e87d7fcc81f3e044f97c6b262c01826f40a9ab9acae0f689983a5890a1f4dac"
+    }
+  ],
 
-{
-
-"prev_out": {
-
-"hash": "1d23fa744a26cf6433f0841e9de7e088cf95e6f953e584b98d0de6ef4216765f",
-
-"n": 0
-
-},
-
-"scriptSig": "0020c54eb79829b2e26b71d15fd3b490b6e95cbdab361a45eed2cdfe642497480a6c",
-
-"witness": "3045022100d7570c3bf87149a0be3ba2e8bfccbdd35c3da44f741695e9962014795fabc4fc02203183cfa55a85728520b0f1ac59ac3ffa1a8526634fe619f99fac0f76016f366e01 2103146e87d7fcc81f3e044f97c6b262c01826f40a9ab9acae0f689983a5890a1f4dac"
-
-}
-
-],
+```  
 
 In summary, the P2SH Redeem Script is hashed to get the P2WSH scriptPubKey as normal P2WSH payment. Then, as a normal P2SH payment the P2WSH scriptPubKey is replaced by hashed and used to create the actual P2SH.
 
-If P2SH/P2WSH/P2SH(P2WSH)/P2SH(P2WPKH) sounds complicated to you. Fear not.NBitcoin, for **all of those payments type** only requires you to create a **ScriptCoin** by supplying the Redeem (P2WSH redeem or P2SH redeem) and the ScriptPubKey, exactly as explained in the **P2SH** part.
+If P2SH/P2WSH/P2SH(P2WSH)/P2SH(P2WPKH) sounds complicated to you. Fear not.  
+NBitcoin, for **all of those payments type** only requires you to create a **ScriptCoin** by supplying the Redeem (P2WSH redeem or P2SH redeem) and the ScriptPubKey, exactly as explained in the **P2SH** part.
 
-As far as NBitcoin is concerned, you just nedd to feed the right transaction output you want to spend, with the right underlying redeem script, and the **TransactionBuilder** will figure out how to sign correctly as explained in the previous **Multi Sig** part and the next “**Using the TransactionBuilder**” part.
+As far as NBitcoin is concerned, you just need to feed the right transaction output you want to spend, with the right underlying redeem script, and the **TransactionBuilder** will figure out how to sign correctly as explained in the previous **Multi Sig** part and the next “**Using the TransactionBuilder**” part.  
+
+![](../assets/ScriptCoin.png)  
 
 **Compatible for P2SH/P2WSH/P2SH(P2WSH)/P2SH(P2WPKH)**
 
