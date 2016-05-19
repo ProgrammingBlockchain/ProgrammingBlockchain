@@ -82,34 +82,68 @@ repo.Transactions.Put(toAlice);
 
 In summary, powerCoin issues 2 Power Coins to Alice and send the change to himself. Likewise, Alice send 0.2 BTC to powerCoin and send the change to herself.
 
-Where **GetCoins** is
+Where **GetCoins** is  
 
 ```cs
 private IEnumerable<Coin> GetCoins(Transaction tx, Key owner)
 {
     return tx.Outputs.AsCoins().Where(c => c.ScriptPubKey == owner.ScriptPubKey);
 }
-```
+```  
 
-For some reason, Alice, might want to sell some of her voting power to Satoshi.
+For some reason, Alice, might want to sell some of her voting power to Satoshi.  
 
-You can note that I am double spending the coin of Alice from the **init** transaction.****Such thing would not be accepted on the Blockchain. However, we have not seen yet how to retrieve unspent coins from the Blockchain easily, so let’s just imagine for the sake of the exercise that the coin was not double spent.
+![](../assets/PowerCoin2.png)  
+
+You can note that I am double spending the coin of Alice from the **init** transaction.  
+****Such thing would not be accepted on the Blockchain. However, we have not seen yet how to retrieve unspent coins from the Blockchain easily, so let’s just imagine for the sake of the exercise that the coin was not double spent.
 
 Now that Alice and Satoshi have some voting power, let’s see how Boss can run a vote.
 
 ### Running a vote {#running-a-vote}
 
-By consulting the Blockchain, Boss can at any time know **ScriptPubKeys** which owns Power Coins.So he will send Voting Coins to these owner, proportionally to their voting power, in our case, 1 voting coin to Alice and 1 voting coin to Satoshi.
+By consulting the Blockchain, Boss can at any time know **ScriptPubKeys** which owns Power Coins.  
+So he will send Voting Coins to these owner, proportionally to their voting power, in our case, 1 voting coin to Alice and 1 voting coin to Satoshi.  
 
-First, I need to create some funds for **votingCoin**.
+![](../assets/PowerCoin3.png)
 
-Then, issue the voting coins.
+First, I need to create some funds for **votingCoin**.  
+
+```cs
+var votingCoin = new Key();
+var init2 = new Transaction()
+{
+    Outputs = 
+    {
+        new TxOut(Money.Coins(1.0m), votingCoin),
+    }
+};
+repo.Transactions.Put(init2);
+```  
+
+Then, issue the voting coins.  
+
+```cs
+issuance = GetCoins(init2, votingCoin).Select(c => new IssuanceCoin(c)).ToArray();
+builder = new TransactionBuilder();
+var toVoters =
+    builder
+    .AddCoins(issuance)
+    .AddKeys(votingCoin)
+    .IssueAsset(alice, new AssetMoney(votingCoin, 1))
+    .IssueAsset(satoshi, new AssetMoney(votingCoin, 1))
+    .SetChange(votingCoin)
+    .BuildTransaction(true);
+repo.Transactions.Put(toVoters);
+```  
 
 ### Vote delegation {#vote-delegation}
 
 The problem is that the vote concern some financial aspect of the business, and Alice is mostly concerned by the marketing aspect.
 
-Her decision is to handout her voting coin to someone she trusts having a better judgment on financial matter. She chooses to delegate her vote to Bob.
+Her decision is to handout her voting coin to someone she trusts having a better judgment on financial matter. She chooses to delegate her vote to Bob.  
+
+![](../assets/PowerCoin4.png)  
 
 You can notice that there is no **SetChange** the reason is that the input colored coin is spent entirely, so nothing is left to be returned.
 
