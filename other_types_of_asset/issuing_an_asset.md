@@ -91,7 +91,11 @@ An **Asset Definition** is a document that describes what the Asset is. It is op
 
 For more information check out the [Open Asset Specification](https://github.com/OpenAssets/open-assets-protocol/blob/master/specification.mediawiki).
 
-Finally the transaction is ready to be sent on the network.  
+After transaction verifications it is ready to be sent to the network.  
+
+```cs
+Console.WriteLine(builder.Verify(tx)); 
+```  
 
 ### With QBitNinja
 ```cs
@@ -109,7 +113,7 @@ else
 }
 ```  
 
-### Or with loca Bitcoin core
+### Or with local Bitcoin core
 
 ```cs  
 using (var node = Node.ConnectToLocal(Network.Main)) //Connect to the node
@@ -123,18 +127,34 @@ using (var node = Node.ConnectToLocal(Network.Main)) //Connect to the node
 }
 ```
 
-My Bitcoin Wallet have both, the book address and the “Nico” address.
+My Bitcoin Wallet have both, the book address and the “Nico” address.  
 
-As you can see, Bitcoin Core only show the 0.0001 BTC of fees I paid, and ignore the 600 Satoshi coin because of spam prevention feature.
+![](../assets/NicoWallet.png)  
 
-This classical bitcoin wallet knows nothing about Colored Coins.Worse: If a classical bitcoin wallet spend a colored coin, it will destroy the underlying asset and transfer only the bitcoin value of the **TxOut**. (600 satoshi)
+As you can see, Bitcoin Core only shows the 0.0001 BTC of fees I paid, and ignore the 600 Satoshi coin because of spam prevention feature.
 
-For preventing a user from sending Colored Coin to a wallet that do not support it, Open Asset have its own address format, that only colored coins wallets understand.
+This classical bitcoin wallet knows nothing about Colored Coins.  
+Worse: If a classical bitcoin wallet spend a colored coin, it will destroy the underlying asset and transfer only the bitcoin value of the **TxOut**. (600 satoshi)
 
+For preventing a user from sending Colored Coin to a wallet that do not support it, Open Asset have its own address format, that only colored coin wallets understand.  
+
+```cs
+nico = BitcoinAddress.Create("15sYbVpRh6dyWycZMwPdxJWD4xbfxReeHe");
+Console.WriteLine(nico.ToColoredAddress());
+```
+
+```
 akFqRqfdmAaXfPDmvQZVpcAQnQZmqrx4gcZ
+```  
 
-Now, you can take a look on an Open Asset compatible wallet like Coinprism, and see my asset correctly detected:
+Now, you can take a look on an Open Asset compatible wallet like Coinprism, and see my asset correctly detected:  
 
-As I have told you before, the Asset ID is derived from the issuer’s **ScriptPubKey**, here is how to get it in code:
+![](../assets/Coinprism.png)  
 
-AVAVfLSb1KZf9tJzrUVpktjxKUXGxUTD4e
+As I have told you before, the Asset ID is derived from the issuer’s **ScriptPubKey**, here is how to get it in code:  
+
+```cs
+var book = BitcoinAddress.Create("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
+var assetId = new AssetId(book).GetWif(Network.Main);
+Console.WriteLine(assetId); // AVAVfLSb1KZf9tJzrUVpktjxKUXGxUTD4e
+```  
