@@ -6,22 +6,22 @@ This part is a purely conceptual exercise of one application of colored coins.
 
 Let’s imagine a company where some decisions are taken by a board of investors after a vote.
 
-*   Some investors don’t know enough about a topic, so they would like to delegate decisions about some subjects to someone else,
-*   There is potentially a huge number of investors,
-*   As the CEO, you want the ability to sell voting power for financing the company,
-*   As the CEO, you want the ability to cast a vote when you decide,
+*   Some investors do not know enough about a topic, so they would like to delegate decisions about some subjects to someone else.
+*   There is potentially a huge number of investors.
+*   As the CEO, you want the ability to sell voting power for financing the company.
+*   As the CEO, you want the ability to cast a vote when you decide.
 
 How Colored Coins can help to organize such a vote transparently?
 
 But before beginning, let’s talk about some downside of voting on the Blockchain:
 
-*   Nobody knows the real identity of a voter,
-*   Miners could censor (even if it would be provable, and not in their interest),
-*   Even if nobody knows the real identity of the voter, behavioral analysis of a voter across several vote might reveal his identity,
+*   Nobody knows the real identity of a voter.
+*   Miners could censor (even if it would be provable, and not in their interest.)
+*   Even if nobody knows the real identity of the voter, behavioral analysis of a voter across several vote might reveal his identity.
 
 Whether these points are relevant or not is up to the vote organizer to decide.
 
-Let’s take an overview of how we would implement that,
+Let’s take an overview of how we would implement that.
 
 ### Issuing voting power {#issuing-voting-power}
 
@@ -31,15 +31,65 @@ Let’s represent it in purple:
 
 ![](../assets/PowerCoin.png)  
 
-Let’s say that three persons are interested, Satoshi, Alice and Bob. (Yes, them again)So Boss decides to sell each Power Coin at 0.1 BTC each.
+Let’s say that three persons are interested, Satoshi, Alice and Bob. (Yes, them again)  
+So Boss decides to sell each Power Coin at 0.1 BTC each.
 
-Let’s start funding some money to the powerCoin address, Satoshi, Alice and Bob.
+Let’s start funding some money to the ```powerCoin``` address, ```satoshi```, ```alice``` and ```bob```.  
 
-Imagine that Alice buy 2 Power coins, here is how to create such transaction.
+```cs
+var powerCoin = new Key();
+var alice = new Key();
+var bob = new Key();
+var satoshi = new Key();
+var init = new Transaction()
+{
+    Outputs = 
+    {
+        new TxOut(Money.Coins(1.0m), powerCoin),
+        new TxOut(Money.Coins(1.0m), alice),
+        new TxOut(Money.Coins(1.0m), bob),
+        new TxOut(Money.Coins(1.0m), satoshi),
+    }
+};
+
+var repo = new NoSqlColoredTransactionRepository();
+repo.Transactions.Put(init);
+```  
+
+Imagine that Alice buy 2 Power coins, here is how to create such transaction.  
+
+![](../assets/Power2Alice.png)  
+
+```cs
+var issuance = GetCoins(init,powerCoin)
+                .Select(c=> new IssuanceCoin(c))
+                .ToArray();
+var builder = new TransactionBuilder();
+var toAlice =
+    builder
+    .AddCoins(issuance)
+    .AddKeys(powerCoin)
+    .IssueAsset(alice, new AssetMoney(powerCoin, 2))
+    .SetChange(powerCoin)
+    .Then()
+    .AddCoins(GetCoins(init, alice))
+    .AddKeys(alice)
+    .Send(alice, Money.Coins(0.2m))
+    .SetChange(alice)
+    .BuildTransaction(true);
+repo.Transactions.Put(toAlice);
+```  
 
 In summary, powerCoin issues 2 Power Coins to Alice and send the change to himself. Likewise, Alice send 0.2 BTC to powerCoin and send the change to herself.
 
 Where **GetCoins** is
+
+```cs
+private IEnumerable<Coin> GetCoins(Transaction tx, Key owner)
+{
+    return tx.Outputs.AsCoins().Where(c => c.ScriptPubKey == owner.ScriptPubKey);
+}
+```
 
 For some reason, Alice, might want to sell some of her voting power to Satoshi.
 
