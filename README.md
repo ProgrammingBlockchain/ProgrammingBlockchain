@@ -26,7 +26,7 @@ Alternatively you can just commit a quick inline comment, if you are happened to
 9. Make a pull request
 
 ## Enhancing your learning process  
-If you are committed to finish the book or a few chapters of it, it is a good idea to make contributions while reading. For example you could choose an issue that can be only done if a big portion of the book is overseen. (Protip for university students: a great GitHub profile is more valuable in the job market, than a degree.)
+If you are committed to finish the book or a few chapters of it, it is a good idea to make contributions while reading. For example you could choose an issue that can be only done if a big portion of the book is overseen. (Protip for university students: a good GitHub profile is more valuable in the job market, than a degree.)
 
 ## Links
 
