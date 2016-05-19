@@ -1,8 +1,9 @@
 # Programming The Blockchain in C*#*
 
-[Click here to read the book](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
-## I noticed a bug
+## [Click here to read the book](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
+
+## Quick feedback
 If you notice a bug or mistake, but you do not want or cannot fix it, just open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
 
 ## How can I fix a typo? Aka quick contribution
