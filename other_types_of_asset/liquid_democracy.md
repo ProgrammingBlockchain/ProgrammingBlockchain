@@ -27,7 +27,9 @@ Let’s take an overview of how we would implement that,
 
 Everything start with the founder of the company (let’s call him Boss) wanting to sell “decision power” in his company to some investors. The decision power can take the shape of a colored coin that we will call for the sake of this exercise a “Power Coin”.
 
-Let’s represent it in purple:
+Let’s represent it in purple:  
+
+![](../assets/PowerCoin.png)  
 
 Let’s say that three persons are interested, Satoshi, Alice and Bob. (Yes, them again)So Boss decides to sell each Power Coin at 0.1 BTC each.
 
