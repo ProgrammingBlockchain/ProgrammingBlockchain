@@ -60,7 +60,7 @@ Console.WriteLine(key.PubKey.ScriptPubKey.WitHash.ScriptPubKey.Hash.ScriptPubKey
 ```
 OP_HASH160 d06c0058175952afecc56d26ed16558b1ed40e42 OP_EQUAL
 ```  
-> **Note:** I warn you, don't try whiny ragequitting!  
+> **Warning:** It makes sense, don't try whiny ragequitting!  
 2.  The former **ScriptPubKey** will be placed as the only push in the **scriptSig** in the spending transaction,
 3.  All other data will be pushed in the witness of the spending transaction,
 
