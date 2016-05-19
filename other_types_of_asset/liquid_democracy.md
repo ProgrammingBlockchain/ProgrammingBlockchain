@@ -145,19 +145,52 @@ Her decision is to handout her voting coin to someone she trusts having a better
 
 ![](../assets/PowerCoin4.png)  
 
+```cs
+var aliceVotingCoin = ColoredCoin.Find(toVoters,repo)
+                        .Where(c=>c.ScriptPubKey == alice.ScriptPubKey)
+                        .ToArray();
+builder = new TransactionBuilder();
+var toBob =
+    builder
+    .AddCoins(aliceVotingCoin)
+    .AddKeys(alice)
+    .SendAsset(bob, new AssetMoney(votingCoin, 1))
+    .BuildTransaction(true);
+repo.Transactions.Put(toBob);
+```  
+
 You can notice that there is no **SetChange** the reason is that the input colored coin is spent entirely, so nothing is left to be returned.
 
 ### Voting {#voting}
 
-Imagine that Satoshi is too busy and decide not to vote. Now Bob must express his decision.The vote concerns whether the company should ask for a loan to the bank for investing into new production machines.
+Imagine that Satoshi is too busy and decide not to vote. Now Bob must express his decision.  
+The vote concerns whether the company should ask for a loan to the bank for investing into new production machines.
 
 Boss says on the company’s website:
 
 Send your coins to 1HZwkjkeaoZfTSaJxDw6aKkxp45agDiEzN for yes and to 1F3sAm6ZtwLAUnj7d38pGFxtP3RVEvtsbV for no.
 
-Bob decides that the company should take the loan:
+Bob decides that the company should take the loan:  
 
-Now Boss can compute the result of the vote and see 1-Yes 0-No, Yes win, so he takes the loan.Every participants can also count the result by themselves.
+![](../assets/PowerCoin5.png)  
+
+```cs
+var bobVotingCoin = ColoredCoin.Find(toVoters, repo)
+    .Where(c => c.ScriptPubKey == bob.ScriptPubKey)
+    .ToArray();
+
+builder = new TransactionBuilder();
+var vote =
+    builder
+    .AddCoins(bobVotingCoin)
+    .AddKeys(bob)
+    .SendAsset(BitcoinAddress.Create("1HZwkjkeaoZfTSaJxDw6aKkxp45agDiEzN"),
+                new AssetMoney(votingCoin, 1))
+    .BuildTransaction(true);
+```  
+
+Now Boss can compute the result of the vote and see 1-Yes 0-No, Yes win, so he takes the loan.  
+Every participants can also count the result by themselves.
 
 ### Alternative: Use of Ricardian Contract {#alternative-use-of-ricardian-contract}
 
@@ -167,7 +200,22 @@ This works great, but Bob need to know that the website exists.
 
 Another solution is to publish the modalities of the vote directly on the Blockchain within an **Asset Definition File**, so some software can automatically get it and present it to Bob.
 
-The only piece of code that would have changed is during the issuance of the Voting Coins to voters.
+The only piece of code that would have changed is during the issuance of the Voting Coins to voters.  
+
+```cs
+issuance = GetCoins(init2, votingCoin).Select(c => new IssuanceCoin(c)).ToArray();
+issuance[0].DefinitionUrl = new Uri("http://boss.com/vote01.json");
+builder = new TransactionBuilder();
+var toVoters =
+    builder
+    .AddCoins(issuance)
+    .AddKeys(votingCoin)
+    .IssueAsset(alice, new AssetMoney(votingCoin, 1))
+    .IssueAsset(satoshi, new AssetMoney(votingCoin, 1))
+    .SetChange(votingCoin)
+    .BuildTransaction(true);
+repo.Transactions.Put(toVoters);
+```  
 
 In such case, Bob can see that during the issuance of his voting coin, an **Asset Definition File** was published, which is nothing more than a JSON document whose schema is partially [specified in Open Asset](https://github.com/OpenAssets/open-assets-protocol/blob/master/asset-definition-protocol.mediawiki).The schema can be extended to have information about things like:
 
