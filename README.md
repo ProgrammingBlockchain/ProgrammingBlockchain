@@ -6,7 +6,7 @@
 ## Quick feedback
 If something does not seem to be right, but you do not want or are not able to fix it, just open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
 
-Alternatively you can just commit a quick comment, if you are happened to read the book on GitBook.
+Alternatively you can just commit a quick inline comment, if you are happened to read the book on GitBook.
 
 ## How can I fix a typo? Aka quick contribution
 1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
