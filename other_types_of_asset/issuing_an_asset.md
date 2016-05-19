@@ -42,45 +42,49 @@ var coin = new Coin(
 var issuance = new IssuanceCoin(coin);
 ```  
 
-Now I need to build transaction and sign the transaction with the help of the **TransactionBuilder**.
+Now I need to build transaction and sign the transaction with the help of the **TransactionBuilder**.  
 
+```cs
+var nico = BitcoinAddress.Create("15sYbVpRh6dyWycZMwPdxJWD4xbfxReeHe");
+var bookKey = new BitcoinSecret("???????");
+TransactionBuilder builder = new TransactionBuilder();
+            
+var tx = builder
+    .AddKeys(bookKey)
+    .AddCoins(issuance)
+    .IssueAsset(nico, new AssetMoney(issuance.AssetId, quantity: 10))
+    .SendFees(Money.Coins(0.0001m))
+    .SetChange(bookKey.GetAddress())
+    .BuildTransaction(true);
+
+Console.WriteLine(tx);
+```  
+
+```json
 {
-
-…
-
-"out": [
-
-{
-
-"value": "0.00000600",
-
-"scriptPubKey": "OP_DUP OP_HASH160 356facdac5f5bcae995d13e667bb5864fd1e7d59 OP_EQUALVERIFY OP_CHECKSIG"
-
-},
-
-{
-
-"value": "0.01989400",
-
-"scriptPubKey": "OP_DUP OP_HASH160 c81e8e7b7ffca043b088a992795b15887c961592 OP_EQUALVERIFY OP_CHECKSIG"
-
-},
-
-{
-
-"value": "0.00000000",
-
-"scriptPubKey": "OP_RETURN 4f410100010a00"
-
+  …
+  "out": [
+    {
+      "value": "0.00000600",
+      "scriptPubKey": "OP_DUP OP_HASH160 356facdac5f5bcae995d13e667bb5864fd1e7d59 OP_EQUALVERIFY OP_CHECKSIG"
+    },
+    {
+      "value": "0.01989400",
+      "scriptPubKey": "OP_DUP OP_HASH160 c81e8e7b7ffca043b088a992795b15887c961592 OP_EQUALVERIFY OP_CHECKSIG"
+    },
+    {
+      "value": "0.00000000",
+      "scriptPubKey": "OP_RETURN 4f410100010a00"
+    }
+  ]
 }
+```  
 
-]
+You can see it includes an OP_RETURN output. In fact, this is the location where information about colored coins are stuffed.
 
-}
+Here is the format of the data in the OP_RETURN.  
 
-You can see it include an OP_RETURN output. In fact, this is the location where information about colored coins are stuffed.
-
-Here is the format of the data in the OP_RETURN.
+![](../assets/ColorMaker.png)  
 
 In our case, Quantities have only 10, which is the number of Asset I issued to nico. Metadata is arbitrary data. We will see that we can put a url that point to an “Asset Definition”.An “**Asset Definition**” is a document that describe what the Asset is. It is optional, we are not using it in our case. (We’ll come back later on it in the Ricardian Contract part)
 
