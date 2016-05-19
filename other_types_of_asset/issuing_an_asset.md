@@ -4,7 +4,7 @@
 
 For the purpose of this exercise, I will emit **BlockchainProgramming** coins.  
 
-I will send coins to people that gave me a tip, listed on the book’s website [http://blockchainprogramming.azurewebsites.net/](http://blockchainprogramming.azurewebsites.net/)
+I will send coins to those who gave me a tip. They will get into the [Hall of The Makers](http://n.bitcoin.ninja/). 
 
 You will get 1 BlockchainProgramming coin for every **0.004 BTC** you sent me + 1 coin if you added kind words.  
 Let’s see how I would code such feature.
