@@ -30,7 +30,17 @@ By taking a look at [my balance](http://rapidbase-test.azurewebsites.net/balance
 } 
 ```  
 
-Here is how to create my issuance coin.
+Here is how to create my issuance coin:  
+
+```cs
+var coin = new Coin(
+    fromTxHash: new uint256("eb49a599c749c82d824caf9dd69c4e359261d49bbb0b9d6dc18c59bc9214e43b"),
+    fromOutputIndex: 0,
+    amount: Money.Satoshis(2000000),
+    scriptPubKey: new Script(Encoders.Hex.DecodeData("76a914c81e8e7b7ffca043b088a992795b15887c96159288ac")));
+
+var issuance = new IssuanceCoin(coin);
+```  
 
 Now I need to build transaction and sign the transaction with the help of the **TransactionBuilder**.
 
