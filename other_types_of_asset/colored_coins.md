@@ -1,7 +1,5 @@
 ## Colored Coins {#colored-coins}
 
-In the previous chapters, we have seen several type of ownership. You have seen all the different kind of ownership and proof of ownership, and understand how bitcoin can be coded to invent new kinds of ownership.
-
 So until now, you have seen how to exchange Bitcoins on the network. However you can use the Bitcoin network for transferring and exchanging any type of assets.
 
 We call such assets “colored coins”. As far as the Blockchain is concerned, there is no difference between a Coin and a Colored Coin.
