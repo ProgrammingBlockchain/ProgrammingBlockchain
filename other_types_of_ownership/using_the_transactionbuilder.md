@@ -31,21 +31,96 @@ The usage of the builder is done in four steps:
 *   You build and sign the **transaction**,
 *   **Optional**: you give the **transaction** to somebody else, then he will sign or continue to build it.
 
-So let’s gather some coins, for that let’s create a fake transaction with some funds on it.Let’s say that the transaction has a P2PKH, P2PK, and multi sig coin of Bob and Alice.
+Now let’s gather some **Coins**, for that let us create a fake **transaction** with some funds on it.  
+Let’s say that the **transaction** has a **P2PKH**, **P2PK**, and **multi-sig** coin of Bob and Alice.
 
-Now let’s say they want to use the coins of this transaction to pay Satoshi, they have to get the **Coins**.
+```cs
+// Create a fake transaction
+var bob = new Key();
+var alice = new Key();
 
-Now let’s say bob wants to sends 0.2 BTC, Alice 0.3 BTC, and they agree to use bobAlice to sends 0.5 BTC.
+Script bobAlice = 
+    PayToMultiSigTemplate.Instance.GenerateScriptPubKey(
+        2, 
+        bob.PubKey, alice.PubKey);
 
-Then you can verify it is fully signed and ready to send to the network,
+var init = new Transaction();
+init.Outputs.Add(new TxOut(Money.Coins(1m), bob.PubKey)); // P2PK
+init.Outputs.Add(new TxOut(Money.Coins(1m), alice.PubKey.Hash)); // P2PKH
+init.Outputs.Add(new TxOut(Money.Coins(1m), bobAlice));
+```
 
-True
+Now let’s say they want to use the ```coins``` of this transaction to pay Satoshi.  
 
-The nice thing about this model is that it works the same way for **P2SH, P2WSH, P2SH(P2WSH)**, and **P2SH(P2PKH)** except you need to create **ScriptCoin**.
+```cs
+var satoshi = new Key();
+```  
 
-Then the signature
+First they have to get their **Coins**.  
 
-True
+```cs
+Coin[] coins = init.Outputs.AsCoins().ToArray();
+Coin bobCoin = coins[0];
+Coin aliceCoin = coins[1];
+Coin bobAliceCoin = coins[2];
+```  
+
+Now let’s say ```bob``` wants to sends 0.2 BTC, ```alice``` 0.3 BTC, and they agree to use ```bobAlice``` to send 0.5 BTC.  
+
+```cs
+var builder = new TransactionBuilder();
+Transaction tx = builder
+        .AddCoins(bobCoin)
+        .AddKeys(bob)
+        .Send(satoshi, Money.Coins(0.2m))
+        .SetChange(bob)
+        .Then()
+        .AddCoins(aliceCoin)
+        .AddKeys(alice)
+        .Send(satoshi, Money.Coins(0.3m))
+        .SetChange(alice)
+        .Then()
+        .AddCoins(bobAliceCoin)
+        .AddKeys(bob, alice)
+        .Send(satoshi, Money.Coins(0.5m))
+        .SetChange(bobAlice)
+        .SendFees(Money.Coins(0.0001m))
+        .BuildTransaction(sign: true);
+```  
+
+Then you can verify it is fully signed and ready to send to the network.  
+
+```cs
+Console.WriteLine(builder.Verify(tx)); // True
+```  
+
+The nice thing about this model is that it works the same way for **P2SH, P2WSH, P2SH(P2WSH)**, and **P2SH(P2PKH)** except you need to create **ScriptCoin**.  
+
+![](../assets/ScriptCoinFromCoin.png)  
+
+```cs
+init = new Transaction();
+init.Outputs.Add(new TxOut(Money.Coins(1.0m), bobAlice.Hash));
+
+coins = init.Outputs.AsCoins().ToArray();
+ScriptCoin bobAliceScriptCoin = coins[0].ToScriptCoin(bobAlice);
+```  
+
+Then the signature:  
+
+```cs
+builder = new TransactionBuilder();
+tx = builder
+        .AddCoins(bobAliceScriptCoin)
+        .AddKeys(bob, alice)
+        .Send(satoshi, Money.Coins(0.9m))
+        .SetChange(bobAlice.Hash)
+        .SendFees(Money.Coins(0.0001m))
+        .BuildTransaction(true);
+Console.WriteLine(builder.Verify(tx));
+
+Console.ReadLine(); // True
+```  
 
 For **Stealth Coin**, this is basically the same thing. Except that, if you remember our introduction on Dark Wallet, I said that you need a **ScanKey** to see the **StealthCoin**.
 
