@@ -1,10 +1,14 @@
 ## Using the TransactionBuilder {#using-the-transactionbuilder}
 
-You have seen how the **TransactionBuillder** works when you have signed your first P2SH and Multi Sig transaction.
+You have seen how the **TransactionBuilder** works when you have signed your first **P2SH** and **multi-sig** transaction.  
 
-We’ll see how you can harness its full power, for signing more complicated transactions.With the **TransactionBuilder** you can:
+We will see how you can harness its full power, for signing more complicated transactions.    
 
-*   Spend any P2PK, P2WPK,P2WSH, P2PKH, Multi Sig
+With the **TransactionBuilder** you can:  
+*   Spend any 
+  *   **P2PK**, **P2PKH**, 
+  *   **multi-sig**, **P2SH**, 
+  *   **P2WPK**, **P2WSH**
 *   Spend any P2SH on the previous redeem script
 *   Spend Stealth Coin (dark wallet)
 *   Issue and transfer Colored Coins (open asset, in the following part)
