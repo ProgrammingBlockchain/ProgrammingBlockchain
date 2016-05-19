@@ -9,24 +9,27 @@ With the **TransactionBuilder** you can:
   *   **P2PK**, **P2PKH**,  
   *   **multi-sig**,  
   *   **P2WPK**, **P2WSH**.  
-*   Spend any **P2SH** on the previous redeem script.
-*   Spend Stealth Coin (dark wallet)
-*   Issue and transfer Colored Coins (open asset, in the following part)
-*   Combine partially signed transactions
-*   Estimate the final size of an unsigned transaction and its fees
-*   Verify if a transaction is fully signed
+*   Spend any **P2SH** on the previous redeem script.  
+*   Spend **Stealth Coin** (DarkWallet).  
+*   Issue and transfer **Colored Coins** (open asset, following chapter).  
+*   Combine **partially signed transactions**.  
+*   Estimate the final **size** of an **unsigned transaction** and its **fees**.  
+*   Verify if a **transaction** is **fully signed**.  
 
-The goal of the **TransactionBuilder** is to take **Coin** and **Keys** as input, and return back a **signed** or **partially signed transaction**.
+The goal of the **TransactionBuilder** is to take **Coins** and **Keys** as input, and return back a **signed** or **partially signed transaction**.  
 
-The **TransactionBuilder** will figure out what coin to use and what to sign by itself.
+![](../assets/SignedTransaction.png)  
 
-The usage of the builder is done in 4 steps:
+The **TransactionBuilder** will figure out what **Coin** to use and what to sign by itself.  
 
-*   You gather the coins that spent,
-*   You gather the keys that you own,
-*   You enumerate how much money you want to send to what scriptPubKey,
-*   You build and sign the transaction,
-*   Optional: you give the transaction to somebody else, then he will sign or continue to build it,
+![](../assets/TransactionBuilder.png)  
+
+The usage of the builder is done in four steps:  
+*   You gather the **Coins** that spent,
+*   You gather the **Keys** that you own,
+*   You enumerate how much **Money** you want to send to what **scriptPubKey**,
+*   You build and sign the **transaction**,
+*   **Optional**: you give the **transaction** to somebody else, then he will sign or continue to build it.
 
 So let’s gather some coins, for that let’s create a fake transaction with some funds on it.Let’s say that the transaction has a P2PKH, P2PK, and multi sig coin of Bob and Alice.
 
