@@ -91,7 +91,25 @@ An **Asset Definition** is a document that describes what the Asset is. It is op
 
 For more information check out the [Open Asset Specification](https://github.com/OpenAssets/open-assets-protocol/blob/master/specification.mediawiki).
 
-Finally the transaction is ready to be sent on the network:  
+Finally the transaction is ready to be sent on the network.  
+
+### With QBitNinja
+```cs
+var client = new QBitNinjaClient(Network.Main);
+BroadcastResponse broadcastResponse = client.Broadcast(tx).Result;
+
+if (!broadcastResponse.Success)
+{
+    Console.WriteLine("ErrorCode: " + broadcastResponse.Error.ErrorCode);
+    Console.WriteLine("Error message: " + broadcastResponse.Error.Reason);
+}
+else
+{
+    Console.WriteLine("Success!");
+}
+```  
+
+### Or with loca Bitcoin core
 
 ```cs  
 using (var node = Node.ConnectToLocal(Network.Main)) //Connect to the node
