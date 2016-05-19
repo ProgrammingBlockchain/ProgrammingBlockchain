@@ -208,6 +208,7 @@ I have 3 **out**, 2 with **value**, 1 without **value** (with the message). You 
 
 Take a closer look at **in**. We have **prev_out** and **scriptSig** there.  
 **Exercise:** try to figure out what will be and how to get the **scriptSig** in our code before you read further!  
+
 Let's check out the **hash** of **prev_out** in a blockexplorer: http://tbtc.blockr.io/tx/info/e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3  
 In **prev_out** **n** is 1. Since we are indexing from 0, this means I want to spend the second output of the transaction.  
 In the blockexplorer we can see the corresponding address is ```mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv``` and I can get the scriptSig from the address like this:  
