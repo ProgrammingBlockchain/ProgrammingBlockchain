@@ -86,11 +86,24 @@ Here is the format of the data in the OP_RETURN.
 
 ![](../assets/ColorMaker.png)  
 
-In our case, Quantities have only 10, which is the number of Asset I issued to nico. Metadata is arbitrary data. We will see that we can put a url that point to an “Asset Definition”.An “**Asset Definition**” is a document that describe what the Asset is. It is optional, we are not using it in our case. (We’ll come back later on it in the Ricardian Contract part)
+In our case, Quantities have only 10, which is the number of Asset I issued to ```nico```. Metadata is arbitrary data. We will see that we can put an url that points to an “Asset Definition”.  
+An **Asset Definition** is a document that describes what the Asset is. It is optional, we are not using it in our case. (We’ll come back later on it in the Ricardian Contract part.)  
 
 For more information check out the [Open Asset Specification](https://github.com/OpenAssets/open-assets-protocol/blob/master/specification.mediawiki).
 
-The transaction is ready to be sent on the network:
+Finally the transaction is ready to be sent on the network:  
+
+```cs  
+using (var node = Node.ConnectToLocal(Network.Main)) //Connect to the node
+{
+    node.VersionHandshake(); //Say hello
+    //Advertize your transaction (send just the hash)
+    node.SendMessage(new InvPayload(InventoryType.MSG_TX, tx.GetHash()));
+    //Send it
+    node.SendMessage(new TxPayload(tx));
+    Thread.Sleep(500); //Wait a bit
+}
+```
 
 My Bitcoin Wallet have both, the book address and the “Nico” address.
 
