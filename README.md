@@ -4,7 +4,8 @@
 ## [Click here to read the book](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
 ## Quick feedback
-If you notice a bug or mistake, but you do not want or cannot fix it, just open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
+If something doesn't seemt obe right, but you do not want or are not able to fix it, just open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
+Alternatively you can just make a quick comment, if you are happened to read the book on GitBook.
 
 ## How can I fix a typo? Aka quick contribution
 1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
