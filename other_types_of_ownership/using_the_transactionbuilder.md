@@ -117,21 +117,57 @@ tx = builder
         .SetChange(bobAlice.Hash)
         .SendFees(Money.Coins(0.0001m))
         .BuildTransaction(true);
-Console.WriteLine(builder.Verify(tx));
-
-Console.ReadLine(); // True
+Console.WriteLine(builder.Verify(tx)); // True
 ```  
 
 For **Stealth Coin**, this is basically the same thing. Except that, if you remember our introduction on Dark Wallet, I said that you need a **ScanKey** to see the **StealthCoin**.
 
-Let’s create darkAliceBob stealth address as in previous chapter:
+![](../assets/StealthCoin.png)  
 
-Let’s say someone sent this transaction:
+Let’s create darkAliceBob stealth address as in previous chapter:  
 
-The scanner will detect the StealthCoin:
+```cs
+Key scanKey = new Key();
+BitcoinStealthAddress darkAliceBob =
+    new BitcoinStealthAddress
+        (
+            scanKey: scanKey.PubKey,
+            pubKeys: new[] { alice.PubKey, bob.PubKey },
+            signatureCount: 2,
+            bitfield: null,
+            network: Network.Main
+        );
+```  
 
-And forward it to bob and alice, who will sign :
+Let’s say someone sent this transaction:  
 
-True
+```cs
+//Someone sent to darkAliceBob
+init = new Transaction();
+darkAliceBob
+    .SendTo(init, Money.Coins(1.0m));
+```  
 
-Note: You need the scanKey for spending a StealthCoin
+The scanner will detect the StealthCoin:  
+
+```cs
+//Get the stealth coin with the scanKey
+StealthCoin stealthCoin
+    = StealthCoin.Find(init, darkAliceBob, scanKey);
+```  
+
+And forward it to bob and alice, who will sign:  
+
+```cs
+//Spend it
+tx = builder
+        .AddCoins(stealthCoin)
+        .AddKeys(bob, alice, scanKey)
+        .Send(satoshi, Money.Coins(0.9m))
+        .SetChange(bobAlice.Hash)
+        .SendFees(Money.Coins(0.0001m))
+        .BuildTransaction(true);
+Console.WriteLine(builder.Verify(tx)); // True
+```  
+
+> **Note:** You need the scanKey for spending a StealthCoin
