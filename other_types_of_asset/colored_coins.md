@@ -6,7 +6,9 @@ We call such assets “colored coins”. As far as the Blockchain is concerned, 
 
 A colored coin is represented by a standard **TxOut**. Most of the time, such **TxOut** have a residual Bitcoin value called “Dust”. (600 satoshi)
 
-The real value of a colored coin reside in what the **issuer** of the coin will exchange against it.
+The real value of a colored coin reside in what the **issuer** of the coin will exchange against it.  
+
+![](../assets/ColoredCoin.png)  
 
 Since a colored coin is nothing but a standard coin with special meaning,it follows that all what you saw about proof of ownership and the **TransactionBuilder** stays true. You can transfer a colored coin with exactly the same rules as before.
 
