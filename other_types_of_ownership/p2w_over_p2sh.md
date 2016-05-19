@@ -8,39 +8,41 @@ You can transform any **P2W*** to a **P2W* over** **P2SH** by:
 
 1.  Replacing the **ScriptPubKey** by its P2SH equivalent.
 2.  The former **ScriptPubKey** will be placed as the only push in the **scriptSig** in the spending transaction,
-3.  All other data will be pushed in the witness of the spending transaction,
+3.  All other data will be pushed in the witness of the spending transaction.
 
 Don’t worry, if this sound complicated, the TransactionBuilder will allow you to abstract the plumbing effectively.
 
 Let’s take the example of P2WPKH over P2SH, also called with the sweet name of **P2SH(P2WPKH)**.
 
-Printing the **ScriptPubKey**:
+Printing the **ScriptPubKey**:  
 
-Which gives us a well known P2SH **scriptPubKey**.
+```cs
+var key = new Key();
+Console.WriteLine(key.PubKey.WitHash.ScriptPubKey.Hash.ScriptPubKey);
+```  
 
-OP_HASH160 **b19da5ca6e7243d4ec8eab07b713ff8768a44145** OP_EQUAL
+> **Note:** that's quite and awesome line of code.  
 
-Then, a signed transaction spending this output will look like:
+Which gives us a well known P2SH **scriptPubKey**.  
 
+```
+OP_HASH160 b19da5ca6e7243d4ec8eab07b713ff8768a44145 OP_EQUAL
+```  
+
+Then, a signed transaction spending this output will look like:  
+
+```json
 "in": [
-
-{
-
-"prev_out": {
-
-"hash": "674ece694e5e28956138efacab96fc0bffd7c6cc1af7bb2729943fedf8f0b8b9",
-
-"n": 0
-
-},
-
-"scriptSig": "001404100ab485c95701bf0f4d73e3fe7d69ecc4f0ea",
-
-"witness": "3045022100f4c14cf383c0c97bbdaf520ea06f7db6c61e0effbc4bd3dfea036a90272f6cce022055b0fc058759a7961e718d48a3dc4dd5580fffc310557925a0865dbe467a835901 0205b956a5afe8f34a01337f0949f5733b5e376caaea57c9624e40e739a0b1d16c"
-
-}
-
-],
+    {
+      "prev_out": {
+        "hash": "674ece694e5e28956138efacab96fc0bffd7c6cc1af7bb2729943fedf8f0b8b9",
+        "n": 0
+      },
+      "scriptSig": "001404100ab485c95701bf0f4d73e3fe7d69ecc4f0ea",
+      "witness": "3045022100f4c14cf383c0c97bbdaf520ea06f7db6c61e0effbc4bd3dfea036a90272f6cce022055b0fc058759a7961e718d48a3dc4dd5580fffc310557925a0865dbe467a835901 0205b956a5afe8f34a01337f0949f5733b5e376caaea57c9624e40e739a0b1d16c"
+    }
+  ],
+```  
 
 The **scriptSig** is only the push of the P2SH redeem script of the previous ScriptPubKey. (in other words **key.PubKey.WitHash.ScriptPubKey**)The witness is exactly the same as a normal **P2WPKH** payment.
 
@@ -50,12 +52,17 @@ By following the same principle, let’s see how a **P2SH(P2WSH)** looks like. Y
 
 Let’s print the **scriptPubKey** by following the first rule:
 
-1.  Replacing the **ScriptPubKey** by its P2SH equivalent.
-
+1.  Replacing the **ScriptPubKey** by its P2SH equivalent.  
+```cs
+var key = new Key();
+Console.WriteLine(key.PubKey.ScriptPubKey.WitHash.ScriptPubKey.Hash.ScriptPubKey);
+```  
+```
 OP_HASH160 d06c0058175952afecc56d26ed16558b1ed40e42 OP_EQUAL
-
-1.  The former **ScriptPubKey** will be placed as the only push in the **scriptSig** in the spending transaction,
-2.  All other data will be pushed in the witness of the spending transaction,
+```  
+> **Note:** I warn you, don't try whiny ragequitting!  
+2.  The former **ScriptPubKey** will be placed as the only push in the **scriptSig** in the spending transaction,
+3.  All other data will be pushed in the witness of the spending transaction,
 
 For 3\. the **‘other data’**, in the context of a P2WSH payment means the parameters of the **P2WSH redeem script** followed by a push of the **P2WSH redeem script**.
 
