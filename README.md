@@ -17,7 +17,7 @@ If you notice a bug or mistake, but you do not want or cannot fix it, just open 
 3. Clone your fork
 4. Download and install [Gitbook editor](https://www.gitbook.com/)
 5. Open Gitbook editor
-6. Select "Open" and select the folder where you cloned your fork
+6. Select "Import" and select the folder where you cloned your fork
 7. Edit book
 8. Save files and Sync
 9. Make a pull request
