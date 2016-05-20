@@ -9,7 +9,7 @@ Someone has finally break down the crypto voodoo into object oriented niceness. 
 But my excitement, Bitcoin addiction and risk-taking personality did not let me stop here. I contacted Nicolas, and long story short, a month ago I found myself on a plane, flying to Tokyo to fully devote myself to Bitcoin, learning under the guidance of Nicolas until my savings run out and I have to find a job.  
 So far it resulted the second edition of this book, and a very messy room, since I was not able to find time to unpack my luggage. What is more astonishing by knowing I am a neat-freak.  
 
-Oh, yes... the book. Compared to the first edition, I have updated it by introducing Nicolas's latest works, fixed a bunch of typos (and left just as much,) extended it in many places in order to make it understandable by humans and last but not least I have ported all of it to GitHub / Gitbook, so now the community itself will be able to get involved to the book development.
+Oh, yes... the book. Compared to the first edition, I have updated it by introducing Nicolas's latest works, fixed a bunch of typos (and left just as much), extended it in many places in order to make it understandable by humans and last but not least I have ported all of it to GitHub / Gitbook, so now the community itself will be able to get involved to the book development.
 
 
 If I would have to describe the book in one sentence it would be this one: **Let's not talk Bitcoin, let's do Bitcoin!**
