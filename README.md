@@ -1,7 +1,6 @@
 # Programming The Blockchain in C*#*
 **Let's not talk Bitcoin, let's do Bitcoin!**
 
-
 ## [Click here to read the book](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
 ## Quick feedback
@@ -31,6 +30,7 @@ If you are committed to finish the book or a few chapters of it, it is a good id
 
 ## Links
 
-[The book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
-[The book on Gitbook](https://www.gitbook.com/book/programmingblockchain/programmingblockchain) (You can download pdf, epub, mobi versions here.)  
+[The book on GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
+[The book on GitBook](https://www.gitbook.com/book/programmingblockchain/programmingblockchain) (You can download pdf, epub, mobi versions here.)  
+[Code examples on GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchainCodeExamples/)
 [Hall of the Makers](http://n.bitcoin.ninja/) (Here are the true makers those succeeded to complete the challenges of this book.)
