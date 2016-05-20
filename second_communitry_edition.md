@@ -4,7 +4,7 @@
 Every time I tried to do any coding, I encountered countless walls, countless missing pieces and tremendous amount of work that is needed to be done before I could even start working on my idea.  
 
 A few years later I have pleasantly noticed someone has already done the work I talked about.  
-Someone has finally break down the crypto voodoo into object oriented niceness. My excitement has further grown when I realized Nicolas Dorier's C# library is the biggest, most complete Bitcoin library out there. More, he even wrote a book around it! So now I have the chance to work with the most powerful, best documented Bitcoin library up to date in my favorite programming language.  
+Someone has finally break down the crypto voodoo into object oriented niceness. My excitement has further grown when I realized Nicolas Dorier's C# library is the biggest, most complete Bitcoin library out there and it is working on every platform. More, he even wrote a book around it! So now I have the chance to work with the most powerful, best documented Bitcoin library up to date in my favorite programming language.  
 
 But my excitement, Bitcoin addiction and risk-taking personality did not let me stop here. I contacted Nicolas, and long story short, a month ago I found myself on a plane, flying to Tokyo to fully devote myself to Bitcoin, learning under the guidance of Nicolas until my savings run out and I have to find a job.  
 So far it resulted the second edition of this book, and a very messy room, since I was not able to find time to unpack my luggage. What is more astonishing by knowing I am a neat-freak.  
