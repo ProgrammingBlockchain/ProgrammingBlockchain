@@ -214,7 +214,7 @@ In **prev_out** **n** is 1. Since we are indexing from 0, this means I want to s
 In the blockexplorer we can see the corresponding address is ```mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv``` and I can get the scriptSig from the address like this:  
 
 ```cs
-var address = new BitcoinPubKeyAddress("mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv");
+var address = BitcoinAddress.Create("mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv");
 transaction.Inputs[0].ScriptSig = address.ScriptPubKey;
 ```  
 
