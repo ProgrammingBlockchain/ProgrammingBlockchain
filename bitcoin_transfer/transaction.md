@@ -23,7 +23,13 @@ If you go to http://api.qbit.ninja/transactions/f13dc48fb035bbf0a6e989a26b3ecb57
 
 ![](../assets/RawTx.png)  
 
-Quickly close the tab, before it scares you away, QBit Ninja queries the API and parses the information so go ahaead and install **QBitNinja.Client** NuGet package.  
+You can parse the transaction from hex with the following code:  
+
+```cs
+Transaction tx = new Transaction("0100000...");
+```
+
+Quickly close the tab, before it scares you away, QBit Ninja queries the API and parses the information so go ahead and install **QBitNinja.Client** NuGet package.  
 
 ![](../assets/QBitNuGet.png)  
 
@@ -43,14 +49,15 @@ The type of **transactionResponse** is **GetTransactionResponse**. It lives unde
 ```cs
 NBitcoin.Transaction transaction = transactionResponse.Transaction;
 ```  
-
-Basically **QBitNinja's GetTransactionResponse** class is higher level abstraction of a transaction, most of the time it will be enough to use that.  
+ 
 Let's see an example getting back the transaction id with both classes:  
 
 ```cs
 Console.WriteLine(transactionResponse.TransactionId); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 Console.WriteLine(transaction.GetHash()); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 ```  
+
+**GetTransactionResponse** has additional information about the transaction like the value and scriptPubKey of the inputs being spent in the transaction.
 
 The relevant parts for now are the **inputs** and **outputs**. You can see that out 13.19683492 Bitcoin has been sent to a ScriptPubKey:
 
@@ -70,7 +77,7 @@ foreach (var coin in receivedCoins)
 ```  
 
 We have written out some information about the RECEIVED COINS using QBitNinja's GetTransactionResponse class.
-**Exercise**: Write out the same information about the SPENT COINS using QBitNinja's GetTransactionResponse class.!  
+**Exercise**: Write out the same information about the SPENT COINS using QBitNinja's GetTransactionResponse class!  
 
 Let's see how we can get the same information about the RECEIVED COINS using NBitcoin's Transaction class.
 
@@ -116,7 +123,7 @@ var scriptPubKey = transaction.Outputs.First().ScriptPubKey;
 TxOut txOut = new TxOut(twentyOneBtc, scriptPubKey);
 ```  
 
-Every **TxOut** is addressed by the ID of the transaction which include it and its index inside it. We call such reference an **Outpoint**.  
+Every **TxOut** is uniquely addressed at the blockchain level by the ID of the transaction which include it and its index inside it. We call such reference an **Outpoint**.  
 
 ![](../assets/OutPoint.png)
 
@@ -145,7 +152,7 @@ var firstPreviousTransaction = client.GetTransaction(firstPreviousOutPoint.Hash)
 Console.WriteLine(firstPreviousTransaction.IsCoinbase); // False
 ```  
 
-We could continue to trace the transaction IDs back in this manner until we reach the bitcoins’ **coinbase,** the block where they were mined.  
+We could continue to trace the transaction IDs back in this manner until we reach a **coinbase transaction**, the transaction including the newly mined coin by a miner.  
 **Exercise:** Follow the first input of this transaction and its ancestors until you find a coinbase transaction!  
 Hint: After a few minutes and 30-40 transaction, I gave up tracing back.  
 Yes, you've guessed right, it is not the most efficient way to do this, but a good exercise.  
@@ -171,3 +178,6 @@ That means 0.0002 BTC (or 13.19**70**3492 - 13.19**68**3492) is not accounted fo
 var fee = transaction.GetFee(spentCoins.ToArray());
 Console.WriteLine(fee);
 ```
+
+You should note that a **coinbase transaction** is the only transaction whose value of output are superior to the value of input. This effectively correspond to coin creation. So by definition there is no fee in a coinbase transaction. The coinbase transaction is the first transaction of every block.  
+The consensus rule enforce that the sum of output's value in the coinbase transaction does not exceed the sum of transaction fees in the block plus the mining reward.  

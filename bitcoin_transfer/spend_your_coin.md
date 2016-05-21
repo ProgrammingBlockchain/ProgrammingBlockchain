@@ -89,7 +89,7 @@ var hallOfTheMakersAddress = new BitcoinPubKeyAddress("1KF8kUVHK42XzgcmJF4Lxz4wc
 ```  
 If you are working on the testnet, send the testnet coins to any testnet address.
 ```cs
-var hallOfTheMakersAddress = new BitcoinPubKeyAddress("mzp4No5cmCXjZUpf112B1XWsvWBfws5bbB");
+var hallOfTheMakersAddress = BitcoinAddress.Create("mzp4No5cmCXjZUpf112B1XWsvWBfws5bbB");
 ```  
 
 ### How much?
@@ -121,15 +121,15 @@ You can check the address on a blockexplorer I am working with on this whole cha
 
 ```cs
 // How much you want to TO
-var hallOfTheMakersAmount = new Money((decimal)0.5, MoneyUnit.BTC);
+var hallOfTheMakersAmount = new Money(0.5m, MoneyUnit.BTC);
 /* At the time of writing the mining fee is 0.05usd
  * Depending on the market price and
  * On the currently advised mining fee,
  * You may consider to increase or decrease it
 */
-var minerFee = new Money((decimal)0.0001, MoneyUnit.BTC);
+var minerFee = new Money(0.0001m, MoneyUnit.BTC);
 // How much you want to spend FROM
-var txInAmount = (Money)receivedCoins[(int) outPointToSpend.N].Amount;
+var txInAmount = receivedCoins[(int) outPointToSpend.N].TxOut.Amount;
 Money changeBackAmount = txInAmount - hallOfTheMakersAmount - minerFee;
 ```
 
@@ -170,7 +170,7 @@ transaction.Outputs.Add(new TxOut()
 ```  
 
 To sum up take a look at my whole transaction before signing:  
-I have 3 **out**, 2 with **value**, 1 without **value** (with the message). You can notice the differences between the **scriptPubKey**s of the "normal" **out**s and the **scriptPubKey** of the **out** with the message:  
+I have 3 **TxOut**, 2 with **value**, 1 without **value** (with the message). You can notice the differences between the **scriptPubKey**s of the "normal" **TxOut**s and the **scriptPubKey** of the **TxOut** with the message:  
 
 ```json
 {
@@ -206,7 +206,7 @@ I have 3 **out**, 2 with **value**, 1 without **value** (with the message). You 
 }
 ```  
 
-Take a closer look at **in**. We have **prev_out** and **scriptSig** there.  
+Take a closer look at **TxIn**. We have **prev_out** and **scriptSig** there.  
 **Exercise:** try to figure out what will be and how to get the **scriptSig** in our code before you read further!  
 
 Let's check out the **hash** of **prev_out** in a blockexplorer: http://tbtc.blockr.io/tx/info/e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3  
@@ -214,7 +214,7 @@ In **prev_out** **n** is 1. Since we are indexing from 0, this means I want to s
 In the blockexplorer we can see the corresponding address is ```mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv``` and I can get the scriptSig from the address like this:  
 
 ```cs
-var address = new BitcoinPubKeyAddress("mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv");
+var address = BitcoinAddress.Create("mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv");
 transaction.Inputs[0].ScriptSig = address.ScriptPubKey;
 ```  
 
