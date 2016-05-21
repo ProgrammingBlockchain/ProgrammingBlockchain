@@ -43,8 +43,7 @@ The type of **transactionResponse** is **GetTransactionResponse**. It lives unde
 ```cs
 NBitcoin.Transaction transaction = transactionResponse.Transaction;
 ```  
-
-Basically **QBitNinja's GetTransactionResponse** class is higher level abstraction of a transaction, most of the time it will be enough to use that.  
+ 
 Let's see an example getting back the transaction id with both classes:  
 
 ```cs
