@@ -3,9 +3,9 @@
 ## [Click here to read the book](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
 ## Quick feedback
-If something does not seem to be right, but you do not want or are not able to fix it, just open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
+If you notice any mistake, and don't want to fix it yourself, open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
 
-Alternatively you can just commit a quick inline comment, if you are happened to read the book on GitBook.
+If you are reading this book with GitBook, you can also create a quick inline comment.
 
 ## How can I fix a typo? Aka quick contribution
 1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
@@ -25,7 +25,7 @@ Alternatively you can just commit a quick inline comment, if you are happened to
 9. Make a pull request
 
 ## Enhancing your learning process  
-If you are committed to finish the book or a few chapters of it, it is a good idea to make smaller or larger contributions while reading. For example you could [choose an issue](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain/issues) that can be only done if a big portion of the book is overseen. (Protip for university students: a good GitHub profile is more valuable in the job market, than a diploma.)
+If you are committed to finish the book or a few chapters of it, it is a good idea to make smaller or larger contributions while reading. For example you could [choose an issue](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain/issues) that can be only done if a big portion of the book is overseen. (Protip for university students: a good GitHub profile is more valuable than a diploma in the job market.)
 
 ## Links
 
