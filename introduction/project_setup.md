@@ -16,4 +16,4 @@ NBitcoin supports cross-platform applications.
 NBitcoin lets you debug into its code, to make your life easier. For this feature to work make sure you have source server support enabled in Visual Studio (Tools/Options).   
 ![](../assets/visualstudio_enablesourceserversupport.png)  
 
-
+Now, if you step into NBitcoin code, the source code will be automatically fetched on github, and appear in visual studio debugger.  
