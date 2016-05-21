@@ -25,7 +25,7 @@ Notice the **ScriptPubKey** for testnet and mainnet address is the same?
 Notice the **ScriptPubKey** contains the hash of the public key?  
 We will not go into the details yet, but note that the **ScriptPubKey** appears to have nothing to do with the Bitcoin Address, but it does show the hash of the public key.  
 
-Bitcoin Addresses are composed of a network identifier and the hash of a public key. So we can go backward and generate a bitcoin address from the **ScriptPubKey** and the network identifier.
+Bitcoin Addresses are composed of a version byte which identify the network where to use the address and the hash of a public key. So we can go backward and generate a bitcoin address from the **ScriptPubKey** and the network identifier.
 
 ```cs
 var paymentScript = publicKeyHash.ScriptPubKey;
