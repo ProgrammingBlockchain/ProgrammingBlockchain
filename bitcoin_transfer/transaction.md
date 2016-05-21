@@ -23,7 +23,13 @@ If you go to http://api.qbit.ninja/transactions/f13dc48fb035bbf0a6e989a26b3ecb57
 
 ![](../assets/RawTx.png)  
 
-Quickly close the tab, before it scares you away, QBit Ninja queries the API and parses the information so go ahaead and install **QBitNinja.Client** NuGet package.  
+You can parse the transaction from hex with the following code:  
+
+```cs
+Transaction tx = new Transaction("0100000...");
+```
+
+Quickly close the tab, before it scares you away, QBit Ninja queries the API and parses the information so go ahead and install **QBitNinja.Client** NuGet package.  
 
 ![](../assets/QBitNuGet.png)  
 
