@@ -23,9 +23,9 @@ There are two Bitcoin **networks**:
 * **TestNet** is a Bitcoin network for development purposes. Bitcoins on this network worth nothing.  
 * **MainNet** is the Bitcoin network everybody uses.  
 
-> **Note:** You can acquire testnet coins quickly, just google "get testnet bitcoins", they are also called **faucets**. 
+> **Note:** You can acquire testnet coins quickly by using **faucets**, just google "get testnet bitcoins".  
 
-You can magically get your **bitcoin address** from your public key and the **network**. *(You should enjoy this magic now, because I will clear it up shortly.)*  
+You can easily get your **bitcoin address** from your public key and the **network**. *(You should enjoy this magic now, because I will clear it up shortly.)*  
 
 ![](../assets/PubKeyToAddr.png)  
 
