@@ -71,7 +71,7 @@ foreach (var coin in receivedCoins)
 ```  
 
 We have written out some information about the RECEIVED COINS using QBitNinja's GetTransactionResponse class.
-**Exercise**: Write out the same information about the SPENT COINS using QBitNinja's GetTransactionResponse class.!  
+**Exercise**: Write out the same information about the SPENT COINS using QBitNinja's GetTransactionResponse class!  
 
 Let's see how we can get the same information about the RECEIVED COINS using NBitcoin's Transaction class.
 
