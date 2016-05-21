@@ -121,13 +121,13 @@ You can check the address on a blockexplorer I am working with on this whole cha
 
 ```cs
 // How much you want to TO
-var hallOfTheMakersAmount = new Money((decimal)0.5, MoneyUnit.BTC);
+var hallOfTheMakersAmount = new Money(0.5m, MoneyUnit.BTC);
 /* At the time of writing the mining fee is 0.05usd
  * Depending on the market price and
  * On the currently advised mining fee,
  * You may consider to increase or decrease it
 */
-var minerFee = new Money((decimal)0.0001, MoneyUnit.BTC);
+var minerFee = new Money(0.0001m, MoneyUnit.BTC);
 // How much you want to spend FROM
 var txInAmount = (Money)receivedCoins[(int) outPointToSpend.N].Amount;
 Money changeBackAmount = txInAmount - hallOfTheMakersAmount - minerFee;
