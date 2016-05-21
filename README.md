@@ -3,7 +3,7 @@
 ## [Click here to read the book](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
 ## Quick feedback
-If you notice any mistake, and don't want to fix it yourself, open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
+If you notice any mistakes, and don't want to fix them yourself, open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
 
 If you are reading this book with GitBook, you can also create a quick inline comment.
 
@@ -25,7 +25,7 @@ If you are reading this book with GitBook, you can also create a quick inline co
 9. Make a pull request
 
 ## Enhancing your learning process  
-Making contributions while you are reading is a good way to learn faster. If you got a hard time understanding something, then try to reword it and make a pull request for later readers.
+Making contributions while you are reading is a good way to learn faster. If you have a hard time understanding something, try to reword it and make a pull request for other readers.
 
 You can also help [fixing issues](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain/issues). (Protip for university students: a good GitHub profile is more valuable than a diploma in the job market.)
 
