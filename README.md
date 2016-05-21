@@ -25,7 +25,9 @@ If you are reading this book with GitBook, you can also create a quick inline co
 9. Make a pull request
 
 ## Enhancing your learning process  
-If you are committed to finish the book or a few chapters of it, it is a good idea to make smaller or larger contributions while reading. For example you could [choose an issue](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain/issues) that can be only done if a big portion of the book is overseen. (Protip for university students: a good GitHub profile is more valuable than a diploma in the job market.)
+Making contributions while you are reading is a good way to learn faster. If you got a hard time understanding something, then try to reword it and make a pull request for later readers.
+
+You can also help [fixing issues](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain/issues). (Protip for university students: a good GitHub profile is more valuable than a diploma in the job market.)
 
 ## Links
 
