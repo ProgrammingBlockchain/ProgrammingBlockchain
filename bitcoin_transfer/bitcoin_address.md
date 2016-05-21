@@ -34,7 +34,7 @@ Console.WriteLine(publicKey.GetAddress(Network.Main)); // 1PUYsjwfNmX64wS368ZR5F
 Console.WriteLine(publicKey.GetAddress(Network.TestNet)); // n3zWAo2eBnxLr3ueohXnuAa8mTVBhxmPhq
 ```  
 
-**Precisely a bitcoin address is made up of your public key’s hash plus the network then encoded into Base58Check:**  
+**Precisely a bitcoin address is made up of a version byte (different on both network) and your public key’s hash bytes concatenated then encoded into Base58Check:**  
 
 ![](../assets/PubKeyHashToBitcoinAddress.png)  
 
