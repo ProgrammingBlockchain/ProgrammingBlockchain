@@ -5,7 +5,7 @@
 _Authored by Nicolas Dorier  
 Creator of NBitcoin, The .NET Bitcoin Framework_
 
-_Co-authored With Bill Strait  
+_Co-authored with Bill Strait  
 Founder of Billd Labs_
 
 _And nopara73  
