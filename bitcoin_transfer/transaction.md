@@ -146,7 +146,7 @@ var firstPreviousTransaction = client.GetTransaction(firstPreviousOutPoint.Hash)
 Console.WriteLine(firstPreviousTransaction.IsCoinbase); // False
 ```  
 
-We could continue to trace the transaction IDs back in this manner until we reach the bitcoins’ **coinbase,** the block where they were mined.  
+We could continue to trace the transaction IDs back in this manner until we reach a **coinbase**, the transaction including the newly mined coin by a miner.  
 **Exercise:** Follow the first input of this transaction and its ancestors until you find a coinbase transaction!  
 Hint: After a few minutes and 30-40 transaction, I gave up tracing back.  
 Yes, you've guessed right, it is not the most efficient way to do this, but a good exercise.  
