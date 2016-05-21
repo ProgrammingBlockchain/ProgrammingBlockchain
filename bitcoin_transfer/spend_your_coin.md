@@ -170,7 +170,7 @@ transaction.Outputs.Add(new TxOut()
 ```  
 
 To sum up take a look at my whole transaction before signing:  
-I have 3 **TxOut**, 2 with **value**, 1 without **value** (with the message). You can notice the differences between the **scriptPubKey**s of the "normal" **TxOut**s and the **scriptPubKey** of the **out** with the message:  
+I have 3 **TxOut**, 2 with **value**, 1 without **value** (with the message). You can notice the differences between the **scriptPubKey**s of the "normal" **TxOut**s and the **scriptPubKey** of the **TxOut** with the message:  
 
 ```json
 {
@@ -206,7 +206,7 @@ I have 3 **TxOut**, 2 with **value**, 1 without **value** (with the message). Yo
 }
 ```  
 
-Take a closer look at **in**. We have **prev_out** and **scriptSig** there.  
+Take a closer look at **TxIn**. We have **prev_out** and **scriptSig** there.  
 **Exercise:** try to figure out what will be and how to get the **scriptSig** in our code before you read further!  
 
 Let's check out the **hash** of **prev_out** in a blockexplorer: http://tbtc.blockr.io/tx/info/e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3  
