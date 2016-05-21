@@ -129,7 +129,7 @@ var hallOfTheMakersAmount = new Money(0.5m, MoneyUnit.BTC);
 */
 var minerFee = new Money(0.0001m, MoneyUnit.BTC);
 // How much you want to spend FROM
-var txInAmount = (Money)receivedCoins[(int) outPointToSpend.N].Amount;
+var txInAmount = receivedCoins[(int) outPointToSpend.N].TxOut.Amount;
 Money changeBackAmount = txInAmount - hallOfTheMakersAmount - minerFee;
 ```
 
