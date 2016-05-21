@@ -25,7 +25,7 @@ There are two Bitcoin **networks**:
 
 > **Note:** You can acquire testnet coins quickly by using **faucets**, just google "get testnet bitcoins".  
 
-You can easily get your **bitcoin address** from your public key and the **network** on which this address should be used. (More details later)
+You can easily get your **bitcoin address** from your public key and the **network** on which this address should be used. 
 
 ![](../assets/PubKeyToAddr.png)  
 
