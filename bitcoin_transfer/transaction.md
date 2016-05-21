@@ -178,3 +178,6 @@ That means 0.0002 BTC (or 13.19**70**3492 - 13.19**68**3492) is not accounted fo
 var fee = transaction.GetFee(spentCoins.ToArray());
 Console.WriteLine(fee);
 ```
+
+You should note that a **coinbase transaction** is the only transaction whose value of output are superior to the value of input. This effectively correspond to coin creation. So by definition there is no fee in a coinbase transaction. The coinbase transaction is the first transaction of every block.
+The consensus rule enforce that the sum of output's value in the coinbase transaction does not exceed the sum of transaction fees in the block plus the mining reward.
