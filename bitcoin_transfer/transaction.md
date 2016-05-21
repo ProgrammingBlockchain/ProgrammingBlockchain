@@ -51,6 +51,8 @@ Console.WriteLine(transactionResponse.TransactionId); // f13dc48fb035bbf0a6e989a
 Console.WriteLine(transaction.GetHash()); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 ```  
 
+**GetTransactionResponse** has additional information about the transaction like the value and scriptPubKey of the coins being spent in it.
+
 The relevant parts for now are the **inputs** and **outputs**. You can see that out 13.19683492 Bitcoin has been sent to a ScriptPubKey:
 
 ```cs
