@@ -117,7 +117,7 @@ var scriptPubKey = transaction.Outputs.First().ScriptPubKey;
 TxOut txOut = new TxOut(twentyOneBtc, scriptPubKey);
 ```  
 
-Every **TxOut** is addressed by the ID of the transaction which include it and its index inside it. We call such reference an **Outpoint**.  
+Every **TxOut** is addressed at the blockchain level by the ID of the transaction which include it and its index inside it. We call such reference an **Outpoint**.  
 
 ![](../assets/OutPoint.png)
 
