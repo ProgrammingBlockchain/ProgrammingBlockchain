@@ -124,6 +124,16 @@ As you can see, these keys are **ExtKey** and not **Key** as you are used to. Ho
 
 ![](../assets/ExtKey.png)  
 
+You can go back from a **Key** to an **ExtKey** by supplying the **Key** and the **ChainCode** to the **ExtKey** constructor. This works as follows:
+
+```cs
+ExtKey extKey = new ExtKey();
+byte[] chainCode = extKey.ChainCode;
+Key key = extKey.PrivateKey;
+
+ExtKey newExtKey = new ExtKey(key, chainCode);
+```
+
 The **base58** type equivalent of **ExtKey** is called **BitcoinExtKey**.
 
 But how can we solve our second problem: delegating address creation to a peer that can potentially be hacked (like a payment server)?
