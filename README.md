@@ -29,6 +29,13 @@ Making contributions while you are reading is a good way to learn faster. If you
 
 You can also help [fixing issues](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain/issues). (Protip for university students: a good GitHub profile is more valuable than a diploma in the job market.)
 
+## How to feed us
+For every donation on this address, you will appear on [http://n.bitcoin.ninja/](http://n.bitcoin.ninja/).  
+
+![](assets/donation.png)  
+
+[1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://www.smartbit.com.au/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB) 
+
 ## Links
 
 [The book on GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
