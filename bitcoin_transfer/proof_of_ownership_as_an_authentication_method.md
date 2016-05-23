@@ -14,7 +14,7 @@ Was that so hard?
 You may remember Craig Wright, who really wanted us to believe he is Satoshi Nakamoto.  
 He had successfully convinced a handful of influential Bitcoin people and journalists with some social engineering.  
 Fortunately digital signatures do not work that way.  
-Let's quickly find on the [Internet](https://en.bitcoin.it/wiki/Genesis_block) the first ever bitcoin address, associated with the genesis book: [1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa](https://blockchain.info/address/1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa) and verify his claim:  
+Let's quickly find on the [Internet](https://en.bitcoin.it/wiki/Genesis_block) the first ever bitcoin address, associated with the genesis block: [1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa](https://blockchain.info/address/1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa) and verify his claim:  
 
 ```cs
 var message = "I am Craig Wright";
