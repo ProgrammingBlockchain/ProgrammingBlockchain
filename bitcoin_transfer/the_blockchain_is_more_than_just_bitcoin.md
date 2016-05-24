@@ -1,7 +1,7 @@
 ## “The Blockchain is more than just Bitcoin” {#the-blockchain-is-more-than-just-bitcoin}
 
 The interesting thing is that this same sentence is used by two different groups of people.  
-It is as used by Bitcoin-As-A-Currency believers as argument for their bullish prediction of Bitcoin’s value.  
+It is used by Bitcoin-As-A-Currency believers as argument for their bullish prediction of Bitcoin’s value.  
 It is also used by those who do not believe in the success of the currency, as an attempt to explain why Bitcoin has so much interest.  
 
 But there is one thing we all agree on: an immutable database that cannot be censored, tampered with, or erased that is duplicated all around the world will have tremendous impact on other industries.  
