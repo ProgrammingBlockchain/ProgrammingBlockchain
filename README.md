@@ -1,4 +1,5 @@
-# Programming The Blockchain in C*#*
+![](assets/ProgrammingBlockchain.png)  
+
 [Click here for code examples](https://github.com/ProgrammingBlockchain/ProgrammingBlockchainCodeExamples/)
 ## [Click here to read the book](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
@@ -32,7 +33,7 @@ You can also help [fixing issues](https://github.com/ProgrammingBlockchain/Progr
 ## How to feed us
 For every donation on this address, you will appear on [http://n.bitcoin.ninja/](http://n.bitcoin.ninja/).  
 
-![](assets/donation.png)  
+![1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](assets/BookQr.png)  
 
 [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://www.smartbit.com.au/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB) 
 
