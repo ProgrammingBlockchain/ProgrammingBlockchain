@@ -1,4 +1,5 @@
-# Programming The Blockchain in C*#*
+![](assets/ProgrammingBlockchain.png)  
+
 [Click here for code examples](https://github.com/ProgrammingBlockchain/ProgrammingBlockchainCodeExamples/)
 ## [Click here to read the book](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
