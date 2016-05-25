@@ -13,7 +13,7 @@ Have you already generated and noted a private key to yourself? Have you already
 ```cs
 var network = Network.Main;
 
-Key privateKey = new Key();
+var privateKey = new Key();
 var bitcoinPrivateKey = privateKey.GetWif(network);
 var address = bitcoinPrivateKey.GetAddress();
 
@@ -268,6 +268,6 @@ using (var node = Node.ConnectToLocal(network)) //Connect to the node
 }
 ```  
 
-The **using** code block will take care of closing the connection to the node. That it!
+The **using** code block will take care of closing the connection to the node. That's it!
 
-You can also connect directly to the Bitcoin network, However I advise you to connect to your own trusted node (faster and easier)  
+You can also connect directly to the Bitcoin network, however I advise you to connect to your own trusted node (faster and easier)  
