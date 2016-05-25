@@ -31,11 +31,11 @@ Key bob = new Key();
 Key alice = new Key();
 Key satoshi = new Key();
 
-var scriptPubKey = PayToMultiSigTemplate
+var paymentScript = PayToMultiSigTemplate
     .Instance
-    .GenerateScriptPubKey(2, new[] { bob.PubKey, alice.PubKey, satoshi.PubKey });
+    .GenerateScriptPubKey(2, new[] { bob.PubKey, alice.PubKey, satoshi.PubKey }).PaymentScript;
 
-Console.WriteLine(scriptPubKey);
+Console.WriteLine(paymentScript);
 ```  
 
 ```
