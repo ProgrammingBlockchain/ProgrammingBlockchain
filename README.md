@@ -1,4 +1,5 @@
-# Programming The Blockchain in C*#*
+![](assets/ProgrammingBlockchain.png)  
+
 [Click here for code examples](https://github.com/ProgrammingBlockchain/ProgrammingBlockchainCodeExamples/)
 ## [Click here to read the book](https://programmingblockchain.gitbooks.io/programmingblockchain/content/)
 
@@ -28,6 +29,13 @@ If you are reading this book with GitBook, you can also create a quick inline co
 Making contributions while you are reading is a good way to learn faster. If you have a hard time understanding something, try to reword it and make a pull request for other readers.
 
 You can also help [fixing issues](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain/issues). (Protip for university students: a good GitHub profile is more valuable than a diploma in the job market.)
+
+## How to feed us
+For every donation on this address, you will appear on [http://n.bitcoin.ninja/](http://n.bitcoin.ninja/).  
+
+![1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](assets/BookQr.png)  
+
+[1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://www.smartbit.com.au/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB) 
 
 ## Links
 
