@@ -13,7 +13,7 @@ Have you already generated and noted a private key to yourself? Have you already
 ```cs
 var network = Network.Main;
 
-Key privateKey = new Key();
+var privateKey = new Key();
 var bitcoinPrivateKey = privateKey.GetWif(network);
 var address = bitcoinPrivateKey.GetAddress();
 
