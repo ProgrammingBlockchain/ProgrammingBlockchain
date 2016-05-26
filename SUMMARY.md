@@ -44,4 +44,5 @@
    * [Liquid Democracy](other_types_of_asset/liquid_democracy.md)
    * [Proof of Burn and Reputation](other_types_of_asset/proof_of_burn_and_reputation.md)
 * [Implementations](implementations.md)
+   * HiddenBitcoin: Key Storage (HD wallet)
 
