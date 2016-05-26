@@ -45,10 +45,4 @@
    * [Proof of Burn and Reputation](other_types_of_asset/proof_of_burn_and_reputation.md)
    * [Proof of existence](other_types_of_asset/proof_of_existence.md)
    * [The challenge of Bitcoin Development](security/the_challenge_of_bitcoin_development.md)
-* [Security](security/README.md)
-   * [How to prove a Coin exists in the Blockchain](security/how_to_prove_a_coin_exists_in_the_blockchain.md)
-   * [How to prove a Colored Coin exists in the Blockchain](security/how_to_prove_a_colored_coin_exists_in_the_blockcha.md)
-   * [Breaking trust relationship with a third party API](security/breaking_trust_relationship_with_a_third_party_api.md)
-   * [Preventing Malleability attacks](security/preventing_malleability_attacks.md)
-   * [Protecting your private keys](security/protecting_your_private_keys.md)
 
