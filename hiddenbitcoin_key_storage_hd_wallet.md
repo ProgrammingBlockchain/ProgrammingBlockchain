@@ -10,4 +10,7 @@ HiddenBitcoin identifies three key function a Bitcoin wallet does and this tutor
 2. Monitors these keys, and other keys on The Blockchain.  
 3. Builds transactions and submits them.  
 
+In this lesson I am going to tackle the key storage function.  
+If you want to examine the code more extensively you can find the solution on [GitHub](https://github.com/nopara73/HiddenBitcoin).  
+If you only want to know how to use it you can find my high level tutorial on [CodeProject](http://www.codeproject.com/Articles/1096320/HiddenBitcoin-High-level-Csharp-Bitcoin-wallet-lib).  
 
