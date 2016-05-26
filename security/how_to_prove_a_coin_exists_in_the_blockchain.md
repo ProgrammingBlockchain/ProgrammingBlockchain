@@ -1,1 +1,0 @@
-## How to prove a Coin exists in the Blockchain {#how-to-prove-a-coin-exists-in-the-blockchain}
