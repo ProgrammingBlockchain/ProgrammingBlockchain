@@ -43,5 +43,4 @@
    * [Ricardian contracts](other_types_of_asset/ricardian_contracts.md)
    * [Liquid Democracy](other_types_of_asset/liquid_democracy.md)
    * [Proof of Burn and Reputation](other_types_of_asset/proof_of_burn_and_reputation.md)
-   * [The challenge of Bitcoin Development](security/the_challenge_of_bitcoin_development.md)
 
