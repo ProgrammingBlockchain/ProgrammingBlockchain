@@ -54,13 +54,11 @@ The **Network** is not **NBitcoin.Network**, since the GUI developer should not 
 The Network is an enum, it can be found under **HiddenBitcoin.DataClasses** namespace.  
 
 ```cs
-InitialSafe initialSafe = Safe.Create("password", walletFilePath: @"Wallets\hiddenWallet.hid", network);
-string mnemonic = initialSafe.Mnemonic;
-Safe safe = initialSafe.Safe;
+string mnemonic;
+Safe safe = Safe.Create(out mnemonic, "password", walletFilePath: @"Wallets\hiddenWallet.hid", network);
 Console.WriteLine(mnemonic);
 ```  
 
-After you create an ```initialSafe``` and displayed the ```mnemonic``` for the user, work with the ```safe``` at all time, what does not store the mnemonic.  
 You can also load or recover the safe:  
 
 ```cs
@@ -108,28 +106,14 @@ KyXveppF4Xm3KwJgG7EBSi6SxfMTkaDXYYmv7c7xWRcF7yUNpswp
 ### Safe.Create  
 
 ```cs
-/// <summary>
-///     Creates a mnemonic, a seed, encrypts it and stores in the specified path.
-/// </summary>
-/// <param name="password"></param>
-/// <param name="walletFilePath"></param>
-/// <param name="network"></param>
-/// <returns>Safe and Mnemonic</returns>
-public static InitialSafe Create(string password, string walletFilePath, Network network)
+// Creates a mnemonic, a seed, encrypts it and stores in the specified path.
+public static Safe Create(out string mnemonic, string password, string walletFilePath, Network network)
 {
     var safe = new Safe(password, walletFilePath, network);
-
-    var mnemonic = safe.SetSeed(password);
-
+    mnemonic = safe.SetSeed(password).ToString();
     safe.Save(password, walletFilePath, network);
 
-    var initialSafe = new InitialSafe
-    {
-        Mnemonic = mnemonic.ToString(),
-        Safe = safe
-    };
-
-    return initialSafe;
+    return safe;
 }
 ```  
 
