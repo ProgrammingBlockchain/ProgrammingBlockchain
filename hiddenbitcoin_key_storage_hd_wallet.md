@@ -32,4 +32,5 @@ As a bad example here is an illustration for a Bitcoin wallet I have built, what
 It stands for "Just a Bunch Of Keys". At the time of writing the reference client uses this method to store keys.  
 The problem with this the user has to periodically backup his wallet. Yet if you want to be able importing or dropping keys, changing password you need to use this or some kind of hybrid combination of this and a deterministic wallet. I decided not to use this since my HiddenWallet is trying to innovate towards privacy and I can have a more sound wallet without it.  
 
-### HD wallets  
+### BIP38 (Part 2) - Untrusted third party  
+Just to reiterate the idea is to generate a PassphraseCode to the key generator. With this PassphraseCode, he will be able to generate encrypted keys on your behalf, without knowing your password, nor any private key.
