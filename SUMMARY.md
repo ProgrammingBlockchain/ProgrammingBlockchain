@@ -44,3 +44,5 @@
    * [Liquid Democracy](other_types_of_asset/liquid_democracy.md)
    * [Proof of Burn and Reputation](other_types_of_asset/proof_of_burn_and_reputation.md)
    * [Protecting your private keys](security/protecting_your_private_keys.md)
+* Case studies
+
