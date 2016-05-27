@@ -25,7 +25,7 @@ Now it is a great time to give you a template on what decisions have to be make 
 This is a shortcut. There are not too many situations I can come up with where going down this road can be justified. Yet it is not impossible it will be the most suitable for your needs.  
 As a bad example here is an illustration for a Bitcoin wallet I have built, what only uses one key. I leave it to you to think of the consequences.  
 
-![](assets/TransparentWallet2.png)  
+![](../assets/TransparentWallet2.png)  
 
 ### JBOK wallets  
 
@@ -135,7 +135,7 @@ public static InitialSafe Create(string password, string walletFilePath, Network
 
 ```safe.SetSeed``` creates a mnemonic and set the ```_seedPrivateKey```. Finally it returns the mnemonic, so we can give it back to the user of the class.  
 
-![](assets/RootKey.png)  
+![](../assets/RootKey.png)  
 
 ```cs
 private ExtKey _seedPrivateKey;
@@ -168,7 +168,9 @@ Key privateKey = _seedPrivateKey.PrivateKey;
 byte[] chainCode = _seedPrivateKey.ChainCode;
 ```  
 
-Finally we encrypt the private key.
+Finally we encrypt the private key.  
+
+![](../assets/EncryptedKey.png)  
 
 ```cs
 string encryptedBitcoinPrivateKeyString = privateKey.GetEncryptedBitcoinSecret(password, _network).ToWif();
