@@ -98,11 +98,9 @@ xprv9ubnoo3dgCYfuE1hVB3F3Sh5YFJUNUjyZ68PDzPNhpmtqWDtD45zucZYMUAjY22HNxaY6tsvGAdJ
 The stealth address: vJmuFuLggpgzivm3UUjQguLhMA6C1SnYFJu5N6QkmXYRCU3nG1Ww36VcXy6zXpJvGeVTidxcsu7U19sfB1rxHhzvSNV5eGGLk6G1Cb
 Scan and spend private keys for stealth payments:
 L5CTS4U27umRfSBu2ztxsyUeMEYzJJk3HvCp3deSQBJWmRSUqCLg
-L5CTS4U27umRfSBu2ztxsyUeMEYzJJk3HvCp3deSQBJWmRSUqCLg
+KyXveppF4Xm3KwJgG7EBSi6SxfMTkaDXYYmv7c7xWRcF7yUNpswp
 ```  
 
-Couple of notes:
-* Ideally the seed keys are never used. It is a better practice if you start iterating through the keys with the getters of the safe.  
-* For handling stealth payments the scan and the spend keys are the same, since we can trust.  
+**Note:** Ideally the seed keys are never used. It is a better practice if you start iterating through the keys with the getters of the safe.   
 
 ## White box  
