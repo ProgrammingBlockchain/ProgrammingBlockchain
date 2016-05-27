@@ -4,7 +4,7 @@
 
 In practice we have no clear definition of what we mean by the word "wallet" and what it is supposed to do.  
 For example we say [HD wallet](https://en.bitcoin.it/wiki/Deterministic_wallet), but a HD wallet does not check The Blockchain and send money, it is simply a method of storing keys. In the contrary we also call the [Electrum client](https://electrum.org/) a wallet and we expect it to be able to track our keys and send money.  
-HiddenBitcoin identifies three key function a Bitcoin wallet does and this tutorial will be structured around them:  
+HiddenBitcoin identifies three key functions a Bitcoin wallet does and this tutorial will be structured around them:  
 
 1. Securely stores keys and manages the access to them.  
 2. Monitors these keys, and other keys on The Blockchain.  
@@ -41,7 +41,8 @@ HiddenWallet is a desktop wallet (and probably it is not going to change for a w
 Before I get into the code I would like to note I have only implemented the Stealth part of it, becuase it was a low hanging fruit. I am not sure stealth addresses will have any use in the future of Bitcoin.  
 
 > Here is an example of how a stealth address looks like:  
-> ``` waPXAvDCDGv8sXYRY6XDEymDGscYeepXBV5tgSDF1JHn61rzNk4EXTuBfx22J2W9rPAszXFmPXwD2m52psYhXQe5Yu1cG26A7hkPxs```  
+> ``` waPXAvDCDGv8sXYRY6XDEymDGscYeepXBV5tgSDF1JHn61rzNk4EXTuBfx22J2W9rPAszXFmPXwD2m52psYhXQe5Yu1cG26A7hkPxs
+```  
 
 ## Black box  
 I implemented a class, called it **Safe**. Using this class, as a black box is intuitive.  
