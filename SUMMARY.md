@@ -45,5 +45,5 @@
    * [Proof of Burn and Reputation](other_types_of_asset/proof_of_burn_and_reputation.md)
    * [Protecting your private keys](security/protecting_your_private_keys.md)
 * [Case studies](implementations/README.md)
-   * [HiddenBitcoin: managing keys](implementations/hiddenbitcoinkey_storage_hd_wallet_md.md)
+   * [HiddenBitcoin: Managing keys](implementations/hiddenbitcoinkey_storage_hd_wallet_md.md)
 
