@@ -29,8 +29,26 @@ As a bad example here is an illustration for a Bitcoin wallet I have built, what
 
 ### JBOK wallets  
 
-It stands for "Just a Bunch Of Keys". At the time of writing the reference client uses this method to store keys.  
-The problem with this the user has to periodically backup his wallet. Yet if you want to be able importing or dropping keys, changing password you need to use this or some kind of hybrid combination of this and a deterministic wallet. I decided not to use this since my HiddenWallet is trying to innovate towards privacy and I can have a more sound wallet without it.  
+It stands for **J**ust a **B**unch **O**f **K**eys. At the time of writing the reference client uses this method to store keys.  
+The problem with this the user has to periodically backup his wallet. Yet if you want to be able importing or dropping keys, changing password you need to use this or some kind of hybrid combination of this and a deterministic wallet. I decided not to use this since my HiddenWallet is trying to innovate towards privacy and I can have a more sound wallet structure without it.  
 
-### BIP38 (Part 2) - Untrusted third party  
-Just to reiterate the idea is to generate a PassphraseCode to the key generator. With this PassphraseCode, he will be able to generate encrypted keys on your behalf, without knowing your password, nor any private key.
+### BIP38 (Part 2) - Untrusted third party key generator  
+Just to reiterate: the idea is to generate a PassphraseCode to the key generator. With this PassphraseCode, he will be able to generate encrypted keys on your behalf, without knowing your password, nor any private key.  
+HiddenWallet is a desktop wallet (and probably it is not going to change for a while). Thus I do not need to use an untrusted third party for key generation and key storage purposes. I decided not to implement it just yet.  
+
+  ### SHD wallet  
+  This is the wallet structure I have implemented. Ok, you got me, I just came up with this word. It does not exist and nobody uses it. But in my mind it stands for **S**tealth **H**ierarchical **D**eterministic wallet. It is the best way to describe what I built.  
+Before I get into the code I would like to note I have only implemented the Stealth part of it, becuase it was a low hanging fruit. I am not sure stealth addresses will have any use in the future of Bitcoin.  
+
+> Here is an example of how a stealth address looks like:  
+> ``` waPXAvDCDGv8sXYRY6XDEymDGscYeepXBV5tgSDF1JHn61rzNk4EXTuBfx22J2W9rPAszXFmPXwD2m52psYhXQe5Yu1cG26A7hkPxs```  
+
+## Black box  
+I implemented a class, called it **Safe**. Using this class, as a black box is intuitive and self explanatory.  
+
+```cs
+var network = Network.MainNet;
+```  
+
+The **Network** is not **NBitcoin.Network**, since the GUI developer should not know it is using NBitcoin. Also you have more network options to choose from in NBitcoin, but HiddenBitcoin is not ready for handling all of them.  It is an enum and can be found under **HiddenBitcoin.DataClasses** namespace.  
+
