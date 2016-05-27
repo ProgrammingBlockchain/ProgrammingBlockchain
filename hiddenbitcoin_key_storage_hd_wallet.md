@@ -50,5 +50,53 @@ I implemented a class, called it **Safe**. Using this class, as a black box is i
 var network = Network.MainNet;
 ```  
 
-The **Network** is not **NBitcoin.Network**, since the GUI developer should not know it is using NBitcoin. Also you have more network options to choose from in NBitcoin, but HiddenBitcoin is not ready for handling all of them.  It is an enum and can be found under **HiddenBitcoin.DataClasses** namespace.  
+The **Network** is not **NBitcoin.Network**, since the GUI developer should not know it is using NBitcoin. Also you have more network options to choose from in NBitcoin, but HiddenBitcoin is cannot handle all of them. At the moment it supports ```MainNet``` and ```TestNet```.  
+The Network is an enum, it can be found under **HiddenBitcoin.DataClasses** namespace.  
 
+```cs
+InitialSafe initialSafe = Safe.Create("password", walletFilePath: @"Wallets\hiddenWallet.hid", network);
+string mnemonic = initialSafe.Mnemonic;
+Safe safe = initialSafe.Safe;
+Console.WriteLine(mnemonic);
+```  
+
+After you create an ```initialSafe``` and displayed the ```mnemonic``` for the user, work with the ```safe``` at all time, what does not store the mnemonic.  
+You can also load or recover the safe:  
+
+```cs
+Safe loadedSafe = Safe.Load("password", walletFilePath: @"Wallets\hiddenWallet.hid");
+if (network != loadedSafe.Network)
+    throw new Exception("WrongNetwork");
+
+Safe recoveredSafe = Safe.Recover(mnemonic, "password", walletFilePath: @"Wallets\sameHiddenWallet.hid", network);
+```  
+
+You can also get some keys out of the safe as strings:  
+
+```cs
+Console.WriteLine("Seed private key: " + safe.Seed);
+Console.WriteLine("Seed public key: " + safe.SeedPublicKey);
+Console.WriteLine("Third child address: " + safe.GetAddress(2));
+Console.WriteLine("First child private key: " + safe.GetPrivateKey(0));
+Console.WriteLine("Second child private key and the corresponding address: ");
+Console.WriteLine(safe.GetPrivateKeyAddressPair(1).PrivateKey);
+Console.WriteLine(safe.GetPrivateKeyAddressPair(1).Address);
+Console.WriteLine("The stealth address: " + safe.StealthAddress);
+Console.WriteLine("Scan and spend private keys for stealth payments:");
+Console.WriteLine(loadedSafe.ScanPrivateKey);
+Console.WriteLine(loadedSafe.SpendPrivateKey);
+```  
+
+```json
+Seed private key: xprv9s21ZrQH143K4RBm26TMm3qwTtR3Eyh22xDEN3TBebgfAvHPPSjxxFnFGDtnNHvqZ7pihGmAc8o9y1UvfEzcxSzyXAnmvTBowCNi69nXsqJ
+Seed public key: xpub661MyMwAqRbcGuGE87zN8Bng1vFXeSQsQB8qARroCwDe3icXvz4DW46j7U6fX8NsKhqcxR7K1mDX4gTbtvCGdeJz5M7py3yEqMsjUH2DYhb
+Third child address: 17pGpPX1A2sCdqJXsC5BiwdFphFVgJR9nk
+First child private key: xprv9ubnoo3dgCYfrWbYBEM71WoBvzwTtQemEdjW836CeWJYunYBskQhq3nrJMvNBCCFpnU5GbgbL1b2QbPHA4rRPESEhqfKzae5oWe7SAMuxAV
+Second child private key and the corresponding address:
+xprv9ubnoo3dgCYfuE1hVB3F3Sh5YFJUNUjyZ68PDzPNhpmtqWDtD45zucZYMUAjY22HNxaY6tsvGAdJdcyALCMm2mTAvA4pEp1m7y3BSccKY4r
+19FHdsj2YT79TuxbWcDMz9opTU28L1memr
+The stealth address: vJmuFuLggpgzivm3UUjQguLhMA6C1SnYFJu5N6QkmXYRCU3nG1Ww36VcXy6zXpJvGeVTidxcsu7U19sfB1rxHhzvSNV5eGGLk6G1Cb
+Scan and spend private keys for stealth payments:
+L5CTS4U27umRfSBu2ztxsyUeMEYzJJk3HvCp3deSQBJWmRSUqCLg
+L5CTS4U27umRfSBu2ztxsyUeMEYzJJk3HvCp3deSQBJWmRSUqCLg
+```  
