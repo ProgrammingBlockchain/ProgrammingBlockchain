@@ -22,7 +22,7 @@
    * [“The Blockchain is more than just Bitcoin”](bitcoin_transfer/the_blockchain_is_more_than_just_bitcoin.md)
    * [Spend your coin](bitcoin_transfer/spend_your_coin.md)
    * [Proof of ownership as an authentication method](bitcoin_transfer/proof_of_ownership_as_an_authentication_method.md)
-* [Key Storage and Generation](key_storage_and_generation/README.md)
+   * [Key storage and generation](key_storage_and_generation/README.md)
    * [Is it random enough?](key_storage_and_generation/is_it_random_enough.md)
    * [Key Encryption](key_storage_and_generation/key_encryption.md)
    * [Key Generation](key_storage_and_generation/key_generation.md)
@@ -43,6 +43,4 @@
    * [Ricardian contracts](other_types_of_asset/ricardian_contracts.md)
    * [Liquid Democracy](other_types_of_asset/liquid_democracy.md)
    * [Proof of Burn and Reputation](other_types_of_asset/proof_of_burn_and_reputation.md)
-
-   
-
+   * [Protecting your private keys](security/protecting_your_private_keys.md)
