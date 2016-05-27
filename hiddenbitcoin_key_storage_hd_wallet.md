@@ -152,4 +152,10 @@ private Mnemonic SetSeed(string password)
 ### safe.Save  
 Saves a wallet file, the question is what do we have inside it.  
 
-
+```json
+{
+  "EncryptedSeed":"6PYXR8U5Nu9UoGZcU95DWWKCXppKnYBUKyJgze6DX6bQDNwFzNdJApUzXT",
+  "ChainCode":"C+2MiZU7R/33bkvgdDqdQp7xx3nXHSIzS6bUgRsnaus=",
+  "Network":"MainNet"
+}
+```
