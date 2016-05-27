@@ -1,4 +1,4 @@
-# HiddenBitcoin: Key Storage (HD wallet)
+# HiddenBitcoin: Key Storage (HD wallet) {#hiddenbitcoin-keystorage}  
 
 ([nopara73](https://github.com/nopara73)) I am developing a privacy oriented Bitcoin wallet, called [HiddenWallet](https://github.com/nopara73/HiddenWallet). The [HiddenBitcoin](https://github.com/nopara73/HiddenBitcoin) library is the introduction of an other abstraction layer between NBitcoin and the user interface.  
 
