@@ -177,3 +177,125 @@ string encryptedBitcoinPrivateKeyString = privateKey.GetEncryptedBitcoinSecret(p
 string chainCodeString = Convert.ToBase64String(chainCode);
 string networkString = network.ToString();
 ```  
+
+### Safe.Load
+
+Let's reverse the save process.
+
+```cs
+public static Safe Load(string password, string walletFilePath)
+{
+    if (!File.Exists(walletFilePath))
+        throw new Exception("WalletFileDoesNotExists");
+
+    var walletFileRawContent = WalletFileSerializer.Deserialize(walletFilePath);
+
+    var encryptedBitcoinPrivateKeyString = walletFileRawContent.EncryptedSeed;
+    var chainCodeString = walletFileRawContent.ChainCode;
+
+    var chainCode = Convert.FromBase64String(chainCodeString);
+
+    Network network;
+    var networkString = walletFileRawContent.Network;
+    if (networkString == Network.MainNet.ToString())
+        network = Network.MainNet;
+    else if (networkString == Network.TestNet.ToString())
+        network = Network.TestNet;
+    else throw new Exception("NotRecognizedNetworkInWalletFile");
+
+    var safe = new Safe(password, walletFilePath, network);
+
+    var privateKey = Key.Parse(encryptedBitcoinPrivateKeyString, password, safe._network);
+    var seedExtKey = new ExtKey(privateKey, chainCode);
+    safe._seedPrivateKey = seedExtKey;
+
+    return safe;
+}
+```  
+
+Here is what happens in the Safe constructor:  
+
+```cs
+private Safe(string password, string walletFilePath, Network network)
+{
+    SetNetwork(network);
+    
+    SetSeed(password, mnemonicString);
+    
+    WalletFilePath = walletFilePath;
+}
+```  
+
+### SetNetwork
+Inside the class we like to work with ```NBitcoin.Network```. So let's set a private member for that.  
+
+```cs
+private NBitcoin.Network _network;
+private void SetNetwork(Network network)
+{
+    if (network == Network.MainNet)
+        _network = NBitcoin.Network.Main;
+    else if (network == Network.TestNet)
+        _network = NBitcoin.Network.TestNet;
+    else throw new Exception("WrongNetwork");
+}
+```  
+
+### Safe.Recover  
+
+```cs
+public static Safe Recover(string mnemonic, string password, string walletFilePath, Network network)
+{
+    var safe = new Safe(password, walletFilePath, network, mnemonic);
+    safe.Save(password, walletFilePath, network);
+    return safe;
+}
+```  
+
+For this to work we have to expand the constructor:  
+
+```cs
+private Safe(string password, string walletFilePath, Network network, string mnemonicString = null)
+{
+    SetNetwork(network);
+
+    if (mnemonicString != null)
+    {
+        var mnemonic = new Mnemonic(mnemonicString);
+        _seedPrivateKey = mnemonic.DeriveExtKey(password);
+    }
+
+    WalletFilePath = walletFilePath;
+}
+```  
+
+### Getters
+
+Here is how I derive the keys. For my purposes it doesn't make too much sense to use some complicated keypath:  
+
+```cs
+public PrivateKeyAddressPair GetPrivateKeyAddressPair(int index)
+{
+    var foo = _seedPrivateKey.Derive(index, true).GetWif(_network);
+    return new PrivateKeyAddressPair
+    {
+        PrivateKey = foo.ToWif(),
+        Address = foo.ScriptPubKey.GetDestinationAddress(_network).ToWif()
+    };
+}
+```  
+
+### Stealth  
+
+```cs
+private Key _spendPrivateKey => _seedPrivateKey.PrivateKey;
+public string SpendPrivateKey => _spendPrivateKey.GetWif(_network).ToWif();
+private Key _scanPrivateKey => _seedPrivateKey.Derive(0, hardened: true).PrivateKey;
+public string ScanPrivateKey => _scanPrivateKey.GetWif(_network).ToWif();
+
+public string StealthAddress => new BitcoinStealthAddress
+    (_scanPrivateKey.PubKey, new[] {_spendPrivateKey.PubKey}, 1, null, _network
+    ).ToWif();
+```
+
+
