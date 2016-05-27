@@ -103,4 +103,6 @@ L5CTS4U27umRfSBu2ztxsyUeMEYzJJk3HvCp3deSQBJWmRSUqCLg
 
 Couple of notes:
 * Ideally the seed keys are never used. It is a better practice if you start iterating through the keys with the getters of the safe.  
-* For handling stealth payments the scan and the spend keys are the same, since we can trust 
+* For handling stealth payments the scan and the spend keys are the same, since we can trust.  
+
+## White box  
