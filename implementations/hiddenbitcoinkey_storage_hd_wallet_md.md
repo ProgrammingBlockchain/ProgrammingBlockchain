@@ -37,6 +37,7 @@ Just to reiterate: the idea is to generate a PassphraseCode to the key generator
 HiddenWallet is a desktop wallet (and probably it is not going to change for a while). Thus I do not need to use an untrusted third party for key generation and key storage purposes. I decided not to implement it just yet.  
 
   ### SHD wallet  
+  
   This is the wallet structure I have implemented. Ok, you got me, I just came up with this word. It does not exist and nobody uses it. But in my mind it stands for **S**tealth **H**ierarchical **D**eterministic wallet. It is the best way to describe what I built.  
 Before I get into the code I would like to note I have only implemented the Stealth part of it, becuase it was a low hanging fruit. I am not sure stealth addresses will have any use in the future of Bitcoin.  
 
