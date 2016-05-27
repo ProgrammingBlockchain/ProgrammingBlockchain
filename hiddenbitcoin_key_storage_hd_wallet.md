@@ -87,7 +87,7 @@ Console.WriteLine(loadedSafe.ScanPrivateKey);
 Console.WriteLine(loadedSafe.SpendPrivateKey);
 ```  
 
-```json
+```
 Seed private key: xprv9s21ZrQH143K4RBm26TMm3qwTtR3Eyh22xDEN3TBebgfAvHPPSjxxFnFGDtnNHvqZ7pihGmAc8o9y1UvfEzcxSzyXAnmvTBowCNi69nXsqJ
 Seed public key: xpub661MyMwAqRbcGuGE87zN8Bng1vFXeSQsQB8qARroCwDe3icXvz4DW46j7U6fX8NsKhqcxR7K1mDX4gTbtvCGdeJz5M7py3yEqMsjUH2DYhb
 Third child address: 17pGpPX1A2sCdqJXsC5BiwdFphFVgJR9nk
@@ -100,3 +100,7 @@ Scan and spend private keys for stealth payments:
 L5CTS4U27umRfSBu2ztxsyUeMEYzJJk3HvCp3deSQBJWmRSUqCLg
 L5CTS4U27umRfSBu2ztxsyUeMEYzJJk3HvCp3deSQBJWmRSUqCLg
 ```  
+
+Couple of notes:
+* Ideally the seed keys are never used. It is a better practice if you start iterating through the keys with the getters of the safe.  
+* For handling stealth payments the scan and the spend keys are the same, since we can trust 
