@@ -150,7 +150,7 @@ private Mnemonic SetSeed(string password)
 ```  
 
 ### safe.Save  
-Saves a wallet file, the question is what do we have inside it.  
+Saves a wallet file, the question is what do we have inside it?  
 
 ```json
 {
@@ -159,3 +159,19 @@ Saves a wallet file, the question is what do we have inside it.
   "Network":"MainNet"
 }
 ```
+
+The wallet file is in JSON format. 
+We can get the chain code and private key from an ExtKey. It works the other way around too.  
+
+```cs
+Key privateKey = _seedPrivateKey.PrivateKey;
+byte[] chainCode = _seedPrivateKey.ChainCode;
+```  
+
+Finally we encrypt the private key.
+
+```cs
+string encryptedBitcoinPrivateKeyString = privateKey.GetEncryptedBitcoinSecret(password, _network).ToWif();
+string chainCodeString = Convert.ToBase64String(chainCode);
+string networkString = network.ToString();
+```  
