@@ -2,7 +2,7 @@
 
 ([nopara73](https://github.com/nopara73)) I am developing a privacy oriented Bitcoin wallet, called [HiddenWallet](https://github.com/nopara73/HiddenWallet). The [HiddenBitcoin](https://github.com/nopara73/HiddenBitcoin) library is the introduction of an other abstraction layer between NBitcoin and the user interface.  
 
-A Bitcoin wallet have three key functions and this case-study will be structured around them:  
+A Bitcoin wallet have three key functions and this case study will be structured around them:  
 
 1. Securely stores keys and manages the access to them.  
 2. Monitors these keys, and other keys on The Blockchain.  
