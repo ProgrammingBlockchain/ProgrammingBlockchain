@@ -40,8 +40,8 @@ HiddenWallet is a desktop wallet (and probably it is not going to change for a w
   This is the wallet structure I have implemented. Ok, you got me, I just came up with this word. It does not exist and nobody uses it. But in my mind it stands for **S**tealth **H**ierarchical **D**eterministic wallet. It is the best way to describe what I built.  
 Before I get into the code I would like to note I have only implemented the Stealth part of it, becuase it was a low hanging fruit. I am not sure stealth addresses will have any use in the future of Bitcoin.  
 
-> Here is an example of how a stealth address looks like:  
-> ``` waPXAvDCDGv8sXYRY6XDEymDGscYeepXBV5tgSDF1JHn61rzNk4EXTuBfx22J2W9rPAszXFmPXwD2m52psYhXQe5Yu1cG26A7hkPxs
+Here is an example of how a stealth address looks like:  
+``` waPXAvDCDGv8sXYRY6XDEymDGscYeepXBV5tgSDF1JHn61rzNk4EXTuBfx22J2W9rPAszXFmPXwD2m52psYhXQe5Yu1cG26A7hkPxs
 ```  
 
 ## Black box  
