@@ -44,7 +44,7 @@ Before I get into the code I would like to note I have only implemented the Stea
 > ``` waPXAvDCDGv8sXYRY6XDEymDGscYeepXBV5tgSDF1JHn61rzNk4EXTuBfx22J2W9rPAszXFmPXwD2m52psYhXQe5Yu1cG26A7hkPxs```  
 
 ## Black box  
-I implemented a class, called it **Safe**. Using this class, as a black box is intuitive and self explanatory.  
+I implemented a class, called it **Safe**. Using this class, as a black box is intuitive.  
 
 ```cs
 var network = Network.MainNet;
@@ -104,3 +104,52 @@ KyXveppF4Xm3KwJgG7EBSi6SxfMTkaDXYYmv7c7xWRcF7yUNpswp
 **Note:** Ideally the seed keys are never used. It is a better practice if you start iterating through the keys with the getters of the safe.   
 
 ## White box  
+
+### Safe.Create  
+
+```cs
+/// <summary>
+///     Creates a mnemonic, a seed, encrypts it and stores in the specified path.
+/// </summary>
+/// <param name="password"></param>
+/// <param name="walletFilePath"></param>
+/// <param name="network"></param>
+/// <returns>Safe and Mnemonic</returns>
+public static InitialSafe Create(string password, string walletFilePath, Network network)
+{
+    var safe = new Safe(password, walletFilePath, network);
+
+    var mnemonic = safe.SetSeed(password);
+
+    safe.Save(password, walletFilePath, network);
+
+    var initialSafe = new InitialSafe
+    {
+        Mnemonic = mnemonic.ToString(),
+        Safe = safe
+    };
+
+    return initialSafe;
+}
+```  
+
+```safe.SetSeed``` creates a mnemonic and set the ```_seedPrivateKey```. Finally it returns the mnemonic, so we can give it back to the user of the class.  
+
+![](assets/RootKey.png)  
+
+```cs
+private ExtKey _seedPrivateKey;
+private Mnemonic SetSeed(string password)
+{
+    var mnemonic = new Mnemonic(Wordlist.English, WordCount.Twelve);
+
+    _seedPrivateKey = mnemonic.DeriveExtKey(password);
+
+    return mnemonic;
+}
+```  
+
+### safe.Save  
+Saves a wallet file, the question is what do we have inside it.  
+
+
