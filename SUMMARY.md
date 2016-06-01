@@ -22,7 +22,7 @@
    * [“The Blockchain is more than just Bitcoin”](bitcoin_transfer/the_blockchain_is_more_than_just_bitcoin.md)
    * [Spend your coin](bitcoin_transfer/spend_your_coin.md)
    * [Proof of ownership as an authentication method](bitcoin_transfer/proof_of_ownership_as_an_authentication_method.md)
-* [Key generation and encryption](key_generation/README.md)
+* [Key generation and encryption](key_generation/key_generation.md)
    * [Is it random enough?](key_generation/key_generation.md#is-it-random-enough)
    * [Key Derivation Function](key_generation/key_generation.md#key-derivation-function)
    * [Like the good ol’ days](key_generation/key_generation.md#like-the-good-ol-days)
