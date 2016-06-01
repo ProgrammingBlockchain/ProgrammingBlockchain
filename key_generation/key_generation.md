@@ -1,3 +1,5 @@
+# Key generation and encryption {#key-generation-encryption}  
+
 ## Is it random enough? {#is-it-random-enough}
 
 When you call **new Key()**, under the hood, you are using a PRNG (Pseudo-Random-Number-Generator) to generate your private key. On windows, it uses the **RNGCryptoServiceProvider**, a .NET wrapper around the Windows Crypto API.
