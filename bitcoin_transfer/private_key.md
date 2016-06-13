@@ -16,7 +16,7 @@ Console.WriteLine(WifIsBitcoinSecret); // True
 ```  
 
 Note that it is easy to go from **BitcoinSecret** to private **Key**. On the other hand, it is impossible to go from a Bitcoin Address to Public Key because the Bitcoin Address contains a hash of the Public Key, not the Public Key itself.  
-Process this information by examining the similarities between these two codeblocks:
+Process this information by examining the similarities between these two codeblocks:  
 
 ```cs
 Key privateKey = new Key(); // generate a random private key
