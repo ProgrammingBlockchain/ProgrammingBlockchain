@@ -149,7 +149,7 @@ With the previous outpoint's transaction ID we can review the information associ
 ```cs
 OutPoint firstPreviousOutPoint = transaction.Inputs.First().PrevOut;
 var firstPreviousTransaction = client.GetTransaction(firstPreviousOutPoint.Hash).Result.Transaction;
-Console.WriteLine(firstPreviousTransaction.IsCoinbase); // False
+Console.WriteLine(firstPreviousTransaction.IsCoinBase); // False
 ```  
 
 We could continue to trace the transaction IDs back in this manner until we reach a **coinbase transaction**, the transaction including the newly mined coin by a miner.  
