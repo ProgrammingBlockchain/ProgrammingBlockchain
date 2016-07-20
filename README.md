@@ -31,7 +31,7 @@ Anda dapat mengirim komentar langsung jika anda membaca buku ini di GitBook.
 
 ## Tentang Buku Ini
 
-Buku ini adalah terjemahan dari buku versi aslinya yang berjudul "[_**Programming Blockchain**_](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)". Kemudian diterjemahkan dalam bahasa Indonesia agar masyarakat dan komunitas Bitcoin di Indonesia juga bisa mempelajarinya. 
+Buku ini adalah terjemahan dari buku versi aslinya yang berjudul "**_[Programming Blockchain](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)_**". Kemudian diterjemahkan dalam bahasa Indonesia agar masyarakat dan komunitas Bitcoin di Indonesia juga bisa mempelajarinya.
 
-Dengan berkontribusi saat anda membaca langsung buku ini menjadi cara yang bagus agar dapat belajar dengan cepat. Anda juga bisa membantu memperbaiki beberapa kesalahan yang ada, dengan cara memperbaiki issue di Github. 
+Dengan berkontribusi saat anda membaca langsung buku ini menjadi cara yang bagus agar dapat belajar dengan cepat. Anda juga bisa membantu memperbaiki beberapa kesalahan yang ada, dengan cara memperbaikinya di Github.
 
