@@ -10,30 +10,28 @@ Jika anda melihat adanya kesalahan, dan ingin memperbaikinya, buat issue [di hal
 
 Anda dapat mengirim komentar langsung jika anda membaca buku ini di GitBook.
 
-## How can I fix a typo? Aka quick contribution
+## Ingin memperbaiki kesalahan eja dengan cepat?
 
-1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
+1. Cari buku ini di [Github](https://github.com/eb-ina/ProgrammingBlockchain)
 2. Fork
 3. Edit file
-4. Make a pull request
+4. Lalu pull request
 
-## How can I write a new chapter? Aka extensive contribution
+## Ingin menambah bab baru di buku ini?
 
-1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
+1. Cari buku ini di [Github](https://github.com/eb-ina/ProgrammingBlockchain)
 2. Fork
-3. Clone your fork
-4. Download and install [Gitbook editor](https://www.gitbook.com/)
-5. Open Gitbook editor
-6. Select "Import" and select the folder where you cloned your fork
+3. Clone fork tersebut
+4. Download dan install [Gitbook editor](https://www.gitbook.com/)
+5. Buka Gitbook editor
+6. Pilih menu "Import" dan pilih lokasi folder tempat _cloned_ berada
 7. Edit book
-8. Save files and Sync
-9. Make a pull request
+8. Save file dan Sync
+9. Lalu pull request
 
-## Enhancing your learning process
+## Meningkatkan proses pembelajaran
 
-Making contributions while you are reading is a good way to learn faster. If you have a hard time understanding something, try to reword it and make a pull request for other readers.
-
-You can also help [fixing issues](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain/issues). \(Protip for university students: a good GitHub profile is more valuable than a diploma in the job market.\)
+Dengan berkontribusi saat anda membaca langsung buku ini menjadi cara yang bagus agar dapat belajar dengan cepat. Anda juga bisa membantu memperbaiki beberapa kesalahan yang ada, dengan cara memperbaiki issue di Github. \(Protip for university students: a good GitHub profile is more valuable than a diploma in the job market.\)
 
 ## How to feed us
 
