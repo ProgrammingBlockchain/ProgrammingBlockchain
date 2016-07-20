@@ -1,4 +1,4 @@
-![](assets/ProgrammingBlockchain.png)
+![](/assets/ProgrammingBlockchain-1.png)
 
 [Klik di sini untuk contoh kode](https://github.com/ProgrammingBlockchain/ProgrammingBlockchainCodeExamples/)
 
