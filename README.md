@@ -29,22 +29,9 @@ Anda dapat mengirim komentar langsung jika anda membaca buku ini di GitBook.
 8. Save file dan Sync
 9. Lalu pull request
 
-## Meningkatkan proses pembelajaran
+## Tentang Buku Ini
 
-Dengan berkontribusi saat anda membaca langsung buku ini menjadi cara yang bagus agar dapat belajar dengan cepat. Anda juga bisa membantu memperbaiki beberapa kesalahan yang ada, dengan cara memperbaiki issue di Github. \(Protip for university students: a good GitHub profile is more valuable than a diploma in the job market.\)
+Buku ini adalah terjemahan dari buku versi aslinya yang berjudul "[_**Programming Blockchain**_](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)". Kemudian diterjemahkan dalam bahasa Indonesia agar masyarakat dan komunitas Bitcoin di Indonesia juga bisa mempelajarinya. 
 
-## How to feed us
-
-For every donation on this address, you will appear on [http:\/\/n.bitcoin.ninja\/](http://n.bitcoin.ninja/).
-
-![1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](assets/BookQr.png)
-
-[1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://www.smartbit.com.au/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB)
-
-## Links
-
-[The book on GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
-[The book on GitBook](https://www.gitbook.com/book/programmingblockchain/programmingblockchain) \(You can download pdf, epub, mobi versions here.\)  
-[Code examples on GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchainCodeExamples/)  
-[Hall of the Makers](http://n.bitcoin.ninja/) \(Here are the true makers those succeeded to complete the challenges of this book.\)
+Dengan berkontribusi saat anda membaca langsung buku ini menjadi cara yang bagus agar dapat belajar dengan cepat. Anda juga bisa membantu memperbaiki beberapa kesalahan yang ada, dengan cara memperbaiki issue di Github. 
 
