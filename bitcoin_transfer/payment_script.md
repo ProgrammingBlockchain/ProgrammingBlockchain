@@ -1,14 +1,14 @@
 ## ScriptPubKey {#payment-script}
 
-Anda mungkin tidak mengetahui, bahwa sebenarnya tidak ada yang disebut dengan Address Bitcoin. Karena sebenarnya di dalam protokol Bitcoin, hanya mengidentifikasi penerima Bitcoin dengan menggunakan **ScriptPubKey **saja. 
+Anda mungkin tidak mengetahui, bahwa sebenarnya tidak ada yang disebut dengan Address Bitcoin. Karena sebenarnya di dalam protokol Bitcoin, hanya mengidentifikasi penerima Bitcoin dengan menggunakan **ScriptPubKey **saja.
 
 ![](../assets/ScriptPubKey.png)  
 **ScriptPubKey** nampak seperti di bawah ini:  
 `OP_HASH160 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf OP_EQUALVERIFY OP_CHECKSIG`
 
-Ini adalah script singkat yang menjelaskan mengapa ada beberapa persyaratan yang harus terpenuhi untuk bisa mengklaim kepemilikan bitcoin. Kita akan mencoba bagaimana penerapan **ScriptPubKey** ini dapat bekerja. 
+Ini adalah script singkat yang menjelaskan mengapa ada beberapa persyaratan yang harus terpenuhi untuk bisa mengklaim kepemilikan bitcoin. Kita akan mencoba bagaimana penerapan **ScriptPubKey** ini dapat bekerja.
 
-ScriptPubKey bisa digenerate dari Address Bitcoin. Langkah ini dilakukan juga pada hampir semua klien Bitcoin. Agar menjadi lebih mudah _\(human friendly\)_. Sehingga Address Bitcoin ke Blockchain dapat dibaca. 
+ScriptPubKey bisa digenerate dari Address Bitcoin. Langkah ini dilakukan juga pada hampir semua klien Bitcoin. Agar menjadi lebih mudah _\(human friendly\)_. Sehingga Address Bitcoin ke Blockchain dapat dibaca.
 
 ![](../assets/BitcoinAddressToScriptPubKey.png)
 
@@ -26,7 +26,7 @@ Perhatikan di **ScriptPubKey** untuk testnet dan mainnet apakah addressnya sama?
 Perhatikan di **ScriptPubKey** terdapat hash public key?  
 Kita masih belum melangkah ke rincian detailnya, namun perhatikan disana bahwa **ScriptPubKey** tidak ada hubungannya dengan Address Bitcoin, melainkan hanya menunjukkan hash public key saja.
 
-Bitcoin Addresses are composed of a version byte which identify the network where to use the address and the hash of a public key. So we can go backward and generate a bitcoin address from the **ScriptPubKey** and the network identifier.
+Address Bitcoin terdiri dari versi byte yang mengidentifikasi jaringan mana yang digunakan address dan hash public key tersebut. Jadi kita bisa melihat lagi kebelakang, generate address bitcoin itu dari **ScriptPubKey** dan _network identifier_.
 
 ```cs
 var paymentScript = publicKeyHash.ScriptPubKey;
@@ -34,7 +34,7 @@ var sameMainNetAddress = paymentScript.GetDestinationAddress(Network.Main);
 Console.WriteLine(mainNetAddress == sameMainNetAddress); // True
 ```
 
-It is also possible to retrieve the hash from the **ScriptPubKey** and generate a Bitcoin Address from it:
+Hal itu memungkinkan juga untuk mengambil hal dari ScriptPubKey, dan generate Address Bitcoin:
 
 ```cs
 var samePublicKeyHash = (KeyId) paymentScript.GetDestination();
@@ -43,9 +43,9 @@ var sameMainNetAddress2 = new BitcoinPubKeyAddress(samePublicKeyHash, Network.Ma
 Console.WriteLine(mainNetAddress == sameMainNetAddress2); // True
 ```
 
-> **Note:** A ScriptPubKey does not necessarily contains the hashed public key\(s\) permitted to spend the bitcoin.
+> **Catatan:** ScriptPubKey tidak harus selalu berisi hash public key\(s\), yang mengijinkan transaksi pengeluaran.
 
-So now you understand the relationship between a Private Key, a Public Key, a Public Key Hash, a Bitcoin Address and a ScriptPubKey.
+Jadi sekarang anda bisa mengetahui relasi antara Private Key, Public Key, Public Key Hash, Bitcoin Address dan ScriptPubKey.
 
 In the reminder of this book, we will exclusively use **ScriptPubKey**. A Bitcoin Address is only a user interface concept.
 
