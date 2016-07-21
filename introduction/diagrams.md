@@ -1,11 +1,12 @@
-## Diagrams {#diagrams}
+## Diagram {#diagrams}
 
-Most of the diagrams will have the same shape, they must be read by interpreting inward arrows like components to create the target:
+Sebagian besar diagram di dalam buku ini mungkin menggunakan bentuk _shape_ yang sama, jadi untuk membacanya juga harus dibaca dengan menafsirkan arah tanda panah, seperti komponen yang digunakan untuk membuat target tertentu: 
 
-For example, the following diagram should be read as  
-```Key + Password = EncryptedKey```  
-```EncryptedKey + Password = Key```  
+Sebagai contoh, pada diagram dibawah ini, harus dibaca:   
+`Key + Password = EncryptedKey`  
+`EncryptedKey + Password = Key`
 
 ![](../assets/encrypted_key.png)
 
-Code is nice, but sometimes a picture worths a thousand words. (Don’t worry, we’ll also write the code.)
+Kode adalah bagus, namun terkadang, gambar bisa menjelaskan beribu kata. \(Jangan khawatir, kami juga akan menulis kodenya.\)
+

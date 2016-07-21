@@ -1,18 +1,16 @@
-## Pre-requisites {#pre-requisites}
+## Persyaratan Yang Dibutuhkan {#pre-requisites}
 
-### Skills {#skills}
+### Skill {#skills}
 
-*   You need to be comfortable with object oriented as well as functional programming.
-*   A basic grasp of C# is helpful, but we feel the code will be legible to Java and other C-based languages.
-*   No mathematic knowledge is required. We will not cover cryptography beyond the bare minimum that you need to know to make a secure service.
-*   You don’t need to have deep knowledge of Bitcoin.
+* Anda harus merasa cukup nyaman saat bekerja pada orientasi obyek seperti halnya pada fungsi-fungsi pemprograman.
+* Memahami dasar C\# akan banyak membantu, namun kami merasa kode juga dapat dibaca di Java maupun bahasa berbasis C lainnya. 
+* Tidak dibutuhkan pengetahuan tentang matematika. Kita tidak akan menutupi beberapa fungsi kriptografi luar yang perlu diketahui untuk membuat sebuah aplikasi layanan yang aman. 
+* Anda tidak perlu harus memiliki pengetahuan mendalam tentang Bitcoin.
 
 ### Tools {#tools}
 
-*   [Visual Studio Community Edition](https://www.visualstudio.com/) on Windows or [Xamarin Studio](https://store.xamarin.com) on Mac and Linux. (Both free)
-*   [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) - Ideally you have it, but you can just proceed without it.
+* [Visual Studio Community Edition](https://www.visualstudio.com/) di Windows, atau [Xamarin Studio](https://store.xamarin.com) di Mac dan Linux. \(Keduanya gratis\)
+* [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) - Lebih ideal jika anda telah menggunakannya, namun anda tetap bisa melanjutkan tanpa itu.
 
-> **Tip:** If disk-space is an issue, consider running Bitcoin Core in pruning mode. It is practically the same as a full node (including security), except it throws away some of the old history.
-
-
+> **Tips:** Jika anda mengalami masalah pada besarnya ruang penyimpanan \(disk-space limit\),anda dapat menjalankan Bitcoin Core dalam _pruning mode. _Hal ini sama dan praktis seperti halnya menjalankan full node \(termasuk keamanan\), namun beberapa hal yang dianggap menjadi sejarah lama, dibuang untuk dapat lebih menghemat.
 
