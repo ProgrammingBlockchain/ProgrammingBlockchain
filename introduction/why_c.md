@@ -1,16 +1,23 @@
-## Why C#? {#why-c}
+## Mengapa C\#? {#why-c}
 
-The .NET framework is popular in corporate environments. We also believe this is the perfect tool for startups and hobbyists.
+NET framework cukup populer digunakan. Kami percaya ini dapat menjadi alat yang sempurna bagi startup maupun bagi yang menyukainya untuk hobby semata. 
 
-*   You can create portable code that functions across IOS, Android, Windows tablets/phone, desktops, servers and embedded devices, for free.
-*   Everything from the compiler to the core runtime is open source.
-*   The BizSpark program allows any startup to get all Microsoft tools, including $150/month of Azure service, for free.
-*   Visual Studio Community 2015 is a professional grade IDE that you can use freely as hobbyist.
-*   C# is closely related to Java and C++. As such, it can be easily read by a big base of developers.
-*   Nicolas Dorier, one of the authors of this book, created the most popular Bitcoin Framework for .NET, called [NBitcoin](https://github.com/MetacoSA/NBitcoin).
-*   Every person I met who learned about C# will tell you it is the best language out there, even if it is not the one they are using at the moment.
+* Anda dapat membuat kode yang bisa berfungsi di iOS, Android, tablet Windows, desktop, server, maupun perangkat lain, secara gratis.
 
-The authors of this book have over 15 years combined experience with C#. It is our go-to language for any project for fun or profit.  
+* Segala sesuatu yang di compile kedalam runtime core bersifat _open source_. 
 
-> **Fact:** We have not been paid by Microsoft. It’s not too late to change that.
+* Program BizSpark juga memungkinkan setiap startup untuk mendapatkan semua perangkat Microsoft, termasuk biaya $150 perbulan untuk layanan Azure, secara gratis. 
+
+* Visual Studio Community 2015 adalah _IDE_ profosional yang dapat digunakan secara bebas. 
+
+* C\# berkaitan erat dengan Java dan C++. Sehingga dapat dengan mudah dapat dibaca pada sebagian besar basis yang digunakan pengembang. 
+
+* Nicolas Dorier, adalah salah satu penulis buku ini. ia menciptakan banyak Framework Bitcoin, disebut dengan NBitcoin. 
+
+* Setiap orang yang saya temui yang belajar tentang C\# akan banyak mengatakan bahwa itu adalah bahasa pemprograman terbaik, meskipun jika itu bukanlah satu-satunya yang mereka gunakan saat ini. 
+
+
+Para penulis buku ini memiliki pengalaman di C\# lebih dari 15 tahun. Sudah banyak digunakan juga pada berbagai proyek baik profit maupun non profit. 
+
+> **Fakta:** Kami belum dibayar oleh Microsoft. Ini tidak terlalu terlambat untuk mengubah itu.
 
