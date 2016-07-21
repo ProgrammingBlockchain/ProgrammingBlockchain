@@ -1,8 +1,12 @@
-## Crowdfunding this book {#crowdfunding-this-book}
+## Crowdfunding buku ini {#crowdfunding-this-book}
 
-If we want to continue to make great stuff for you we need to buy pizza, sushi and coffee. It is our responsibility to get enough coins for that. Also, we are too lazy to keep writing a whole book without hearing your feedback.  
-**Bitcoin address:** [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://blockchain.info/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB)  
+Jika kita ingin kami dapat terus membuat banyak hal-hal besar yang cukup berguna bagi anda, maka kami juga perlu untuk membeli pizza, sushi, dan juga kopi. Sudah menjadi tanggung jawab kami untuk bisa mendapatkan sejumlah koin untuk keperluan itu. Selain itu, kami juga malas untuk terus menulis seluruh buku tanpa mendengar tanggapan-tanggapan dari anda. 
 
-As cryptocurrency addicts might say: Proof of Stake and Proof of Work are the best expression of affection, everything else is Fiat.
+Donasi anda untuk crowdfunding buku ini dapat dikirimkan langsung kepada para penulis asli buku ini. 
 
-Find out more about our work at http://n.bitcoin.ninja/
+**Address Bitcoin**: 1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB
+
+Sebagai pecandu cryptocurrency, mungkin akan mengatakan: Proof of Stake dan Proof of Work, adalah yang terbaik untuk mengekspresikan kasih sayang, yang lain baru Fiat.  
+
+Anda juga dapat mencari tahu lebih banyak tentang semua hasil kerja kami di [http:\/\/n.bitcoin.ninja\/](http://n.bitcoin.ninja/)
+

@@ -6,7 +6,7 @@
     * [Mengapa Pemprograman Blockchain, dan bukan Pemprograman Bitcoin?](introduction/why_blockchain_programming_and_not_bitcoin_program.md)
     * [Mengapa C\#?](introduction/why_c.md)
     * [Mengapa harus buku ini?](introduction/why_do_people_hate_bitcoin.md)
-    * [Crowdfunding this book](introduction/crowdfunding_this_book.md)
+    * [Crowdfunding buku ini](introduction/crowdfunding_this_book.md)
     * [Complementary Reading](introduction/complementary_reading.md)
     * [Diagrams](introduction/diagrams.md)
     * [License: CC \(ASA 3U\)](introduction/license_cc_asa_3u.md)
