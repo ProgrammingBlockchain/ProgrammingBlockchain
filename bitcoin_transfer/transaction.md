@@ -4,7 +4,7 @@
 
 Sebuah transaksi mungkin tidak punya penerima, atau bahkan mempunyai penerima lebih dari satu. **Begitu juga halnya dengan pengirim**. Pada Blockchain, pengirim dan penerima diabstraksikan dengan ScriptPubKey, seperti yang telah ditunjukkan pada bab sebelumnya.
 
-Jika anda menggunakan Bitcoin Core, transaksi anda akan menampilkan seperti ini: 
+Jika anda menggunakan Bitcoin Core, transaksi anda akan menampilkan seperti ini:
 
 ![](../assets/BitcoinCoreTransaction.png)
 
@@ -46,22 +46,22 @@ var transactionId = uint256.Parse("f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e7
 GetTransactionResponse transactionResponse = client.GetTransaction(transactionId).Result;
 ```
 
-The type of **transactionResponse** is **GetTransactionResponse**. It lives under QBitNinja.Client.Models namespace. You can get **NBitcoin.Transaction** type from it:
+Tipe **transactionResponse** adalah **GetTransactionResponse**. Dijalankan melalui QBitNinja.Client.Models namespace. Anda bisa mendapatkan jenis **NBitcoin.Transaction** tersebut di sini:
 
 ```cs
 NBitcoin.Transaction transaction = transactionResponse.Transaction;
 ```
 
-Let's see an example getting back the transaction id with both classes:
+Sekarang mari kita lihat contoh untuk mendapat kembali ID transaksi itu dengan kedua _classes _ini:
 
 ```cs
 Console.WriteLine(transactionResponse.TransactionId); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 Console.WriteLine(transaction.GetHash()); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 ```
 
-**GetTransactionResponse** has additional information about the transaction like the value and scriptPubKey of the inputs being spent in the transaction.
+**GetTransactionResponse** memiliki informasi tambahan tentang transaksi, seperti nilai dan scriptPubKey pada _inputs_ yang akan dibelanjakan dalam sebuah transaksi.
 
-The relevant parts for now are the **inputs** and **outputs**. You can see that out 13.19683492 Bitcoin has been sent to a ScriptPubKey:
+Jadi yang paling beralasi pada hal ini adalah tentang **inputs** dan **outputs**. Anda dapat melihat sejumlah 13.19683492 Bitcoin telah terkirim pada ScriptPubKey:
 
 ```cs
 List<ICoin> receivedCoins = transactionResponse.ReceivedCoins;
