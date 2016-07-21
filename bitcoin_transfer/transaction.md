@@ -52,7 +52,7 @@ Tipe **transactionResponse** adalah **GetTransactionResponse**. Dijalankan melal
 NBitcoin.Transaction transaction = transactionResponse.Transaction;
 ```
 
-Sekarang mari kita lihat contoh untuk mendapat kembali ID transaksi itu dengan kedua _classes _ini:
+Sekarang mari kita lihat contoh untuk mendapat kembali ID transaksi itu dengan kedua \_classes \_ini:
 
 ```cs
 Console.WriteLine(transactionResponse.TransactionId); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
@@ -78,10 +78,10 @@ foreach (var coin in receivedCoins)
 }
 ```
 
-We have written out some information about the RECEIVED COINS using QBitNinja's GetTransactionResponse class.
-**Exercise**: Write out the same information about the SPENT COINS using QBitNinja's GetTransactionResponse class!
+Kami juga menulis beberapa informasi tentang RECEIVED COINS menggunakan QBitNinja's _class_ GetTransactionResponse.
+**Latihan**: Tuliskan informasi yang sama tentang SPENT COINS menggunakan _class_ QBitNinja's GetTransactionResponse!
 
-Let's see how we can get the same information about the RECEIVED COINS using NBitcoin's Transaction class.
+Lalu mari kita lihat bagaimana kita bisa mendapatkan informasi yang sama tentang RECEIVED COINS menggunakan _class _NBitcoin's Transaction.
 
 ```cs
 var outputs = transaction.Outputs;
