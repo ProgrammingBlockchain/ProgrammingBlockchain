@@ -81,7 +81,7 @@ foreach (var coin in receivedCoins)
 Kami juga menulis beberapa informasi tentang RECEIVED COINS menggunakan QBitNinja's _class_ GetTransactionResponse.
 **Latihan**: Tuliskan informasi yang sama tentang SPENT COINS menggunakan _class_ QBitNinja's GetTransactionResponse!
 
-Lalu mari kita lihat bagaimana kita bisa mendapatkan informasi yang sama tentang RECEIVED COINS menggunakan _class _NBitcoin's Transaction.
+Lalu mari kita lihat bagaimana kita bisa mendapatkan informasi yang sama tentang RECEIVED COINS menggunakan \_class \_NBitcoin's Transaction.
 
 ```cs
 var outputs = transaction.Outputs;
@@ -98,7 +98,7 @@ foreach (TxOut output in outputs)
 }
 ```
 
-Now let's examine the **inputs**. If you look at them you will notice a previous output is referenced. Each input shows you which previous out has been spent in order to fund this transaction.
+Sekarang mari kita periksa di **inputs**. Jika anda melihatnya, maka disana akan ada referensi output sebelumnya. Jadi pada setiap input dapat menunjukkan pengeluaran sebelumnya yang telah ditransaksikan pada transaksi ini. 
 
 ```cs
 var inputs = transaction.Inputs;
@@ -111,13 +111,13 @@ foreach (TxIn input in inputs)
 }
 ```
 
-The terms **TxOut**, **Output** and **out** are synonymous.  
-Not to be confused with **OutPoint**, but more on this later.
+Istilah **TxOut**, **Output** dan **out** maknanya sama.  
+Jadi tidak perlu bingung dengan **OutPoint**, akan dijelaskan lebih lanjut.
 
-In summary, the TxOut represents an amount of bitcoin and a **ScriptPubKey**. \(Recipient\)
+Singkatnya, TxOut merupakan jumlah bitcoin dan **ScriptPubKey**. \(Penerima\)
 
 ![](../assets/TxOut.png)  
-As illustration let's create a txout with 21 bitcoin from the first ScriptPubKey in our current transaction:
+Sebagai ilustrasinya, mari kita membuat sebuah txout dengan 21 bitcoin dari ScriptPubKey pertama dalam transaksi kami saat ini:
 
 ```cs
 Money twentyOneBtc = new Money(21, MoneyUnit.BTC);
@@ -125,11 +125,11 @@ var scriptPubKey = transaction.Outputs.First().ScriptPubKey;
 TxOut txOut = new TxOut(twentyOneBtc, scriptPubKey);
 ```
 
-Every **TxOut** is uniquely addressed at the blockchain level by the ID of the transaction which include it and its index inside it. We call such reference an **Outpoint**.
+Setiap **TxOut** secara unik menunjuk address di level blockchain oleh ID transaksi yang meliputinya, dan juga index di dalamnya. kami menyebut referensi tersebut dengan **Outpoint**.
 
 ![](../assets/OutPoint.png)
 
-For example, the **Outpoint** of the **TxOut** with 13.19683492 BTC in our transaction is \(4788c5ef8ffd0463422bcafdfab240f5bf0be690482ceccde79c51cfce209edd, 0\).
+Sebagai contoh, **Outpoint** dari **TxOut** dengan 13.19683492 BTC pada transaksi kami adalah \(4788c5ef8ffd0463422bcafdfab240f5bf0be690482ceccde79c51cfce209edd, 0\).
 
 ```cs
 OutPoint firstOutPoint = spentCoins.First().Outpoint;
@@ -137,17 +137,17 @@ Console.WriteLine(firstOutPoint.Hash); // 4788c5ef8ffd0463422bcafdfab240f5bf0be6
 Console.WriteLine(firstOutPoint.N); // 0
 ```
 
-Now let’s take a closer look at the inputs \(aka **TxIn**\) of the transaction:
+Sekarang mari kita lihat lebih dekat pada input \(di **TxIn**\) dari transaksi itu:
 
 ![](../assets/TxIn.png)
 
-The **TxIn** is composed of the **Outpoint** of the **TxOut** being spent and of the **ScriptSig** \( we can see the ScriptSig as the “Proof of Ownership”\) In our transaction there are actually 9 inputs.
+**TxIn** terdiri dari **Outpoint** pada **TxOut** yang telah dikeluarkan atau dibelanjakan dari **ScriptSig** \( kita dapat melihat disini bahwa ScriptSig berfungsi sebagai “Proof of Ownership”\) Pada transaksi kami yang sebenarnya, ada 9 input.
 
 ```cs
 Console.WriteLine(transaction.Inputs.Count); // 9
 ```
 
-With the previous outpoint's transaction ID we can review the information associated with that transaction.
+Dengan ID transaksi outpoint sebelumnya, kita bisa melihat informasi yang berkaitan dengan transaksi tersebut. 
 
 ```cs
 OutPoint firstPreviousOutPoint = transaction.Inputs.First().PrevOut;
@@ -155,12 +155,12 @@ var firstPreviousTransaction = client.GetTransaction(firstPreviousOutPoint.Hash)
 Console.WriteLine(firstPreviousTransaction.IsCoinBase); // False
 ```
 
-We could continue to trace the transaction IDs back in this manner until we reach a **coinbase transaction**, the transaction including the newly mined coin by a miner.  
-**Exercise:** Follow the first input of this transaction and its ancestors until you find a coinbase transaction!  
-Hint: After a few minutes and 30-40 transaction, I gave up tracing back.  
-Yes, you've guessed right, it is not the most efficient way to do this, but a good exercise.
+Kita bisa untuk terus melanjutkan melacak ID transaksi hingga kembali sampai kepada transaksi coinbase, transaksi koin baru yang ditambang oleh penambang.   
+**Latihan:** Ikuti input pertama pada transaksi ini sampai anda mencapai transaksi coinbase!  
+Petunjuk: Setelah mencoba mengikuti hingga 30-40 transaksi, saya menyerah.  
+Ya, tebakan anda benar, hal itu bukanlah cara yang efektif untuk melakukannya, namun menjadi sebuah latihan yang baik. 
 
-In our example, the outputs were for a total of 13.19**70**3492 BTC.
+Pada contoh kami, jumlah output adalah 13.19**70**3492 BTC.
 
 ```cs
 Money spentAmount = Money.Zero;
@@ -171,9 +171,9 @@ foreach (var spentCoin in spentCoins)
 Console.WriteLine(spentAmount.ToDecimal(MoneyUnit.BTC)); // 13.19703492
 ```
 
-In this transaction 13.19**68**3492 BTC were received.
+Pada transaksi tersebut, sejumlah 13.19**68**3492 BTC telah diterima.
 
-**Exercise:** Get the total received amount, as I have been done with the spent amount.
+**Latihan:** Dapatkan jumlah total yang diterima, seperti yang telah saya lakukan dengan sejumlah pengeluaran.
 
 That means 0.0002 BTC \(or 13.19**70**3492 - 13.19**68**3492\) is not accounted for! The difference between the inputs and outputs are called **Transaction Fees** or **Miner’s Fees**. This is the money that the miner collects for including a given transaction in a block.
 
