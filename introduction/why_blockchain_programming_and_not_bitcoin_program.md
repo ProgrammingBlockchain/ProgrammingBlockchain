@@ -1,11 +1,12 @@
-## Why Blockchain Programming and not Bitcoin Programming? {#why-blockchain-programming-and-not-bitcoin-programming}
+## Mengapa Pemprograman Blockchain, dan bukan Pemprograman Bitcoin? {#why-blockchain-programming-and-not-bitcoin-programming}
 
-The Blockchain is to gold what Bitcoin is to jewelry.
+Blockchain ibaratnya seperti emas,  dan Bitcoin adalah perhiasannya.
 
-We did not compare Bitcoin to a gold coin, but rather with a jewelry. That’s because gold’s first killer app was jewelry. Coins came later.
+Kami tidak membandingkan Bitcoin ini seperti koin emas, namun dengan perhiasan. Hal itu karena aplikasi pembunuh emas adalah perhiasan itu sendiri. Sementara koin datang belakangan. 
 
-Do not be fooled into thinking that Bitcoin is flawed while the Blockchain is valuable. If gold is valuable, would you throw away a gold necklace? The Blockchain is built on and thrives because of bitcoin. Any increase in value of the Blockchain will increase the amount of Bitcoin that is spent to use it, which will increase its demand.
+Namun jangan tertipu dan berfikir bahwa Bitcoin cacat sementara Blockchain lebih berharga. Kenyataannya, apakah anda mau untuk membuang kalung emas yang anda pergunakan? Blockchain dibangun dan tumbuh berkembang karena bitcoin. Setiap kenaikan nilai Blockchain akan meningkatkan jumlah Bitcoin yang dihabiskan dan dipergunakan, sehingga meningkatkan pula nilai permintaaan _\(demand\)_.
 
-Whether or not your app will use the “Bitcoin as a currency” feature is your own decision.
+Apakah nantinya aplikasi yang akan anda gunakan menggunakan "Bitcoin sebagai mata uangnya", itu adalah keputusan dan pilihan anda sendiri. 
 
-Blockchain is the raw material. Bitcoin is the fuel. Bitcoin as a currency is a feature that emerges every time someone thinks this fuel is also a good medium of exchange. You can do a lot more with the Blockchain than exchange value. You don’t even have to believe in the currency. We will show you how to use Bitcoin as a currency in this book, but that’s not all!
+Blockchain seperti bahan baku. Bitcoin adalah bahan bakarnya. Bitcoin sebagai mata uang adalah sebagai sebuah fitur yang muncul setiap kali seseorang berfikir, bahwa bahan bakar ini juga merupakan media yang baik untuk dijadikan alat pertukaran. Anda dapat melakukan lebih banyak hal dengan Blockchain, daripada sebagai alat tukar. Anda tidak harus percaya pada mata uang. Kami akan menunjukkan kepada anda bagaimana menggunakan Bitcoin sebagai mata uang dalam buku ini, tapi itu tidak semua!
+
