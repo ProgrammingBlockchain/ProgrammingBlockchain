@@ -10,8 +10,8 @@ Sebelum kita mulai, harus dijelaskan dahulu bagaimana kita mempersiapkan dalam m
 > **Tips:** Jika anda menggunakan MAC atau Linux, namun memakai NBitcoin bukannya NBitcoin.Mono, mungkin menemui beberapa _classes_ yang hilang.
 
 NBitcoin adalah library .NET Bitcoin, dan open-source, dibuat oleh **Nicolas Dorier**, penulis utama buku ini. 
-This library should always be included if you do anything Bitcoin related in C\#.  
-NBitcoin supports cross-platform applications.
+Libryry ini harus selalu digunakan jika anda melakukan apa saja dengan Bitcoin yang berkaitan dengan C\#.   
+NBitcoin sendiri, telah support untuk aplikasi yang bersifat _cross-platform_.
 
 ### \#\# \# How to debug into NBitcoin source code \(optional\)
 
