@@ -98,7 +98,7 @@ foreach (TxOut output in outputs)
 }
 ```
 
-Sekarang mari kita periksa di **inputs**. Jika anda melihatnya, maka disana akan ada referensi output sebelumnya. Jadi pada setiap input dapat menunjukkan pengeluaran sebelumnya yang telah ditransaksikan pada transaksi ini. 
+Sekarang mari kita periksa di **inputs**. Jika anda melihatnya, maka disana akan ada referensi output sebelumnya. Jadi pada setiap input dapat menunjukkan pengeluaran sebelumnya yang telah ditransaksikan pada transaksi ini.
 
 ```cs
 var inputs = transaction.Inputs;
@@ -147,7 +147,7 @@ Sekarang mari kita lihat lebih dekat pada input \(di **TxIn**\) dari transaksi i
 Console.WriteLine(transaction.Inputs.Count); // 9
 ```
 
-Dengan ID transaksi outpoint sebelumnya, kita bisa melihat informasi yang berkaitan dengan transaksi tersebut. 
+Dengan ID transaksi outpoint sebelumnya, kita bisa melihat informasi yang berkaitan dengan transaksi tersebut.
 
 ```cs
 OutPoint firstPreviousOutPoint = transaction.Inputs.First().PrevOut;
@@ -158,7 +158,7 @@ Console.WriteLine(firstPreviousTransaction.IsCoinBase); // False
 Kita bisa untuk terus melanjutkan melacak ID transaksi hingga kembali sampai kepada transaksi coinbase, transaksi koin baru yang ditambang oleh penambang.   
 **Latihan:** Ikuti input pertama pada transaksi ini sampai anda mencapai transaksi coinbase!  
 Petunjuk: Setelah mencoba mengikuti hingga 30-40 transaksi, saya menyerah.  
-Ya, tebakan anda benar, hal itu bukanlah cara yang efektif untuk melakukannya, namun menjadi sebuah latihan yang baik. 
+Ya, tebakan anda benar, hal itu bukanlah cara yang efektif untuk melakukannya, namun menjadi sebuah latihan yang baik.
 
 Pada contoh kami, jumlah output adalah 13.19**70**3492 BTC.
 
@@ -175,7 +175,7 @@ Pada transaksi tersebut, sejumlah 13.19**68**3492 BTC telah diterima.
 
 **Latihan:** Dapatkan jumlah total yang diterima, seperti yang telah saya lakukan dengan sejumlah pengeluaran.
 
-That means 0.0002 BTC \(or 13.19**70**3492 - 13.19**68**3492\) is not accounted for! The difference between the inputs and outputs are called **Transaction Fees** or **Miner’s Fees**. This is the money that the miner collects for including a given transaction in a block.
+Artinya, sejumlah 0.0002 BTC \(atau 13.19**70**3492 - 13.19**68**3492\) tidak dihitung! Perbedaan antara input dan output disebut dengan **Transaction Fees** \(biaya transaksi\) atau **Miner’s Fees **\(biaya miner\). Biaya ini adalah sejumlah ongkos yang diberikan kepada penambang untuk memproses transaksi itu, hingga memasukkannya ke dalam sebuah block. 
 
 ```cs
 var fee = transaction.GetFee(spentCoins.ToArray());
