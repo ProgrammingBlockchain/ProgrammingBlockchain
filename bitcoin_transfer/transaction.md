@@ -175,13 +175,13 @@ Pada transaksi tersebut, sejumlah 13.19**68**3492 BTC telah diterima.
 
 **Latihan:** Dapatkan jumlah total yang diterima, seperti yang telah saya lakukan dengan sejumlah pengeluaran.
 
-Artinya, sejumlah 0.0002 BTC \(atau 13.19**70**3492 - 13.19**68**3492\) tidak dihitung! Perbedaan antara input dan output disebut dengan **Transaction Fees** \(biaya transaksi\) atau **Miner’s Fees **\(biaya miner\). Biaya ini adalah sejumlah ongkos yang diberikan kepada penambang untuk memproses transaksi itu, hingga memasukkannya ke dalam sebuah block. 
+Artinya, sejumlah 0.0002 BTC \(atau 13.19**70**3492 - 13.19**68**3492\) tidak dihitung! Perbedaan antara input dan output disebut dengan **Transaction Fees** \(biaya transaksi\) atau **Miner’s Fees **\(biaya miner\). Biaya ini adalah sejumlah ongkos yang diberikan kepada penambang untuk memproses transaksi itu, hingga memasukkannya ke dalam sebuah block.
 
 ```cs
 var fee = transaction.GetFee(spentCoins.ToArray());
 Console.WriteLine(fee);
 ```
 
-You should note that a **coinbase transaction** is the only transaction whose value of output are superior to the value of input. This effectively correspond to coin creation. So by definition there is no fee in a coinbase transaction. The coinbase transaction is the first transaction of every block.  
-The consensus rule enforce that the sum of output's value in the coinbase transaction does not exceed the sum of transaction fees in the block plus the mining reward.
+Perlu dicatat disini, **transaksi coinbase **adalah satu-satunya transaksi yang nilai outpunya lebih superior dibandingkan dengan nilai input. Karena transaksi itu adalah transaksi penciptaan koin baru. Artinya, tidak ada biaya pada transaksi coinbase tersebut. Transaksi coinbase ini, adalah transaksi pertama yang ada dalam setiap block.  
+Dikatakan nilai output lebih istimewa dari nilai input, karena berdasarkan aturan konsensus yang ada, jumlah nilai output dalam transaksi coinbase tidak melebihi jumlah total biaya transaksi, ditambah dengan reward block. 
 
