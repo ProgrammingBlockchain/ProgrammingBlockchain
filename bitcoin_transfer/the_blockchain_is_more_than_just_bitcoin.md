@@ -1,22 +1,14 @@
 ## “The Blockchain is more than just Bitcoin” {#the-blockchain-is-more-than-just-bitcoin}
 
-Hal menarik dari kalimat di judul tersebut adalah bahwa kalimat itu ternyata digunakan juga oleh dua kelompok orang yang berbeda. 
+Hal menarik dari kalimat di judul tersebut adalah bahwa kalimat itu ternyata digunakan juga oleh dua kelompok orang yang berbeda.
 
-Digunakan oleh kelompok orang yang percaya Bitcoin sebagai mata uang atas prediksi bullish harga bitcoin. 
+Digunakan oleh kelompok orang yang percaya Bitcoin sebagai mata uang atas prediksi bullish harga bitcoin.
 
 Dan juga digunakan oleh orang-orang yang tidak percaya akan keberhasilan mata uang, sehingga Bitcoin menarik minat banyak orang.
 
+Pada kedua kelompok yang berbeda tersebut, sama-sama sepakat akan satu hal. Yakni database abadi yang tidak bisa disensor, lebih resisten, dan tidak dapat dihapus karena telah dapat diduplikasi di seluruh dunia, mempunyai dampak yang luar biasa pada industri lainnya. 
 
+Notaris yang merekam fakta dapat menggunakannya di pengadilan karena bisa menyimpan dokumen mereka secara permanen di dalam Blockchain. Audit dapat dilakukan secara otomatis, dan bisa dibuktikan, jika aset dan kepemilikan tersebut telah disimpan dan ditransfer ke dalam Blockchain. Semua _money transmitter _bisa membuktikan solvabilitas mereka di depan umum. Script trading otomatis bisa diperdagangkan antara mereka sendiri tanpa campur tangan manusia ataupun otorisasi dari pemerintah pusat. 
 
-
-
-The interesting thing is that this same sentence is used by two different groups of people.  
-It is used by Bitcoin-As-A-Currency believers as argument for their bullish prediction of Bitcoin’s value.  
-It is also used by those who do not believe in the success of the currency, as an attempt to explain why Bitcoin has so much interest.
-
-But there is one thing we all agree on: an immutable database that cannot be censored, tampered with, or erased that is duplicated all around the world will have tremendous impact on other industries.
-
-Notaries who record facts that can be used in court could store their documents permanently in The Blockchain. Audits can become automatic and provable when assets and ownership are stored and transferred on The Blockchain. All Money Transmitters can prove their solvency publicly. Automatic trading scripts can trade between themselves without human intervention or authorization of a central authority.
-
-In the rest of this book we will explore the fundamentals required to enable all of these technologies and more. It all starts with spending a bitcoin.
+Di sisa bagian pada buku ini akan membahas dasar-dasar yang fundamental diperlukan untuk dapat mengaktifkan teknologi ini, dan banyak lagi yang lain. Semua hal itu, dimulai dengan mentransaksikan bitcoin. 
 

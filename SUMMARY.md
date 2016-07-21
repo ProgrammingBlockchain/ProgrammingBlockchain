@@ -19,7 +19,7 @@
     * [Transaksi](bitcoin_transfer/transaction.md)
     * [Blockchain](bitcoin_transfer/blockchain.md)
     * [“Blockchain lebih dari sekedar bitcoin”](bitcoin_transfer/the_blockchain_is_more_than_just_bitcoin.md)
-    * [Spend your coin](bitcoin_transfer/spend_your_coin.md)
+    * [Membelanjakan koin anda](bitcoin_transfer/spend_your_coin.md)
     * [Proof of ownership as an authentication method](bitcoin_transfer/proof_of_ownership_as_an_authentication_method.md)
 * [Generate Key dan enkripsi](key_generation/key_generation.md)
     * [Is it random enough?](key_generation/key_generation.md#is-it-random-enough)
