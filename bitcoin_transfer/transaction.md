@@ -65,10 +65,10 @@ The relevant parts for now are the **inputs** and **outputs**. You can see that 
 List<ICoin> receivedCoins = transactionResponse.ReceivedCoins;
 foreach (var coin in receivedCoins)
 {
-    Money amount = coin.Amount;
+    Money amount = (Money) coin.Amount;
 
     Console.WriteLine(amount.ToDecimal(MoneyUnit.BTC));
-    var paymentScript = coin.ScriptPubKey;
+    var paymentScript = coin.GetScriptCode();
     Console.WriteLine(paymentScript);  // It's the ScriptPubKey
     var address = paymentScript.GetDestinationAddress(Network.Main);
     Console.WriteLine(address);
