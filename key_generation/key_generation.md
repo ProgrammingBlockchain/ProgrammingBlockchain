@@ -108,7 +108,7 @@ Enkripsi tersebut digunakan pada dua kasus yang berbeda:
 * Jika anda tidak percaya untuk menggunakan provider ruang penyimpanan \(karena bisa di hacked\)  
 * Anda menyimpan key atas nama orang lain \(dan anda tidak ingin mengetahui key miliknya\)  
 
-Jika anda mempunyai ruang penyimpanan sendiri, maka level enkripsi database saja mungkin sudah cukup. 
+Jika anda mempunyai ruang penyimpanan sendiri, maka level enkripsi database saja mungkin sudah cukup.
 
 Namun anda perlu berhati-hati jika server anda menangani _decrypting_ key, karena penyerang mungkin bisa melakukan serangan DDOS kepada server anda, dan memaksa decrypt banyak key.
 
@@ -117,7 +117,7 @@ Namun anda perlu berhati-hati jika server anda menangani _decrypting_ key, karen
 Pertama, mengapa harus generati beberapa key?  
 Alasan utama adalah tentang privasi. Karena anda bisa melihat balance pada seluruh address, maka sebaiknya anda menggunakan address baru di setiap transaksi.
 
-Namun dalam prakteknya, anda memang juga dapat generate key untuk setiap kontak. Karena ini adalah cara yang termudah untuk mengidentifikasi para pembayar, tanpa harus membocorkan banyak privasi anda. 
+Namun dalam prakteknya, anda memang juga dapat generate key untuk setiap kontak. Karena ini adalah cara yang termudah untuk mengidentifikasi para pembayar, tanpa harus membocorkan banyak privasi anda.
 
 Anda bisa generate key, seperti yang telah anda lakukan di bagian awal:
 
@@ -134,7 +134,7 @@ JIka anda sedang mengembangkan sebuah web wallet dan generate key atas nama peng
 
 ## BIP38 \(Bagian 2\) {#bip38-part-2}
 
-Kita sudah melihat tentang BIP38 untuk encrypt sebuah key, namun sebetulnya pada BIP ini, terdapat dua ide dalam satu dokumen. 
+Kita sudah melihat tentang BIP38 untuk encrypt sebuah key, namun sebetulnya pada BIP ini, terdapat dua ide dalam satu dokumen.
 
 Bagian kedua dari BIP ini, menunjukkan bagaimana anda bisa mendelegasikan Key dan pembuatan Address untuk _untrusted peer_. Hal ini dapat memperbaiki salah satu hal yang menjadi perhatian kami.
 
@@ -154,7 +154,7 @@ var passphraseCode = new BitcoinPassphraseCode("my secret", Network.Main, null);
 
 **Lalu memberikan passphraseCode ini kepada** **key generator** **dari pihak ketiga \(third party\).**
 
-Kemudian oleh third party tersebut, akan generate key baru yang telah terenkripsi kepada anda. 
+Kemudian oleh third party tersebut, akan generate key baru yang telah terenkripsi kepada anda.
 
 ![](../assets/PassphraseCodeToEncryptedKeys.png)
 
@@ -172,19 +172,19 @@ Pertama: **generated address** **bitcoin**,
 var generatedAddress = encryptedKeyResult.GeneratedAddress; // 14KZsAVLwafhttaykXxCZt95HqadPXuz73
 ```
 
-then the **EncryptedKey** itself, \(as we have seen in the previous, **Key Encryption** lesson\),
+Lalu **EncryptedKey** itu sendiri, \(seperti yang kita lihat sebelumnya, tentang **enkripsi key**\),
 
 ```cs
 var encryptedKey = encryptedKeyResult.EncryptedKey; // 6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
 ```
 
-and last but not the least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond effectively to your password.
+dan selanjutnya, **ConfirmationCode**, jadi pihak ketiga dapat membuktikan bahwa key yang digenerate dan address yang sesuai akan cukup efektif bagi password anda. 
 
 ```cs
 var confirmationCode = encryptedKeyResult.ConfirmationCode; // cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
 ```
 
-As the owner, once you receive these info, you need to check that the key generator did not cheat by using **ConfirmationCode.Check**, then get your private key with your password:
+Sebagai pemilik, anda juga akan menerima informasi ini. Anda perlu memeriksa key generator itu tidak menipu anda dengan menggunakan **ConfirmationCode.Check**, lalu ambil private key anda menggunakan password:
 
 ```cs
 Console.WriteLine(confirmationCode.Check("my secret", generatedAddress)); // True
@@ -193,11 +193,11 @@ Console.WriteLine(bitcoinPrivateKey.GetAddress() == generatedAddress); // True
 Console.WriteLine(bitcoinPrivateKey); // KzzHhrkr39a7upeqHzYNNeJuaf1SVDBpxdFDuMvFKbFhcBytDF1R
 ```
 
-So, we have just seen how the third party can generate encrypted key on your behalf, without knowing your password and private key.
+Jadi, sekarang anda telah melihat bagaimana third party dapat melakukan generate key terenkripsi atas nama anda, tanpa harus mengetahui password dan private key anda.
 
 ![](../assets/ThirdPartyKeyGeneration.png)
 
-However, one problem remains:
+Masih ada satu masalah:
 
 * All backup of your wallet that you have will become outdated when you generate a new key.
 
