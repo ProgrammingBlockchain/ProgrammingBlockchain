@@ -45,7 +45,7 @@ Tapi karena hash public key terdiri dari 20 bytes = 160 bits, jumlahnya lebih ke
 
 > **Catatan:** Menambahkan entropy secara linier lebih sulit, dan cracking entropy secara exponensial menjadi lebih sulit.
 
-Cara yang menarik untuk menghasilkan entropi dengan cepat adalah dengan menggunakan tangan anda. Maksudnya adalah dengan menggerakkan mouse. 
+Cara yang menarik untuk menghasilkan entropi dengan cepat adalah dengan menggunakan tangan anda. Maksudnya adalah dengan menggerakkan mouse.
 
 Jika anda tidak percaya pada platform PRNG sepenuhnya \(agar tidak menjadi [paranoid](http://android-developers.blogspot.fr/2013/08/some-securerandom-thoughts.html)\), anda bisa menambahkan entropi pada output PRNG yang digunakan di NBitcoin.
 
@@ -61,7 +61,7 @@ Pada NBitcoin saat anda meminta **AddEntropy\(data\)** adalah:
 Lalu jika anda generate angka baru adalah:  
 **result = SHA\(PRNG\(\) ^ additionalEntropy\)**
 
-## Fungsi Key Derivation \(penurunan\) {#key-derivation-function}
+## Key Derivation **Function**  {#key-derivation-function}
 
 However, the most important is not the number of possibilities. It is the time that an attacker would need to successfully break your key. That’s where KDF enters the game.
 
