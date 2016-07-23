@@ -216,19 +216,19 @@ Jika anda telah dapat membuat transaksi, maka tentu kita harus bisa menandatanga
 
 Penandatanganan ini [cukup rumit](https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png), namun kita coba untuk membuatnya lebih simpel.
 
-First let's revisit the **scriptSig** of **in**, how we can get it from code. Remember, we copypasted the address above from a blockexplorer, now let's get it from our QBitNinja transactionResponse:
+Pertama coba kita tengok kembali **scriptSig** dari **in**, bagaimana kita bisa mendapatkan kode itu. Yang perlu diingat, kita  copypasted address tersebut dari blockexplorer. Sekarang, mari kita ambil kode itu dari QBitNinja transactionResponse:
 
 ```cs
 transaction.Inputs[0].ScriptSig =  bitcoinPrivateKey.ScriptPubKey;
 ```
 
-Then you need to give your private key for signing:
+Anda harus menggunakan private key anda untuk menandatangani:
 
 ```cs
 transaction.Sign(bitcoinPrivateKey, false);
 ```
 
-### Propagate your transactions
+### Broadcast Transaksi
 
 Congratulations, you have signed your first transaction! Your transaction is ready to roll! All that is left is to propagate it to the network so the miners can see it.
 
