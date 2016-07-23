@@ -79,13 +79,13 @@ transaction.Inputs.Add(new TxIn()
 
 Untuk menjawab beberapa pertanyaan **darimana, kemana, dan berapa jumlahnya?**   
 Buatlah **TxIn** dan tambahkan ke dalam transaksi. Dan itulah jawaban dari pertanyaan "darimana".  
-Buatlah **TxOut** dan tambahkan itu kedalam transaksi untuk menjawab dua pertanyaan lainnya. 
+Buatlah **TxOut** dan tambahkan itu kedalam transaksi untuk menjawab dua pertanyaan lainnya.
 
 ### Berapa jumlahnya?
 
 Misalnya jika anda ingin mengirim **0.5 BTC** dari sebuah **input transaksi** sedangkan balance anda **1 BTC, **maka sebenarnya anda mengirimkan seluruh koin anda \(**1 BTC**\)!   
 Contohnya bisa dilihat pada diagram di bawah, **output transaksi** anda** output** dituliskan **0.5** BTC kepada penerima \(Hall of The Makers\) dan **0.4999** kembali ke anda. Jadi pada dasarnya, saat anda mengirim koin 0,5 BTC, anda mengirimkan semua 1 BTC, baru sisanya dikembalikan. 
-Lalu bagaimana dengan yang **0.0001 BTC**? Itu adalah fee miner sebagai insentifnya, karena telah memasukkan transaksi anda ke block baru. 
+Lalu bagaimana dengan yang **0.0001 BTC**? Itu adalah fee miner sebagai insentifnya, karena telah memasukkan transaksi anda ke block baru.
 
 ![](../assets/SpendTx.png)
 
@@ -199,22 +199,22 @@ Saya punya 3 **TxOut**, 2 dengan **value**, 1 tanpa **value** \(namun ada pesan\
 ```
 
 Lihat lebih detail pada **TxIn**. Kita punya **prev\_out** dan **scriptSig** disana.  
-**Latihan:** try to figure out what will be and how to get the **scriptSig** in our code before you read further!
+**Latihan:** Coba anda cari bagaimana caranya untuk mendapat **scriptSig** sebelum anda membaca lebih jauh!
 
-Let's check out the **hash** of **prev\_out** in a blockexplorer: [http:\/\/tbtc.blockr.io\/tx\/info\/e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3](http://tbtc.blockr.io/tx/info/e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3)  
-In **prev\_out** **n** is 1. Since we are indexing from 0, this means I want to spend the second output of the transaction.  
-In the blockexplorer we can see the corresponding address is `mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv` and I can get the scriptSig from the address like this:
+Coba lihat **hash** dari **prev\_out** di blockexplorer: [http:\/\/tbtc.blockr.io\/tx\/info\/e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3](http://tbtc.blockr.io/tx/info/e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3)  
+Di **prev\_out** **n** adalah 1. Sejak kita mengindex dari 0, artinya saya ingin menghabiskannya pada output kedua dari transaksi itu.  
+Pada blockexplorer kita bisa dapat melihat address yang sesuai adalah: `mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv` and I can get the scriptSig from the address like this:
 
 ```cs
 var address = BitcoinAddress.Create("mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv");
 transaction.Inputs[0].ScriptSig = address.ScriptPubKey;
 ```
 
-### Sign your transaction
+### Menandatangani Transaksi Anda
 
-Now that we have created the transaction, we must sign it. In other words, you will have to prove that you own the TxOut that you referenced in the input.
+Jika anda telah dapat membuat transaksi, maka tentu kita harus bisa menandatanganinya. Artinya, anda harus bisa membuktikan bahwa anda memiliki TxOut yang telah anda referensikan dalam input.
 
-Signing can be [complicated](https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png), but we’ll make it simple.
+Penandatanganan ini [cukup rumit](https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png), namun kita coba untuk membuatnya lebih simpel.
 
 First let's revisit the **scriptSig** of **in**, how we can get it from code. Remember, we copypasted the address above from a blockexplorer, now let's get it from our QBitNinja transactionResponse:
 
@@ -266,6 +266,4 @@ using (var node = Node.ConnectToLocal(network)) //Connect to the node
 The **using** code block will take care of closing the connection to the node. That's it!
 
 You can also connect directly to the Bitcoin network, however I advise you to connect to your own trusted node \(faster and easier\)
-
-
 
