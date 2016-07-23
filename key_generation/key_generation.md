@@ -1,6 +1,6 @@
 # Generate Key dan Enkripsi {#key-generation-encryption}
 
-## Is it random enough? {#is-it-random-enough}
+## Apakah _random_ saja sudah cukup? {#is-it-random-enough}
 
 When you call **new Key\(\)**, under the hood, you are using a PRNG \(Pseudo-Random-Number-Generator\) to generate your private key. On windows, it uses the **RNGCryptoServiceProvider**, a .NET wrapper around the Windows Crypto API.
 
@@ -273,7 +273,6 @@ PubKey 1 : xpub67uQd5a6WCY6CUeDMBvPX6QhGMoMMNKhEzt66hrH6sv7rxujt7igGf9AavEdLB73Z
 PubKey 2 : xpub67uQd5a6WCY6Dxbqk9Jo9iopKZUqg8pU1bWXbnesppsR3Nem8y4CVFjKnzBUkSVLGK4defHzKZ3jjAqSzGAKoV2YH4agCAEzzqKzeUaWJMW
 PubKey 3 : xpub67uQd5a6WCY6HQKya2Mwwb7bpSNB5XhWCR76kRaPxchE3Y1Y2MAiSjhRGftmeWyX8cJ3kL7LisJ3s4hHDWvhw3DWpEtkihPpofP3dAngh5M
 PubKey 4 : xpub67uQd5a6WCY6JddPfiPKdrR49KYEuXUwwJJsL5rWGDDQkpPctdkrwMhXgQ2zWopsSV7buz61e5mGSYgDisqA3D5vyvMtKYP8S3EiBn5c1u4
-
 
     So imagine that your payment server generate pubkey1, you can get the corresponding private key with your private master key.
 
