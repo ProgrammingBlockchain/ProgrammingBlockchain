@@ -55,7 +55,7 @@ RandomUtils.AddEntropy(new byte[] { 1, 2, 3 });
 var nsaProofKey = new Key();
 ```
 
-Pada NBitcoin saat anda meminta **AddEntropy\(data\)** adalah:  
+Pada NBitcoin, saat anda meminta **AddEntropy\(data\)** adalah:  
 **additionalEntropy = SHA\(SHA\(data\) ^ additionalEntropy\)**
 
 Lalu jika anda generate angka baru adalah:  
@@ -72,22 +72,22 @@ _Seed_ tersebut biasanya cukup rentan.
 
 Namun bagaimana jika anda bisa membuat cracking tersebut menjadi lebih lambat?  
 KDF adalah sebuah fungsi hash yang membuang resource computing sesuai yang diinginkan.  
-Here is an example:
+Contohnya seperti ini:
 
 ```cs
 var derived = SCrypt.BitcoinComputeDerivedKey("hello", new byte[] { 1, 2, 3 });
 RandomUtils.AddEntropy(derived);
 ```
 
-Even if your attacker knows that your source of entropy is 5 letters, he will need to run Scrypt to check a possibility, which take 5 seconds on my computer.
+Meski jika penyerang mengetahui bahwa entropi anda terdiri dari 5 huruf, dia masih harus menjalankan Scrypt untuk memeriksa kemungkinannya, kurang lebih membutuhkan waktu 5 detik di komputer saya. 
 
-Bottom line of the story: There is nothing paranoid into distrusting a PRNG, you can mitigate an attack by both adding entropy and also using a KDF.  
-Keep in mind that an attacker can decrease entropy by gathering information about you or your system.  
-If you use the timestamp as entropy source, then he can decrease the entropy by knowing you generated the key last week, and that you only use your computer between 9am and 6pm.
+Keseluruhan gambaran ini adalah: Tidak perlu paranoid dan curiga pada PRNG, karena anda dapat mengurangi serangan dengan menambahkan entropi dan juga menggunakan KDF.  
+Namun perlu diingat, bahwa penyerang juga bisa menurunkan entropi itu dengan mengumpulkan informasi yang berkaitan dengan anda dan sistem anda.   
+Jika anda menggunakan timestamp sebagai sumber entropi, lalu dia bisa menurunkan entropi itu dengan cara mencoba mengetahui bahwa anda generate key itu seminggu lalu, dan bahwa anda hanya menggunakan komputer anda pada pukul 9am dan 6pm.
 
-In the previous part I talked quickly about a special KDF called **Scrypt.** As I said, the goal of a KDF is to make brute force costly.
+Di bagian sebelumnya saya menyinggung tentang KDF, disebut dengan **Scrypt.** Seperti yang saya katakan, tujuan utama dari KDF adalah berusaha upaya _brute force_ itu haruslah membutuhkan biaya yang mahal. Sehingga cukup sulit baginya untuk dapat melakukan serangan itu. 
 
-So it should be no surprise for you that a standard already exists for encrypting your private key with a password using a KDF. This is [BIP38](http://www.codeproject.com/Articles/775226/NBitcoin-Cryptography-Part).
+Jadi anda seharusnya tidak akan terkejut jika standar yang digunakan untuk mengenkripsi private key anda menggunakan KDF. Berikut yang tertera pada [BIP38](http://www.codeproject.com/Articles/775226/NBitcoin-Cryptography-Part).
 
 ![](../assets/EncryptedKey.png)
 
@@ -103,7 +103,7 @@ Console.WriteLine(decryptedBitcoinPrivateKey); // L1tZPQt7HHj5V49YtYAMSbAmwN9zRj
 Console.ReadLine();
 ```
 
-Such encryption is used in two different cases:
+Enkripsi tersebut digunakan pada dua kasus yang berbeda: 
 
 * You don not trust your storage provider \(they can get hacked\)  
 * You are storing the key on the behalf of somebody else \(and you do not want to know his key\)  
