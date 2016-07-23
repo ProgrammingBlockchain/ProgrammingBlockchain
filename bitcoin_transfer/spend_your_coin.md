@@ -1,14 +1,12 @@
 ## Membelanjakan koin anda {#spend-your-coin}
 
-So now that you know what a **bitcoin address**, a **ScriptPubKey**, a **private key**, and a **miner** are you will make your first **transaction** by hand.
+Setelah anda mengetahui apa itu **address** **bitcoin**, **ScriptPubKey**, **private key**, dan **penambang \(miner\), **maka anda juga bisa membuat transaksi pertama anda. 
 
-As you proceed through this lesson you will add code line by line as it is presented to build a method that will leave feedback for the book in a Twitter style message.
+Mari kita mulai dengan melihat sebuah **transaksi** yang mempunyai **TxOut, **yang ingin anda transaksikan. seperti yang telah kita pelajari sebelumnya:
 
-Let’s start by looking at the **transaction** that contains the **TxOut** that you want to spend as we did previously:
+Buat sebuah **project baru** \(&gt;.net45\) lalu install **QBitNinja.Client** NuGet.
 
-Create a new **Console Project** \(&gt;.net45\) and install **QBitNinja.Client** NuGet.
-
-Have you already generated and noted a private key to yourself? Have you already get the corresponding bitcoin address and sent some funds there? If not, don't worry, I quickly reiterate how you can do it:
+Apakah anda sebelumnya telah generate private key sendiri? Apakah anda telah mengirim sejumlah bitcoin pada address tersebut? jika belum, jangan khawatir, kita akan mengulangi cara tersebut, sehingga anda juga bisa melakukannya:
 
 ```cs
 var network = Network.Main;
@@ -21,9 +19,9 @@ Console.WriteLine(bitcoinPrivateKey);
 Console.WriteLine(address);
 ```
 
-Note the **bitcoinPrivateKey**, the **address**, send some coins there and note the transaction id \(you can find it \(probably\) in your wallet software or with a blockexplorer, like [blockchain.info](http://blockchain.info/)\).
+Catat **PrivateKey **bitcoin, **address**, kirimkan sejumlah koin disana, dan catat juga ID transaksinya. Anda bisa cek ID transaksi itu di wallet anda, atau di blockexplorer seperti di blockchain.info. 
 
-Import your private key:
+Import private key:
 
 ```cs
 var bitcoinPrivateKey = new 
@@ -35,7 +33,7 @@ Console.WriteLine(bitcoinPrivateKey); // cSZjE4aJNPpBtU6xvJ6J4iBzDgTmzTjbq8w2kqn
 Console.WriteLine(address); // mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv
 ```
 
-And finally get the transaction info:
+Lalu ambil informasi transaction:
 
 ```cs
 var client = new QBitNinjaClient(network);
@@ -46,9 +44,9 @@ Console.WriteLine(transactionResponse.TransactionId); // e44587cf08b4f03b0e8b4ae
 Console.WriteLine(transactionResponse.Block.Confirmations);
 ```
 
-Now we have every information for creating our transactions. The main questions are: **from where, to where and how much?**
+Sekarang kita telah mempunyai semua informasi yang dibutuhkan untuk membuat transaksi. Ada sejumlah pertanyaan umum tentang transaksi yang berlangsung: **darimana, kemana, dan berapa jumlahnya?**
 
-### From where?
+### Dari mana?
 
 In our case, we want to spend the second outpoint. Here's how we have figured this out:
 
