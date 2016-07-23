@@ -2,19 +2,19 @@
 
 ## Sudah cukup acak? {#is-it-random-enough}
 
-When you call **new Key\(\)**, under the hood, you are using a PRNG \(Pseudo-Random-Number-Generator\) to generate your private key. On windows, it uses the **RNGCryptoServiceProvider**, a .NET wrapper around the Windows Crypto API.
+Ketika anda membuat **new Key\(\)**, anda bisa menggunakan PRNG \(Pseudo-Random-Number-Generator\) untuk generate private key. Di windows, menggunakan **RNGCryptoServiceProvider**, sebuah wrapper .NET  API Crypto Windows.
 
-On Android, I use the **SecureRandom**, and in fact, you can use your own implementation with **RandomUtils.Random**.
+Jika di Android, saya gunakan **SecureRandom**, dan nyatanya, anda juga bisa menggunakan implementasi anda sendiri dengan **RandomUtils.Random**.
 
-On IOS, I have not implemented it and you need to create your **IRandom** implementation.
+Untuk IOS, saya belum mengimplementasikannya, dan anda harus membuat implementasi **IRandom.**
 
-For a computer, being random is hard. But the biggest issue is that it is impossible to know if a serie of number is really random.
+Di komputer, untuk bisa memperoleh keacakan \(random\) cukup sulit. Masalah terbesarnya adalah, bahwa tidak mungkin untuk bisa mengetahui apakah seri angka tersebut benar-benar acak. 
 
-If a malware modifies your PRNG \(and so, can predict the numbers you will generate\), you won’t see it until it is too late.
+Jika ada sebuah malware berhasil memodifikasi PRNG anda \(maka, ia bisa memprediksi angka-angka yang nantinya akan di generate\), anda tidak bisa melihat hal itu, hingga menyadari ternyata sudah terlambat. 
 
-It means that a cross platform and naïve implementation of PRNG \(like using computer’s clock combined with CPU speed\) is dangerous. But you won’t see it until it is too late.
+Artinya, implementasi PRNG _cross platform_ \(seperti menggunakan jam komputer yang digabungkan dengan kecepatan CPU\) cukup berbahaya. Karena anda tidak bisa melihatnya. 
 
-For performance reason, most PRNG works the same way: a random number, called **Seed**, is chosen, then a predictable formula generates the next numbers each time you ask for it.
+untuk alasan kinerja, kebanyakan PRNG bekerja dengan cara yang sama: serangkaian angka acak, yang disebut dengan **Seed**, setelah dipilih, lalu formula yang terprediksi itu menggenerate angka berikutnya setiap kali anda membutuhkannya. 
 
 The amount of randomness of the seed is defined by a measure we call **Entropy**, but the amount of **Entropy** also depends on the observer.
 
