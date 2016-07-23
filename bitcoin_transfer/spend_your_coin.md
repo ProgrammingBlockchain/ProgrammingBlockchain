@@ -230,9 +230,9 @@ transaction.Sign(bitcoinPrivateKey, false);
 
 ### Broadcast Transaksi
 
-Congratulations, you have signed your first transaction! Your transaction is ready to roll! All that is left is to propagate it to the network so the miners can see it.
+Selamat, karena anda telah berhasil menandatangani transaksi pertama anda! Sekarang tinggal bagaimana menyebar atau broadcas transaksi itu ke dalam jaringan \(network\), sehingga para penambang bisa mendengar transaksi tersebut.
 
-#### With QBitNinja:
+#### Menggunakan QBitNinja:
 
 ```cs
 BroadcastResponse broadcastResponse = client.Broadcast(transaction).Result;
@@ -249,7 +249,7 @@ else
 }
 ```
 
-#### With your own Bitcoin Core:
+#### Menggunakan Bitcoin Core Anda:
 
 ```cs
 using (var node = Node.ConnectToLocal(network)) //Connect to the node
@@ -263,7 +263,7 @@ using (var node = Node.ConnectToLocal(network)) //Connect to the node
 }
 ```
 
-The **using** code block will take care of closing the connection to the node. That's it!
+Menggunakan kode block itu akan menangani koneksi yang terputus ke node. Itu saja.
 
-You can also connect directly to the Bitcoin network, however I advise you to connect to your own trusted node \(faster and easier\)
+Anda juga dapat terhubung ke jaringan bitcoin secara langsung. Namun lebih baik anda terhubung pada node anda sendiri, agar lebih cepat dan mudah. 
 
