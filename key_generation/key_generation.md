@@ -35,19 +35,19 @@ Jadi sekarang, penyerangnya membutuhkan 604800000 \* 1024 kemungkinan, waktunya 
 Sekarang, mari kita tambahkan waktu ketika saya menyalakan komputer, dengan asumsi, penyerang mengetahui saat saya menyalakan komputer, ia lalu menambahkan 86400000 kemungkinan.
 
 Penyerang harus memecahkan 604800000 \* 1024 \* 86400000 = 5,35088E+19 kemungkinan.  
-Namun, perlu diingat bahwa jika penyerang menyusup ke komputer saya, dia bisa mendapatkan potongan info terakhir itu, lalu menurunkan jumlah kemungkinan, dengan mengurangi entropi. 
+Namun, perlu diingat bahwa jika penyerang menyusup ke komputer saya, dia bisa mendapatkan potongan info terakhir itu, lalu menurunkan jumlah kemungkinan, dengan mengurangi entropi.
 
 Entropy diukur dengan **LOG\(possibilities;2\)** dan LOG\(5,35088E+19; 2\) = 65 bits.
 
-Apakah cukup? Mungkin saja. Dengan asumsi, penyerang tidak mengetahui info yang berkaitan dengan kemungkinan nyata yang ada. 
+Apakah cukup? Mungkin saja. Dengan asumsi, penyerang tidak mengetahui info yang berkaitan dengan kemungkinan nyata yang ada.
 
-Tapi karena hash public key terdiri dari 20 bytes = 160 bits, jumlahnya lebih kecil dari total address yang ada di alam semesta. Sehingga mungkin lebih baik. 
+Tapi karena hash public key terdiri dari 20 bytes = 160 bits, jumlahnya lebih kecil dari total address yang ada di alam semesta. Sehingga mungkin lebih baik.
 
 > **Catatan:** Menambahkan entropy secara linier lebih sulit, dan cracking entropy secara exponensial menjadi lebih sulit.
 
-An interesting way of generating entropy quickly is by asking human intervention. \(Moving the mouse.\)
+Cara yang menarik untuk menghasilkan entropi dengan cepat adalah dengan menggunakan tangan anda. Maksudnya adalah dengan menggerakkan mouse. 
 
-If you don’t trust completely the platform PRNG \(which is [not so paranoic](http://android-developers.blogspot.fr/2013/08/some-securerandom-thoughts.html)\), you can add entropy to the PRNG output that NBitcoin is using.
+Jika anda tidak percaya pada platform PRNG sepenuhnya \(agar tidak menjadi [paranoid](http://android-developers.blogspot.fr/2013/08/some-securerandom-thoughts.html)\), anda bisa menambahkan entropi pada output PRNG yang digunakan di NBitcoin.
 
 ```cs
 RandomUtils.AddEntropy("hello");
@@ -55,13 +55,13 @@ RandomUtils.AddEntropy(new byte[] { 1, 2, 3 });
 var nsaProofKey = new Key();
 ```
 
-What NBitcoin does when you call **AddEntropy\(data\)** is:  
+Pada NBitcoin saat anda meminta **AddEntropy\(data\)** adalah:  
 **additionalEntropy = SHA\(SHA\(data\) ^ additionalEntropy\)**
 
-Then when you generate a new number:  
+Lalu jika anda generate angka baru adalah:  
 **result = SHA\(PRNG\(\) ^ additionalEntropy\)**
 
-## Key Derivation Function {#key-derivation-function}
+## Fungsi Key Derivation \(penurunan\) {#key-derivation-function}
 
 However, the most important is not the number of possibilities. It is the time that an attacker would need to successfully break your key. That’s where KDF enters the game.
 
