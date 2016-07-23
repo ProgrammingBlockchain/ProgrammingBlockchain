@@ -61,17 +61,17 @@ Pada NBitcoin saat anda meminta **AddEntropy\(data\)** adalah:
 Lalu jika anda generate angka baru adalah:  
 **result = SHA\(PRNG\(\) ^ additionalEntropy\)**
 
-## Key Derivation **Function**  {#key-derivation-function}
+## Key Derivation **Function \(KDF\)** {#key-derivation-function}
 
-However, the most important is not the number of possibilities. It is the time that an attacker would need to successfully break your key. That’s where KDF enters the game.
+Bagaimanapun, yang paling penting bukanlah besarnya jumlah kemungkinan. Karena ini adalah soal berapa lama waktu yang dibutuhkan seorang penyerang agar ia berhasil memecahkan key anda. Disinilah letak peranan KDF.
 
-KDF, or **Key Derivation Function** is a way to have a stronger key, even if your entropy is low.
+KDF, atau **Key Derivation Function** adalah cara yang terbaik untuk mempunyai sebuah key yang kuat, meski jika anda memiliki entropy rendah.
 
-Imagine that you want to generate a seed, and the attacker knows that there are 10.000.000 possibilities.  
-Such a seed would be normally cracked pretty easily.
+Bayangkan jika anda ingin generate sebuah _seed_, lalu penyerang tahu bahwa ada 10.000.000 kemungkinan.  
+_Seed_ tersebut biasanya cukup rentan.
 
-But what if you could make the enumeration slower?  
-A KDF is a hash function that waste computing resources on purpose.  
+Namun bagaimana jika anda bisa membuat cracking tersebut menjadi lebih lambat?  
+KDF adalah sebuah fungsi hash yang membuang resource computing sesuai yang diinginkan.  
 Here is an example:
 
 ```cs
