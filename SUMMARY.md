@@ -22,7 +22,7 @@
     * [Membelanjakan koin anda](bitcoin_transfer/spend_your_coin.md)
     * [Proof of ownership Sebagai Metode Autentifikasi](bitcoin_transfer/proof_of_ownership_as_an_authentication_method.md)
 * [Generate Key dan enkripsi](key_generation/key_generation.md)
-    * [Is it random enough?](key_generation/key_generation.md#is-it-random-enough)
+    * [Sudah cukup acak?](key_generation/key_generation.md#is-it-random-enough)
     * [Key Derivation Function](key_generation/key_generation.md#key-derivation-function)
     * [Like the good ol’ days](key_generation/key_generation.md#like-the-good-ol-days)
     * [BIP38 \(Part 2\)](key_generation/key_generation.md#bip38-part-2)
