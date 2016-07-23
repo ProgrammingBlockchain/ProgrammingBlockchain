@@ -8,42 +8,42 @@ Jika di Android, saya gunakan **SecureRandom**, dan nyatanya, anda juga bisa men
 
 Untuk IOS, saya belum mengimplementasikannya, dan anda harus membuat implementasi **IRandom.**
 
-Di komputer, untuk bisa memperoleh keacakan \(random\) cukup sulit. Masalah terbesarnya adalah, bahwa tidak mungkin untuk bisa mengetahui apakah seri angka tersebut benar-benar acak. 
+Di komputer, untuk bisa memperoleh keacakan \(random\) cukup sulit. Masalah terbesarnya adalah, bahwa tidak mungkin untuk bisa mengetahui apakah seri angka tersebut benar-benar acak.
 
-Jika ada sebuah malware berhasil memodifikasi PRNG anda \(maka, ia bisa memprediksi angka-angka yang nantinya akan di generate\), anda tidak bisa melihat hal itu, hingga menyadari ternyata sudah terlambat. 
+Jika ada sebuah malware berhasil memodifikasi PRNG anda \(maka, ia bisa memprediksi angka-angka yang nantinya akan di generate\), anda tidak bisa melihat hal itu, hingga menyadari ternyata sudah terlambat.
 
-Artinya, implementasi PRNG _cross platform_ \(seperti menggunakan jam komputer yang digabungkan dengan kecepatan CPU\) cukup berbahaya. Karena anda tidak bisa melihatnya. 
+Artinya, implementasi PRNG _cross platform_ \(seperti menggunakan jam komputer yang digabungkan dengan kecepatan CPU\) cukup berbahaya. Karena anda tidak bisa melihatnya.
 
-untuk alasan kinerja, kebanyakan PRNG bekerja dengan cara yang sama: serangkaian angka acak, yang disebut dengan **Seed**, setelah dipilih, lalu formula yang terprediksi itu menggenerate angka berikutnya setiap kali anda membutuhkannya. 
+untuk alasan kinerja, kebanyakan PRNG bekerja dengan cara yang sama: serangkaian angka acak, yang disebut dengan **Seed**, setelah dipilih, lalu formula yang terprediksi itu menggenerate angka berikutnya setiap kali anda membutuhkannya.
 
-The amount of randomness of the seed is defined by a measure we call **Entropy**, but the amount of **Entropy** also depends on the observer.
+Jumlah keacakan _seed_ ditentukan oleh sebuah ukuran yang disebut dengan **Entropy**, namun jumlah dari **Entropy** juga bergantung pada pengamat \(observer\).
 
-Let’s say you generate a seed from your clock time.  
-And let’s imagine that your clock has 1ms of resolution. \(Reality is more ~15ms\)
+Katakanlah anda generate sebuah seed dari waktu jam anda.   
+bayangkan saja jika jam anda mempunyai resolusi 1ms. \(kenyataannya ternyata lebih dari ~15ms\)
 
-If your attacker knows that you generated the key last week, then your seed has  
-1000 \* 60 \* 60 \* 24 \* 7 = 604800000 possibilities.
+Jika penyerang mengetahui bahwa anda membuat key seminggu lalu, lalu seed anda memiliki  
+1000 \* 60 \* 60 \* 24 \* 7 = 604800000 kemungkinan.
 
-For such attacker, the entropy is LOG\(604800000;2\) = 29.17 bits.
+Penyerang tersebut, dengan entropy LOG\(604800000;2\) = 29.17 bits.
 
-And enumerating such number on my home computer took less than 2 seconds…We call such enumeration “brute forcing”.
+Memecahkan hal itu pada sebuah komputer membutuhkan waktu kurang dari 2 detik. …Kita menyebutnya dengan “brute forcing”.
 
-However let’s say, you use the clock time + the process id for generating the seed.  
-Let’s imagine that there are 1024 different process ids.
+Bisa dikatakan, menggunakan waktu + proses id untuk generate seed.  
+Mari kita bayangkan kalau ada 1024 yang berbeda id proses.
 
-So now, the attacker needs to enumerate 604800000 \* 1024 possibilities, which take around 2000 seconds.  
-Now, let’s add the time when I turned on my computer, assuming the attacker knows I turned it on today, it adds 86400000 possibilities.
+Jadi sekarang, penyerangnya membutuhkan 604800000 \* 1024 kemungkinan, waktunya kurang lebih 2000 detik.  
+Sekarang, mari kita tambahkan waktu ketika saya menyalakan komputer, dengan asumsi, penyerang mengetahui saat saya menyalakan komputer, ia lalu menambahkan 86400000 kemungkinan.
 
-Now the attacker needs to enumerate 604800000 \* 1024 \* 86400000 = 5,35088E+19 possibilities.  
-However, keep in mind that if the attacker infiltrate my computer, he can get this last piece of info, and bring down the number of possibilities, reducing entropy.
+Penyerang harus memecahkan 604800000 \* 1024 \* 86400000 = 5,35088E+19 kemungkinan.  
+Namun, perlu diingat bahwa jika penyerang menyusup ke komputer saya, dia bisa mendapatkan potongan info terakhir itu, lalu menurunkan jumlah kemungkinan, dengan mengurangi entropi. 
 
-Entropy is measured by **LOG\(possibilities;2\)** and so LOG\(5,35088E+19; 2\) = 65 bits.
+Entropy diukur dengan **LOG\(possibilities;2\)** dan LOG\(5,35088E+19; 2\) = 65 bits.
 
-Is it enough? Probably. Assuming your attacker does not know more information about the realm of possibilities.
+Apakah cukup? Mungkin saja. Dengan asumsi, penyerang tidak mengetahui info yang berkaitan dengan kemungkinan nyata yang ada. 
 
-But since the hash of a public key is 20 bytes = 160 bits, it is smaller than the total universe of the addresses. You might do better.
+Tapi karena hash public key terdiri dari 20 bytes = 160 bits, jumlahnya lebih kecil dari total address yang ada di alam semesta. Sehingga mungkin lebih baik. 
 
-> **Note:** Adding entropy is linearly harder, cracking entropy is exponentially harder
+> **Catatan:** Menambahkan entropy secara linier lebih sulit, dan cracking entropy secara exponensial menjadi lebih sulit.
 
 An interesting way of generating entropy quickly is by asking human intervention. \(Moving the mouse.\)
 
