@@ -79,13 +79,13 @@ var derived = SCrypt.BitcoinComputeDerivedKey("hello", new byte[] { 1, 2, 3 });
 RandomUtils.AddEntropy(derived);
 ```
 
-Meski jika penyerang mengetahui bahwa entropi anda terdiri dari 5 huruf, dia masih harus menjalankan Scrypt untuk memeriksa kemungkinannya, kurang lebih membutuhkan waktu 5 detik di komputer saya. 
+Meski jika penyerang mengetahui bahwa entropi anda terdiri dari 5 huruf, dia masih harus menjalankan Scrypt untuk memeriksa kemungkinannya, kurang lebih membutuhkan waktu 5 detik di komputer saya.
 
 Keseluruhan gambaran ini adalah: Tidak perlu paranoid dan curiga pada PRNG, karena anda dapat mengurangi serangan dengan menambahkan entropi dan juga menggunakan KDF.  
 Namun perlu diingat, bahwa penyerang juga bisa menurunkan entropi itu dengan mengumpulkan informasi yang berkaitan dengan anda dan sistem anda.   
 Jika anda menggunakan timestamp sebagai sumber entropi, lalu dia bisa menurunkan entropi itu dengan cara mencoba mengetahui bahwa anda generate key itu seminggu lalu, dan bahwa anda hanya menggunakan komputer anda pada pukul 9am dan 6pm.
 
-Di bagian sebelumnya saya menyinggung tentang KDF, disebut dengan **Scrypt.** Seperti yang saya katakan, tujuan utama dari KDF adalah berusaha upaya _brute force_ itu haruslah membutuhkan biaya yang mahal. Sehingga cukup sulit baginya untuk dapat melakukan serangan itu. 
+Di bagian sebelumnya saya menyinggung tentang KDF, disebut dengan **Scrypt.** Seperti yang saya katakan, tujuan utama dari KDF adalah berusaha upaya _brute force_ itu haruslah membutuhkan biaya yang mahal. Sehingga cukup sulit baginya untuk dapat melakukan serangan itu.
 
 Jadi anda seharusnya tidak akan terkejut jika standar yang digunakan untuk mengenkripsi private key anda menggunakan KDF. Berikut yang tertera pada [BIP38](http://www.codeproject.com/Articles/775226/NBitcoin-Cryptography-Part).
 
@@ -103,50 +103,48 @@ Console.WriteLine(decryptedBitcoinPrivateKey); // L1tZPQt7HHj5V49YtYAMSbAmwN9zRj
 Console.ReadLine();
 ```
 
-Enkripsi tersebut digunakan pada dua kasus yang berbeda: 
+Enkripsi tersebut digunakan pada dua kasus yang berbeda:
 
-* You don not trust your storage provider \(they can get hacked\)  
-* You are storing the key on the behalf of somebody else \(and you do not want to know his key\)  
+* Jika anda tidak percaya untuk menggunakan provider ruang penyimpanan \(karena bisa di hacked\)  
+* Anda menyimpan key atas nama orang lain \(dan anda tidak ingin mengetahui key miliknya\)  
 
-If you own your storage, then encrypting at the database level might be enough.
+Jika anda mempunyai ruang penyimpanan sendiri, maka level enkripsi database saja mungkin sudah cukup. 
 
-Be careful if your server takes care of decrypting the key, an attacker might attempt to DDOS your server by forcing it to decrypt lots of keys.
+Namun anda perlu berhati-hati jika server anda menangani _decrypting_ key, karena penyerang mungkin bisa melakukan serangan DDOS kepada server anda, dan memaksa decrypt banyak key.
 
-Delegate decryption to the ultimate user when you can.
+## Hal yang baik sepanjang waktu {#like-the-good-ol-days}
 
-## Like the good ol’ days {#like-the-good-ol-days}
+Pertama, mengapa harus generati beberapa key?  
+Alasan utama adalah tentang privasi. Karena anda bisa melihat balance pada seluruh address, maka sebaiknya anda menggunakan address baru di setiap transaksi.
 
-First, why generating several keys?  
-The main reason is privacy. Since you can see the balance of all addresses, it is better to use a new address for each transaction.
+Namun dalam prakteknya, anda memang juga dapat generate key untuk setiap kontak. Karena ini adalah cara yang termudah untuk mengidentifikasi para pembayar, tanpa harus membocorkan banyak privasi anda. 
 
-However, in practice, you can also generate keys for each contact. Because this make a simple way to identify your payer without leaking too much privacy.
-
-You can generate key, like you did from the beginning:
+Anda bisa generate key, seperti yang telah anda lakukan di bagian awal:
 
 ```cs
 var privateKey = new Key()
 ```
 
-However, you have two problems with that:
+Namun nantinya akan ada dua masalah yang dihadapi jika kita ingin dapat generate address baru pada setiap transaksi:
 
-* All backup of your wallet that you have will become outdated when you generate a new key.  
-* You cannot delegate the address creation process to an untrusted peer.  
+* Semua backup wallet yang anda miliki menjadi usang saat anda generate key baru.  
+* Anda tidak bisa mendelegasikan proses pembuatan address pada rekan yang tidak bisa dipercaya _\(untrusted peer\)_.  
 
-If you are developing a web wallet and generate key on behalf of your users, and one user get hacked, she will immediately start suspecting you.
+JIka anda sedang mengembangkan sebuah web wallet dan generate key atas nama pengguna, jika satu pengguna di hacked, maka dia akan mencurigai anda.
 
-## BIP38 \(Part 2\) {#bip38-part-2}
+## BIP38 \(Bagian 2\) {#bip38-part-2}
 
-We already saw BIP38 for encrypting a key, however this BIP is in reality two ideas in one document.
+Kita sudah melihat tentang BIP38 untuk encrypt sebuah key, namun sebetulnya pada BIP ini, terdapat dua ide dalam satu dokumen. 
 
-The second part of the BIP, show how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concern.
+Bagian kedua dari BIP ini, menunjukkan bagaimana anda bisa mendelegasikan Key dan pembuatan Address untuk _untrusted peer_. Hal ini dapat memperbaiki salah satu hal yang menjadi perhatian kami.
 
-**The idea is to generate a PassphraseCode to the key generator. With this PassphraseCode, he will be able to generate encrypted keys on your behalf, without knowing your password, nor any private key. **
+**Idenya adalah untuk dapat generate sebuah PassphraseCode pada key generator. Dengan PassphraseCode ini, akan mampu untuk generate keys yang terenkripsi atas nama anda, tanpa harus mengetahui password, ataupun juga private key anda. **
 
-This **PassphraseCode** can be given to your key generator in WIF format.
+**PassphraseCode** ini, dapat berupa format WIF.
 
-> **Tip**: In NBitcoin, all types prefixed by “Bitcoin” are Base58 \(WIF\) data.
+> **Tips**: Dalam NBitcoin, semua jenis prefix dari “Bitcoin” adalah Base58 \(WIF\).
 
-So, as a user that want to delegate key creation, first you will create the **PassphraseCode**.
+Jadi, sebagai pengguna yang ingin mendelegasikan pembuatan key, anda terlebih dahulu membuat **PassphraseCode**.
 
 ![](../assets/PassphraseCode.png)
 
@@ -154,9 +152,9 @@ So, as a user that want to delegate key creation, first you will create the **Pa
 var passphraseCode = new BitcoinPassphraseCode("my secret", Network.Main, null);
 ```
 
-**You then give this passphraseCode to a third party key generator.**
+**Lalu memberikan passphraseCode ini kepada** **key generator** **dari pihak ketiga \(third party\).**
 
-The third party will then generate new encrypted keys for you.
+Kemudian oleh third party tersebut, akan generate key baru yang telah terenkripsi kepada anda. 
 
 ![](../assets/PassphraseCodeToEncryptedKeys.png)
 
@@ -164,11 +162,11 @@ The third party will then generate new encrypted keys for you.
 EncryptedKeyResult encryptedKeyResult = passphraseCode.GenerateEncryptedSecret();
 ```
 
-This **EncryptedKeyResult** have lots of information:
+Pada **EncryptedKeyResult **terdapat banyak informasi:
 
 ![](../assets/EncryptedKeyResult.png)
 
-First: the **generated bitcoin address**,
+Pertama: **generated address** **bitcoin**,
 
 ```cs
 var generatedAddress = encryptedKeyResult.GeneratedAddress; // 14KZsAVLwafhttaykXxCZt95HqadPXuz73
