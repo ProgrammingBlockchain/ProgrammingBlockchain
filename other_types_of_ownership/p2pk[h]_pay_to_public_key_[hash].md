@@ -11,7 +11,7 @@ Console.WriteLine(publicKeyHash); // 41e0d7ab8af1ba5452b824116a31357dc931cf28
 Console.WriteLine(bitcoinAddress); // 171LGoEKyVzgQstGwnTHVh3TFTgo5PsqiY
 ```
 
-Kita juga mempelajari beberapa hal mendasar pada blockchain, tentang bahwa tidak ada yang namanya **address bitcoin** sebenarnya. Karena blockchain mengidentifikasi penerima \(receiver\) dengan sebuah **ScriptPubKey**, dan **ScriptPubKey** yang memungkinkan untuk generate key dari address:
+Kita juga mempelajari beberapa hal mendasar pada blockchain, dan mengetahui juga bahwa tidak ada yang namanya **address bitcoin** sebenarnya. Karena blockchain mengidentifikasi penerima \(receiver\) dengan sebuah **ScriptPubKey**, dan **ScriptPubKey,** yang memungkinkan untuk generate key dari address:
 
 ```cs
 var scriptPubKey = bitcoinAddress.ScriptPubKey;
