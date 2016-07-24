@@ -178,7 +178,7 @@ Lalu **EncryptedKey** itu sendiri, \(seperti yang kita lihat sebelumnya, tentang
 var encryptedKey = encryptedKeyResult.EncryptedKey; // 6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
 ```
 
-dan selanjutnya, **ConfirmationCode**, jadi pihak ketiga dapat membuktikan bahwa key yang digenerate dan address yang sesuai akan cukup efektif bagi password anda. 
+dan selanjutnya, **ConfirmationCode**, jadi pihak ketiga dapat membuktikan bahwa key yang digenerate dan address yang sesuai akan cukup efektif bagi password anda.
 
 ```cs
 var confirmationCode = encryptedKeyResult.ConfirmationCode; // cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
@@ -197,23 +197,23 @@ Jadi, sekarang anda telah melihat bagaimana third party dapat melakukan generate
 
 ![](../assets/ThirdPartyKeyGeneration.png)
 
-Masih ada satu masalah:
+Tapi ingat, masih ada satu masalah tersisa:
 
-* All backup of your wallet that you have will become outdated when you generate a new key.
+* Semua backup wallet anda akan jadi usang saat anda generate key baru.
 
-BIP 32, or Hierarchical Deterministic Wallets \(HD wallets\) proposes another solution, and is more widely supported.
+BIP 32, atau Hierarchical Deterministic Wallets \(wallet HD\) dapat menjadi solusi, dan cukup support secara luas.
 
 ## HD Wallet \(BIP 32\) {#hd-wallet-bip-32}
 
-Let’s keep in mind the problems that we want to resolve:
+Tetaplah mengingat tentang masalah-masalah yang ingin kita pecahkan:
 
-* Prevent outdated backups
-* Delegating key \/ address generation to an untrusted peer
+* Menjaga agar backup tidak usang
+* Delegasi key \/ address kepada untrusted peer
 
-A “Deterministic” wallet would fix our backup problem. With such wallet, you would have to save only the seed. From this seed, you can generate the same series of private key over and over.
+Sebuah wallet “Deterministic” akan menangani masalah backup. Dengan wallet semacam ini, anda cukup hanya menyimpan seed saja. Dari seed tersebut, anda bisa generate seri private key yang sama berulang kali. 
 
-This is what the “Deterministic” stands for.  
-As you can see, from the master key, I can generate new keys:
+Itu adalah kegunaan wallet “Deterministic”.  
+Seperti yang bisa anda lihat, dari master key, saya bisa generate key baru:
 
 ```cs
 ExtKey masterKey = new ExtKey();
@@ -235,9 +235,9 @@ Key 4 : xprv9tvBA4Kt8UTuQoh1dQeJTXsmmTFwCqi4RXWdjBp114rJjNtPBHjxAckQp3yeEFw7Gf4g
 Key 5 : xprv9tvBA4Kt8UTuTdiEhN8iVDr5rfAPSVsCKpDia4GtEsb87eHr8yRVveRhkeLEMvo3XWL3GjzZvncfWVKnKLWUMNqSgdxoNm7zDzzD63dxGsm
 ```
 
-You only need to save the **masterKey**, since you can generate the same suite of private keys over and over.
+Anda hanya cukup menyimpan saja **masterKey**, karena anda dapat generate private key yang sama berulang kali. 
 
-As you can see, these keys are **ExtKey** and not **Key** as you are used to. However, this should not stop you since you have the real private key inside:
+Seperti yang bisa dilihat disini, key ini adalah **ExtKey** dan bukan **Key** yang biasa anda gunakan. Namun, ini tidak menjadi penghalang karena anda mempunyai private key yang sebenarnya di dalamnya:
 
 ![](../assets/ExtKey.png)
 
