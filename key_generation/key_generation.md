@@ -401,7 +401,7 @@ ExtKey paymentKey = ceoKey.Derive(path);
 
 Setelah melihatnya sendiri, generate sebuah key HD cukup mudah. Namun, jika kita ingin cara yang termudah untuk dapat mentransmit key dengan sebuah telephone atau _hand writing_?
 
-Pada sebuah **_Cold wallets_** seperti **Trezor**, dapat generate key HD Keys dari sebuah kalimat yang bisa secara mudah dituliskan kembali. Mereka meyebut kalimat ini dengan “_the seed_” atau “_mnemonic_”. Dan itu di proteksi menggunakan sebuah password atau sebuah PIN.  
+Pada sebuah _**Cold wallets**_ seperti **Trezor**, dapat generate key HD Keys dari sebuah kalimat yang bisa secara mudah dituliskan kembali. Mereka meyebut kalimat ini dengan “_the seed_” atau “_mnemonic_”. Dan itu di proteksi menggunakan sebuah password atau sebuah PIN.  
 ![](../assets/Trezor.png)
 
 Bahasa yang anda gunakan untuk generate kalimat yang mudah untuk dituliskan ini disebut dengan **Wordlist**
@@ -525,9 +525,9 @@ Scanner memeriksa apakah satu dari output transaksi sesuai untuk addressnya. Jik
 
 Dari kode tersebut menjelaskan bagaimana sebuah Scanner, untuk melakukan scan sebuah transaksi, dan sebagai Receiver, untuk mendapat private key, selanjutnya akan dijelaskan lebih jauh di **TransactionBuilder** \(pada bagian Tipe Kepemilikan Lain\).
 
-It should be noted that a **StealthAddress** can have multiple **spend pubkeys**, in which case, the address represent a multi sig.
+Perlu dijadikan catatan bahwa sebuah **StealthAddress** dapat memiliki beberapa **spend pubkeys**, dalam hal ini, address merepresentasikan sebuah multi sig.
 
-One limit of Dark Wallet is the use of **OP\_RETURN**, so we can’t easily embed arbitrary data in the transaction as we have done for in Bitcoin Transfer. \(Current bitcoin rules allows only one OP\_RETURN of 40 bytes, soon 80, per transaction\)
+Keterbatasan dari Dark Wallet adalah dalam penggunaan **OP\_RETURN**, jadi kita tidak dapat dengan begitu mudah untuk bisa _embed_ arbitrary data pada sebuah transaksi, seperti yang pernah kita lakukan dalam transfer sebelumnya. \(aturan bitcoin hanya memperbolehkan satu OP\_RETURN terdiri dari 40 bytes, lalu menjadi 80 byte, di tiap transaksi\)
 
 > \([Stackoverflow](http://bitcoin.stackexchange.com/a/29648/26859)\) As I understand it, the "stealth address" is intended to address a very specific problem. If you wish to solicit payments from the public, say by posting a donation address on your website, then everyone can see on the block chain that all those payments went to you, and perhaps try to track how you spend them.
 > 
