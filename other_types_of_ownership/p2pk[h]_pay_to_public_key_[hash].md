@@ -18,7 +18,7 @@ var scriptPubKey = bitcoinAddress.ScriptPubKey;
 Console.WriteLine(scriptPubKey); // OP_DUP OP_HASH160 41e0d7ab8af1ba5452b824116a31357dc931cf28 OP_EQUALVERIFY OP_CHECKSIG
 ```
 
-And vice versa:
+dan vice versa:
 
 ```cs
 var sameBitcoinAddress = scriptPubKey.GetDestinationAddress(Network.Main);
@@ -26,7 +26,7 @@ var sameBitcoinAddress = scriptPubKey.GetDestinationAddress(Network.Main);
 
 ### P2PK
 
-However, all **ScriptPubKey** does not represent a Bitcoin Address. For example the first transaction in the blockchain, called the genesis:
+Namun, semua **ScriptPubKey** tidak merepresentasikan sebuah Address Bitcoin. Sebagai contoh pada transaksi pertama di dalam blockchain, yang disebut dengan genesis:
 
 ```cs
 Block genesisBlock = Network.Main.GetGenesis();
@@ -53,22 +53,22 @@ Console.WriteLine(firstTransactionEver);
 }
 ```
 
-You can see the form of the **scriptPubKey** is different:
+anda dapat melihat bentuk **scriptPubKey** berbeda:
 
 ```cs
 Console.WriteLine(firstScriptPubKeyEver); // 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f OP_CHECKSIG
 ```
 
-A bitcoin address is represented by: **OP\_DUP &lt;hash&gt; OP\_EQUALVERIFY OP\_CHECKSIG** But here we have : **&lt;pubkey&gt; OP\_CHECKSIG**
+Address bitcoin address ditunjukkan oleh: **OP\_DUP &lt;hash&gt; OP\_EQUALVERIFY OP\_CHECKSIG** namun disini kita mempunyai : **&lt;pubkey&gt; OP\_CHECKSIG**
 
-In fact, at the beginning, **public key** were used directly in the **ScriptPubKey**.
+Faktanya, di awal, **public key** digunakan secara langsung dalam **ScriptPubKey**.
 
 ```cs
 var firstPubKeyEver = firstScriptPubKeyEver.GetDestinationPublicKeys().First();
 Console.WriteLine(firstPubKeyEver); // 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
 ```
 
-Now we are mainly using the hash of the public key.
+Sekarang kita menggunakan hash utama dari public key.
 
 ![](../assets/PPKH.png)
 
@@ -84,9 +84,9 @@ Pay to public key : 02fb8021bc7dedcc2f89a67e75cee81fedb8e41d6bfa6769362132544dfd
 Pay to public key hash : OP_DUP OP_HASH160 0ae54d4cec828b722d8727cb70f4a6b0a88207b2 OP_EQUALVERIFY OP_CHECKSIG
 ```
 
-These 2 types of payment are referred as **P2PK** \(pay to public key\) and **P2PKH** \(pay to public key hash\).
+2 tipe pembayaran disana merepresentasikan sebagai **P2PK** \(pay to public key\) dan **P2PKH** \(pay to public key hash\).
 
-Satoshi later decided to use P2PKH instead of P2PK for two reasons:
+Satoshi lalu memutuskan untuk menggunakan P2PKH menggantikan P2PK karena dua alasan:
 
 * Elliptic Curve Cryptography, the cryptography used by your **public key** and **private key**\) is vulnerable to a modified Shor's algorithm for solving the discrete logarithm problem on elliptic curves. In plain English, it means that, with a quantum computer, in theory, it is possible in some distant future to **retrieve a private key from a public key**. By publishing the public key only when the coin are spend, such attack is rendered ineffective. \(Assuming addresses are not reused.\) 
 * The hash being smaller \(20 bytes\), it is smaller to print, and easier to embed into small storage like a QR code.
