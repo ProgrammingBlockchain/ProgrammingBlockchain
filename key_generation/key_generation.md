@@ -333,7 +333,7 @@ Mengapa anda membutuhkan key hierarchical? Karena akan lebih bagus untuk mengkla
 
 Bisa juga berguna untuk membagi hak akses per segmen account di sebuah organisasi.
 
-Misalnya saja anda adalah CEO di sebuah perusahaan. Anda ingin dapat menangani seluruh wallet di perusahaan, namun anda tidak ingin departemen akutansi mengambil dana dari departemen marketing. 
+Misalnya saja anda adalah CEO di sebuah perusahaan. Anda ingin dapat menangani seluruh wallet di perusahaan, namun anda tidak ingin departemen akutansi mengambil dana dari departemen marketing.
 
 Jadi ide pertama yang dilakukan adalah dengan generate satu hierarchy untuk tiap departemen.
 
@@ -383,9 +383,9 @@ var nonHardened = new KeyPath("1/2/3");
 var hardened = new KeyPath("1/2/3'");
 ```
 
-Jadi mari kita bayangkan jika departemen akutansi dapat generate 1 parent key untuk setiap customer, dan sebuah child untuk setiap pembayaran customer. 
+Jadi mari kita bayangkan jika departemen akutansi dapat generate 1 parent key untuk setiap customer, dan sebuah child untuk setiap pembayaran customer.
 
-Sebagai seorang CEO, anda mungkin ingin menggunakan dana pada salah satu address. Jadi begini prosesnya: 
+Sebagai seorang CEO, anda mungkin ingin menggunakan dana pada salah satu address. Jadi begini prosesnya:
 
 ```cs
 ceoKey = new ExtKey();
@@ -399,12 +399,12 @@ ExtKey paymentKey = ceoKey.Derive(path);
 
 ## Kode Mnemonic Untuk Key HD \(BIP39\) {#mnemonic-code-for-hd-keys-bip39}
 
-As you have seen, generating an HD keys is easy. However, what if we want as easy way to transmit such key by telephone or hand writing?
+Setelah melihatnya sendiri, generate sebuah key HD cukup mudah. Namun, jika kita ingin cara yang termudah untuk dapat mentransmit key dengan sebuah telephone atau _hand writing_?
 
-Cold wallets like Trezor, generates the HD Keys from a sentence that can easily be written down. They call such sentence “the seed” or “mnemonic”. And it can eventually be protected by a password or a PIN.  
+Pada sebuah _**Cold wallets**_ seperti **Trezor**, dapat generate key HD Keys dari sebuah kalimat yang bisa secara mudah dituliskan kembali. Mereka meyebut kalimat ini dengan “_the seed_” atau “_mnemonic_”. Dan itu di proteksi menggunakan sebuah password atau sebuah PIN.  
 ![](../assets/Trezor.png)
 
-The language that you use to generate your easy to write sentence is called a **Wordlist**
+Bahasa yang anda gunakan untuk generate kalimat yang mudah untuk dituliskan ini disebut dengan **Wordlist**
 
 ![](../assets/RootKey.png)
 
@@ -416,7 +416,7 @@ Console.WriteLine(mnemo);
 
 `minute put grant neglect anxiety case globe win famous correct turn link`
 
-Now, if you have the mnemonic and the password, you can recover the **hdRoot** key.
+Sekarang, jika anda telah mempunyai _mnemonic_ dan _password_, maka anda dapat merecover key **hdRoot**.
 
 ```cs
 mnemo = new Mnemonic("minute put grant neglect anxiety case globe win famous correct turn link",
@@ -424,7 +424,7 @@ mnemo = new Mnemonic("minute put grant neglect anxiety case globe win famous cor
 hdRoot = mnemo.DeriveExtKey("my password");
 ```
 
-Currently supported **wordlist** are, English, Japanese, Spanish, Chinese \(simplified and traditional\).
+Bahasa yang support untuk **wordlist** adalah, Inggris, Jepang, Spanyol, dan China.
 
 ## Dark Wallet {#dark-wallet}
 
