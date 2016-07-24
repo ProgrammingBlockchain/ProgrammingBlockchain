@@ -253,7 +253,7 @@ ExtKey newExtKey = new ExtKey(key, chainCode);
 
 Type **base58** sama dengan **ExtKey,** disebut dengan **BitcoinExtKey**.
 
-Namun bagaimana cara kita menyelesaikan masalah kedua? untuk mendelegasikan pembuatan address kepada peer, yang sebenarnya cukup berpotensi dapat di hacked \(seperti pada server payment\)? 
+Namun bagaimana cara kita menyelesaikan masalah kedua? untuk mendelegasikan pembuatan address kepada peer, yang sebenarnya cukup berpotensi dapat di hacked \(seperti pada server payment\)?
 
 Triknya, anda bisa melakukan “neuter” dari master key anda, lalu anda mempunyai versi public key \(tanpa private key\) dari master key. Pada versi "neuter" ini, pihak ketiga dapat generate public key tanpa mengetahui private key.
 
@@ -297,37 +297,37 @@ Expected address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
 
 ![](../assets/ExtPubKey.png)
 
-Now we have seen how Deterministic keys solve our problems, let’s speak about what the “hierarchical” is for.
+Anda telah melihat bagaimana key Deterministic dapat menyelesaikan persoalan kita. Mari sekarang kita bicara apa kegunaan dari “hierarchical”.
 
-In the previous exercise, we have seen that by combining master key + index we could generate another key. We call this process **Derivation**, master key is the **parent key**, and the generated key is called **child key**.
+Pada latihan sebelumnya, anda telah mengetahui bagaimana menggabungkan master key + index yang memungkinkan kita dapat key lain. Kita menyebut proses ini dengan proses **Derivation**, master key ini adalah **parent key**, sedangkan key hasil generated disebut dengan **child key**.
 
-However, you can also derivate children from the child key. This is what the “hierarchical” stands for.
+Namun, anda juga dapat derivate _children_ dari child key. Dan ini menjadi fungsi dari “hierarchical”.
 
-This is why conceptually more generally you can say: Parent Key + KeyPath =&gt; Child Key
+Berikut adalah konseptual proses yang berlangsung secara umum: **Parent Key + KeyPath =&gt; Child Key**
 
 ![](../assets/Derive1.png)
 
 ![](../assets/Derive2.png)
 
-In this diagram, you can derivate Child\(1,1\) from parent in two different way:
+Pada diagram tersebut, anda dapat derivate Child\(1,1\) dari _parent_ dengan dua cara yang berbeda:
 
 ```cs
 ExtKey parent = new ExtKey();
 ExtKey child11 = parent.Derive(1).Derive(1);
 ```
 
-Or
+Atau
 
 ```cs
 ExtKey parent = new ExtKey();
 ExtKey child11 = parent.Derive(new KeyPath("1/1"));
 ```
 
-So in summary:
+Jadi kesimpulannya:
 
 ![](../assets/DeriveKeyPath.png)
 
-It works the same for **ExtPubKey**.
+Dan itu juga bekerja pada **ExtPubKey**.
 
 Why do you need hierarchical keys? Because it might be a nice way to classify the type of your keys for multi account purpose. More on [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
 
