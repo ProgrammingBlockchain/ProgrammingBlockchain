@@ -27,7 +27,7 @@
     * [Hal yang baik sepanjang waktu](key_generation/key_generation.md#like-the-good-ol-days)
     * [BIP38 \(Bagian 2\)](key_generation/key_generation.md#bip38-part-2)
     * [HD Wallet \(BIP 32\)](key_generation/key_generation.md#hd-wallet-bip-32)
-    * [Mnemonic Code for HD Keys \(BIP39\)](key_generation/key_generation.md#mnemonic-code-for-hd-keys-bip39)
+    * [Kode Mnemonic Untuk Key HD \(BIP39\)](key_generation/key_generation.md#mnemonic-code-for-hd-keys-bip39)
     * [Dark Wallet](key_generation/key_generation.md#dark-wallet)
 * [Other types of ownership](other_types_of_ownership/README.md)
     * [P2PK\[H\] \(Pay to Public Key \[Hash\]\)](other_types_of_ownership/p2pk[h]_pay_to_public_key_[hash].md)

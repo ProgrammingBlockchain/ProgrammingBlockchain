@@ -210,7 +210,7 @@ Tetaplah mengingat tentang masalah-masalah yang ingin kita pecahkan:
 * Menjaga agar backup tidak usang
 * Delegasi key \/ address kepada untrusted peer
 
-Sebuah wallet “Deterministic” akan menangani masalah backup. Dengan wallet semacam ini, anda cukup hanya menyimpan seed saja. Dari seed tersebut, anda bisa generate seri private key yang sama berulang kali. 
+Sebuah wallet “Deterministic” akan menangani masalah backup. Dengan wallet semacam ini, anda cukup hanya menyimpan seed saja. Dari seed tersebut, anda bisa generate seri private key yang sama berulang kali.
 
 Itu adalah kegunaan wallet “Deterministic”.  
 Seperti yang bisa anda lihat, dari master key, saya bisa generate key baru:
@@ -235,13 +235,13 @@ Key 4 : xprv9tvBA4Kt8UTuQoh1dQeJTXsmmTFwCqi4RXWdjBp114rJjNtPBHjxAckQp3yeEFw7Gf4g
 Key 5 : xprv9tvBA4Kt8UTuTdiEhN8iVDr5rfAPSVsCKpDia4GtEsb87eHr8yRVveRhkeLEMvo3XWL3GjzZvncfWVKnKLWUMNqSgdxoNm7zDzzD63dxGsm
 ```
 
-Anda hanya cukup menyimpan saja **masterKey**, karena anda dapat generate private key yang sama berulang kali. 
+Anda hanya cukup menyimpan saja **masterKey**, karena anda dapat generate private key yang sama berulang kali.
 
 Seperti yang bisa dilihat disini, key ini adalah **ExtKey** dan bukan **Key** yang biasa anda gunakan. Namun, ini tidak menjadi penghalang karena anda mempunyai private key yang sebenarnya di dalamnya:
 
 ![](../assets/ExtKey.png)
 
-You can go back from a **Key** to an **ExtKey** by supplying the **Key** and the **ChainCode** to the **ExtKey** constructor. This works as follows:
+Anda bisa kembali pada sebuah **Key** ke **ExtKey** dengan memberi **Key** lalu **ChainCode** kepada kontruksi **ExtKey**. dan ini akan dapat bekerja seperti dibawah ini:
 
 ```cs
 ExtKey extKey = new ExtKey();
@@ -251,11 +251,11 @@ Key key = extKey.PrivateKey;
 ExtKey newExtKey = new ExtKey(key, chainCode);
 ```
 
-The **base58** type equivalent of **ExtKey** is called **BitcoinExtKey**.
+Type **base58** sama dengan **ExtKey,** disebut dengan **BitcoinExtKey**.
 
-But how can we solve our second problem: delegating address creation to a peer that can potentially be hacked \(like a payment server\)?
+Namun bagaimana cara kita menyelesaikan masalah kedua? untuk mendelegasikan pembuatan address kepada peer, yang sebenarnya cukup berpotensi dapat di hacked \(seperti pada server payment\)? 
 
-The trick is that you can “neuter” your master key, then you have a public \(without private key\) version of the master key. From this neutered version, a third party can generate public keys without knowing the private key.
+Triknya, anda bisa melakukan “neuter” dari master key anda, lalu anda mempunyai versi public key \(tanpa private key\) dari master key. Pada versi "neuter" ini, pihak ketiga dapat generate public key tanpa mengetahui private key.
 
 ```cs
 ExtPubKey masterPubKey = masterKey.Neuter();
@@ -293,7 +293,7 @@ Generated address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
 Expected address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
 ```
 
-**ExtPubKey** is similar to **ExtKey** except that it holds a **PubKey** and not a **Key**.
+**ExtPubKey** mirip dengan **ExtKey** kecuali karena menyimpan **PubKey** dan bukan sebuah **Key**.
 
 ![](../assets/ExtPubKey.png)
 
@@ -397,7 +397,7 @@ KeyPath path = new KeyPath(accounting + "/" + customerId + "/" + paymentId);
 ExtKey paymentKey = ceoKey.Derive(path);
 ```
 
-## Mnemonic Code for HD Keys \(BIP39\) {#mnemonic-code-for-hd-keys-bip39}
+## Kode Mnemonic Untuk Key HD \(BIP39\) {#mnemonic-code-for-hd-keys-bip39}
 
 As you have seen, generating an HD keys is easy. However, what if we want as easy way to transmit such key by telephone or hand writing?
 
