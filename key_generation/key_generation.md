@@ -329,19 +329,19 @@ Jadi kesimpulannya:
 
 Dan itu juga bekerja pada **ExtPubKey**.
 
-Why do you need hierarchical keys? Because it might be a nice way to classify the type of your keys for multi account purpose. More on [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
+Mengapa anda membutuhkan key hierarchical? Karena akan lebih bagus untuk mengklasifikasikan tipe key untuk multi account. Lebih jauh bisa dilihat di [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
 
-It also permit to segment account rights across an organization.
+Bisa juga berguna untuk membagi hak akses per segmen account di sebuah organisasi.
 
-Imagine you are CEO of a company. You want control over all wallet, but you don’t want that the Accounting department spend the money of the Marketing department.
+Misalnya saja anda adalah CEO di sebuah perusahaan. Anda ingin dapat menangani seluruh wallet di perusahaan, namun anda tidak ingin departemen akutansi mengambil dana dari departemen marketing. 
 
-So your first idea would be to generate one hierarchy for each department.
+Jadi ide pertama yang dilakukan adalah dengan generate satu hierarchy untuk tiap departemen.
 
 ![](../assets/CeoMarketingAccounting.png)
 
-However, in such case, **Accounting** and **Marketing** would be able to recover the CEO’s private key.
+Namun, dalam kasus tertentu, departemen **Akutansi** dan **Marketing** mungkin dapat _recover_ private key milik CEO, jika sewaktu-waktu dibutuhkan.
 
-We define such child keys as **non-hardened**.
+Maka kita dapat menentukkan child key sebagai **non-hardened**.
 
 ![](../assets/NonHardened.png)
 
@@ -362,9 +362,9 @@ CEO: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuF
 CEO recovered: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuFVFpYaAt3gztYtZyXmy2hCVyVyxumdxfDBpoC
 ```
 
-In other words, a **non-hardened key** can “climb” the hierarchy.**Non-hardened key** should only be used for categorizing accounts that belongs to a **single control**.
+Dilain kata, **non-hardened key** dapat “naik” hirarkinya. **Non-hardened key** hanya dapat digunakan untuk memberikan kategori account yang mempunyai **single control **\(kontrol tunggal\).
 
-So in our case, the CEO should create a **hardened key**, so the accounting department will not be able to climb.
+Dalam hal ini, CEO harus membuat sebuah **hardened key**, sehingga departemen akutansi tidak dapat naik hirarkinya.
 
 ```cs
 ExtKey ceoKey = new ExtKey();
@@ -376,16 +376,16 @@ ExtPubKey ceoPubkey = ceoKey.Neuter();
 ExtKey ceoKeyRecovered = accountingKey.GetParentExtKey(ceoPubkey); //Crash
 ```
 
-You can also create hardened key by via the **ExtKey.Derivate**\(**KeyPath\)**, by using an apostrophe after a child’s index:
+Anda juga dapat membuat hardened key melalui **ExtKey.Derivate**\(**KeyPath\)**, dengan kebalikannya, setelah index child:
 
 ```cs
 var nonHardened = new KeyPath("1/2/3");
 var hardened = new KeyPath("1/2/3'");
 ```
 
-So let’s imagine that the Accounting Department generate 1 parent key for each customer, and a child for each of the customer’s payment.
+Jadi mari kita bayangkan jika departemen akutansi dapat generate 1 parent key untuk setiap customer, dan sebuah child untuk setiap pembayaran customer. 
 
-As the CEO, you want to spend the money on one of these addresses. Here is how you would proceed.
+Sebagai seorang CEO, anda mungkin ingin menggunakan dana pada salah satu address. Jadi begini prosesnya: 
 
 ```cs
 ceoKey = new ExtKey();
