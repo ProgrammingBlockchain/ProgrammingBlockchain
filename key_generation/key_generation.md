@@ -401,7 +401,7 @@ ExtKey paymentKey = ceoKey.Derive(path);
 
 Setelah melihatnya sendiri, generate sebuah key HD cukup mudah. Namun, jika kita ingin cara yang termudah untuk dapat mentransmit key dengan sebuah telephone atau _hand writing_?
 
-Pada sebuah _**Cold wallets**_ seperti **Trezor**, dapat generate key HD Keys dari sebuah kalimat yang bisa secara mudah dituliskan kembali. Mereka meyebut kalimat ini dengan “_the seed_” atau “_mnemonic_”. Dan itu di proteksi menggunakan sebuah password atau sebuah PIN.  
+Pada sebuah **_Cold wallets_** seperti **Trezor**, dapat generate key HD Keys dari sebuah kalimat yang bisa secara mudah dituliskan kembali. Mereka meyebut kalimat ini dengan “_the seed_” atau “_mnemonic_”. Dan itu di proteksi menggunakan sebuah password atau sebuah PIN.  
 ![](../assets/Trezor.png)
 
 Bahasa yang anda gunakan untuk generate kalimat yang mudah untuk dituliskan ini disebut dengan **Wordlist**
@@ -428,24 +428,24 @@ Bahasa yang support untuk **wordlist** adalah, Inggris, Jepang, Spanyol, dan Chi
 
 ## Dark Wallet {#dark-wallet}
 
-This name is unfortunate since there is nothing dark about it, and it attract unwanted attention and worries.Dark Wallet is a practical solution that fix our two initial problems:
+Nama yang digunakan tersebut tentu saja tidak berarti ada kegelapan disana, karena itu hanya dipakai untuk menarik perhatian saja. Dark Wallet dapat menjadi solusi praktis untuk dapat juga menyelesaikan dua persoalan kita diatas:
 
-* Prevent outdated backups
-* Delegating key \/ address generation to an untrusted peer
+* Menjaga backup agar tidak usang
+* Delegasi key \/ address kepada untrusted peer
 
-But it has a bonus killer feature.
+Namun juga mempunyai sebuah fitur yang bagus.
 
-You have to share only one address with the world \(called **StealthAddress**\), without leaking any privacy.
+Karena anda hanya perlu membagikan satu address saja kepada publik \(disebut dengan **StealthAddress**\), tanpa harus mengumbar privasi anda.
 
-Let’s remind us that if you share one **BitcoinAddress** with everybody, then all can see your balance by consulting the blockchain… That’s not the case with a **StealthAddress**.
+Mari kita ingat kembali, bahwa jika anda membagikan satu **AddressBitcoin** kepada orang lain, lalu mereka bisa melihat balance anda dengan cara melihatnya di blockchain… Namun tidak demikian jika menggunakan **StealthAddress**.
 
-This is a real shame it was labeled as **dark** since it solves partially the important problem of privacy leaking caused by the pseudo-anonymity of Bitcoin. A better name would have been: **One Address**.
+Sebenarnya agak disayangkan karena pada namanya menggunakan label "**dark", **karena pada dasarnya mampu menyelesaikan persoalan penting tentang privasi. Mungkin nama yang sebaiknya digunakan adalah: **One Address**.
 
-In Dark Wallet terminology, here are the different actors:
+Terminologi di dalam Dark Wallet, digambarkan dengan pelaku yang berbeda, seperti pada berikut ini:
 
-* The **Payer** knows the **StealthAddress** of the **Receiver**
-* The **Receiver** knows the **Spend Key**, a secret that will allow him to spend the coins he receives from one of such transaction.
-* **Scanner** knows the **Scan Key**, a secret that allows him to detect the transactions those belong to the **Receiver**.
+* **Payer** _\(pengirim\)_ mengetahui **StealthAddress** **Receiver **_\(penerima\)_
+* **Receiver** mengetahui **Spend Key**, sebuah key rahasia yang memungkinkannya untuk mengirim koin yang diterimanya dari sebuah transaksi. 
+* **Scanner** mengetahui **Scan Key**, sebuah key rahasia yang memungkinkannya untuk mendeteksi transaksi kepada **Receiver**.
 
 The rest is operational details.Underneath, this **StealthAddress** is composed of one or several **Spend PubKey** \(for multi sig\), and one **Scan PubKey**.
 
