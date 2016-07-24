@@ -29,7 +29,7 @@
     * [HD Wallet \(BIP 32\)](key_generation/key_generation.md#hd-wallet-bip-32)
     * [Kode Mnemonic Untuk Key HD \(BIP39\)](key_generation/key_generation.md#mnemonic-code-for-hd-keys-bip39)
     * [Dark Wallet](key_generation/key_generation.md#dark-wallet)
-* [Other types of ownership](other_types_of_ownership/README.md)
+* [Tipe Kepemilikan Lain](other_types_of_ownership/README.md)
     * [P2PK\[H\] \(Pay to Public Key \[Hash\]\)](other_types_of_ownership/p2pk[h]_pay_to_public_key_[hash].md)
     * [P2WPKH \(Pay to Witness Public Key Hash\)](other_types_of_ownership/p2wpkh_pay_to_witness_public_key_hash.md)
     * [Multi Sig](other_types_of_ownership/multi_sig.md)

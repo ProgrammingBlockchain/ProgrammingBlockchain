@@ -401,7 +401,7 @@ ExtKey paymentKey = ceoKey.Derive(path);
 
 Setelah melihatnya sendiri, generate sebuah key HD cukup mudah. Namun, jika kita ingin cara yang termudah untuk dapat mentransmit key dengan sebuah telephone atau _hand writing_?
 
-Pada sebuah _**Cold wallets**_ seperti **Trezor**, dapat generate key HD Keys dari sebuah kalimat yang bisa secara mudah dituliskan kembali. Mereka meyebut kalimat ini dengan “_the seed_” atau “_mnemonic_”. Dan itu di proteksi menggunakan sebuah password atau sebuah PIN.  
+Pada sebuah **_Cold wallets_** seperti **Trezor**, dapat generate key HD Keys dari sebuah kalimat yang bisa secara mudah dituliskan kembali. Mereka meyebut kalimat ini dengan “_the seed_” atau “_mnemonic_”. Dan itu di proteksi menggunakan sebuah password atau sebuah PIN.  
 ![](../assets/Trezor.png)
 
 Bahasa yang anda gunakan untuk generate kalimat yang mudah untuk dituliskan ini disebut dengan **Wordlist**
@@ -511,7 +511,7 @@ Console.WriteLine(transaction);
 }
 ```
 
-Lalu payer menambah dan menandatangani input, kemudian mengirim transaksi itu ke dalam jaringan. 
+Lalu payer menambah dan menandatangani input, kemudian mengirim transaksi itu ke dalam jaringan.
 
 **Scanner** mengetahui **StealthAddress** dan **Scan Key, **dapat merecover **Stealth PubKey** dan juga **AddressBitcoin.**
 
@@ -523,7 +523,7 @@ Scanner memeriksa apakah satu dari output transaksi sesuai untuk addressnya. Jik
 
 ![](../assets/ReceiverStealth.png)
 
-The code explaining how, as a Scanner, to scan a transaction and how, as a Receiver, to uncover the private key, will be explained later in the **TransactionBuilder** \(Other types of ownership\) part.
+Dari kode tersebut menjelaskan bagaimana sebuah Scanner, untuk melakukan scan sebuah transaksi, dan sebagai Receiver, untuk mendapat private key, selanjutnya akan dijelaskan lebih jauh di **TransactionBuilder** \(pada bagian Tipe Kepemilikan Lain\).
 
 It should be noted that a **StealthAddress** can have multiple **spend pubkeys**, in which case, the address represent a multi sig.
 
