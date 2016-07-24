@@ -1,4 +1,4 @@
 # Tipe Kepemilikan Lain {#other-types-of-ownership}
 
-I will briefly talk about each type of **ScriptPubKey** you will likely see on the blockchain. Then I will explain how to sign easily each of those types in the last part of the chapter “Using the TransactionBuilder”.
+Kita akan coba membahas tipe-tipe lain dari **ScriptPubKey, **yang nantinya dapat anda lihat di blockchain. Lalu dijelaskan juga bagaimana cara menandatangani setiap tipe tersebut di bagian akhir pada pembahasan “Penggunaan TransactionBuilder”.
 

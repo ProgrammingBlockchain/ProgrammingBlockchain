@@ -37,7 +37,7 @@
     * [P2WSH \(Pay to Witness Script Hash\)](other_types_of_ownership/p2wsh_pay_to_witness_script_hash.md)
     * [P2W\* over P2SH](other_types_of_ownership/p2w_over_p2sh.md)
     * [Arbitrary](other_types_of_ownership/arbitrary.md)
-    * [Using the TransactionBuilder](other_types_of_ownership/using_the_transactionbuilder.md)
+    * [Penggunaan TransactionBuilder](other_types_of_ownership/using_the_transactionbuilder.md)
 * [Other types of asset](other_types_of_asset/README.md)
     * [Colored Coins](other_types_of_asset/colored_coins.md)
     * [Issuing an Asset](other_types_of_asset/issuing_an_asset.md)
