@@ -401,7 +401,7 @@ ExtKey paymentKey = ceoKey.Derive(path);
 
 Setelah melihatnya sendiri, generate sebuah key HD cukup mudah. Namun, jika kita ingin cara yang termudah untuk dapat mentransmit key dengan sebuah telephone atau _hand writing_?
 
-Pada sebuah **_Cold wallets_** seperti **Trezor**, dapat generate key HD Keys dari sebuah kalimat yang bisa secara mudah dituliskan kembali. Mereka meyebut kalimat ini dengan “_the seed_” atau “_mnemonic_”. Dan itu di proteksi menggunakan sebuah password atau sebuah PIN.  
+Pada sebuah _**Cold wallets**_ seperti **Trezor**, dapat generate key HD Keys dari sebuah kalimat yang bisa secara mudah dituliskan kembali. Mereka meyebut kalimat ini dengan “_the seed_” atau “_mnemonic_”. Dan itu di proteksi menggunakan sebuah password atau sebuah PIN.  
 ![](../assets/Trezor.png)
 
 Bahasa yang anda gunakan untuk generate kalimat yang mudah untuk dituliskan ini disebut dengan **Wordlist**
@@ -447,7 +447,7 @@ Terminologi di dalam Dark Wallet, digambarkan dengan pelaku yang berbeda, sepert
 * **Receiver** mengetahui **Spend Key**, sebuah key rahasia yang memungkinkannya untuk mengirim koin yang diterimanya dari sebuah transaksi. 
 * **Scanner** mengetahui **Scan Key**, sebuah key rahasia yang memungkinkannya untuk mendeteksi transaksi kepada **Receiver**.
 
-The rest is operational details.Underneath, this **StealthAddress** is composed of one or several **Spend PubKey** \(for multi sig\), and one **Scan PubKey**.
+Pada detail sisa proses operasionalnya, **StealthAddress** terdiri dari beberapa **Spend PubKey** \(untuk multi sig\), dan sebuah **Scan PubKey**.
 
 ![](../assets/StealthAddress.png)
 
@@ -464,13 +464,13 @@ BitcoinStealthAddress stealthAddress
         network: Network.Main);
 ```
 
-The **payer**, will take your **StealthAddress**, generate a temporary key called **Ephem Key** and will generate a **Stealth Pub Key**, from which the Bitcoin address to which the payment will be done is generated.
+**Payer**, akan menggunakan **StealthAddress**, generate key sementara yang disebut dengan **Ephem Key** dan selanjutnya sebuah **Stealth Pub Key**, dari address Bitcoin address yang digunakan untuk pembayaran tersebut.
 
 ![](../assets/EphemKey.png)
 
-Then, he will package the **Ephem PubKey** in a **Stealth Metadata** object embedded that in the OP\_RETURN of the transaction \(as we have done for the first challenge\)
+Lalu, dia akan menaruh **Ephem PubKey** itu dalam sebuah obyek _embedded_ **Stealth Metadata** yang berada di OP\_RETURN pada sebuah transaksi. \(sama seperti yang pernah kita lakukan pada tantangan latihan pertama\)
 
-He will also add the output to the generated bitcoin address. \(the address of the **Stealth pub key**\)
+Dia juga akan menambahkan pada output address bitcoin yang di generate. \(address dari **Stealth pub key**\)
 
 ![](../assets/StealthMetadata.png)
 
@@ -481,7 +481,7 @@ stealthAddress.SendTo(transaction, Money.Coins(1.0m), ephemKey);
 Console.WriteLine(transaction);
 ```
 
-The creation of the **EphemKey** being an implementation details, you can omit it, NBitcoin will generate one automatically:
+Pembuatan **EphemKey** diimplementasikan seperti pada detail berikut, anda bisa mencobanya, NBitcoin dapat generate secara otomatis:
 
 ```cs
 Transaction transaction = new Transaction();
@@ -511,15 +511,15 @@ Console.WriteLine(transaction);
 }
 ```
 
-Then the payer add and signs the inputs, then sends the transaction on the network.
+Lalu payer menambah dan menandatangani input, kemudian mengirim transaksi itu ke dalam jaringan. 
 
-The **Scanner** knowing the **StealthAddress** and the **Scan Key** can recover the **Stealth PubKey** and so expected **BitcoinAddress** payment.
+**Scanner** mengetahui **StealthAddress** dan **Scan Key, **dapat merecover **Stealth PubKey** dan juga **AddressBitcoin.**
 
 ![](../assets/ScannerRecover.png)
 
-Then the scanner checks if one of the output of the transaction correspond to such address. If it is, then **Scanner** notify the **Receiver** about the transaction.
+Scanner memeriksa apakah satu dari output transaksi sesuai untuk addressnya. Jika sesuai, lalu **Scanner** memberikan notif pada **Receiver** tentang transaksi tersebut.
 
-The **Receiver** can then get the private key of the address with his **Spend Key**.
+**Receiver** bisa mendapat private key dari address dengan **Spend Key**.
 
 ![](../assets/ReceiverStealth.png)
 
