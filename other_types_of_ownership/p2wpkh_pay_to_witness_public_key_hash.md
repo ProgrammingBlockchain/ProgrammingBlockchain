@@ -4,11 +4,11 @@ Di tahun 2015, Pieter Wuille memperkenalkan sebuah fitur bitcoin yang disebut de
 
 Ada sejumlah alasan yang diungkap mengapa menggunakan skema baru ini. Berikut adalah penjelasannya, anda bisa melihatnya di sini: [https:\/\/bitcoincore.org\/en\/2016\/01\/26\/segwit-benefits\/](https://bitcoincore.org/en/2016/01/26/segwit-benefits/)
 
-* **Third party Malleability Fix:** Previously, a third party could change the transaction id of your transaction before it was confirmed. Not anymore.
-* **Linear sig hash scaling:** Signing a transaction would require hashing the whole transaction for every input. This was a potential DDoS vector attack for large transactions.
-* **Signing of input values:** The amount that is spent in an input is also signed, meaning the signer can’t be tricked about the amount of fee that is actually paid.
-* **Capacity increase:** It will now be possible to have more than 1MB of transactions every 10 min, up to around 1.75.
-* **Fraud proof:** Will be developed later, but SPV wallet will be able to validate more consensus rule than just following the longest chain.
+* **Third party Malleability Fix:** Pada awalnya, third party bisa merubah id transaksi pada transaksi anda sebelum di konfirmasi. Hal tersebut tidak perlu lagi dilakukan. 
+* **Linear sig hash scaling:** Penandatanganan transaksi membutuhan hashing keseluruhan input transaksi. Ini berpotensi terjadi serangan DDoS vector pada transaksi yang besar.
+* **Signing of input values:** Jumlah pengeluarkan pada input juga ditandatangani, artinya penandatangan juga tidak bisa memungkiri sejumlah biaya transaksi yang disertakan juga dalam transaksi. 
+* **Capacity increase:** Memungkinkan untuk mempunyai transaksi lebih dari 1MB setiap 10 menit, meningkat sekitar 1.75.
+* **Fraud proof:** Akan dikembangkan lebih lanjut, namun wallet SPV akan mampu memvalidasi aturan konsensus ketimbang hanya dengan mengikuti rantai block terpanjang saja. 
 
 Before the transaction signature belonged to the calculation of the transaction id, not anymore.
 
