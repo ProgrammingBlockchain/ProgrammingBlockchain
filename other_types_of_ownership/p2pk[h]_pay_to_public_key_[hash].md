@@ -93,7 +93,7 @@ Satoshi lalu memutuskan untuk menggunakan P2PKH menggantikan P2PK karena dua ala
 
 Untuk saat ini, tidak ada alasan untuk menggunakan P2PK secara langsung, namun tetap masih digunakan untuk dikombinasikan dengan P2SH. Tentang hal ini, pernah juga  di diskusikan di forum Reddit:
 
-> \([Discussion](https://www.reddit.com/r/Bitcoin/comments/4isxjr/petition_to_protect_satoshis_coins/d30we6f)\) Jika pada awalnya menggunakan P2PK, tidak akan difungsikan sebagai address, karena dapat berdampak serius terhadap harga bitcoin.
+> \([Discussion](https://www.reddit.com/r/Bitcoin/comments/4isxjr/petition_to_protect_satoshis_coins/d30we6f)\) Jika pada awalnya menggunakan P2PK, tidak difungsikan sebagai address, karena dapat berdampak serius terhadap harga bitcoin.
 
 ### Latihan
 
