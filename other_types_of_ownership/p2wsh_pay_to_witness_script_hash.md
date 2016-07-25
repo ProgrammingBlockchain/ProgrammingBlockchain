@@ -1,23 +1,23 @@
-## P2WSH (Pay to Witness Script Hash) {#p2wsh-pay-to-witness-script-hash}
+## P2WSH \(Pay to Witness Script Hash\) {#p2wsh-pay-to-witness-script-hash}
 
-As with P2PKH/P2WPKH, the only difference between P2SH and P2WSH is about the location of what was previously in the ```scriptSig```, and the ```scriptPubKey``` being modified.
+Hampir sama seperti pada P2PKH\/P2WPKH, yang membedakan antara P2SH dan P2WSH adalah pada penempatannya saja Seperti yang sebelumnya di `scriptSig`, dan `scriptPubKey` yang telah dimodifikasi.
 
-The ```scriptPubKey``` is changed from something like:
+Pada `scriptPubKey` yang akan dimodifikasi terlihat seperti ini:
 
-```OP_HASH160 10f400e996c34410d02ae76639cbf64f4bdf2def OP_EQUAL```
+`OP_HASH160 10f400e996c34410d02ae76639cbf64f4bdf2def OP_EQUAL`
 
-To:
+Menjadi:
 
-```0 e4d3d21bab744d90cd857f56833252000ac0fade318136b713994b9319562467```
+`0 e4d3d21bab744d90cd857f56833252000ac0fade318136b713994b9319562467`
 
-That you can print with the following code:  
+Untuk mencetaknya bisa dengan menggunakan kode ini:
 
 ```cs
 var key = new Key();
 Console.WriteLine(key.PubKey.ScriptPubKey.WitHash.ScriptPubKey);
-```  
+```
 
-With what was previously in the ```scriptSig``` (signature + redeem script), moved to the ```witness```:
+Dengan `scriptSig` yang ada sebelumnya \(signature + redeem script\), dipindahkan ke `witness`:
 
 ```json
 "in": [
@@ -33,4 +33,5 @@ With what was previously in the ```scriptSig``` (signature + redeem script), mov
 
 ```
 
-As the P2SH payment explained previously, P2WSH use ```ScriptCoin``` in exactly the same way to be signed.
+Seperrti pembayaran P2SH yang telah dijelaskan sebelumnya, P2WSH menggunakan cara yang sama pada `ScriptCoin` untuk penandatanganan transaksi.
+
