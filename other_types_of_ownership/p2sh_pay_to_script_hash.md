@@ -84,9 +84,9 @@ Transaction received = new Transaction();
 received.Outputs.Add(new TxOut(Money.Coins(1.0m), redeemScript.Hash));
 ```
 
-> Warning: The payment is sent to `redeemScript.Hash` and not to `redeemScript`!
+> Warning: Pembayaran ini dikirimkan kepada `redeemScript.Hash` bukan kepada `redeemScript`!
 
-Then, once alice\/bob\/satoshi want to spend what they received, instead of creating a `Coin` they create a `ScriptCoin`.
+Lalu, jika alice\/bob\/satoshi ingin dapat membelanjakan koin yang telah diterimanya, mereka bisa membuat`ScriptCoin`.
 
 ```cs
 //Give the redeemScript to the coin for Transaction construction
@@ -97,5 +97,5 @@ ScriptCoin coin = received.Outputs.AsCoins().First()
 
 ![](../assets/ScriptCoin.png)
 
-The rest of the code concerning transaction generation and signing is exactly the same as in the previous part with native multi sig.
+Sisa kode selanjutnya untuk generate transaksi dan juga penandatangan transaksi, sama persis pada pembahasan sebelumnya tentang multi sig.
 
