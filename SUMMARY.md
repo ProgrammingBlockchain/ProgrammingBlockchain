@@ -35,7 +35,7 @@
     * [Multi Sig](other_types_of_ownership/multi_sig.md)
     * [P2SH \(Pay To Script Hash\)](other_types_of_ownership/p2sh_pay_to_script_hash.md)
     * [P2WSH \(Pay to Witness Script Hash\)](other_types_of_ownership/p2wsh_pay_to_witness_script_hash.md)
-    * [P2W\* over P2SH](other_types_of_ownership/p2w_over_p2sh.md)
+    * [P2W\* diatas P2SH](other_types_of_ownership/p2w_over_p2sh.md)
     * [Arbitrary](other_types_of_ownership/arbitrary.md)
     * [Penggunaan TransactionBuilder](other_types_of_ownership/using_the_transactionbuilder.md)
 * [Other types of asset](other_types_of_asset/README.md)
