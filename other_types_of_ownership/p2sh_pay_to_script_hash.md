@@ -2,9 +2,9 @@
 
 Pengkodean Multi-Sig cukup mudah untuk membuatnya bisa bekerja. Namun sebelum p2sh, belum ada cara yang bisa dilakukan untuk meminta kepada customer agar membayarnya menggunakan`scriptPubKey` multi-sig dengan mudah, semudah menggunakan`BitcoinAddress`.
 
-**P2SH**, atau **Pay To Script Hash**, adalah cara termudah untuk merepresentasikan`scriptPubKey` semudah menggunakan`BitcoinScriptAddress`, meskipun untuk mewujudkannya cukup kompleks dan rumit. 
+**P2SH**, atau **Pay To Script Hash**, adalah cara termudah untuk merepresentasikan`scriptPubKey` semudah menggunakan`BitcoinScriptAddress`, meskipun untuk mewujudkannya juga cukup kompleks dan rumit.
 
-In the previous part we generated this multisig:
+Pada pembahasan sebelumnya, kita menggunakan berikut ini untuk generate multisig:
 
 ```cs
 Key bob = new Key();
@@ -22,9 +22,9 @@ Console.WriteLine(scriptPubKey);
 2 0282213c7172e9dff8a852b436a957c1f55aa1a947f2571585870bfb12c0c15d61 036e9f73ca6929dec6926d8e319506cc4370914cd13d300e83fd9c3dfca3970efb 0324b9185ec3db2f209b620657ce0e9a792472d89911e0ac3fc1e5b5fc2ca7683d 3 OP_CHECKMULTISIG
 ```
 
-Complicated isn’t it?
+Cukup rumit bukan?
 
-Instead, let’s see how such `scriptPubKey` would look like as a **P2SH** payment.
+Sebaliknya, mari kita lihat bagaimana pada`scriptPubKey` akan terlihat sebagai pembayaran dengan **P2SH**.
 
 ```cs
 Key bob = new Key();
@@ -42,9 +42,9 @@ Console.WriteLine(paymentScript);
 OP_HASH160 57b4162e00341af0ffc5d5fab468d738b3234190 OP_EQUAL
 ```
 
-Do you see the difference? This p2sh `scriptPubKey` represents the hash of my multi-sig script: `redeemScript.Hash.ScriptPubKey`
+Apa sudah bisa membedakan? P2sh`scriptPubKey`merepresentasikan hash dari script multi-sig: `redeemScript.Hash.ScriptPubKey`
 
-Since it is a hash, you can easily convert is as a base58 string `BitcoinScriptAddress`.
+Karena itu adalah hash, maka anda juga dapat merubahnya menjadi string base58 dengan mudah, seperti`BitcoinScriptAddress`.
 
 ```cs
 Key bob = new Key();
