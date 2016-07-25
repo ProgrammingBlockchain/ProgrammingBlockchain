@@ -93,9 +93,9 @@ Satoshi lalu memutuskan untuk menggunakan P2PKH menggantikan P2PK karena dua ala
 
 Untuk saat ini, tidak ada alasan untuk menggunakan P2PK secara langsung, namun tetap masih digunakan untuk dikombinasikan dengan P2SH. Tentang hal ini, pernah juga  di diskusikan di forum Reddit:
 
-> \([Discussion](https://www.reddit.com/r/Bitcoin/comments/4isxjr/petition_to_protect_satoshis_coins/d30we6f)\) If the early use of P2PK will not be addressed, it will have a serious impact on the Bitcoin price.
+> \([Discussion](https://www.reddit.com/r/Bitcoin/comments/4isxjr/petition_to_protect_satoshis_coins/d30we6f)\) Jika pada awalnya menggunakan P2PK, tidak akan difungsikan sebagai address, karena dapat berdampak serius terhadap harga bitcoin.
 
-### Exercise
+### Latihan
 
 \([nopara73](https://github.com/nopara73)\) While reading this chapter I found the the abbreviations \(P2PK, P2PKH, P2W, etc..\) very confusing.  
 My trick was to force myself to pronounce the terms fully every time I encountered them during the following lessons. Suddenly everything made much more sense. I recommend you to do the same.
