@@ -10,28 +10,28 @@ Ada sejumlah alasan yang diungkap mengapa menggunakan skema baru ini. Berikut ad
 * **Capacity increase:** Memungkinkan untuk mempunyai transaksi lebih dari 1MB setiap 10 menit, meningkat sekitar 1.75.
 * **Fraud proof:** Akan dikembangkan lebih lanjut, namun wallet SPV akan mampu memvalidasi aturan konsensus ketimbang hanya dengan mengikuti rantai block terpanjang saja. 
 
-Before the transaction signature belonged to the calculation of the transaction id, not anymore.
+Sebelum tandatangan transaksi dimasukkan ke kalkulasi id transaksi, itu tidak diperlukan lagi. 
 
 ![](../assets/segwit.png)
 
-The signature contains the same information as a P2PKH spending, but is located in the witness instead of the scriptSig. The `scriptPubKey` though, is modified from
+Tanda tangan digital ini menyimpan informasi yang sama seperti pada pengeluaran di P2PKH, namun terletak di witness menggantikan scriptSig. Sementara`scriptPubKey,`adahal hasil modifikasi dari
 
 ```
 OP_DUP OP_HASH160 0067c8970e65107ffbb436a49edd8cb8eb6b567f OP_EQUALVERIFY OP_CHECKSIG
 ```
 
-To
+Menjadi
 
 ```
 0 0067c8970e65107ffbb436a49edd8cb8eb6b567f
 ```
 
-For nodes which did not upgrade, this looks like as two pushes on the stack. This means that any `scriptSig` can spend them. So even without the signatures, old nodes will consider such transactions valid. New nodes interprete the first push as the **witness version** and the second push as the **witness program**.
+Setiap node yang masih belum mengupgrade software mereka, akan nampak seperti menempatkannya pada stack. Artinya disini pada berbagai`scriptSig` dapat dibelanjakan. Sehingga meski tanpa sebuah signature, node lama akan menganggap transaksi tersebut adalah transaksi yang valid. Sedangkan node baru, pertama akan menginterpretasi versi **witness, **dan kedua memaksanya sebagai **witness program**.
 
-But new nodes will require the signature to get the transaction verified.
+Namun kedua kedua node tersebut masih membutuhkan signature untuk memverifikasi transaksi.
 
-**In NBitcoin, spending a P2WPKH output is not different from spending a normal P2PKH.  
-To get the **`ScriptPubKey`** to use from a public key, use **`PubKey.WitHash`** instead of **`PubKey.Hash`**.**
+**Pada NBitcoin, output pengeluaran P2WPKH output tidak berbeda dengan P2PKH secara normal.  
+Untuk mendapat**`ScriptPubKey`** dan menggunakannya dari sebuah public key, digunakan**`PubKey.WitHash`** menggantikan **`PubKey.Hash`**.**
 
 ```cs
 var key = new Key();
