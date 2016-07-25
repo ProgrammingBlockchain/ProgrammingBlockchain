@@ -118,11 +118,11 @@ Console.WriteLine(fullySigned);
 
 Transaksi itupun sekarang siap untuk dimasukkan ke dalam jaringan.
 
-Meski jaringan Bitcoin support untuk multi sig seperti yang dijelaskan di sini, ada satu pertanyaan yang penting: How can you ask to a user who has no clue about bitcoin to pay on satoshi\/alice\/bob multi sig, since such `scriptPubKey` can’t be represented by easy to use Bitcoin Address like we have seen before?
+Meski jaringan Bitcoin support untuk multi sig seperti yang dijelaskan di sini, ada satu pertanyaan yang penting: Bagaimana kita bertanya kepada pengguna yang tidak mengetahui cara untuk melakukan pembayaran dengan multi sig seperti pada transaksi antara satoshi\/alice\/bob, karena`scriptPubKey`tidak bisa merepresentasikan address bitcoin dengan mudah? 
 
-Don’t you think it would be cool if we could to represent such `scriptPubKey` as easily and compactly as a Bitcoin Address?
+Tidakkah anda berfikir akan menjadi bagus jika hal tersebut bisa merepresentasikan`scriptPubKey` dengan mudah sebagai Address Bitcoin?
 
-Well, this is possible and it is called a **Bitcoin Script Address** also called Pay to Script Hash. \(P2SH\)
+Hal itu memungkinkan bisa dilakukan, disebut dengan **Bitcoin Script Address** atau disebut juga Pay to Script Hash. \(P2SH\)
 
-Nowadays, **native Pay To Multi Sig** as you have seen here, and **native P2PK**, are never used directly as such, they are wrapped into **Pay To Script Hash** payment.
+Saat ini, **native Pay To Multi Sig** seperti yang anda liha, dan **native P2PK**, belum pernah digunakan secara langsung, karena mereka they are wrapped into **Pay To Script Hash** payment.
 
