@@ -88,10 +88,10 @@ Pay to public key hash : OP_DUP OP_HASH160 0ae54d4cec828b722d8727cb70f4a6b0a8820
 
 Satoshi lalu memutuskan untuk menggunakan P2PKH menggantikan P2PK karena dua alasan:
 
-* Elliptic Curve Cryptography, the cryptography used by your **public key** and **private key**\) is vulnerable to a modified Shor's algorithm for solving the discrete logarithm problem on elliptic curves. In plain English, it means that, with a quantum computer, in theory, it is possible in some distant future to **retrieve a private key from a public key**. By publishing the public key only when the coin are spend, such attack is rendered ineffective. \(Assuming addresses are not reused.\) 
-* The hash being smaller \(20 bytes\), it is smaller to print, and easier to embed into small storage like a QR code.
+* Elliptic Curve Cryptography, kriptografi yang digunakan untuk **public key** dan **private key**\) anda, rentan untuk dimodifikasi. Shor's algorithm for solving the discrete logarithm problem on elliptic curves. Artinya, dengan komputer quantum, secara teori, memungkinkan pada suatu saat dimasa depan untuk **retrieve sebuah private key dari public key**. Hanya dengan mempublish public key, namun hanya ketika ada transaksi pengeluaran saja yang telah dilakukan. such attack is rendered ineffective. \(Assuming addresses are not reused.\) 
+* Ukuran hash cukup kecil \(20 byte\), cukup kecil untuk di cetak, dan mudah untuk di embed pada sebuah ruang penyimpanan kecil, seperti pada QR code.
 
-Nowadays, there is no reason to use P2PK directly, but it is still used in combination with P2SH, more on this later.
+Untuk saat ini, tidak ada alasan untuk menggunakan P2PK secara langsung, namun tetap masih digunakan untuk dikombinasikan dengan P2SH. Tentang hal ini, pernah juga  di diskusikan di forum Reddit:
 
 > \([Discussion](https://www.reddit.com/r/Bitcoin/comments/4isxjr/petition_to_protect_satoshis_coins/d30we6f)\) If the early use of P2PK will not be addressed, it will have a serious impact on the Bitcoin price.
 
