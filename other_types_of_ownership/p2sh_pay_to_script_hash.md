@@ -67,9 +67,9 @@ Pada transaksi pembayaran P2SH, kita merujuk sebagai **Redeem Script**, dimana y
 
 Karena "payer" hanya mengetahui tentang **Hash dari RedeemScript**, dia tidak mengetahui **Redeem Script**, oleh karena itu, dalam hal ini, kita juga tidak mengetahui apakah ia mengirimkan uangnya menggunakan multi sig dari transaksi antara Bob\/Satoshi\/Alice.
 
-Signing such transaction is similar to what we have done before. The only difference is that you have to provide the **Redeem Script** when you build the Coin for the **TransactionBuilder**
+Dalam hal penandatanganan transaksi, mirip dengan yang telah kita lakukan sebelumnya. Hanya saja perbedaannya adalah, anda terlebih dahulu harus menentukan **Redeem Script** ketika anda membangun koin itu pada **TransactionBuilder**
 
-Imagine that the multi sig P2SH receive a coin in a transaction called `received`.
+Mari kita bayangkan kembali bahwa multi sig P2SH menerima koin dalam sebuah transaksi, atau yang disebut dengan`received`.
 
 ```cs
 Script redeemScript =
