@@ -1,6 +1,6 @@
 ## P2W\* diatas P2SH {#p2w-over-p2sh}
 
-Saat menggunakan **witness scriptPubKey** for your scripting needs is appealing, the reality is that most of nowadays wallets only support P2PKH or P2SH addresses.
+Saat menggunakan **witness scriptPubKey** dalam scripting anda, needs is appealing, the reality is that most of nowadays wallets only support P2PKH or P2SH addresses.
 
 To harness the advantages of segwit, while being compatible with old software, P2W over P2SH is allowed. For old node, it will look like a normal P2SH payment.
 
@@ -68,6 +68,7 @@ Let’s print the **scriptPubKey** by following the first rule:
 2. The former **ScriptPubKey** will be placed as the only push in the **scriptSig** in the spending transaction,
 
 3. All other data will be pushed in the witness of the spending transaction,
+
 
 For 3. the **‘other data’**, in the context of a P2WSH payment means the parameters of the **P2WSH redeem script** followed by a push of the **P2WSH redeem script**.
 
