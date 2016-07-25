@@ -1,9 +1,9 @@
 ## Multi Sig {#multi-sig}
 
 Multi Sig ini memungkinkan untuk sharing kepemilikan \(ownership\) koin.  
-For that you will create a `ScriptPubKey` that represents a **m-of-n multi sig**, this means in order to spend the coins, **m** private keys will need to sign on the **n** different public key provided.
+Untuk itu, anda perlu membuat sebuah`ScriptPubKey` yang merepresentasikan sebuah **m-of-n multi sig.** Maksudnya, untuk mentransksikan koin, **m** private key dibutuhkan untuk menandatangani pada publik key **n**.
 
-Let’s create a multi sig with Bob, Alice, and Satoshi, where two of them are needed to spend a coin.
+Mari kita coba membuat sebuah multi sig pada contoh transaksi antara Bob, Alice, dan Satoshi, dimana dua dari ketiga orang tersebut membutuhkannya untuk mentransaksikan koin.
 
 ```cs
 Key bob = new Key();
