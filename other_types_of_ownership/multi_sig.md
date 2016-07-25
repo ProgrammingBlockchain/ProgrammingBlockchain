@@ -21,9 +21,9 @@ Console.WriteLine(scriptPubKey);
 2 0282213c7172e9dff8a852b436a957c1f55aa1a947f2571585870bfb12c0c15d61 036e9f73ca6929dec6926d8e319506cc4370914cd13d300e83fd9c3dfca3970efb 0324b9185ec3db2f209b620657ce0e9a792472d89911e0ac3fc1e5b5fc2ca7683d 3 OP_CHECKMULTISIG
 ```
 
-As you can see, the `scriptPubkey` have the following form: `<sigsRequired> <pubkeys…> <pubKeysCount> OP_CHECKMULTISIG`
+Seperti yang dapat anda lihat,`scriptPubkey` mempunyai bentuk: `<sigsRequired> <pubkeys…> <pubKeysCount> OP_CHECKMULTISIG`
 
-The process for signing it is a little more complicated than just calling `Transaction.Sign`, which does not work for multi sig.
+Proses penandatanganan tersebut sedikit lebih rumit daripada hanya`Transaction.Sign`, yang mungkin tidak dapat bekerja pada multi sig.
 
 Even if we will talk more deeply about the subject, let’s use the `TransactionBuilder` for signing the transaction.
 
