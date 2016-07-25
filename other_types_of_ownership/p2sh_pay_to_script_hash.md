@@ -59,9 +59,9 @@ Script redeemScript =
 Console.WriteLine(redeemScript.Hash.GetAddress(Network.Main)); // 3E6RvwLNfkH6PyX3bqoVGKzrx2AqSJFhjo
 ```
 
-Such address is understood by any client wallet. Even if such wallet does not understand what “multi sig” is.
+Beberapa address dapat terbaca dengan baik di berbagai klien wallet. Meskipun pada beberapa wallet tidak begitu mengenal “multi sig”.
 
-In P2SH payment, we refer as the **Redeem Script**, the `scriptPubKey` that got hashed.
+Pada transaksi pembayaran P2SH, kita merujuk sebagai **Redeem Script**, dimana yang akan di hash adalah`scriptPubKey`.
 
 ![](../assets/RedeemScript.png)
 
