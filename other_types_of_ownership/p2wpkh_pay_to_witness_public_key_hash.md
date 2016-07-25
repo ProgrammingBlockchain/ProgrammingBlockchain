@@ -10,7 +10,7 @@ Ada sejumlah alasan yang diungkap mengapa menggunakan skema baru ini. Berikut ad
 * **Capacity increase:** Memungkinkan untuk mempunyai transaksi lebih dari 1MB setiap 10 menit, meningkat sekitar 1.75.
 * **Fraud proof:** Akan dikembangkan lebih lanjut, namun wallet SPV akan mampu memvalidasi aturan konsensus ketimbang hanya dengan mengikuti rantai block terpanjang saja. 
 
-Sebelum tandatangan transaksi dimasukkan ke kalkulasi id transaksi, itu tidak diperlukan lagi. 
+Sebelum tandatangan transaksi dimasukkan ke kalkulasi id transaksi, itu tidak diperlukan lagi.
 
 ![](../assets/segwit.png)
 
@@ -26,7 +26,7 @@ Menjadi
 0 0067c8970e65107ffbb436a49edd8cb8eb6b567f
 ```
 
-Setiap node yang masih belum mengupgrade software mereka, akan nampak seperti menempatkannya pada stack. Artinya disini pada berbagai`scriptSig` dapat dibelanjakan. Sehingga meski tanpa sebuah signature, node lama akan menganggap transaksi tersebut adalah transaksi yang valid. Sedangkan node baru, pertama akan menginterpretasi versi **witness, **dan kedua memaksanya sebagai **witness program**.
+Setiap node yang masih belum mengupgrade software mereka, akan nampak seperti menempatkannya pada stack. Artinya disini pada berbagai`scriptSig` dapat dibelanjakan. Sehingga meski tanpa sebuah signature, node lama akan menganggap transaksi tersebut adalah transaksi yang valid. Sedangkan node baru, pertama akan menginterpretasi versi **witness, **dan kedua di "push" sebagai **witness program**.
 
 Namun kedua kedua node tersebut masih membutuhkan signature untuk memverifikasi transaksi.
 
@@ -38,15 +38,15 @@ var key = new Key();
 Console.WriteLine(key.PubKey.WitHash.ScriptPubKey);
 ```
 
-Which will output your something like
+Outputnya, akan nampak seperti ini
 
 ```
 0 0067c8970e65107ffbb436a49edd8cb8eb6b567f
 ```
 
-Signing the spending of such coin will be explained in the “Using the `TransactionBuilder` part”, and does not differ, in any way, from the code for signing a P2PKH output.
+Penandatanganan pengeluaran ini akan dijelaskan pada bahasan “Penggunaan `TransactionBuilder`”, hampir tidak berbeda sebenarnya, pada banyak hal, dari kode penandatanganan output P2PKH.
 
-The `witness`, similar to the `scriptSig` of P2PKH, and the `scriptSig` empty:
+`witness`, sama pada`scriptSig` dari P2PKH, dan `scriptSig` kosong:
 
 ```json
 "in": [
@@ -61,5 +61,5 @@ The `witness`, similar to the `scriptSig` of P2PKH, and the `scriptSig` empty:
 }
 ```
 
-Once again, the semantic of P2WPKH is the same as the semantic of P2PKH, except that the signature is not placed at the same location as before.
+Jadi sekali lagi semantic P2WPKH sama dengan semantic dari P2PKH, kecuali pada signature tidak diletakkan pada lokasi yang sama seperti sebelumnya.
 
