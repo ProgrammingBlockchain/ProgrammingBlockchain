@@ -79,7 +79,7 @@ Transaction bobSigned =
 
 ![](../assets/bobSigned.png)
 
-Sekarang, Bob dan Alice dapat menggabungkan tanda tangan mereka pada satu transaksi saja. 
+Sekarang, Bob dan Alice dapat menggabungkan tanda tangan mereka pada satu transaksi saja.
 
 ```cs
 Transaction fullySigned =
@@ -118,7 +118,7 @@ Console.WriteLine(fullySigned);
 
 Transaksi itupun sekarang siap untuk dimasukkan ke dalam jaringan.
 
-Even if the Bitcoin network supports multi sig as explained here, one question worth asking is: How can you ask to a user who has no clue about bitcoin to pay on satoshi\/alice\/bob multi sig, since such `scriptPubKey` can’t be represented by easy to use Bitcoin Address like we have seen before?
+Meski jaringan Bitcoin support untuk multi sig seperti yang dijelaskan di sini, ada satu pertanyaan yang penting: How can you ask to a user who has no clue about bitcoin to pay on satoshi\/alice\/bob multi sig, since such `scriptPubKey` can’t be represented by easy to use Bitcoin Address like we have seen before?
 
 Don’t you think it would be cool if we could to represent such `scriptPubKey` as easily and compactly as a Bitcoin Address?
 
