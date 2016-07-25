@@ -65,7 +65,7 @@ Pada transaksi pembayaran P2SH, kita merujuk sebagai **Redeem Script**, dimana y
 
 ![](../assets/RedeemScript.png)
 
-Since the payer only knows about the **Hash of the RedeemScript**, he does not know the **Redeem Script**, and so, in our case, don’t even have to know that he is sending money to a multi sig of Bob\/Satoshi\/Alice.
+Karena "payer" hanya mengetahui tentang **Hash dari RedeemScript**, dia tidak mengetahui **Redeem Script**, oleh karena itu, dalam hal ini, kita juga tidak mengetahui apakah ia mengirimkan uangnya menggunakan multi sig dari transaksi antara Bob\/Satoshi\/Alice.
 
 Signing such transaction is similar to what we have done before. The only difference is that you have to provide the **Redeem Script** when you build the Coin for the **TransactionBuilder**
 
