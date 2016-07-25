@@ -26,7 +26,7 @@ Menjadi
 0 0067c8970e65107ffbb436a49edd8cb8eb6b567f
 ```
 
-Setiap node yang masih belum mengupgrade software mereka, akan nampak seperti menempatkannya pada stack. Artinya disini pada berbagai`scriptSig` dapat dibelanjakan. Sehingga meski tanpa sebuah signature, node lama akan menganggap transaksi tersebut adalah transaksi yang valid. Sedangkan node baru, pertama akan menginterpretasi versi **witness, **dan kedua di "push" sebagai **witness program**.
+Setiap node yang masih belum mengupgrade software mereka, akan nampak seperti menempatkannya pada stack. Artinya disini pada berbagai`scriptSig` dapat dibelanjakan. Sehingga meski tanpa sebuah signature, node lama akan menganggap transaksi tersebut adalah transaksi yang valid. Sedangkan node baru, pertama akan menginterpretasi versi **witness, **dan kedua di "_push_" sebagai **witness program**.
 
 Namun kedua kedua node tersebut masih membutuhkan signature untuk memverifikasi transaksi.
 
