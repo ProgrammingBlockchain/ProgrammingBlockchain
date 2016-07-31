@@ -8,25 +8,25 @@ On Android, I use the **SecureRandom**, and in fact, you can use your own implem
 
 On IOS, I have not implemented it and you need to create your **IRandom** implementation.
 
-For a computer, being random is hard. But the biggest issue is that it is impossible to know if a serie of number is really random.
+For a computer, being random is hard. But the biggest issue is that it is impossible to know if a series of number is really random.
 
-If a malware modifies your PRNG (and so, can predict the numbers you will generate), you won’t see it until it is too late.
+If malware modifies your PRNG (and so, can predict the numbers you will generate), you won’t see it until it is too late.
 
-It means that a cross platform and naïve implementation of PRNG (like using computer’s clock combined with CPU speed) is dangerous. But you won’t see it until it is too late.
+It means that a cross platform and naïve implementation of PRNG (like using the computer’s clock combined with CPU speed) is dangerous. But you won’t see it until it is too late.
 
-For performance reason, most PRNG works the same way: a random number, called **Seed**, is chosen, then a predictable formula generates the next numbers each time you ask for it.
+For performance reasons, most PRNG works the same way: a random number, called **Seed**, is chosen, then a predictable formula generates the next numbers each time you ask for it.
 
 The amount of randomness of the seed is defined by a measure we call **Entropy**, but the amount of **Entropy** also depends on the observer.
 
 Let’s say you generate a seed from your clock time.  
-And let’s imagine that your clock has 1ms of resolution. (Reality is more ~15ms)
+And let’s imagine that your clock has 1ms of resolution. (Reality is more ~15ms.)
 
 If your attacker knows that you generated the key last week, then your seed has  
 1000 \* 60 \* 60 \* 24 \* 7 = 604800000 possibilities.
 
 For such attacker, the entropy is LOG(604800000;2) = 29.17 bits.
 
-And enumerating such number on my home computer took less than 2 seconds…We call such enumeration “brute forcing”.
+And enumerating such number on my home computer took less than 2 seconds. We call such enumeration “brute forcing”.
 
 However let’s say, you use the clock time + the process id for generating the seed.  
 Let’s imagine that there are 1024 different process ids.
@@ -47,7 +47,7 @@ But since the hash of a public key is 20 bytes = 160 bits, it is smaller than th
 
 An interesting way of generating entropy quickly is by asking human intervention. (Moving the mouse.)
 
-If you don’t trust completely the platform PRNG (which is [not so paranoic](http://android-developers.blogspot.fr/2013/08/some-securerandom-thoughts.html)), you can add entropy to the PRNG output that NBitcoin is using.  
+If you don’t completely trust the platform PRNG (which is [not so paranoic](http://android-developers.blogspot.fr/2013/08/some-securerandom-thoughts.html)), you can add entropy to the PRNG output that NBitcoin is using.  
 
 ```cs
 RandomUtils.AddEntropy("hello");
@@ -63,7 +63,7 @@ Then when you generate a new number:
 
 ## Key Derivation Function {#key-derivation-function}
 
-However, the most important is not the number of possibilities. It is the time that an attacker would need to successfully break your key. That’s where KDF enters the game.
+However, what is most important is not the number of possibilities. It is the time that an attacker would need to successfully break your key. That’s where KDF enters the game.
 
 KDF, or **Key Derivation Function** is a way to have a stronger key, even if your entropy is low.
 
@@ -81,7 +81,7 @@ RandomUtils.AddEntropy(derived);
 
 Even if your attacker knows that your source of entropy is 5 letters, he will need to run Scrypt to check a possibility, which take 5 seconds on my computer.
 
-Bottom line of the story: There is nothing paranoid into distrusting a PRNG, you can mitigate an attack by both adding entropy and also using a KDF.  
+The bottom line is: There is nothing paranoid into distrusting a PRNG, and you can mitigate an attack by both adding entropy and also using a KDF.  
 Keep in mind that an attacker can decrease entropy by gathering information about you or your system.  
 If you use the timestamp as entropy source, then he can decrease the entropy by knowing you generated the key last week, and that you only use your computer between 9am and 6pm.
 
@@ -119,7 +119,7 @@ Delegate decryption to the ultimate user when you can.
 First, why generating several keys?  
 The main reason is privacy. Since you can see the balance of all addresses, it is better to use a new address for each transaction.  
 
-However, in practice, you can also generate keys for each contact. Because this make a simple way to identify your payer without leaking too much privacy.  
+However, in practice, you can also generate keys for each contact which makes this a simple way to identify your payer without leaking too much privacy.  
 
 You can generate key, like you did from the beginning:
 
@@ -129,7 +129,7 @@ var privateKey = new Key()
 
 However, you have two problems with that:  
 
-*   All backup of your wallet that you have will become outdated when you generate a new key.  
+*   All backups of your wallet that you have will become outdated when you generate a new key.  
 *   You cannot delegate the address creation process to an untrusted peer.  
 
 If you are developing a web wallet and generate key on behalf of your users, and one user get hacked, she will immediately start suspecting you.  
@@ -138,7 +138,7 @@ If you are developing a web wallet and generate key on behalf of your users, and
 
 We already saw BIP38 for encrypting a key, however this BIP is in reality two ideas in one document.  
 
-The second part of the BIP, show how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concern.  
+The second part of the BIP, shows how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concerns.  
 
 **The idea is to generate a PassphraseCode to the key generator. With this PassphraseCode, he will be able to generate encrypted keys on your behalf, without knowing your password, nor any private key. ** 
 
@@ -146,7 +146,7 @@ This **PassphraseCode** can be given to your key generator in WIF format.
 
 > **Tip**: In NBitcoin, all types prefixed by “Bitcoin” are Base58 (WIF) data.  
 
-So, as a user that want to delegate key creation, first you will create the **PassphraseCode**.
+So, as a user that wants to delegate key creation, first you will create the **PassphraseCode**.
 
 ![](../assets/PassphraseCode.png)  
 
@@ -164,7 +164,7 @@ The third party will then generate new encrypted keys for you.
 EncryptedKeyResult encryptedKeyResult = passphraseCode.GenerateEncryptedSecret();
 ```  
 
-This **EncryptedKeyResult** have lots of information:  
+This **EncryptedKeyResult** has lots of information:  
 
 ![](../assets/EncryptedKeyResult.png)  
 
@@ -176,12 +176,12 @@ then the **EncryptedKey** itself, (as we have seen in the previous, **Key Encryp
 ```cs
 var encryptedKey = encryptedKeyResult.EncryptedKey; // 6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
 ```  
-and last but not the least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond effectively to your password.
+and last but not the least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond  to your password.
 ```cs
 var confirmationCode = encryptedKeyResult.ConfirmationCode; // cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
 ```  
 
-As the owner, once you receive these info, you need to check that the key generator did not cheat by using **ConfirmationCode.Check**, then get your private key with your password:
+As the owner, once you receive this information, you need to check that the key generator did not cheat by using **ConfirmationCode.Check**, then get your private key with your password:
 
 ```cs
 Console.WriteLine(confirmationCode.Check("my secret", generatedAddress)); // True
@@ -196,7 +196,7 @@ So, we have just seen how the third party can generate encrypted key on your beh
 
 However, one problem remains:
 
-*   All backup of your wallet that you have will become outdated when you generate a new key.
+*   All backups of your wallet that you have will become outdated when you generate a new key.
 
 BIP 32, or Hierarchical Deterministic Wallets (HD wallets) proposes another solution, and is more widely supported.
 
@@ -207,7 +207,7 @@ Let’s keep in mind the problems that we want to resolve:
 *   Prevent outdated backups
 *   Delegating key / address generation to an untrusted peer
 
-A “Deterministic” wallet would fix our backup problem. With such wallet, you would have to save only the seed. From this seed, you can generate the same series of private key over and over.  
+A “Deterministic” wallet would fix our backup problem. With such wallet, you would have to save only the seed. From this seed, you can generate the same series of private keys over and over.  
 
 This is what the “Deterministic” stands for.  
 As you can see, from the master key, I can generate new keys:  
@@ -270,7 +270,7 @@ PubKey 3 : xpub67uQd5a6WCY6HQKya2Mwwb7bpSNB5XhWCR76kRaPxchE3Y1Y2MAiSjhRGftmeWyX8
 PubKey 4 : xpub67uQd5a6WCY6JddPfiPKdrR49KYEuXUwwJJsL5rWGDDQkpPctdkrwMhXgQ2zWopsSV7buz61e5mGSYgDisqA3D5vyvMtKYP8S3EiBn5c1u4
 ```  
 
-So imagine that your payment server generate pubkey1, you can get the corresponding private key with your private master key.
+So imagine that your payment server generates pubkey1, you can get the corresponding private key with your private master key.
 
 ```cs
 masterKey = new ExtKey();
@@ -329,11 +329,11 @@ So in summary:
 
 It works the same for **ExtPubKey**.  
 
-Why do you need hierarchical keys? Because it might be a nice way to classify the type of your keys for multi account purpose. More on [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
+Why do you need hierarchical keys? Because it might be a nice way to classify the type of your keys for multiple accounts. More on [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
 
-It also permit to segment account rights across an organization.
+It also permits segmenting account rights across an organization.
 
-Imagine you are CEO of a company. You want control over all wallet, but you don’t want that the Accounting department spend the money of the Marketing department.
+Imagine you are CEO of a company. You want control over all wallets, but you don’t want the Accounting department to spend the money from the Marketing department.
 
 So your first idea would be to generate one hierarchy for each department.  
 
@@ -362,7 +362,7 @@ CEO: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuF
 CEO recovered: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuFVFpYaAt3gztYtZyXmy2hCVyVyxumdxfDBpoC
 ```  
 
-In other words, a **non-hardened key** can “climb” the hierarchy.**Non-hardened key** should only be used for categorizing accounts that belongs to a **single control**.
+In other words, a **non-hardened key** can “climb” the hierarchy.**Non-hardened keys** should only be used for categorizing accounts that belongs to a **single control**.
 
 So in our case, the CEO should create a **hardened key**, so the accounting department will not be able to climb.
 
@@ -376,14 +376,14 @@ ExtPubKey ceoPubkey = ceoKey.Neuter();
 ExtKey ceoKeyRecovered = accountingKey.GetParentExtKey(ceoPubkey); //Crash
 ```  
 
-You can also create hardened key by via the **ExtKey.Derivate**(**KeyPath)**, by using an apostrophe after a child’s index:
+You can also create hardened keys by via the **ExtKey.Derivate**(**KeyPath)**, by using an apostrophe after a child’s index:
 
 ```cs
 var nonHardened = new KeyPath("1/2/3");
 var hardened = new KeyPath("1/2/3'");
 ```  
 
-So let’s imagine that the Accounting Department generate 1 parent key for each customer, and a child for each of the customer’s payment.
+So let’s imagine that the Accounting Department generates 1 parent key for each customer, and a child for each of the customer’s payments.
 
 As the CEO, you want to spend the money on one of these addresses. Here is how you would proceed.  
 
@@ -399,9 +399,9 @@ ExtKey paymentKey = ceoKey.Derive(path);
 
 ## Mnemonic Code for HD Keys (BIP39) {#mnemonic-code-for-hd-keys-bip39}
 
-As you have seen, generating an HD keys is easy. However, what if we want as easy way to transmit such key by telephone or hand writing?
+As you have seen, generating HD keys is easy. However, what if we want an easy way to transmit such key by telephone or hand writing?
 
-Cold wallets like Trezor, generates the HD Keys from a sentence that can easily be written down. They call such sentence “the seed” or “mnemonic”. And it can eventually be protected by a password or a PIN.  
+Cold wallets like Trezor, generate the HD Keys from a sentence that can easily be written down. They call such sentence “the seed” or “mnemonic”. And it can eventually be protected by a password or a PIN.  
 ![](../assets/Trezor.png)  
 
 The language that you use to generate your easy to write sentence is called a **Wordlist**  
@@ -427,7 +427,7 @@ Currently supported **wordlist** are, English, Japanese, Spanish, Chinese (simpl
 
 ## Dark Wallet {#dark-wallet}
 
-This name is unfortunate since there is nothing dark about it, and it attract unwanted attention and worries.Dark Wallet is a practical solution that fix our two initial problems:
+This name is unfortunate since there is nothing dark about it, and it attracts unwanted attention and concerns. Dark Wallet is a practical solution that fix our two initial problems:
 
 *   Prevent outdated backups
 *   Delegating key / address generation to an untrusted peer
@@ -480,7 +480,7 @@ stealthAddress.SendTo(transaction, Money.Coins(1.0m), ephemKey);
 Console.WriteLine(transaction);
 ```  
 
-The creation of the **EphemKey** being an implementation details, you can omit it, NBitcoin will generate one automatically:  
+The creation of the **EphemKey** being an implementation detail, you can omit it, NBitcoin will generate one automatically:  
 
 ```cs
 Transaction transaction = new Transaction();
@@ -516,7 +516,7 @@ The **Scanner** knowing the **StealthAddress** and the **Scan Key** can recover 
 
 ![](../assets/ScannerRecover.png)  
 
-Then the scanner checks if one of the output of the transaction correspond to such address. If it is, then **Scanner** notify the **Receiver** about the transaction.
+Then the scanner checks if one of the output of the transaction correspond to such address. If it is, then **Scanner** notifies the **Receiver** about the transaction.
 
 The **Receiver** can then get the private key of the address with his **Spend Key**.  
 
