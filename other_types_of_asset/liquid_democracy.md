@@ -80,7 +80,7 @@ var toAlice =
 repo.Transactions.Put(toAlice);
 ```
 
-Singkat kata, powerCoin menerbitkan 2 Power Coins kepada Alice dan mengirimkan kembaliannya kepada dirinya sendiri. Demikian juga, saat Alice mengirim sejumlah 0.2 BTC kepada powerCoin dan mengirimkan jumlah kembalian untuk dirinya sendiri. 
+Singkat kata, powerCoin menerbitkan 2 Power Coins kepada Alice dan mengirimkan kembaliannya kepada dirinya sendiri. Demikian juga, saat Alice mengirim sejumlah 0.2 BTC kepada powerCoin dan mengirimkan jumlah kembalian untuk dirinya sendiri.
 
 Sedangkan **GetCoins** adalah
 
@@ -95,8 +95,8 @@ Untuk beberapa alasan, Alice, mungkin ingin menjual beberapa bagian dari voting 
 
 ![](../assets/PowerCoin2.png)
 
-You can note that I am double spending the coin of Alice from the **init** transaction.  
-\_\*\*\_Such thing would not be accepted on the Blockchain. However, we have not seen yet how to retrieve unspent coins from the Blockchain easily, so let’s just imagine for the sake of the exercise that the coin was not double spent.
+Anda mungkin bisa mencatat bahwa saya melakukan _double spending_ koin dari Alice pada **init** transaksi.  
+\_\*\*\_Hal tersebut tidak akan diterima di Blockchain. Namun, kami belum melihat bagaimana untuk mengambil koin yang belum terpakai itu dari Blockchain dengan mudah, jadi bayangkan saja demi latihan kita, pada koin yang bukan merupakan double spent.
 
 Now that Alice and Satoshi have some voting power, let’s see how Boss can run a vote.
 
