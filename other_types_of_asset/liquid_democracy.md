@@ -170,7 +170,7 @@ Bos berkata pada website perusahaannya:
 
 Kirimkan koin anda ke address 1HZwkjkeaoZfTSaJxDw6aKkxp45agDiEzN untuk voting **"yes"** dan address 1F3sAm6ZtwLAUnj7d38pGFxtP3RVEvtsbV untuk voting** "no"**.
 
-Bob memutuskan bahwa perusahaan harus mengambil pinjaman: 
+Bob memutuskan bahwa perusahaan harus mengambil pinjaman:
 
 ![](../assets/PowerCoin5.png)
 
@@ -194,13 +194,13 @@ Setiap partisipan bisa juga melihat dan menghitung hasil pemungutan suara terseb
 
 ### Alternatif: Menggunakan Kontrak Ricardian {#alternative-use-of-ricardian-contract}
 
-In the previous exercise, we have supposed that Boss announced the modalities of the vote out of the Blockchain, on the company’s website.
+Pada latihan sebelumnya, kita menyangka bahwa Bos akan mengumumkan modalitas suara secara langsung dari Blockchain, kepada website perusahaannya.
 
-This works great, but Bob need to know that the website exists.
+Ini karya yang besar, tetapi Bob perlu mengetahui bahwa situs tersebut memang ada. 
 
-Another solution is to publish the modalities of the vote directly on the Blockchain within an **Asset Definition File**, so some software can automatically get it and present it to Bob.
+Solusi lain untuk mempublikasikan modalitas suara secara langsung pada Blockchain dalam **Asset Definition File**, sehingga beberapa software dapat secara otomatis melihat dan menyampaikannya kepada Bob. 
 
-The only piece of code that would have changed is during the issuance of the Voting Coins to voters.
+Satu-satunya bagian dari kote yang akan berubah saat penerbitan Voting Coins kepada para pemilih adalah:
 
 ```cs
 issuance = GetCoins(init2, votingCoin).Select(c => new IssuanceCoin(c)).ToArray();
@@ -217,11 +217,11 @@ var toVoters =
 repo.Transactions.Put(toVoters);
 ```
 
-In such case, Bob can see that during the issuance of his voting coin, an **Asset Definition File** was published, which is nothing more than a JSON document whose schema is partially [specified in Open Asset](https://github.com/OpenAssets/open-assets-protocol/blob/master/asset-definition-protocol.mediawiki).The schema can be extended to have information about things like:
+Dalam hal ini, Bob dapat melihat bahwa selama penerbitan koin voting, **Asset Definition File** telah dipublikasikan, yang tidak lebih dari sebuah dokumen JSON dengan skema yang sebagian ditentukan dalam [Open Asset](https://github.com/OpenAssets/open-assets-protocol/blob/master/asset-definition-protocol.mediawiki). Skema ini dapat diperpanjang agar bisa memiliki beberapa hal seperti:
 
-* Expiration of the vote
-* Destination of the votes for each candidates
-* Human friendly description of it
+* Masa berakhirnya pemungutan suara
+* Tujuan masing-masing kandidat
+* Deskripsi yang lebih _Human friendly \(bisa dibaca manusia\)_
 
 However, imagine that a hacker wants to cheat the vote. He can always modify the json document \(either man in the middle attack, physical access to boss.com, or access to Bob’s machine\) so Bob is tricked and send his vote to the wrong candidate.
 
