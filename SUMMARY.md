@@ -41,7 +41,7 @@
 * [Tipe Lain Asset](other_types_of_asset/README.md)
     * [Colored Coins](other_types_of_asset/colored_coins.md)
     * [Menerbitkan Aset](other_types_of_asset/issuing_an_asset.md)
-    * [Transfer an Asset](other_types_of_asset/transfer_an_asset.md)
+    * [Transfer Aset](other_types_of_asset/transfer_an_asset.md)
     * [Unit tests](other_types_of_asset/unit_tests.md)
     * [Ricardian contracts](other_types_of_asset/ricardian_contracts.md)
     * [Liquid Democracy](other_types_of_asset/liquid_democracy.md)

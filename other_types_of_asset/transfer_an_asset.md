@@ -1,11 +1,11 @@
-## Transfer an Asset {#transfer-an-asset}
+## Transfer Aset {#transfer-an-asset}
 
 So now, let’s imagine I sent you some **BlockchainProgramming Coins**.  
 How can you send me back the coins?  
 You need to build a **ColoredCoin**.
 
 In the sample above, let’s say I want to spend the 10 assets I received on the address “nico”.  
-Here is the coin I want to spend:  
+Here is the coin I want to spend:
 
 ```json
 {
@@ -17,9 +17,9 @@ Here is the coin I want to spend:
   "assetId": "AVAVfLSb1KZf9tJzrUVpktjxKUXGxUTD4e",
   "quantity": 10
 }
-```  
+```
 
-Here is how to instantiate such Colored Coin in code:  
+Here is how to instantiate such Colored Coin in code:
 
 ```cs
 var coin = new Coin(
@@ -29,10 +29,10 @@ var coin = new Coin(
     scriptPubKey: new Script(Encoders.Hex.DecodeData("76a914356facdac5f5bcae995d13e667bb5864fd1e7d5988ac")));
 BitcoinAssetId assetId = new BitcoinAssetId("AVAVfLSb1KZf9tJzrUVpktjxKUXGxUTD4e");
 ColoredCoin colored = coin.ToColoredCoin(assetId, 10);
-```  
+```
 
 We will show you later how you can use some web services or custom code to get the coins more easily.  
-I also needed another coin (forFees), to pay the fees.  
+I also needed another coin \(forFees\), to pay the fees.  
 The asset transfer is actually very easy with the **TransactionBuilder**.
 
 ```cs
@@ -55,7 +55,7 @@ var tx = builder
     .SendFees(Money.Coins(0.0001m))
     .BuildTransaction(true);
 Console.WriteLine(tx);
-```  
+```
 
 ```json
 {
@@ -75,8 +75,9 @@ Console.WriteLine(tx);
     }
   ]
 }
-```  
+```
 
-Which basically succeed:  
+Which basically succeed:
 
-![](../assets/Coinprism2.png)  
+![](../assets/Coinprism2.png)
+
