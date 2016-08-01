@@ -1,20 +1,20 @@
 # HiddenBitcoin: Managemen key \(HD wallet\) {#hiddenbitcoin-keystorage}
 
-\([nopara73](https://github.com/nopara73)\) I am developing a privacy oriented Bitcoin wallet, called [HiddenWallet](https://github.com/nopara73/HiddenWallet). The [HiddenBitcoin](https://github.com/nopara73/HiddenBitcoin) library is the introduction of an other abstraction layer between NBitcoin and the user interface.
+\([nopara73](https://github.com/nopara73)\) "Saya mengembangkan privasi yang berorientasi untuk wallet Bitcoin, disebut dengan [HiddenWallet](https://github.com/nopara73/HiddenWallet). Library [HiddenBitcoin](https://github.com/nopara73/HiddenBitcoin) adalah pengenalan dari abstraksi lain antara NBitcoin dan user interface."
 
-A Bitcoin wallet have three key functions and this case study will be structured around them:
+Sebuah wallet Bitcoin mempunyai fungsi tiga key utama, dan pada studi kasus ini, akan membahas seputar hal tersebut:
 
-1. Securely stores keys and manages the access to them.  
-2. Monitors these keys, and other keys on The Blockchain.  
-3. Builds transactions and submits them.  
+1. Mengamankan penyimpanan key, dan mengelola akses.  
+2. Memonitor key, dan key lain pada Blockchain.  
+3. Membangun transaksi dan mempublikasikan transaksi tersebut.   
 
-In this lesson I am going to tackle the key storage function.  
-If you want to examine the code more extensively you can find the solution on [GitHub](https://github.com/nopara73/HiddenBitcoin).  
-If you just want to know how to quickly set it up and use it you can find my high level tutorial on [CodeProject](http://www.codeproject.com/Articles/1096320/HiddenBitcoin-High-level-Csharp-Bitcoin-wallet-lib).
+Dalam pembelajaran ini, saya akan berusaha mengatasi fungsi penyimpanan key.   
+Jika anda ingin memeriksa kode secara lebih luas dan detail, anda dapat mencari solusi itu di [GitHub](https://github.com/nopara73/HiddenBitcoin).  
+Jika anda hanya ingin tahu saja bagaimana cara cepat untuk mengatur itu dan menggunakannya, anda dapat menemukan tutorial _high level_ saya di [CodeProject](http://www.codeproject.com/Articles/1096320/HiddenBitcoin-High-level-Csharp-Bitcoin-wallet-lib).
 
-**How high level is it?** In my opinion a GUI developer, designer should not be able to make too much mistakes. They should not know about inputs and outputs and scriptpubkeys. They should stick at the addresses, privatekeys and wallets level. Also NBitcoin should be fully abstracted away.
+**High level yang bagaimana sebenarnya?** Menurut pendapat saya, pengembang GUI, desainer tidak harus banyak melakukan kesalahan. Mereka tidak harus tahu tentang input dan output dan juga scriptpubkeys. Mereka harus tetap berkisar pada addresses, privatekeys dan level wallet. NBitcoin akan dapat memudahkan anda. 
 
-## Key storage design decisions
+## Keputusan saat mendesain Key storage
 
 Now it is a great time to give you a template on what decisions have to be make for storing the keys and what to keep in mind while making them.
 
