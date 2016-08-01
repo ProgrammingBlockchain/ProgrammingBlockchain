@@ -98,9 +98,9 @@ Untuk beberapa alasan, Alice, mungkin ingin menjual beberapa bagian dari voting 
 Anda mungkin bisa mencatat bahwa saya melakukan _double spending_ koin dari Alice pada **init** transaksi.  
 \_\*\*\_Hal tersebut tidak akan diterima di Blockchain. Namun, kami belum melihat bagaimana untuk mengambil koin yang belum terpakai itu dari Blockchain dengan mudah, jadi bayangkan saja demi latihan kita, pada koin yang bukan merupakan double spent.
 
-Now that Alice and Satoshi have some voting power, let’s see how Boss can run a vote.
+Sekarang Alice dan Satoshi telah memiliki beberapa hak suara, mari kita lihat bagaimana Boss dapat menjalankan proses pemungutan suara tersebut.
 
-### Running a vote {#running-a-vote}
+### Menjalankan voting {#running-a-vote}
 
 By consulting the Blockchain, Boss can at any time know **ScriptPubKeys** which owns Power Coins.  
 So he will send Voting Coins to these owner, proportionally to their voting power, in our case, 1 voting coin to Alice and 1 voting coin to Satoshi.
