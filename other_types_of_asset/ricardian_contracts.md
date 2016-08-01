@@ -1,46 +1,46 @@
 ## Kontrak Ricardian {#ricardian-contracts}
 
-This part is a copy of an article I wrote on [Coinprism’s blog](http://blog.coinprism.com/2014/12/10/colored-coins-and-ricardian-contracts/). At the time of this writing, NBitcoin do not have any code related to Ricardian Contracts.
+Pada bagian ini adalah sebuah copy artikel yang saya tulis di blog [Coinprism](http://blog.coinprism.com/2014/12/10/colored-coins-and-ricardian-contracts/). Pada saat saya menuliskan artikel ini, NBitcoin masih belum memiliki kode yang berelasi dengan Kontrak Ricardian _**\(Ricardian Contracts\)**_.
 
-### What is a Ricardian Contract {#what-is-a-ricardian-contract}
+### Apa itu Kontrak Ricardian {#what-is-a-ricardian-contract}
 
-Generally, an asset is any object representing rights which can be redeemed to an issuer on specific conditions.
+Pada umumnya, aset adalah benda yang merepresentasikan hak yang dapat di redem pada beberapa kondisi tertentu. 
 
-* A company’s share gives right to dividends.
-* A bond gives right to the principal at maturity, coupons bears interest for every period.
-* A voting token gives right to vote decisions about an entity. \(Company, election.\)
-* Some mix are possible : A share can also be a voting token for the company’s president election.
+* Saham perusahaan memberikan hak untuk deviden.
+* Obligasi memberikan hak jika telah jatuh tempo, dikenakan bunga untuk setiap periode. 
+* Token voting memberikan hak akses suatu entitas tertentu. \(pada perusahaan, atau pemilihan\)
+* Memungkinkan memadukan beberapa hal: Saham juga bisa menjadi token voting pada pemilihan presiden perusahaan. 
 
-Such rights are typically enumerated inside a Contract, and signed by the issuer \(and a trusted party if needed, like a notary\).
+Hak tersebut biasanya disebutkan dalam kontrak, dan ditandatangani oleh penerbit \(maupun sebuah pihak lain yang dipercaya jika diperlukan, misalnya saja seperti notaris\). 
 
-A Ricardian contract is a Contract which is cryptographically signed by the issuer, and cannot be dissociated from the asset.
+Kontrak Ricardian adalah kontrak cryptografi yang ditandatangani oleh penerbit, dan tidak dapat dipisahkan dari aset. 
 
-So the contract cannot be denied, tampered, and is provably signed by the issuer.  
-Such contract can be kept confidential between the issuer and the redeemer, or published.
+Jadi kontrak itu tidak bisa ditolak, dirusak, dan ditandatangni oleh penerbit.   
+Kontrak tersebut dapat dirahasiakan antara penerbit dan penebusnya, atau juga diterbitkan. 
 
-Open Asset can already support all of that without changing the core protocol, and here is how.
+Open Asset dapat mendukung semuanya tanpa harus mengubah protokol inti. Berikut ini caranya. 
 
-### Ricardian Contract inside Open Asset {#ricardian-contract-inside-open-asset}
+### Kontrak Ricardian didalam Open Asset {#ricardian-contract-inside-open-asset}
 
-[Here](http://iang.org/papers/ricardian_contract.html) is the formal definition of a ricardian contract:
+[Berikut adalah definisi formal kontrak Ricardian: ](http://iang.org/papers/ricardian_contract.html)
 
-1. A contract offered by an issuer to holders,
-2. for a valuable right held by holders, and managed by the issuer,
-3. easily readable by people \(like a contract on paper\),
-4. readable by programs \(parsable like a database\),
-5. digitally signed,
-6. carries the keys and server information, and
-7. allied with a unique and secure identifier.
+1. Sebuah kontrak yang ditawarkan oleh penerbit kepada pemegangnya. 
+2. Untuk hak berharga yang dimiliki oleh pemegang, di kelola oleh penerbit. 
+3. Mudah dibaca oleh orang \(seperti halnya sebuah kontrak di atas kertas\)
+4. Dapat dibaca oleh program \(seperti sebuah database\)
+5. Ditandatangani secara digital
+6. Terdapat key dan informasi server, dan juga 
+7. menyatu dengan identifier yang unik dan aman. 
 
-An AssetId is specified by OpenAsset in such way :
+Sebuah AssetId ditentukan oleh OpenAsset seperti pada cara berikut:
 
 `AssetId = Hash160(ScriptPubKey)`
 
-Let’s make such **ScriptPubKey** a P2SH as:
+Mari membuat **ScriptPubKey** seperti sebuah P2SH:
 
 `ScriptPubKey = OP_HASH160 Hash(RedeemScript) OP_EQUAL`
 
-Where:
+Dimana:
 
 `RedeemScript = HASH160(RicardianContract) OP_DROP IssuerScript`
 
