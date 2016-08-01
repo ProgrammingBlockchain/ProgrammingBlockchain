@@ -1,14 +1,14 @@
-## Unit tests {#unit-tests}
+## Unit Test {#unit-tests}
 
 You can see that previously I hard coded the properties of **ColoredCoin**.  
-The reason is that I wanted only to show you how to construct a **Transaction** out of **ColoredCoin** coins.  
+The reason is that I wanted only to show you how to construct a **Transaction** out of **ColoredCoin** coins.
 
-In real life, you would either depend on a third party API to fetch the colored coins of a transaction or a balance. Which might be not a good idea, because it add a trust dependency to your program with the API provider.  
+In real life, you would either depend on a third party API to fetch the colored coins of a transaction or a balance. Which might be not a good idea, because it add a trust dependency to your program with the API provider.
 
-**NBitcoin** allows you either to depend on a web service, either to provide your own implementation for fetching the color of a **Transaction**. This allows you to have a flexible way to unit test your code, use another implementation or your own.  
+**NBitcoin** allows you either to depend on a web service, either to provide your own implementation for fetching the color of a **Transaction**. This allows you to have a flexible way to unit test your code, use another implementation or your own.
 
 Let’s introduce two issuers: Silver and Gold. And three participants: Bob, Alice and Satoshi.  
-Let’s create a fake transaction that give some bitcoins to Silver, Gold and Satoshi.  
+Let’s create a fake transaction that give some bitcoins to Silver, Gold and Satoshi.
 
 ```cs
 var gold = new Key();
@@ -23,80 +23,80 @@ var satoshi = new Key();
 var init = new Transaction()
 {
     Outputs =
-	{
-		new TxOut("1.0", gold),
-		new TxOut("1.0", silver),
-		new TxOut("1.0", satoshi)
-	}
+    {
+        new TxOut("1.0", gold),
+        new TxOut("1.0", silver),
+        new TxOut("1.0", satoshi)
+    }
 };
-```  
+```
 
-**Init** does not contain any Colored Coin issuance and Transfer. But imagine that you want to be sure of it, how would you proceed?  
+**Init** does not contain any Colored Coin issuance and Transfer. But imagine that you want to be sure of it, how would you proceed?
 
-In **NBitcoin**, the summary of color transfers and issuances is described by a class called **ColoredTransaction**.  
+In **NBitcoin**, the summary of color transfers and issuances is described by a class called **ColoredTransaction**.
 
 ![](../assets/ColoredTransaction.png)
 
 You can see that the **ColoredTransaction** class will tell you:
 
-*   Which **TxIn** spends which Asset
-*   Which **TxOut** emits which Asset
-*   Which **TxOut** transfers which Asset
+* Which **TxIn** spends which Asset
+* Which **TxOut** emits which Asset
+* Which **TxOut** transfers which Asset
 
-But the method that interests us right now is **FetchColor**, which will permit you to extract colored information out of the transaction you gave in input.  
+But the method that interests us right now is **FetchColor**, which will permit you to extract colored information out of the transaction you gave in input.
 
-You see that it depends on a **IColoredTransactionRepository**.  
+You see that it depends on a **IColoredTransactionRepository**.
 
-![](../assets/IColoredCoinTransactionRepository.png)  
+![](../assets/IColoredCoinTransactionRepository.png)
 
-**IColoredTransactionRepository** is only a store that will give you the **ColoredTransaction** from the txid. However you can see that it depends on **ITransactionRepository**, which maps a Transaction id to its transaction.  
+**IColoredTransactionRepository** is only a store that will give you the **ColoredTransaction** from the txid. However you can see that it depends on **ITransactionRepository**, which maps a Transaction id to its transaction.
 
 An implementation of **IColoredTransactionRepository** is **CoinprismColoredTransactionRepository** which is a public API for colored coins operations.  
-However, you can easily do your own, here is how **FetchColors** works.  
+However, you can easily do your own, here is how **FetchColors** works.
 
-The simplest case is: The **IColoredTransactionRepository** knows the color, in such case **FetchColors** only return that result.  
+The simplest case is: The **IColoredTransactionRepository** knows the color, in such case **FetchColors** only return that result.
 
-![](../assets/FetchColors.png)  
+![](../assets/FetchColors.png)
 
 The second case is that the **IColoredTransactionRepository** does not know anything about the color of the transaction.  
-So **FetchColors** will need to compute the color itself according to the open asset specification.  
+So **FetchColors** will need to compute the color itself according to the open asset specification.
 
 However, for computing the color, **FetchColors** need the color of the parent transactions.  
 So it fetch each of them on the **ITransactionRepository**, and call **FetchColors** on each of them.  
-Once **FetchColors** has resolved the color of the parent’s recursively, it computes the transaction color, and caches the result back in the **IColoredTransactionRepository**.  
+Once **FetchColors** has resolved the color of the parent’s recursively, it computes the transaction color, and caches the result back in the **IColoredTransactionRepository**.
 
-![](../assets/FetchColors2.png)  
+![](../assets/FetchColors2.png)
 
 By doing that, future requests to fetch the color of a transaction will be resolved quickly.  
-Some **IColoredTransactionRepository** are read-only (like **CoinprismColoredTransactionRepository** so the Put operation is ignored).
+Some **IColoredTransactionRepository** are read-only \(like **CoinprismColoredTransactionRepository** so the Put operation is ignored\).
 
 So, back to our example:
-The trick when writing unit tests is to use an in memory **IColoredTransactionRepository**:  
+The trick when writing unit tests is to use an in memory **IColoredTransactionRepository**:
 
 ```cs
 var repo = new NoSqlColoredTransactionRepository();
-```  
+```
 
-Now, we can put our **init** transaction inside.  
+Now, we can put our **init** transaction inside.
 
 ```cs
 repo.Transactions.Put(init);
-```  
+```
 
-Note that Put is an extension methods, so you will need to add  
+Note that Put is an extension methods, so you will need to add
 
 ```cs
 using NBitcoin.OpenAsset;
-```  
+```
 
-at the top of the file to get access to it.  
+at the top of the file to get access to it.
 
-And now, you can extract the color:  
+And now, you can extract the color:
 
 ```cs
 ColoredTransaction color = ColoredTransaction.FetchColors(init, repo);
 Console.WriteLine(color);
-```  
+```
 
 ```json
 {
@@ -105,7 +105,7 @@ Console.WriteLine(color);
   "transfers": [],
   "destructions": []
 }
-```  
+```
 
 As expected, the **init** transaction has no inputs, issuances, transfers or destructions of Colored Coins.
 
@@ -139,18 +139,18 @@ From that you can send Gold to Satoshi with the **TransactionBuilder**, as we ha
   "transfers": [],
   "destructions": []
 }
-```  
+```
 
 This means that the first **TxOut** bears 10 gold.
 
 Now imagine that **Satoshi** wants to send 4 gold to **Alice**.  
-First, he will fetch the **ColoredCoin** out of the transaction.  
+First, he will fetch the **ColoredCoin** out of the transaction.
 
 ```cs
 var goldCoin = ColoredCoin.Find(sendGoldToSatoshi, color).FirstOrDefault();
-```  
+```
 
-Then, build a transaction like that:  
+Then, build a transaction like that:
 
 ```cs
 builder = new TransactionBuilder();
@@ -161,10 +161,10 @@ var sendToBobAndAlice =
         .SendAsset(alice, new AssetMoney(goldId, 4))
         .SetChange(satoshi)
         .BuildTransaction(true);
-```  
+```
 
 Except you will get the exception **NotEnoughFundsException**.  
-The reason is that the transaction is composed of 600 satoshi in input (the **goldCoin**), and 1200 satoshi in output. (One **TxOut** for sending assets to Alice, and one for sending back the change to Satoshi.)
+The reason is that the transaction is composed of 600 satoshi in input \(the **goldCoin**\), and 1200 satoshi in output. \(One **TxOut** for sending assets to Alice, and one for sending back the change to Satoshi.\)
 
 This means that you are out of 600 satoshi.  
 You can fix the problem by adding the last **Coin** of 1 BTC in the **init** transaction that belongs to **satoshi**.
@@ -181,14 +181,14 @@ var sendToAlice =
         .BuildTransaction(true);
 repo.Transactions.Put(sendToAlice);
 color = ColoredTransaction.FetchColors(sendToAlice, repo);
-```  
+```
 
 Let’s see the transaction and its colored part:
 
 ```cs
 Console.WriteLine(sendToAlice);
 Console.WriteLine(color);
-```  
+```
 
 ```json
 {
@@ -252,10 +252,11 @@ Colored :
   ],
   "destructions": []
 }
-```  
+```
 
-We have finally made a unit test that emits and transfers some assets without any external dependencies.  
+We have finally made a unit test that emits and transfers some assets without any external dependencies.
 
 You can make your own **IColoredTransactionRepository** if you don’t want to depend on a third party service.
 
-You can find more complex scenarios in [NBitcoin tests](https://github.com/NicolasDorier/NBitcoin/blob/master/NBitcoin.Tests/transaction_tests.cs), and also one of my article “[Build them all](http://www.codeproject.com/Articles/835098/NBitcoin-Build-Them-All)” in codeproject. (Like multi sig issuance and colored coin swaps.)
+You can find more complex scenarios in [NBitcoin tests](https://github.com/NicolasDorier/NBitcoin/blob/master/NBitcoin.Tests/transaction_tests.cs), and also one of my article “[Build them all](http://www.codeproject.com/Articles/835098/NBitcoin-Build-Them-All)” in codeproject. \(Like multi sig issuance and colored coin swaps.\)
+

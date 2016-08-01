@@ -4,8 +4,8 @@ Mari kita bayangkan sejenak, jika saya bisa mengirim anda beberapa **BlockchainP
 Bagaimana cara anda dapat mengirim kembali koin tersebut?   
 Jadi disini anda perlu membangun **ColoredCoin**.
 
-In the sample above, let’s say I want to spend the 10 assets I received on the address “nico”.  
-Here is the coin I want to spend:
+Untuk contoh diatas, katakan saja misalkan saya ingin dapat mengeluarkan 10 asets yang telah saya terima dari address “nico”.  
+Berikut ini caranya:
 
 ```json
 {
@@ -19,7 +19,7 @@ Here is the coin I want to spend:
 }
 ```
 
-Here is how to instantiate such Colored Coin in code:
+Dan berikut kode untuk dapat inisiasi Colored Coin:
 
 ```cs
 var coin = new Coin(
@@ -31,9 +31,9 @@ BitcoinAssetId assetId = new BitcoinAssetId("AVAVfLSb1KZf9tJzrUVpktjxKUXGxUTD4e"
 ColoredCoin colored = coin.ToColoredCoin(assetId, 10);
 ```
 
-We will show you later how you can use some web services or custom code to get the coins more easily.  
-I also needed another coin \(forFees\), to pay the fees.  
-The asset transfer is actually very easy with the **TransactionBuilder**.
+Kita akan mencoba melihat bagaimana beberapa layanan web atau kode lain bisa mendapatkan koin itu dengan mudah.   
+Dan juga tentu saja, beberapa koin yang dibutuhkan untuk membayar fee.   
+Transfer aset sebenarnya mudah dilakukan dengan **TransactionBuilder**.
 
 ```cs
 var book = BitcoinAddress.Create("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
@@ -77,7 +77,7 @@ Console.WriteLine(tx);
 }
 ```
 
-Which basically succeed:
+Transaksi juga sukses dilakukan:
 
 ![](../assets/Coinprism2.png)
 
