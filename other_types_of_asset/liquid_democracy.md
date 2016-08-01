@@ -196,9 +196,9 @@ Setiap partisipan bisa juga melihat dan menghitung hasil pemungutan suara terseb
 
 Pada latihan sebelumnya, kita menyangka bahwa Bos akan mengumumkan modalitas suara secara langsung dari Blockchain, kepada website perusahaannya.
 
-Ini karya yang besar, tetapi Bob perlu mengetahui bahwa situs tersebut memang ada. 
+Ini karya yang besar, tetapi Bob perlu mengetahui bahwa situs tersebut memang ada.
 
-Solusi lain untuk mempublikasikan modalitas suara secara langsung pada Blockchain dalam **Asset Definition File**, sehingga beberapa software dapat secara otomatis melihat dan menyampaikannya kepada Bob. 
+Solusi lain untuk mempublikasikan modalitas suara secara langsung pada Blockchain dalam **Asset Definition File**, sehingga beberapa software dapat secara otomatis melihat dan menyampaikannya kepada Bob.
 
 Satu-satunya bagian dari kote yang akan berubah saat penerbitan Voting Coins kepada para pemilih adalah:
 
@@ -223,7 +223,7 @@ Dalam hal ini, Bob dapat melihat bahwa selama penerbitan koin voting, **Asset De
 * Tujuan masing-masing kandidat
 * Deskripsi yang lebih _Human friendly \(bisa dibaca manusia\)_
 
-However, imagine that a hacker wants to cheat the vote. He can always modify the json document \(either man in the middle attack, physical access to boss.com, or access to Bob’s machine\) so Bob is tricked and send his vote to the wrong candidate.
+Masih belum berakhir, coba bayangkan jika ternyata ada seorang hacker yang ingin mencurangi pemungutan suara tersebut. Dia mungkin dapat memodifikasi file dokumen json tersebut \(misal dengan middle attack, akses fisik langsung di website perusahaan bos, misalnya di boss.com, atau mengakses lewat perangkat yang dimiliki Bob\) jadi Bob akan bisa ditipu dan ia telah memberikan voting pada kandidat yang salah. 
 
-Transforming the **Asset Definition File** into a **Ricardian Contract** by signing it would make any modification immediately detectable by Bob’s software. \(See [Proof Of Authenticity](https://github.com/OpenAssets/open-assets-protocol/blob/master/asset-definition-protocol.mediawiki) in the Asset Definition Protocol\)
+Mengubah **Asset Definition File** menjadi **Ricardian Contract** dengan menandatanganinya, akan membuat modifikasi itu bisa segera terdeteksi oleh perangkat luanak Bob. \(Lihat [Proof Of Authenticity](https://github.com/OpenAssets/open-assets-protocol/blob/master/asset-definition-protocol.mediawiki) dalam Asset Definition Protocol\)
 
