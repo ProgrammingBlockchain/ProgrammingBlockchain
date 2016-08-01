@@ -6,9 +6,9 @@ Dalam Open Asset, ID aset berasal dari emiten **ScriptPubKey**.
 Jika anda ingin menerbitkan Colored Coin, anda perlu membuktikan kepemilikan **ScriptPubKey **tersebut. Dan satu-satunya cara untuk dapat melakukkan itu di Blockchain adalah dengan melakukan pengeluaran sejumlah koin pada **ScriptPubKey**.
 
 Koin yang hendak dikeluarkan atau dibelanjakan untuk menerbitkan colored coins tersebut disebut dengan “**Issuance Coin**”. Di dalam **NBitcoin**.  
-I want to emit an Asset from the book bitcoin address: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://www.smartbit.com.au/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB).
+Misalkan saya ingin menerbitkan sebuah aset dari address bitcoin buku ini: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://www.smartbit.com.au/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB).
 
-Take a look at my balance, I decided to use the following coin for issuing assets.
+Melihat posisi balance address tersebut, lalu saya memutuskan menggunakan koin tersebut untuk menerbitkan aset. 
 
 ```json
 {
@@ -20,7 +20,7 @@ Take a look at my balance, I decided to use the following coin for issuing asset
 } 
 ```
 
-Here is how to create my issuance coin:
+Berikut bagaimana saya menerbitkan koin tersebut:
 
 ```cs
 var coin = new Coin(
@@ -32,7 +32,7 @@ var coin = new Coin(
 var issuance = new IssuanceCoin(coin);
 ```
 
-Now I need to build transaction and sign the transaction with the help of the **TransactionBuilder**.
+Sekarang saya perlu membuat transaksi dan menandatangani dengan bantuan **TransactionBuilder**.
 
 ```cs
 var nico = BitcoinAddress.Create("15sYbVpRh6dyWycZMwPdxJWD4xbfxReeHe");
@@ -70,18 +70,18 @@ Console.WriteLine(tx);
 }
 ```
 
-You can see it includes an OP\_RETURN output. In fact, this is the location where information about colored coins are stuffed.
+Anda dapat melihat, bahwa disana termasuk juga sebuah output OP\_RETURN. Kenyataannya, itu adalah lokasi dimana informasi tentang colored coins berada.
 
-Here is the format of the data in the OP\_RETURN.
+Berikut adalah format data di dalam OP\_RETURN.
 
 ![](../assets/ColorMaker.png)
 
-In our case, Quantities have only 10, which is the number of Asset I issued to `nico`. Metadata is arbitrary data. We will see that we can put an url that points to an “Asset Definition”.  
-An **Asset Definition** is a document that describes what the Asset is. It is optional, we are not using it in our case. \(We’ll come back later on it in the Ricardian Contract part.\)
+Dalam hal ini, kuantitasnya hanya 10, yang merupakan jumlah aset saya untuk dikeluarkan kepada`nico`. Metadata ini adalah data arbitrary. Kita akan melihat bahwa kita dapat menempatkan url pada sebuah “Asset Definition \(definisi aset\)”.  
+**Asset Definition** adalah sebuah dokumen yang menjelaskan tentang aset tersebut. Karena hal itu sifatnya opsional, dan kita tidak menggunakannya. 
 
-For more information check out the [Open Asset Specification](https://github.com/OpenAssets/open-assets-protocol/blob/master/specification.mediawiki).
+Untuk bisa melihat detail informasi tersebut, anda bisa melihatnya di [Open Asset Specification](https://github.com/OpenAssets/open-assets-protocol/blob/master/specification.mediawiki).
 
-After transaction verifications it is ready to be sent to the network.
+Setelah transaksi diverifikasi, sekarang telah siap dikirimkan ke dalam jaringan. 
 
 ```cs
 Console.WriteLine(builder.Verify(tx)); 
@@ -118,16 +118,16 @@ using (var node = Node.ConnectToLocal(Network.Main)) //Connect to the node
 }
 ```
 
-My Bitcoin Wallet have both, the book address and the “Nico” address.
+Pada wallet bitcoin mempunyai keduanya address buku ini, dan address “Nico”.
 
 ![](../assets/NicoWallet.png)
 
-As you can see, Bitcoin Core only shows the 0.0001 BTC of fees I paid, and ignore the 600 Satoshi coin because of spam prevention feature.
+Anda dapat melihat disana, pada Bitcoin Core hanya menunjukkan fee 0.0001 BTC yang saya bayarkan, dan mengabaikan 600 Satoshi karena untuk menghindari spam.
 
-This classical bitcoin wallet knows nothing about Colored Coins.  
-Worse: If a classical bitcoin wallet spend a colored coin, it will destroy the underlying asset and transfer only the bitcoin value of the **TxOut**. \(600 satoshi\)
+Wallet bitcoin kllasik ini tidak mengetahui apa-apa tentang Colored Coins.  
+Lebih buruk lagi, jika pada wallet bitcoin klasik itu dapat menghancurkan aset dan transfer nilai bitcoin **TxOut**. \(600 satoshi\)
 
-For preventing a user from sending Colored Coin to a wallet that do not support it, Open Asset have its own address format, that only colored coin wallets understand.
+Untuk mencegah seorang pengguna mengirimkan Colored Coin kepada wallet yang tidak support, Open Asset mempunyai format address sendiri, sehingga wallet colored coin saja yang akan dapat mengerti dan bisa membaca.
 
 ```cs
 nico = BitcoinAddress.Create("15sYbVpRh6dyWycZMwPdxJWD4xbfxReeHe");
@@ -138,7 +138,7 @@ Console.WriteLine(nico.ToColoredAddress());
 akFqRqfdmAaXfPDmvQZVpcAQnQZmqrx4gcZ
 ```
 
-Now, you can take a look on an Open Asset compatible wallet like Coinprism, and see my asset correctly detected:
+Anda dapat melihat wallet Open Asset compatible seperti Coinprism, disana aset saya dapat dibaca secara tepat:
 
 ![](../assets/Coinprism.png)
 
