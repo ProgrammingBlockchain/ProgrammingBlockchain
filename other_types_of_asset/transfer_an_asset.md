@@ -1,8 +1,8 @@
 ## Transfer Aset {#transfer-an-asset}
 
-So now, let’s imagine I sent you some **BlockchainProgramming Coins**.  
-How can you send me back the coins?  
-You need to build a **ColoredCoin**.
+Mari kita bayangkan sejenak, jika saya bisa mengirim anda beberapa **BlockchainProgramming Coins**.  
+Bagaimana cara anda dapat mengirim kembali koin tersebut?   
+Jadi disini anda perlu membangun **ColoredCoin**.
 
 In the sample above, let’s say I want to spend the 10 assets I received on the address “nico”.  
 Here is the coin I want to spend:
