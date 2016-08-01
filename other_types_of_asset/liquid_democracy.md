@@ -102,12 +102,12 @@ Sekarang Alice dan Satoshi telah memiliki beberapa hak suara, mari kita lihat ba
 
 ### Menjalankan voting {#running-a-vote}
 
-By consulting the Blockchain, Boss can at any time know **ScriptPubKeys** which owns Power Coins.  
-So he will send Voting Coins to these owner, proportionally to their voting power, in our case, 1 voting coin to Alice and 1 voting coin to Satoshi.
+Dengan mengkonsultasikannya langsung kepada Blockchain, Bos dapat melihat dan tahu **ScriptPubKeys** yang memiliki Power Coins.  
+Jadi dia akan mengirim _Voting Coins_ kepada pemilik, secara proporsional atas hak suara mereka. Dalam hal ini, 1 suara untuk Alice, dan 1 suara untuk Satoshi. 
 
 ![](../assets/PowerCoin3.png)
 
-First, I need to create some funds for **votingCoin**.
+Pertama, saya harus membuat beberapa dana untuk **votingCoin**.
 
 ```cs
 var votingCoin = new Key();
@@ -121,7 +121,7 @@ var init2 = new Transaction()
 repo.Transactions.Put(init2);
 ```
 
-Then, issue the voting coins.
+Lalu, menerbitkan _voting coins_.
 
 ```cs
 issuance = GetCoins(init2, votingCoin).Select(c => new IssuanceCoin(c)).ToArray();
@@ -137,7 +137,7 @@ var toVoters =
 repo.Transactions.Put(toVoters);
 ```
 
-### Vote delegation {#vote-delegation}
+### Delegasi voting {#vote-delegation}
 
 The problem is that the vote concern some financial aspect of the business, and Alice is mostly concerned by the marketing aspect.
 
