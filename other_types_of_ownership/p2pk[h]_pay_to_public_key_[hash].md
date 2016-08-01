@@ -18,7 +18,7 @@ var scriptPubKey = bitcoinAddress.ScriptPubKey;
 Console.WriteLine(scriptPubKey); // OP_DUP OP_HASH160 41e0d7ab8af1ba5452b824116a31357dc931cf28 OP_EQUALVERIFY OP_CHECKSIG
 ```
 
-dan vice versa:
+dan sebaliknya:
 
 ```cs
 var sameBitcoinAddress = scriptPubKey.GetDestinationAddress(Network.Main);
@@ -88,7 +88,7 @@ Pay to public key hash : OP_DUP OP_HASH160 0ae54d4cec828b722d8727cb70f4a6b0a8820
 
 Satoshi lalu memutuskan untuk menggunakan P2PKH menggantikan P2PK karena dua alasan:
 
-* Elliptic Curve Cryptography, kriptografi yang digunakan untuk **public key** dan **private key**\) anda, rentan untuk dimodifikasi. Shor's algorithm for solving the discrete logarithm problem on elliptic curves. Artinya, dengan komputer quantum, secara teori, memungkinkan pada suatu saat dimasa depan untuk **retrieve sebuah private key dari public key**. Hanya dengan mempublish public key, namun hanya ketika ada transaksi pengeluaran saja yang telah dilakukan. such attack is rendered ineffective. \(Assuming addresses are not reused.\) 
+* Elliptic Curve Cryptography, kriptografi yang digunakan untuk **public key** dan **private key**\) anda, rentan untuk dimodifikasi. Shor's algorithm for solving the discrete logarithm problem on elliptic curves. Artinya, dengan komputer quantum, secara teori, memungkinkan pada suatu saat dimasa depan untuk mendapat** sebuah private key dari public key**. Bisa dilakukan hanya dengan mempublish public key, namun itu terjadi ketika ada transaksi pengeluaran saja yang telah dilakukan. Serangan seperti itu menjadi tidak efektif sebenarnya \(dengan asumsi jika address tidak lagi digunakan\). 
 * Ukuran hash cukup kecil \(20 byte\), cukup kecil untuk di cetak, dan mudah untuk di embed pada sebuah ruang penyimpanan kecil, seperti pada QR code.
 
 Untuk saat ini, tidak ada alasan untuk menggunakan P2PK secara langsung, namun tetap masih digunakan untuk dikombinasikan dengan P2SH. Tentang hal ini, pernah juga  di diskusikan di forum Reddit:
@@ -97,6 +97,6 @@ Untuk saat ini, tidak ada alasan untuk menggunakan P2PK secara langsung, namun t
 
 ### Latihan
 
-\([nopara73](https://github.com/nopara73)\) While reading this chapter I found the the abbreviations \(P2PK, P2PKH, P2W, etc..\) very confusing.  
-My trick was to force myself to pronounce the terms fully every time I encountered them during the following lessons. Suddenly everything made much more sense. I recommend you to do the same.
+\([nopara73](https://github.com/nopara73)\) Saat membaca pada pembahasan di bagian ini ada terdapat begitu banyak singkatan, mulai dari P2PK, P2PKH, P2W, dan lain sebagainya..\) cukup membingungkan.  
+Trik yang saya lakukan adalah dengan mengucapkan istilah singkatan-singkatan tersebut sepenuhnya _\(membaca penuh singkatan tersebut, misal P2PK, dibaca Pay to Public Key\)_ di setiap pembahasan berikutnya. Tiba-tiba semuanya menjadi lebih masuk akal dan bisa dipahami. Saya menyarankan anda untuk melakukan hal yang sama. 
 
