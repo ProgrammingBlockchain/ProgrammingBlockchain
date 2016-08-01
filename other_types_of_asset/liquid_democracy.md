@@ -4,14 +4,14 @@
 
 Pada pembahasan ini adalah murni latihan secara konseptual, salah satu pengaplikasian dari colored coins.
 
-Mari kita bayangkan pada sebuah perusahaan yang mengambil beberapa keputusan oleh dewan investor setelah melakukan pemungutan suara. 
+Mari kita bayangkan pada sebuah perusahaan yang mengambil beberapa keputusan oleh dewan investor setelah melakukan pemungutan suara.
 
 * Beberapa investor mungkin tidak cukup mengetahui tentang sebuah topik, sehingga mereka ingin mendelegasikan keputusan tentang beberapa hal kepada orang lain. 
 * Berpotensi pada sejumlah besar investor. 
 * Sebagai seorang CEO, anda ingin mempunyai kemampuan untuk menjual hak suara untuk pembiayaan perusahaan. 
 * Sebagai seorang CEO, anda ingin memberikan suara ketika anda harus memutuskan sesuatu. 
 
-Bagaimana Colored Coins dapat membantu memberikan suara secara transparan? 
+Bagaimana Colored Coins dapat membantu memberikan suara secara transparan?
 
 Sebelum memulai, mari kita berbicara tentang beberapa _downside \(kekurangan\)_ dari sebuah voting dalam Blockchain:
 
@@ -19,22 +19,22 @@ Sebelum memulai, mari kita berbicara tentang beberapa _downside \(kekurangan\)_ 
 * Penambang bisa menyensor \(bahkan jika itu akan bisa dibuktikan, tidak dalam kepentingan mereka\)
 * Meski tidak ada yang mengetahui identitas asli pemberi voting, analisis perilaku pemilih pada beberapa orang mungkin bisa mengungkapkan identitasnya. 
 
-Apakah poin-poin tersebut dianggap cukup relevan atau tidak, itu terserah penyelenggara pemungutan suara untuk memutuskannya. 
+Apakah poin-poin tersebut dianggap cukup relevan atau tidak, itu terserah penyelenggara pemungutan suara untuk memutuskannya.
 
 Sekarang mari kita melihat gambaran bagaimana kita dapat melakukannya:
 
 ### Menerbitkan voting power {#issuing-voting-power}
 
-Everything start with the founder of the company \(let’s call him Boss\) wanting to sell “decision power” in his company to some investors. The decision power can take the shape of a colored coin that we will call for the sake of this exercise a “Power Coin”.
+Tentu saja, semua akan bermula dari keputusan pendiri perusahaan \(atau kita bisa menyebutnya Bos\) yang ingin menjual “decision power” dalam perusahaannya kepada beberapa investor. Kekuatan keputusan ini \(decision power\) bisa mengambil bentuk dari colored coin yang dapat kita gunakan sebagai latihan untuk membuat “Power Coin” \(sebut saja istilah latihan kali ini dengan nama Power Coin\).
 
-Let’s represent it in purple:
+Mari kita memulai:
 
 ![](../assets/PowerCoin.png)
 
-Let’s say that three persons are interested, Satoshi, Alice and Bob. \(Yes, them again\)  
-So Boss decides to sell each Power Coin at 0.1 BTC each.
+Katakan saja bahwa ada tiga orang yang tertarik, Satoshi, Alice and Bob. \(Ya, nama ketiganya sering dijadikan contoh untuk banyak hal\)  
+Jadi kemudian Bos memutuskan untuk menjual setiap Power Coin dengan nilai seharga 0.1 BTC pada masing-masingnya.
 
-Let’s start funding some money to the `powerCoin` address, `satoshi`, `alice` and `bob`.
+Mari kita mulai mendanai sejumlah uang untuk address`powerCoin`, `satoshi`, `alice` dan `bob`.
 
 ```cs
 var powerCoin = new Key();
@@ -56,7 +56,7 @@ var repo = new NoSqlColoredTransactionRepository();
 repo.Transactions.Put(init);
 ```
 
-Imagine that Alice buy 2 Power coins, here is how to create such transaction.
+Kita bayangkan jika semisal Alice membeli 2 Power coin, jadi begini cara membuat transaksinya.
 
 ![](../assets/Power2Alice.png)
 
@@ -80,9 +80,9 @@ var toAlice =
 repo.Transactions.Put(toAlice);
 ```
 
-In summary, powerCoin issues 2 Power Coins to Alice and send the change to himself. Likewise, Alice send 0.2 BTC to powerCoin and send the change to herself.
+Singkat kata, powerCoin menerbitkan 2 Power Coins kepada Alice dan mengirimkan kembaliannya kepada dirinya sendiri. Demikian juga, saat Alice mengirim sejumlah 0.2 BTC kepada powerCoin dan mengirimkan jumlah kembalian untuk dirinya sendiri. 
 
-Where **GetCoins** is
+Sedangkan **GetCoins** adalah
 
 ```cs
 private IEnumerable<Coin> GetCoins(Transaction tx, Key owner)
@@ -91,7 +91,7 @@ private IEnumerable<Coin> GetCoins(Transaction tx, Key owner)
 }
 ```
 
-For some reason, Alice, might want to sell some of her voting power to Satoshi.
+Untuk beberapa alasan, Alice, mungkin ingin menjual beberapa bagian dari voting power miliknya kepada Satoshi.
 
 ![](../assets/PowerCoin2.png)
 
