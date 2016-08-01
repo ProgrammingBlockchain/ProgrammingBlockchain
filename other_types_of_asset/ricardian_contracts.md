@@ -1,24 +1,24 @@
 ## Kontrak Ricardian {#ricardian-contracts}
 
-Pada bagian ini adalah sebuah copy artikel yang saya tulis di blog [Coinprism](http://blog.coinprism.com/2014/12/10/colored-coins-and-ricardian-contracts/). Pada saat saya menuliskan artikel ini, NBitcoin masih belum memiliki kode yang berelasi dengan Kontrak Ricardian _**\(Ricardian Contracts\)**_.
+Pada bagian ini adalah sebuah copy artikel yang saya tulis di blog [Coinprism](http://blog.coinprism.com/2014/12/10/colored-coins-and-ricardian-contracts/). Pada saat saya menuliskan artikel ini, NBitcoin masih belum memiliki kode yang berelasi dengan Kontrak Ricardian **_\(Ricardian Contracts\)_**.
 
 ### Apa itu Kontrak Ricardian {#what-is-a-ricardian-contract}
 
-Pada umumnya, aset adalah benda yang merepresentasikan hak yang dapat di redem pada beberapa kondisi tertentu. 
+Pada umumnya, aset adalah benda yang merepresentasikan hak yang dapat di redem pada beberapa kondisi tertentu.
 
 * Saham perusahaan memberikan hak untuk deviden.
 * Obligasi memberikan hak jika telah jatuh tempo, dikenakan bunga untuk setiap periode. 
 * Token voting memberikan hak akses suatu entitas tertentu. \(pada perusahaan, atau pemilihan\)
 * Memungkinkan memadukan beberapa hal: Saham juga bisa menjadi token voting pada pemilihan presiden perusahaan. 
 
-Hak tersebut biasanya disebutkan dalam kontrak, dan ditandatangani oleh penerbit \(maupun sebuah pihak lain yang dipercaya jika diperlukan, misalnya saja seperti notaris\). 
+Hak tersebut biasanya disebutkan dalam kontrak, dan ditandatangani oleh penerbit \(maupun sebuah pihak lain yang dipercaya jika diperlukan, misalnya saja seperti notaris\).
 
-Kontrak Ricardian adalah kontrak cryptografi yang ditandatangani oleh penerbit, dan tidak dapat dipisahkan dari aset. 
+Kontrak Ricardian adalah kontrak cryptografi yang ditandatangani oleh penerbit, dan tidak dapat dipisahkan dari aset.
 
 Jadi kontrak itu tidak bisa ditolak, dirusak, dan ditandatangni oleh penerbit.   
-Kontrak tersebut dapat dirahasiakan antara penerbit dan penebusnya, atau juga diterbitkan. 
+Kontrak tersebut dapat dirahasiakan antara penerbit dan penebusnya, atau juga diterbitkan.
 
-Open Asset dapat mendukung semuanya tanpa harus mengubah protokol inti. Berikut ini caranya. 
+Open Asset dapat mendukung semuanya tanpa harus mengubah protokol inti. Berikut ini caranya.
 
 ### Kontrak Ricardian didalam Open Asset {#ricardian-contract-inside-open-asset}
 
@@ -44,19 +44,19 @@ Dimana:
 
 `RedeemScript = HASH160(RicardianContract) OP_DROP IssuerScript`
 
-**IssuerScript** refer to a classical P2PKH for a simple issuer, multi sig if issuance need several consents. \(Issuer + notary for example.\)
+**IssuerScript** mengacu pada P2PKH klasik untuk penerbit sederhana, multi sig issuance perlu beberapa persetujuan \(Issuer + notary seperti pada contoh\).
 
-It should be noted that from Bitcoin 0.10, IssuerScript is arbitrary and can be anything.
+Perlu dicatat bahwa dari Bitcoin versi 0.10, IssuerScript adalah arbitrary dan bisa apa saja. 
 
-The **RicardianContract** can be arbitrary, and kept private. Whoever holds the contract can prove that it applies to this Asset thanks to the hash in the ScriptPubKey.
+**RicardianContract** bisa arbitrary, dan tetap bisa private. Siapapun memegang kontrak dapat membuktikan bahwa itu bisa berlaku untuk aset berkat hash ScriptPubKey.
 
-But let’s make such RicardianContract discoverable and verifiable by wallet clients with the Asset Definition Protocol.
+Mari kita membuat RicardianContract dan diverivikasi oleh wallet klien dengan Asset Definition Protocol.
 
-Let’s assume we are issuing a Voting token for candidate A, B or C.
+Kita asumsikan bahwa kita menerbitkan token voting untuk para calon A, B, atau C. 
 
-Let’s add to the Open Asset Marker, the following asset definition url: `u=http://issuer.com/contract`
+Kita akan menambahkan pada Open Asset Marker, dengan definisi aset url: `u=http://issuer.com/contract`
 
-In the [http:\/\/issuer.com\/contract](http://issuer.com/contract) page, let’s create the following [Asset Definition File](https://github.com/OpenAssets/open-assets-protocol/blob/8b945ba68a781358947325ac008cdd740c89adb3/asset-definition-protocol.mediawiki):
+Di halaman [http:\/\/issuer.com\/contract](http://issuer.com/contract), mari kita membuat [Asset Definition File](https://github.com/OpenAssets/open-assets-protocol/blob/8b945ba68a781358947325ac008cdd740c89adb3/asset-definition-protocol.mediawiki):
 
 ```json
 {
@@ -70,11 +70,11 @@ In the [http:\/\/issuer.com\/contract](http://issuer.com/contract) page, let’s
 }
 ```
 
-And now we can define the RicardianContract:
+Dan sekarang kita dapat mendefinisikan Kontrak Ricardian:
 
 `RicardianContract = AssetDefinitionFile`
 
-This terminate our RicardianContract implemented in OA.
+Hal ini mengakhiri implementasi RicardianContract dalam OA.
 
 ### Check list {#check-list}
 
