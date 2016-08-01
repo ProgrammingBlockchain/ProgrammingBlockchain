@@ -1,32 +1,32 @@
 ## Proof of Burn dan Reputasi {#proof-of-burn-and-reputation}
 
-The question is simple: in a P2P market were law enforcement is too expensive, how participants might minimize the probability to get scammed?
+Ada pertanyaan yang cukup sederhana: pada market P2P dimana penegakan hukum menjadi cukup mahal, bagaimana partisipan dapat meminimalkan resiko terjadi scam?
 
-OpenBaazar seems [to be the first](https://gist.github.com/dionyziz/e3b296861175e0ebea4b) trying to use proof of burn as a reputation determinant.
+OpenBaazar nampaknya [menjadi yang pertama](https://gist.github.com/dionyziz/e3b296861175e0ebea4b) yang mencoba menerapkan proof of burn sebagai penentu reputasi. 
 
-There is several responses to that \(escrow or notary\/arbiter\), but one that we will explore here is called Proof Of Burn.
+Ada beberapa tanggapan untuk hal itu \(escrow atau notaris \/ arbiter\), namun satu yang akan kita eksplorasi disini adalah yang disebut dengan _**Proof Of Burn**_.
 
-Imagine yourself in the middle age, and you live in a small village with several local merchants.  
-One day, a traveling merchant comes to your village and sells you some goods at an unbelievable low price compared to local one.
+Coba bayangkan saja jika anda adalah seseorang setengah baya yang tinggal di sebuah desa kecil dengan beberapa pedagang lokal.   
+Suatu hari, seorang pedagang yang sering berjualan dari desa kedesa datang menjual barang dengan harga yang luar biasa lebih rendah dibandingkan dengan pedangang lokal. 
 
-However, traveling merchant are well known for scamming people with low quality product, because losing reputation is a small price to pay for them compared to local merchants.  
-Local Merchant invested into a nice store, advertising and their reputation. Unhappy customers can easily destroy them. But the traveling merchant, having no local store and only transient reputation do not have those incentives to not scam people.
+Namun, sepanjang perjalanan pedangang tersebut, telah sering dikenal karena telah sering menipu orang dengan kualitas produk yang rendah, sehingga karena telah kehilangan reputasi itu, harganya menjadi lebih kecil dan rendah jika dibandingkan dengan pedagang lokal.   
+Sementara pedagang lokal telah menginvestasikan pada sebuah toko yang bagus, untuk membangun iklan dan meningkatkan reputasi mereka. Pelanggan yang tidak senang, mungkin dapat dengan mudah menghancurkan mereka. Namun pedagang yang sering berpergian dari desa ke desa, tidak memiliki sebuah toko lokal, hanya sebuah reputasi sementara saja, dan tidak mempunyai jaminan untuk tidak membuat scam orang lain. 
 
-On the internet, where the creation of an identity is so cheap, all merchants are potentially as the travelling one from the middle age.  
-The solution of market providers was to gather the real identity of every participant in the market, so law enforcement become possible.
+Pada internet, penciptaan identitas dianggap mudah dan murah, bisa dilakukan semua orang. Semua pedagangnya berpotensi menjadi pedangang yang sering bepergian tersebut. 
+Soluusi pada provider market adalah dengan mengumpulkan identitas sebenarnya dari para peserta, sehingga dengan begitu, penegakan hukum menjadi memungkinkan untuk dilakukan. 
 
-If you get scammed on Amazon of Ebay, your bank will most likely refund you, because they have a way to find the thief by contacting Amazon and Ebay.
+Jika anda pernah tertipu di Amazon atau Ebay, bank anda kemungkinan besar akan mengembalikan dana anda, karena mereka mempunyai cara untuk dapat menemukan pencuri itu dengan menghubungi pihak Amazon dan Ebay tersebut. 
 
-In a purely P2P market using Bitcoin, we do not have that. If you get scam, you lose money.  
-So how a buyer can trust the traveling merchant?  
-The response is: by checking how much he invested into his reputation.
+Pada market P2P murni yang menggunakan Bitcoin, kita tidak mempunyai itu. Jadi jika anda ternyata di tipu, maka anda sudah dipastikan akan kehilangan uang anda.   
+Jadi disini, bagaimana pembeli dapat mempercayai pedagang yang sering berpindah tempat tersebut?   
+Tanggapan yang memungkinkan atas pertanyaan itu adalah dengan memeriksa seberapa banyak yang telah ia investasikan untuk membangun reputasinya. 
 
-So as a good intentioned seller, you want to inspire confidence to your customer. For that you will destroy some of your wealth, and every customer will see. This is the definition of “investing into your reputation”.
+Jadi sebagai seorang pedagang yang berniat baik, tentu berusaha untuk membangun kepercayaan kepada pelanggan. Dan tentu saja hal tersebut membutuhkan biaya yang besar juga, sehingga para pelanggan pun akan melihat hal itu. Jadi inilah definisi dari “investing into your reputation \(berinvestasi untuk reputasi anda\)”.
 
-Imagine you burned 50 BTC for your reputation. And a customer want to buy 2 BTC of goods from you. He has good reason to believe that you will not scam him, because you invested more into your reputation that what you can get out of him by scamming.  
-It becomes not economically profitable for you to scam him.
+Katakanlah jika anda telah membakar \(burning\) sejumlah 50 BTC untuk membangun reputasi anda. Dan kemudian ada seorang pelanggan yang ingin membeli barang senilai 2 BTC dari anda. Pelanggan tersebut tentu mempunyai alasan yang percaya bahwa anda tidak akan menipu pelanggan tersebut, karena anda telah menginvestasikan lebih banyak untuk pembangunan reputasi anda. Dan Jumlah investasi anda lebih besar ketimbang dana dari pelanggan itu.   
+Dari sisi ekonomi, bukanlah hal yang menguntungkan bagi anda untuk menipu pelanggan tersebut. 
 
-The technical details will surely vary and change over time, but here is an example of Proof of Burn.
+Detail teknisnya pasti akan bervariasi dan mungkin berubah dari waktu ke waktu, tapi dberikut adalah contoh Proof of Burn.
 
 ```cs
 var alice = new Key();
@@ -80,6 +80,6 @@ Console.WriteLine(burn);
 }
 ```
 
-Once in the Blockchain, this transaction is undeniable proof that Alice invested money for her bakery.  
-The Coin with `ScriptPubKey OP_RETURN 4275726e7420666f722022416c6963652042616b65727922` do not have any way to be spent, so those coins are lost forever.
+Setelah transaksi itu disimpan di Blockchain, maka transaksi itu menjadi bukti yang tidak dapat terbantahkan, bahwa Alice telah menginvestasikan sejumlah uang untuk toko rotinya.   
+Koin dengan `ScriptPubKey OP_RETURN 4275726e7420666f722022416c6963652042616b65727922` tidak mempunyai cara apapun yang bisa digunakan untuk menggunakan koin itu, jadi koin bisa dianggap telah hilang selamanya. 
 

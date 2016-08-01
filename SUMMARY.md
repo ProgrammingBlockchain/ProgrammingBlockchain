@@ -45,8 +45,7 @@
     * [Unit test](other_types_of_asset/unit_tests.md)
     * [Kontrak Ricardian](other_types_of_asset/ricardian_contracts.md)
     * [Liquid Democracy](other_types_of_asset/liquid_democracy.md)
-    * [Proof of Burn and Reputation](other_types_of_asset/proof_of_burn_and_reputation.md)
-    * [Protecting your private keys](security/protecting_your_private_keys.md)
-* [Case studies](implementations/README.md)
+    * [Proof of Burn dan Reputasi](other_types_of_asset/proof_of_burn_and_reputation.md)
+* [Studi Kasus](implementations/README.md)
     * [HiddenBitcoin: Managemen key](implementations/hiddenbitcoinkey_storage_hd_wallet_md.md)
 
