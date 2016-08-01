@@ -4,26 +4,26 @@
 
 Pada pembahasan ini adalah murni latihan secara konseptual, salah satu pengaplikasian dari colored coins.
 
-Let’s imagine a company where some decisions are taken by a board of investors after a vote.
+Mari kita bayangkan pada sebuah perusahaan yang mengambil beberapa keputusan oleh dewan investor setelah melakukan pemungutan suara. 
 
-* Some investors do not know enough about a topic, so they would like to delegate decisions about some subjects to someone else.
-* There is potentially a huge number of investors.
-* As the CEO, you want the ability to sell voting power for financing the company.
-* As the CEO, you want the ability to cast a vote when you decide.
+* Beberapa investor mungkin tidak cukup mengetahui tentang sebuah topik, sehingga mereka ingin mendelegasikan keputusan tentang beberapa hal kepada orang lain. 
+* Berpotensi pada sejumlah besar investor. 
+* Sebagai seorang CEO, anda ingin mempunyai kemampuan untuk menjual hak suara untuk pembiayaan perusahaan. 
+* Sebagai seorang CEO, anda ingin memberikan suara ketika anda harus memutuskan sesuatu. 
 
-How Colored Coins can help to organize such a vote transparently?
+Bagaimana Colored Coins dapat membantu memberikan suara secara transparan? 
 
-But before beginning, let’s talk about some downside of voting on the Blockchain:
+Sebelum memulai, mari kita berbicara tentang beberapa _downside \(kekurangan\)_ dari sebuah voting dalam Blockchain:
 
-* Nobody knows the real identity of a voter.
-* Miners could censor \(even if it would be provable, and not in their interest.\)
-* Even if nobody knows the real identity of the voter, behavioral analysis of a voter across several vote might reveal his identity.
+* Tidak ada yang mengetahui identitas asli pemberi suara. 
+* Penambang bisa menyensor \(bahkan jika itu akan bisa dibuktikan, tidak dalam kepentingan mereka\)
+* Meski tidak ada yang mengetahui identitas asli pemberi voting, analisis perilaku pemilih pada beberapa orang mungkin bisa mengungkapkan identitasnya. 
 
-Whether these points are relevant or not is up to the vote organizer to decide.
+Apakah poin-poin tersebut dianggap cukup relevan atau tidak, itu terserah penyelenggara pemungutan suara untuk memutuskannya. 
 
-Let’s take an overview of how we would implement that.
+Sekarang mari kita melihat gambaran bagaimana kita dapat melakukannya:
 
-### Issuing voting power {#issuing-voting-power}
+### Menerbitkan voting power {#issuing-voting-power}
 
 Everything start with the founder of the company \(let’s call him Boss\) wanting to sell “decision power” in his company to some investors. The decision power can take the shape of a colored coin that we will call for the sake of this exercise a “Power Coin”.
 
@@ -96,7 +96,7 @@ For some reason, Alice, might want to sell some of her voting power to Satoshi.
 ![](../assets/PowerCoin2.png)
 
 You can note that I am double spending the coin of Alice from the **init** transaction.  
-_\*\*_Such thing would not be accepted on the Blockchain. However, we have not seen yet how to retrieve unspent coins from the Blockchain easily, so let’s just imagine for the sake of the exercise that the coin was not double spent.
+\_\*\*\_Such thing would not be accepted on the Blockchain. However, we have not seen yet how to retrieve unspent coins from the Blockchain easily, so let’s just imagine for the sake of the exercise that the coin was not double spent.
 
 Now that Alice and Satoshi have some voting power, let’s see how Boss can run a vote.
 
