@@ -5,7 +5,7 @@ Alasannya adalah karena saya ingin menunjukkan bagaimana membangun **transaksi**
 
 Dalam kenyataannya, anda mungkin lebih baik bergantung pada API pihak ketiga untuk dapat fetch transaksi colored coins maupun untuk sekedar cek balance. Hal tersebut mungkiin bukanlah ide yang bagus, karena artinya anda bergantung dan mempercayakannya pada pihak ketiga.
 
-**NBitcoin** memungkinkan anda untuk tidak bergantung pada layanan web, karena anda dapat mengimplementasikannya sendiri. Anda dapat menggunakan cara yang lebih fleksibel untuk menguji unit test kode anda, dengan menggunakan implementasi anda sendiri. 
+**NBitcoin** memungkinkan anda untuk tidak bergantung pada layanan web, karena anda dapat mengimplementasikannya sendiri. Anda dapat menggunakan cara yang lebih fleksibel untuk menguji unit test kode anda, dengan menggunakan implementasi anda sendiri.
 
 Mari kita memperkenalkan dua emiten penerbit: Silver dan Gold. Beserta tiga partisipan: Bob, Alice dan Satoshi.  
 Jadi kita memulai dengan membuat sebuah transaksi  palsu untuk dapat memberikan beebrapa bitcoin ke Silver, Gold dan Satoshi.
@@ -31,7 +31,7 @@ var init = new Transaction()
 };
 ```
 
-**Init** tidak mengandung penerbitan Colored Coin issuance dan juga Transfer. Tapi bayangkan jika anda ingin dapat memastikan hal tersebut? 
+**Init** tidak mengandung penerbitan Colored Coin issuance dan juga Transfer. Tapi bayangkan jika anda ingin dapat memastikan hal tersebut?
 
 Dalam **NBitcoin**, ringkasan transfer dan penerbitan itu digambarkan oleh sebuah class disebut dengan **ColoredTransaction**.
 
@@ -43,13 +43,13 @@ Anda dapat melihat class **ColoredTransaction**:
 * **TxOut** untuk menerbitkan aset
 * **TxOut** untuk transfer 
 
-Namun ada metode yang cukup menarik diperhatikan adalah **FetchColor**, memungkinkan anda untuk dapat mengekstrak informasi transaksi yang anda berikan pada input. 
+Namun ada metode yang cukup menarik diperhatikan adalah **FetchColor**, memungkinkan anda untuk dapat mengekstrak informasi transaksi yang anda berikan pada input.
 
 Hal tersebut bergantung pada **IColoredTransactionRepository**.
 
 ![](../assets/IColoredCoinTransactionRepository.png)
 
-**IColoredTransactionRepository** hanya menempatkan saja **ColoredTransaction** dari txid. Namun anda dapat melihat hal itu bergantung dari **ITransactionRepository**, yang memetakan id transaksi untuk transaksi itu. 
+**IColoredTransactionRepository** hanya menempatkan saja **ColoredTransaction** dari txid. Namun anda dapat melihat hal itu bergantung dari **ITransactionRepository**, yang memetakan id transaksi untuk transaksi itu.
 
 Implementasi dari **IColoredTransactionRepository** adalah **CoinprismColoredTransactionRepository** yang merupakan API publik untuk colored coins.  
 Namun anda juga dapat membuat sendiri, berikut bagaimana **FetchColors** bekerja.
@@ -59,7 +59,7 @@ Pada kasus yang paling sederhana: **IColoredTransactionRepository** mengetahui w
 ![](../assets/FetchColors.png)
 
 Di kasus kedua, **IColoredTransactionRepository** tidak mengetahui apa-apa tentang warna transaksi. 
-Jadi **FetchColors** perlu untuk mengkomputasi warna itu sendiri berdasarkan spesifikasi open asset. 
+Jadi **FetchColors** perlu untuk mengkomputasi warna itu sendiri berdasarkan spesifikasi open asset.
 
 Namun, untuk komputasi warna itu, **FetchColors** membutuhkan warna transaksi dari parent.  
 Jadi saat fetch di setiap transaksi itu di **ITransactionRepository**, dan memanggil **FetchColors** di setiap transaksinya.   
@@ -83,7 +83,7 @@ Sekarang, kita dapat mengambil put **init** transaksi.
 repo.Transactions.Put(init);
 ```
 
-Perhatikan bahwa Put adalah sebuah metode ektensi, jadi anda akan perlu menambahkan ini: 
+Perhatikan bahwa Put adalah sebuah metode ektensi, jadi anda akan perlu menambahkan ini:
 
 ```cs
 using NBitcoin.OpenAsset;
@@ -107,7 +107,7 @@ Console.WriteLine(color);
 }
 ```
 
-Seperti yang diharapkan, **init** transaksi tidak mempunyai inputs, issuances, transfer atau kegagalan Colored Coins.
+Seperti yang diharapkan, **init** transaksi tidak mempunyai inputs, issuances, transfer atau _destructions_ Colored Coins.
 
 Sekarang, kita gunakan dua koin itu untuk dikirim ke Silver dan Gold sebagai _Issuance Coins_.
 
@@ -124,7 +124,7 @@ var issuanceCoins =
 
 Gold pada koin pertama, Silver kedua.
 
-Dari sana, anda dapat mengirim Gold kepada Satoshi dengan **TransactionBuilder**, seperti halnya yang telah kita lakukan di latihan sebelumnya, sedangkan put menempatkan transaksi dalam repositori, dan mencetak hasilnya. 
+Dari sana, anda dapat mengirim Gold kepada Satoshi dengan **TransactionBuilder**, seperti halnya yang telah kita lakukan di latihan sebelumnya, sedangkan put menempatkan transaksi dalam repositori, dan mencetak hasilnya.
 
 ```cs
 {
@@ -163,11 +163,11 @@ var sendToBobAndAlice =
         .BuildTransaction(true);
 ```
 
-Except you will get the exception **NotEnoughFundsException**.  
-The reason is that the transaction is composed of 600 satoshi in input \(the **goldCoin**\), and 1200 satoshi in output. \(One **TxOut** for sending assets to Alice, and one for sending back the change to Satoshi.\)
+Kecuali jika anda mendapat pengecualian berupa **NotEnoughFundsException**.  
+Alasannya adalah, bahwa transaksi itu terdiri dari 600 satoshi dalam input \(**goldCoin**\), dan 1200 satoshi di  output. \(Satu **TxOut** untuk mengirim aset kepada Alice, dan satunya lagi untuk mengirim kembali sisa pengeluaran kepada Satoshi.\)
 
-This means that you are out of 600 satoshi.  
-You can fix the problem by adding the last **Coin** of 1 BTC in the **init** transaction that belongs to **satoshi**.
+Artinya dana anda dianggap tidak cukup mencukupi 600 satoshi tersebut.  
+Anda dapat memperbaiki masalah itu dengan menambahkan koin terakir dari 1 BTC dalam **init** transaksi yang dimiliki **satoshi**.
 
 ```cs
 var satoshiBtc = init.Outputs.AsCoins().Last();
@@ -183,7 +183,7 @@ repo.Transactions.Put(sendToAlice);
 color = ColoredTransaction.FetchColors(sendToAlice, repo);
 ```
 
-Let’s see the transaction and its colored part:
+Mari kita lihat transaksi tersebut pada bagian warna:
 
 ```cs
 Console.WriteLine(sendToAlice);
@@ -254,9 +254,9 @@ Colored :
 }
 ```
 
-We have finally made a unit test that emits and transfers some assets without any external dependencies.
+Dan kita telah berhasil membuat unit test yang dapat mentransmisi dan mentransfer aset tanpa adanya pihak ketiga. 
 
-You can make your own **IColoredTransactionRepository** if you don’t want to depend on a third party service.
+Anda dapat membuat **IColoredTransactionRepository** sendiri, jika anda tidak ingin bergantung layanan dari pihak ketiga. 
 
-You can find more complex scenarios in [NBitcoin tests](https://github.com/NicolasDorier/NBitcoin/blob/master/NBitcoin.Tests/transaction_tests.cs), and also one of my article “[Build them all](http://www.codeproject.com/Articles/835098/NBitcoin-Build-Them-All)” in codeproject. \(Like multi sig issuance and colored coin swaps.\)
+Anda dapt menemukan lebih banyak skenario yang lebih komplek di [NBitcoin tests](https://github.com/NicolasDorier/NBitcoin/blob/master/NBitcoin.Tests/transaction_tests.cs), dan juga ada salah satu artikel“[Build them all](http://www.codeproject.com/Articles/835098/NBitcoin-Build-Them-All)”. 
 
