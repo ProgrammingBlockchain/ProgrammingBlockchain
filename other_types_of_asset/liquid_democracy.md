@@ -139,9 +139,9 @@ repo.Transactions.Put(toVoters);
 
 ### Delegasi voting {#vote-delegation}
 
-Masalahnya, pada beberapa hal pemungutan suara tersebut tidak terlepas dari aspek keuangan dan bisnis, Alice memperhatikan akpek pemasarannya. 
+Masalahnya, pada beberapa hal pemungutan suara tersebut tidak terlepas dari aspek keuangan dan bisnis, Alice memperhatikan akpek pemasarannya.
 
-Keputusannya adalah untuk menaruh voting coin kepada orang lain yang dipercaya lebih sesuai untuk memberikan penilaian yang lebih baik tentang masalah keuangan. Sehingga Alice kemudian memilih untuk mendelegasikan suaranya kepada Bob. 
+Keputusannya adalah untuk menaruh voting coin kepada orang lain yang dipercaya lebih sesuai untuk memberikan penilaian yang lebih baik tentang masalah keuangan. Sehingga Alice kemudian memilih untuk mendelegasikan suaranya kepada Bob.
 
 ![](../assets/PowerCoin4.png)
 
@@ -159,18 +159,18 @@ var toBob =
 repo.Transactions.Put(toBob);
 ```
 
-Anda dapat melihat bahwa tidak ada **SetChange** alasannya adalah agar input tersebut dapat dihabiskan seluruhnya, sehingga tidak ada lagi sisa yang akan dikembalikan. 
+Anda dapat melihat bahwa tidak ada **SetChange** alasannya adalah agar input tersebut dapat dihabiskan seluruhnya, sehingga tidak ada lagi sisa yang akan dikembalikan.
 
 ### Voting {#voting}
 
-Imagine that Satoshi is too busy and decide not to vote. Now Bob must express his decision.  
-The vote concerns whether the company should ask for a loan to the bank for investing into new production machines.
+Pada saat voting berlangsung, bayangkan lagi jika ternyata Satoshi terlalu sibuk sehingga ia memutuskan untuk tidak memberikan voting. Sedangkan Bob harus mengungkapkan keputusannya.   
+Pada voting tersebut, memutuskan apakah perusahaan harus meminta pinjaman ke bank untuk berinvestasi pada sebuah mesin produksi baru misalnya.
 
-Boss says on the company’s website:
+Bos berkata pada website perusahaannya:
 
-Send your coins to 1HZwkjkeaoZfTSaJxDw6aKkxp45agDiEzN for yes and to 1F3sAm6ZtwLAUnj7d38pGFxtP3RVEvtsbV for no.
+Kirimkan koin anda ke address 1HZwkjkeaoZfTSaJxDw6aKkxp45agDiEzN untuk voting **"yes"** dan address 1F3sAm6ZtwLAUnj7d38pGFxtP3RVEvtsbV untuk voting** "no"**.
 
-Bob decides that the company should take the loan:
+Bob memutuskan bahwa perusahaan harus mengambil pinjaman: 
 
 ![](../assets/PowerCoin5.png)
 
@@ -189,10 +189,10 @@ var vote =
     .BuildTransaction(true);
 ```
 
-Now Boss can compute the result of the vote and see 1-Yes 0-No, Yes win, so he takes the loan.  
-Every participants can also count the result by themselves.
+Jadi sekarang bos dapat menghitung hasil pemungutan suara, dan melihat hasil ada 1-Yes 0-No, maka "Yes" menjadi pemenangnya, lalu ia mengambil pinjaman.   
+Setiap partisipan bisa juga melihat dan menghitung hasil pemungutan suara tersebut.
 
-### Alternative: Use of Ricardian Contract {#alternative-use-of-ricardian-contract}
+### Alternatif: Menggunakan Kontrak Ricardian {#alternative-use-of-ricardian-contract}
 
 In the previous exercise, we have supposed that Boss announced the modalities of the vote out of the Blockchain, on the company’s website.
 
