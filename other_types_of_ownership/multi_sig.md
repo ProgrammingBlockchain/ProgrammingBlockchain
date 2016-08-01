@@ -1,7 +1,7 @@
 ## Multi Sig {#multi-sig}
 
 Multi Sig ini memungkinkan untuk sharing kepemilikan \(ownership\) koin.  
-Untuk itu, anda perlu membuat sebuah`ScriptPubKey` yang merepresentasikan sebuah **m-of-n multi sig.** Maksudnya, untuk mentransksikan koin, **m** private key dibutuhkan untuk menandatangani pada publik key **n**.
+Untuk itu, anda perlu membuat sebuah`ScriptPubKey` yang merepresentasikan sebuah **m-of-n multi sig.** Maksudnya, untuk mentransaksikan koin, **m** private key dibutuhkan untuk menandatangani pada publik key **n**.
 
 Mari kita coba membuat sebuah multi sig pada contoh transaksi antara Bob, Alice, dan Satoshi, dimana dua dari ketiga orang tersebut membutuhkannya untuk mentransaksikan koin.
 
@@ -118,11 +118,11 @@ Console.WriteLine(fullySigned);
 
 Transaksi itupun sekarang siap untuk dimasukkan ke dalam jaringan.
 
-Meski jaringan Bitcoin support untuk multi sig seperti yang dijelaskan di sini, ada satu pertanyaan yang penting: Bagaimana kita bertanya kepada pengguna yang tidak mengetahui cara untuk melakukan pembayaran dengan multi sig seperti pada transaksi antara satoshi\/alice\/bob, karena`scriptPubKey`tidak bisa merepresentasikan address bitcoin dengan mudah? 
+Meski jaringan Bitcoin support untuk multi sig seperti yang dijelaskan di sini, ada satu pertanyaan yang penting: Bagaimana kita bertanya kepada pengguna yang tidak mengetahui cara untuk melakukan pembayaran dengan multi sig seperti pada transaksi antara satoshi\/alice\/bob, karena`scriptPubKey`tidak bisa merepresentasikan address bitcoin dengan mudah?
 
 Tidakkah anda berfikir akan menjadi bagus jika hal tersebut bisa merepresentasikan`scriptPubKey` dengan mudah sebagai Address Bitcoin?
 
 Hal itu memungkinkan bisa dilakukan, disebut dengan **Bitcoin Script Address** atau disebut juga Pay to Script Hash. \(P2SH\)
 
-Saat ini, **native Pay To Multi Sig** seperti yang anda liha, dan **native P2PK**, belum pernah digunakan secara langsung, karena mereka they are wrapped into **Pay To Script Hash** payment.
+Saat ini, **native Pay To Multi Sig** seperti yang anda lihat, dan **native P2PK**, belum pernah digunakan secara langsung, karena telah dibungkus menjadi **Pay To Script Hash**.
 

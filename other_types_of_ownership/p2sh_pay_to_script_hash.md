@@ -1,6 +1,6 @@
 ## P2SH \(Pay To Script Hash\) {#p2sh-pay-to-script-hash}
 
-Pengkodean Multi-Sig cukup mudah untuk membuatnya bisa bekerja. Namun sebelum p2sh, belum ada cara yang bisa dilakukan untuk meminta kepada customer agar membayarnya menggunakan`scriptPubKey` multi-sig dengan mudah, semudah menggunakan`BitcoinAddress`.
+Pengkodean Multi-Sig cukup mudah, dan dapat bekerja. Namun sebelum p2sh, belum ada cara yang bisa dilakukan untuk meminta kepada customer agar membayarnya menggunakan`scriptPubKey` multi-sig dengan mudah, semudah menggunakan`BitcoinAddress`.
 
 **P2SH**, atau **Pay To Script Hash**, adalah cara termudah untuk merepresentasikan`scriptPubKey` semudah menggunakan`BitcoinScriptAddress`, meskipun untuk mewujudkannya juga cukup kompleks dan rumit.
 

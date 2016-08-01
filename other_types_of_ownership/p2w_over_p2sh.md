@@ -1,20 +1,20 @@
 ## P2W\* diatas P2SH {#p2w-over-p2sh}
 
-Saat menggunakan **witness scriptPubKey** dalam scripting anda, needs is appealing, the reality is that most of nowadays wallets only support P2PKH or P2SH addresses.
+Saat menggunakan **witness scriptPubKey** dalam scripting anda, masih ada kebutuhan yang harus terpenuhi, karena kenyataannya sebagaian besar wallet saat ini hanya support address P2PKH atau P2SH.
 
-To harness the advantages of segwit, while being compatible with old software, P2W over P2SH is allowed. For old node, it will look like a normal P2SH payment.
+Untuk dapat memanfaatkan keuntungan dari segwit, masih kompatibel juga pada software lama, seperti pada P2W atau P2SH. Node lama, akan membacanya seperti pada pembayaran normal P2SH. 
 
-You can transform any **P2W\*** to a **P2W\* over** **P2SH** by:
+Anda dapat mengubah setiap **P2W\*** menjadi **P2W\* over** **P2SH** dengan cara:
 
-1. Replacing the **ScriptPubKey** by its P2SH equivalent.
-2. The former **ScriptPubKey** will be placed as the only push in the **scriptSig** in the spending transaction,
-3. All other data will be pushed in the witness of the spending transaction.
+1. Mengganti **ScriptPubKey** dengan P2SH.
+2. **ScriptPubKey** yang telah digantikan, ditempatkan sebagai satu-satunya dorongan dalam **scriptSig** untuk transaksi pengeluaran,
+3. Semua data lain akan menjadi pendorong dalam witness pada transaksi pengeluaran.
 
-Don’t worry, if this sound complicated, the TransactionBuilder will allow you to abstract the plumbing effectively.
+Agak rumit memang, namun jangan khawatir, karena TransactionBuilder dapat memudahkan abstraksi pembuatannya menjadi lebih efektif. 
 
-Let’s take the example of P2WPKH over P2SH, also called with the sweet name of **P2SH\(P2WPKH\)**.
+Mari kita ambil contoh pada P2WPKH melalui P2SH, atau yang disebut dengan **P2SH\(P2WPKH\)**.
 
-Printing the **ScriptPubKey**:
+Printing **ScriptPubKey**:
 
 ```cs
 var key = new Key();
