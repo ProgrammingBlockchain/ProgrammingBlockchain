@@ -1,3 +1,4 @@
-# Other types of asset {#other-types-of-asset}
+# Tipe Lain Asset {#other-types-of-asset}
 
-In the previous chapters, we have seen several type of ownership. You have seen all the different kind of ownership and proof of ownership, and understand how bitcoin can be coded to invent new kinds of ownership.
+Kita telah melihat beberapa tipe kepemilikan lain di bahasan sebelumnya. Anda dapat melihat perbedaan bukti pada tiap kepemilikan tersebut, dan mengerti juga bagaimana bitcoin dapat dikodekan, dan dapat menciptakan jenis baru dari sebuah kepemilikan. 
+

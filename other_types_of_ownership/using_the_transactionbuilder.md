@@ -2,7 +2,7 @@
 
 Anda telah melihat bagaimana **TransactionBuilder** bisa bekerja jika anda telah berhasil menandatangani **P2SH** pertama anda, dan transaksi **multi-sig**.
 
-Kita juga akan melihat bagaimana anda dapat memanfaatkannya secara penuh, untuk menandatangani transaksi yang lebih rumit. 
+Kita juga akan melihat bagaimana anda dapat memanfaatkannya secara penuh, untuk menandatangani transaksi yang lebih rumit.
 
 Dengan **TransactionBuilder** anda dapat:
 
@@ -16,7 +16,8 @@ Dengan **TransactionBuilder** anda dapat:
 
 * Transaksi pengeluaran seperti di **Stealth Coin** \(DarkWallet\).
 
-* Menyelesaikan permasalahan dan transfer di **Colored Coins** \(open asset, pada bab pembahasan berikutnya\).  
+* Menyelesaikan permasalahan dan transfer di **Colored Coins** \(open asset, pada bab pembahasan berikutnya\).
+
 * menggabungkan **sebagian penandatangan  transaksi**.  
 * Memperkirakan ukuran akhir \(**size\)** dari **unsigned transaction** dan juga biayanya \(**fees\)**.  
 * Verifikasi apakah **transaksi** tersebut betul-betul telah ditandatangani \(**fully signed\)**.  
@@ -25,7 +26,7 @@ Tujuan **TransactionBuilder** adalah untuk mengambil **Koin** dan **Keys** sebag
 
 ![](../assets/SignedTransaction.png)
 
-**TransactionBuilder** akan mencari tahu **Koin **yang akan digunakan untuk dapat ditandatangani dengan sendirinya. 
+**TransactionBuilder** akan mencari tahu **Koin **yang akan digunakan untuk dapat ditandatangani dengan sendirinya.
 
 ![](../assets/TransactionBuilder.png)
 
@@ -94,7 +95,7 @@ Transaction tx = builder
         .BuildTransaction(sign: true);
 ```
 
-Kemudian anda dapat memverifikasi tanda tangan itu sepenuhnya, dan siap mengirim transaksi itu ke dalam jaringan. 
+Kemudian anda dapat memverifikasi tanda tangan itu sepenuhnya, dan siap mengirim transaksi itu ke dalam jaringan.
 
 ```cs
 Console.WriteLine(builder.Verify(tx)); // True
@@ -126,11 +127,11 @@ tx = builder
 Console.WriteLine(builder.Verify(tx)); // True
 ```
 
-For **Stealth Coin**, this is basically the same thing. Except that, if you remember our introduction on Dark Wallet, I said that you need a **ScanKey** to see the **StealthCoin**.
+Untuk **Stealth Coin, **pada dasarnya sama. Kecuali memang, jika anda masih ingat pada bab perkenalan tentang Dark Wallet, saya mengatakan bahwa anda membutuhkan sebuah **ScanKey** untuk melihat **StealthCoin**.
 
 ![](../assets/StealthCoin.png)
 
-Let’s create darkAliceBob stealth address as in previous chapter:
+Kemudian mari dilanjutkan dengan membuat address _stealth darkAliceBob_ seperti di pembahasan sebelumnya:
 
 ```cs
 Key scanKey = new Key();
@@ -145,7 +146,7 @@ BitcoinStealthAddress darkAliceBob =
         );
 ```
 
-Let’s say someone sent this transaction:
+Jika seseorang mengirim transaksi ini:
 
 ```cs
 //Someone sent to darkAliceBob
@@ -154,7 +155,7 @@ darkAliceBob
     .SendTo(init, Money.Coins(1.0m));
 ```
 
-The scanner will detect the StealthCoin:
+Scanner akan mendeteksi StealthCoin:
 
 ```cs
 //Get the stealth coin with the scanKey
@@ -162,7 +163,7 @@ StealthCoin stealthCoin
     = StealthCoin.Find(init, darkAliceBob, scanKey);
 ```
 
-And forward it to bob and alice, who will sign:
+Dan meneruskan kepada bob dan alice, yang akan menandatangani:
 
 ```cs
 //Spend it
@@ -176,5 +177,5 @@ tx = builder
 Console.WriteLine(builder.Verify(tx)); // True
 ```
 
-> **Note:** You need the scanKey for spending a StealthCoin
+> **Catatan:** Anda membutuhkan scanKey untuk transaksi pengeluaran StealthCoin
 

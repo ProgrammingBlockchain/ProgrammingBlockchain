@@ -1,34 +1,37 @@
 ## Colored Coins {#colored-coins}
 
-So until now, you have seen how to exchange Bitcoins on the network. However you can use the Bitcoin network for transferring and exchanging any type of assets.
+Sampai pembahasan ini, anda juga telah melihat bagaimana mempertukarkan bitcoin di dalam jaringan. Namun anda juga dapat menggunakan jaringan Bitcoin untuk mentransfer dan mempertukarkan berbagai tipe asset. 
 
-We call such assets “colored coins”.  
-As far as the Blockchain is concerned, there is no difference between a Coin and a Colored Coin.
+Kita menyebut sejumlah asset tersebut dengan “colored coins”.  
+Di dalam Blockchain, sejauh ini tidak ada perbedaan antara sebuah koin dan sebuah Colored Coin.
 
-A colored coin is represented by a standard **TxOut**. Most of the time, such **TxOut** have a residual Bitcoin value called “Dust”. (600 satoshi)
+Colored coin diwakili oleh standar **TxOut**. Dalam sebagian besar waktu, beberapa **TxOut** mempunyai nilai Bitcoin yang disebut dengan “Dust”. \(berkisar sekitar 600 satoshi\)
 
-The real value of a colored coin reside in what the **issuer** of the coin will exchange against it.  
+Nilai riil colored coin berada pada **issuer\(penerbit\)** koin tersebut. 
 
-![](../assets/ColoredCoin.png)  
+![](../assets/ColoredCoin.png)
 
-Since a colored coin is nothing but a standard coin with special meaning, it follows that all what you saw about proof of ownership and the **TransactionBuilder** stays true. You can transfer a colored coin with exactly the same rules as before.
+Karena colored coin hanyalah sebuah koin standar dalam arti yang khusus, berikut ini adalah yang anda dapat lihat sebagai sebuah bukti kepemilikan. Dan dalam **TransactionBuilder** akan tetap setia untuk melakukannya. Anda dapat mentransfer sebuah colored coin dengan tepat seperti aturan yang kita lihat sebelumnya. 
 
-As far as the blockchain is concerned, a **Colored Coin** is a **Coin** like all others.
+Blokchain melihat **Colored Coin** sama seperti sebuah **Koin** pada umumnya. 
 
-You can represent several type of asset with a colored coin: company shares, bonds, stocks, votes.
+Anda dapat mewakili berbagai jenis asset dengan colored coin: saham perusahaan, obligasi, stock, maupun voting.
 
-But no matter what type of asset you will represent, there will always have a trust relationship between the **issuer** of the asset and the **owner**.  
-If you own some company share, then the company might decide to not send you dividends.  
-If you own a bond, then the bank might not exchange it at maturity.
+Tidak peduli jenis aset apa yang akan diwakili, akan selalu berelasi dengan kepercayaan antara penerbit aset \(**issuer**\) dan pemiliknya \(**owner**\). 
 
-However, a violation of contract might be automatically detected with the help of **Ricardian Contracts**.  
-A **Ricardian Contract** is a contract signed by the issuer with the rights attached to the asset. Such contract can be either human readable (pdf), but also structured (json), so tools can automatically prove any violation.  
-The **issuer** can’t change the **ricardian contract** attached to an asset.
+Jika anda memiliki sejumlah saham perusahaan, perusahaan tersebut mungkin tidak memutuskan untuk mengirim deviden.
 
-The Blockchain is only the transport medium of a financial instrument.  
-The innovation is that everyone can create and transfer its own asset without intermediary, whereas traditional asset transport medium (clearing houses), are either heavily regulated, or purposefully kept secret, and closed to the general public.
+Jika anda memiliki sebuah obligasi, maka bank tidak mungkin menukarnya pada saat telah jatuh tempo. 
 
-**Open Asset** is the name of the protocol created by Flavien Charlon that describes how to **transfer** and **emit** colored coins on the Blockchain.  
-Other protocols exist, but Open Asset is the most easy and flexible and the only one supported by **NBitcoin**.
+Namun pelanggaran atas kontrak mungkin akan langsung dapat terdeteksi dengan bantuan dari **Ricardian Contracts**.  
+**Ricardian Contract** adalah sebuah kontrak yang ditandatangani oleh pihak penerbit \(issuer\) dengan hak yang telah dilekatkan pada _asset_. Kontrak tersebut dapat dibaca manusia secara normal dalam bentuk \(pdf\), dan juga berupa \(json\), Jadi perangkatnya tersebut dapat secara otomatis akan bisa mendeteksi jika terjadi pelanggaran.  
+Penerbit \(**issuer\)** tidak bisa merubah **ricardian contract** yang telah dilekatkan pada sebuah asset.
 
-In the rest of the book, I will not go in the details of the Open Asset protocol, the GitHub page of the specification is better suited to this need.
+Dalam hal ini, Blockchain adalah media transprtasi dari sebuah instrumen keuangan saja.   
+Inovasi ini, menjelaskan bahwa semua orang dapat membuat dan mampu mentransfer aset sendiri tanpa adanya perantara. Sedangkan pada jenis media transfer aset tradisional seperti _**\(clearing houses\)**_, aturannya cukup berat, dan sengaja dirahasiakan, ditutup untuk masyarakat umum. 
+
+**Open Asset** adalah nama sebuah protokol yang diciptakan oleh Flavien Charlon, menjelaskan bagaimana mentransfer dan memasukkannya ke dalam Blockchain.  
+Meski ada beberapa protokol lain, namun Open Asset paling mudah dan fleksibel digunakan, dan juga telah didukung juga di dalam **NBitcoin**.
+
+Pada sisa pembahasan buku ini, saya tidak akan mendetailkan protokol Open Asset, pada halaman GitHub spesifikasinya telah cocok untuk melengkapi kebutuhan tersebut. 
+
