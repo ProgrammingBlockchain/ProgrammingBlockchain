@@ -103,7 +103,7 @@ Sekarang Alice dan Satoshi telah memiliki beberapa hak suara, mari kita lihat ba
 ### Menjalankan voting {#running-a-vote}
 
 Dengan mengkonsultasikannya langsung kepada Blockchain, Bos dapat melihat dan tahu **ScriptPubKeys** yang memiliki Power Coins.  
-Jadi dia akan mengirim _Voting Coins_ kepada pemilik, secara proporsional atas hak suara mereka. Dalam hal ini, 1 suara untuk Alice, dan 1 suara untuk Satoshi. 
+Jadi dia akan mengirim _Voting Coins_ kepada pemilik, secara proporsional atas hak suara mereka. Dalam hal ini, 1 suara untuk Alice, dan 1 suara untuk Satoshi.
 
 ![](../assets/PowerCoin3.png)
 
@@ -139,9 +139,9 @@ repo.Transactions.Put(toVoters);
 
 ### Delegasi voting {#vote-delegation}
 
-The problem is that the vote concern some financial aspect of the business, and Alice is mostly concerned by the marketing aspect.
+Masalahnya, pada beberapa hal pemungutan suara tersebut tidak terlepas dari aspek keuangan dan bisnis, Alice memperhatikan akpek pemasarannya. 
 
-Her decision is to handout her voting coin to someone she trusts having a better judgment on financial matter. She chooses to delegate her vote to Bob.
+Keputusannya adalah untuk menaruh voting coin kepada orang lain yang dipercaya lebih sesuai untuk memberikan penilaian yang lebih baik tentang masalah keuangan. Sehingga Alice kemudian memilih untuk mendelegasikan suaranya kepada Bob. 
 
 ![](../assets/PowerCoin4.png)
 
@@ -159,7 +159,7 @@ var toBob =
 repo.Transactions.Put(toBob);
 ```
 
-You can notice that there is no **SetChange** the reason is that the input colored coin is spent entirely, so nothing is left to be returned.
+Anda dapat melihat bahwa tidak ada **SetChange** alasannya adalah agar input tersebut dapat dihabiskan seluruhnya, sehingga tidak ada lagi sisa yang akan dikembalikan. 
 
 ### Voting {#voting}
 
