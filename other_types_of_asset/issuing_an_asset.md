@@ -8,7 +8,7 @@ Jika anda ingin menerbitkan Colored Coin, anda perlu membuktikan kepemilikan **S
 Koin yang hendak dikeluarkan atau dibelanjakan untuk menerbitkan colored coins tersebut disebut dengan “**Issuance Coin**”. Di dalam **NBitcoin**.  
 Misalkan saya ingin menerbitkan sebuah aset dari address bitcoin buku ini: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://www.smartbit.com.au/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB).
 
-Melihat posisi balance address tersebut, lalu saya memutuskan menggunakan koin tersebut untuk menerbitkan aset. 
+Melihat posisi balance address tersebut, lalu saya memutuskan menggunakan koin tersebut untuk menerbitkan aset.
 
 ```json
 {
@@ -77,11 +77,11 @@ Berikut adalah format data di dalam OP\_RETURN.
 ![](../assets/ColorMaker.png)
 
 Dalam hal ini, kuantitasnya hanya 10, yang merupakan jumlah aset saya untuk dikeluarkan kepada`nico`. Metadata ini adalah data arbitrary. Kita akan melihat bahwa kita dapat menempatkan url pada sebuah “Asset Definition \(definisi aset\)”.  
-**Asset Definition** adalah sebuah dokumen yang menjelaskan tentang aset tersebut. Karena hal itu sifatnya opsional, dan kita tidak menggunakannya. 
+**Asset Definition** adalah sebuah dokumen yang menjelaskan tentang aset tersebut. Karena hal itu sifatnya opsional, dan kita tidak menggunakannya.
 
 Untuk bisa melihat detail informasi tersebut, anda bisa melihatnya di [Open Asset Specification](https://github.com/OpenAssets/open-assets-protocol/blob/master/specification.mediawiki).
 
-Setelah transaksi diverifikasi, sekarang telah siap dikirimkan ke dalam jaringan. 
+Setelah transaksi diverifikasi, sekarang telah siap dikirimkan ke dalam jaringan.
 
 ```cs
 Console.WriteLine(builder.Verify(tx)); 
@@ -142,7 +142,7 @@ Anda dapat melihat wallet Open Asset compatible seperti Coinprism, disana aset s
 
 ![](../assets/Coinprism.png)
 
-As I have told you before, the Asset ID is derived from the issuer’s **ScriptPubKey**, here is how to get it in code:
+Seperti yang telah dikatakan sebelumnya, ID aset berasal dari emiten penerbit **ScriptPubKey**, dan ini bagaimana cara mendapatkannya: 
 
 ```cs
 var book = BitcoinAddress.Create("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
