@@ -1,10 +1,10 @@
-## Proof of Burn and Reputation {#proof-of-burn-and-reputation}
+## Proof of Burn dan Reputasi {#proof-of-burn-and-reputation}
 
 The question is simple: in a P2P market were law enforcement is too expensive, how participants might minimize the probability to get scammed?
 
 OpenBaazar seems [to be the first](https://gist.github.com/dionyziz/e3b296861175e0ebea4b) trying to use proof of burn as a reputation determinant.
 
-There is several responses to that (escrow or notary/arbiter), but one that we will explore here is called Proof Of Burn.
+There is several responses to that \(escrow or notary\/arbiter\), but one that we will explore here is called Proof Of Burn.
 
 Imagine yourself in the middle age, and you live in a small village with several local merchants.  
 One day, a traveling merchant comes to your village and sells you some goods at an unbelievable low price compared to local one.
@@ -26,7 +26,7 @@ So as a good intentioned seller, you want to inspire confidence to your customer
 Imagine you burned 50 BTC for your reputation. And a customer want to buy 2 BTC of goods from you. He has good reason to believe that you will not scam him, because you invested more into your reputation that what you can get out of him by scamming.  
 It becomes not economically profitable for you to scam him.
 
-The technical details will surely vary and change over time, but here is an example of Proof of Burn.  
+The technical details will surely vary and change over time, but here is an example of Proof of Burn.
 
 ```cs
 var alice = new Key();
@@ -57,7 +57,7 @@ burn.Outputs.Add(new TxOut(Money.Coins(1.0m), opReturn));
 burn.Sign(alice, false);
 
 Console.WriteLine(burn);
-```  
+```
 
 ```json
 {
@@ -78,7 +78,8 @@ Console.WriteLine(burn);
     }
   ]
 }
-```  
+```
 
 Once in the Blockchain, this transaction is undeniable proof that Alice invested money for her bakery.  
-The Coin with ```ScriptPubKey OP_RETURN 4275726e7420666f722022416c6963652042616b65727922``` do not have any way to be spent, so those coins are lost forever.
+The Coin with `ScriptPubKey OP_RETURN 4275726e7420666f722022416c6963652042616b65727922` do not have any way to be spent, so those coins are lost forever.
+
