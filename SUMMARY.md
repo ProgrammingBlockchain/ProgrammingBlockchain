@@ -40,7 +40,7 @@
     * [Penggunaan TransactionBuilder](other_types_of_ownership/using_the_transactionbuilder.md)
 * [Tipe Lain Asset](other_types_of_asset/README.md)
     * [Colored Coins](other_types_of_asset/colored_coins.md)
-    * [Issuing an Asset](other_types_of_asset/issuing_an_asset.md)
+    * [Menerbitkan Aset](other_types_of_asset/issuing_an_asset.md)
     * [Transfer an Asset](other_types_of_asset/transfer_an_asset.md)
     * [Unit tests](other_types_of_asset/unit_tests.md)
     * [Ricardian contracts](other_types_of_asset/ricardian_contracts.md)

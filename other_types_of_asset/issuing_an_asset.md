@@ -1,4 +1,4 @@
-## Issuing an Asset {#issuing-an-asset}
+## Menerbitkan Aset {#issuing-an-asset}
 
 ### Objective {#objective}
 
