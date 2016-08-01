@@ -1,6 +1,6 @@
 ## Kontrak Ricardian {#ricardian-contracts}
 
-Pada bagian ini adalah sebuah copy artikel yang saya tulis di blog [Coinprism](http://blog.coinprism.com/2014/12/10/colored-coins-and-ricardian-contracts/). Pada saat saya menuliskan artikel ini, NBitcoin masih belum memiliki kode yang berelasi dengan Kontrak Ricardian **_\(Ricardian Contracts\)_**.
+Pada bagian ini adalah sebuah copy artikel yang saya tulis di blog [Coinprism](http://blog.coinprism.com/2014/12/10/colored-coins-and-ricardian-contracts/). Pada saat saya menuliskan artikel ini, NBitcoin masih belum memiliki kode yang berelasi dengan Kontrak Ricardian _**\(Ricardian Contracts\)**_.
 
 ### Apa itu Kontrak Ricardian {#what-is-a-ricardian-contract}
 
@@ -46,13 +46,13 @@ Dimana:
 
 **IssuerScript** mengacu pada P2PKH klasik untuk penerbit sederhana, multi sig issuance perlu beberapa persetujuan \(Issuer + notary seperti pada contoh\).
 
-Perlu dicatat bahwa dari Bitcoin versi 0.10, IssuerScript adalah arbitrary dan bisa apa saja. 
+Perlu dicatat bahwa dari Bitcoin versi 0.10, IssuerScript adalah arbitrary dan bisa apa saja.
 
 **RicardianContract** bisa arbitrary, dan tetap bisa private. Siapapun memegang kontrak dapat membuktikan bahwa itu bisa berlaku untuk aset berkat hash ScriptPubKey.
 
 Mari kita membuat RicardianContract dan diverivikasi oleh wallet klien dengan Asset Definition Protocol.
 
-Kita asumsikan bahwa kita menerbitkan token voting untuk para calon A, B, atau C. 
+Kita asumsikan bahwa kita menerbitkan token voting untuk para calon A, B, atau C.
 
 Kita akan menambahkan pada Open Asset Marker, dengan definisi aset url: `u=http://issuer.com/contract`
 
@@ -78,32 +78,32 @@ Hal ini mengakhiri implementasi RicardianContract dalam OA.
 
 ### Check list {#check-list}
 
-* **A contract offered by an issuer to holders.**  
-  The contract is hosted by the issuer, unalterable, and signed every time the Issuer issues a new asset,
+* **Sebuah kontrak ditawarkan oleh emiten kepada pemegang. ** 
+  Kontrak ini diselenggarakan oleh emiten, tidak dapat dirubah, dan ditandatangani setiap kali penerbit mengeluarkan aset baru. 
 
-* **For a valuable right held by holders, and managed by the issuer.**  
-  The right in this sample is a voting right for candidate A,B,C to redeem before 10 jan 2015.
+* **Hak akses berharga yang dimiliki oleh pemegang, dikelola oleh penerbit. **  
+  Hak dalam contoh ini adalah hak voting untuk calon A,B,C untuk dapat menebus sebelum 10 jan 2015.
 
-* **Easily readable by people \(like a contract on paper.\)**  
-  The human readable contract is in the contract\_url, but the JSON might be enough.
+* **Mudah dibaca oleh orang-orang \(seperti sebuah kontrak diatas kertas\)**  
+  Kontrak dapat dibaca manusia seperti pada contract\_url, tapi yang mungkin cukup berupa JSON.
 
-* **Readable by programs, \(parsable like a database.\)**  
-  The details of the vote are inside the **AssetDefinitionFile**, in JSON format, the authenticity of the contract is verified by software with the **IssuerScript**, and the hash in the **ScriptPubKey**.
+* **Dapat dibaca oleh program, \(dapat diparse seperti sebuah database\)**  
+  Detail voting berada di dalam **AssetDefinitionFile**, dalam format JSON, keaslian kontrak diverifikasi oleh perangkat lunak dengan **IssuerScript**, dan hash **ScriptPubKey**.
 
-* **Digitally signed.**  
-  The **ScriptPubKey** is signed when the issuer issues the asset, thus, also the hash of the contract, and by extension, the contract itself.
+* **Ditandatangani secara digital.**  
+  **ScriptPubKey** ditandatangani ketika penerbit mengeluarkan aset, demikian juga dengan hash kontrak tersebut, dan dengan extensi kontrak itu sendiri.
 
-* **Carries the keys and server. informationIssuerScript** is included in the contract
+* **Membawa key dan informationIssuerScript** **Server **yang telah termasuk dalam kontrak. 
 
-* **Allied with a unique and secure identifier.**  
-  The **AssetId** is defined by **Hash\(ScriptPubKey\)** that can’t be changed and is unique.
+* **Menyatu dengan identifier yang unik dan aman. **  
+  **AssetId** didefinisikan oleh **Hash\(ScriptPubKey\)** yang tidak dapat dirubah dan unik. 
 
 
-### What is it for? {#what-is-it-for}
+### Apa fungsinya? {#what-is-it-for}
 
-Without Ricardian Contract, it is easy for a malicious issuer to modify or repudiate an Asset Definition File.
+Tanpa Kontrak Ricardian, sangat mudah bagi penerbit perusak \(malicious issuer\) untuk memodifikasi atau menolak Asset Definition File.
 
-Ricardian Contract enforces non-repudiation, make a contract unalterable, so it facilitate arbitration matter between redeemers and issuers.
+Kontrak Ricardian memberlakukan non-repudiation \(tanpa penolakan\), membuat kontrak tidak bisa dirubah, sehingga memudahkan arbitrase antara penebus \(redeemers\) dan penerbit \(issuers\).
 
-Also, since the Asset Definition File can’t be changed, it becomes possible to save it on redeemer’s own storage, preventing rupture of access to the contract by a malicious issuer.
+Karena Asset Definition File tidak dapat dirubah, memungkinkan untuk menyimpannya pada ruang penyimpanan milik para penebus sendiri, untuk mencegah ditembusnya akses kontrak oleh _malicious issuer_. 
 
