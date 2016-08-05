@@ -55,4 +55,4 @@ Console.WriteLine(mainNetAddress); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
 Console.WriteLine(testNetAddress); // n3zWAo2eBnxLr3ueohXnuAa8mTVBhxmPhq
 ```  
 
--> **Tip:** Practicing Bitcoin Programming on MainNet makes mistakes more memorable.  
+> **Tip:** Practicing Bitcoin Programming on MainNet makes mistakes more memorable.  
