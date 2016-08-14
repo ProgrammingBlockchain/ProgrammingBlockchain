@@ -271,3 +271,5 @@ using (var node = Node.ConnectToLocal(network)) //Connect to the node
 The **using** code block will take care of closing the connection to the node. That's it!
 
 You can also connect directly to the Bitcoin network, however I advise you to connect to your own trusted node (faster and easier)  
+  
+> **Tip:** Need more practice? Check out [this video tutorial](https://www.youtube.com/watch?v=X4ZwRWIF49w) on creating transaction with NBitcoin.
