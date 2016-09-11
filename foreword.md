@@ -3,14 +3,14 @@
 An extract in _Fountain Head_ by Ayn Rand resonated with me.
 
 
-> Gail Wynand, the powerful puppet master of the world, and Hoark Howard, the protagonist building architect discussed together. Gail finds a strange relief when he is with Hoark, not knowing where it comes from, he questioned him.  
+> Gail Wynand, the powerful puppet master of the world, and Howard Roark, the protagonist building architect discussed together. Gail finds a strange relief when he is with Roark, not knowing where it comes from, he questions him.  
 > Wynand asked:  
 > "Howard, have you ever been in love?"  
-> Roark turned to look straight at him and answer quickly:  
+> Roark turned to look straight at him and answer quietly:  
 > "I still am."  
 > "But when you walk through a building, what you feel is greater than that?"  
 > "Much greater, Gail"  
-> "I was thinking of people who say that happiness is impossible on earth. Look how hard they all try to find someone joy in life. Look how they struggle for it. Why should any living creature exist in pain? By what conceivable right can anyone demand that a human being exist for anything but his own joy? Every one of them wants it. Every part of him wants it. But they never find it. I wonder why. They whine and say they don't understand the meaning of life. There's a particular kind of people that I despise. Those who seek some sort of a higher purpose or 'universal goal,' who don't know what to live for, who moan that they must ‘find themselves.’ You hear it all around us. That seems to be the official bromide of our century. Every book you open. Every drooling self-confession. It seems to be the noble thing to confess. I'd think it would be the most shameful one."  
+> "I was thinking of people who say that happiness is impossible on earth. Look how hard they all try to find some joy in life. Look how they struggle for it. Why should any living creature exist in pain? By what conceivable right can anyone demand that a human being exist for anything but his own joy? Every one of them wants it. Every part of him wants it. But they never find it. I wonder why. They whine and say they don't understand the meaning of life. There's a particular kind of people that I despise. Those who seek some sort of a higher purpose or 'universal goal,' who don't know what to live for, who moan that they must ‘find themselves.’ You hear it all around us. That seems to be the official bromide of our century. Every book you open. Every drooling self-confession. It seems to be the noble thing to confess. I'd think it would be the most shameful one."  
 > "Look, Gail". Roark got up, reached out, tore a thick branch off a tree, held it in both hands, one fist closed at each end; then, his wrists and knuckles tensed against the resistance, he bent the branch slowly into an arc. "Now I can make what I want of it: a bow, a spear, a cane, a railing. That's the meaning of life."  
 > "Your strength?"  
 > "Your work." He tossed the branch aside. "The material the earth offers you and what you make of it..."  
