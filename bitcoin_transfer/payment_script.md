@@ -42,7 +42,7 @@ var sameMainNetAddress2 = new BitcoinPubKeyAddress(samePublicKeyHash, Network.Ma
 Console.WriteLine(mainNetAddress == sameMainNetAddress2); // True
 ```   
 
-> **Note:** A ScriptPubKey does not necessarily contains the hashed public key(s) permitted to spend the bitcoin.  
+> **Note:** A ScriptPubKey does not necessarily contain the hashed public key(s) permitted to spend the bitcoin.  
 
 So now you understand the relationship between a Private Key, a Public Key, a Public Key Hash, a Bitcoin Address and a ScriptPubKey.
 
