@@ -2,7 +2,7 @@
 
 The .NET framework is popular in corporate environments. We also believe this is the perfect tool for startups and hobbyists.
 
-*   You can create portable code that functions across IOS, Android, Windows tablets/phone, desktops, servers and embedded devices, for free.
+*   You can create portable code that functions across iOS, Android, Windows tablets/phones, desktops, servers and embedded devices, for free.
 *   Everything from the compiler to the core runtime is open source.
 *   The BizSpark program allows any startup to get all Microsoft tools, including $150/month of Azure service, for free.
 *   Visual Studio Community 2015 is a professional grade IDE that you can use freely as hobbyist.
