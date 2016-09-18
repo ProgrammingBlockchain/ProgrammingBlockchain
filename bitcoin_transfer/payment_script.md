@@ -46,4 +46,4 @@ Console.WriteLine(mainNetAddress == sameMainNetAddress2); // True
 
 So now you understand the relationship between a Private Key, a Public Key, a Public Key Hash, a Bitcoin Address and a ScriptPubKey.
 
-In the reminder of this book, we will exclusively use **ScriptPubKey**. A Bitcoin Address is only a user interface concept.
+In the remainder of this book, we will exclusively use **ScriptPubKey**. A Bitcoin Address is only a user interface concept.
