@@ -20,8 +20,9 @@ Process this information by examining the similarities between these two codeblo
 
 ```cs
 Key privateKey = new Key(); // generate a random private key
-BitcoinSecret bitcoinPrivateKey = privateKey.GetWif(Network.Main); // L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn
-Key samePrivateKey = bitcoinPrivateKey.PrivateKey;
+BitcoinSecret bitcoinSecret = privateKey.GetWif(Network.Main); // L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn
+Key samePrivateKey = bitcoinSecret.PrivateKey;
+Console.WriteLine(samePrivateKey == privateKey); // True
 ```  
 
 ```cs
