@@ -44,7 +44,7 @@ OP_HASH160 57b4162e00341af0ffc5d5fab468d738b3234190 OP_EQUAL
 
 Do you see the difference? This p2sh ```scriptPubKey``` represents the hash of my multi-sig script: ```redeemScript.Hash.ScriptPubKey```
 
-Since it is a hash, you can easily convert is as a base58 string ```BitcoinScriptAddress```.
+Since it is a hash, you can easily convert it as a base58 string ```BitcoinScriptAddress```.
 
 ```cs
 Key bob = new Key();
