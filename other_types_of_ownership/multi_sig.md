@@ -35,7 +35,7 @@ received.Outputs.Add(new TxOut(Money.Coins(1.0m), scriptPubKey));
 ```  
 
 Bob and Alice agree to pay Nico 1.0 BTC for his services.
-So the get the ```Coin``` they received from the transaction:  
+So they get the ```Coin``` they received from the transaction:  
 
 ```cs
 Coin coin = received.Outputs.AsCoins().First();
