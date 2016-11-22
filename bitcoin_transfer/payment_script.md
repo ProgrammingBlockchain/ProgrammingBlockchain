@@ -3,7 +3,7 @@ You might not know that as far as the Blockchain is concerned, there is no such 
 
 ![](../assets/ScriptPubKey.png)  
 A **ScriptPubKey** may looks like this:  
-```OP_HASH160 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf OP_EQUALVERIFY OP_CHECKSIG```  
+```OP_DUP OP_HASH160 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf OP_EQUALVERIFY OP_CHECKSIG```  
 
 It is a short script that explains what conditions must be met to claim ownership of bitcoins. We will go into the types of operations in a **ScriptPubKey** as we move through the lessons of this book.  
 
