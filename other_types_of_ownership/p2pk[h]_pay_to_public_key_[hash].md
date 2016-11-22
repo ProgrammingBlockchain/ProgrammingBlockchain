@@ -1,4 +1,4 @@
-## P2PK[H] (Pay to Public Key [Hash]) {#p2pk-h-pay-to-public-key-hash}
+## P2PK[H] \(Pay to Public Key [Hash]\) {#p2pk-h-pay-to-public-key-hash}
 
 ### P2PKH - Quick recap
 We learned that a **Bitcoin Address** was the **hash of a** **public key**:  
@@ -58,7 +58,9 @@ You can see the form of the **scriptPubKey** is different:
 Console.WriteLine(firstScriptPubKeyEver); // 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f OP_CHECKSIG
 ```
 
-A bitcoin address is represented by: **OP_DUP &lt;hash&gt; OP_EQUALVERIFY OP_CHECKSIG** But here we have : **&lt;pubkey&gt; OP_CHECKSIG**
+A bitcoin address is represented by: **OP_DUP OP_HASH160 &lt;hash&gt; OP_EQUALVERIFY OP_CHECKSIG**
+
+But here we have: **&lt;pubkey&gt; OP_CHECKSIG**
 
 In fact, at the beginning, **public key** were used directly in the **ScriptPubKey**.  
 
