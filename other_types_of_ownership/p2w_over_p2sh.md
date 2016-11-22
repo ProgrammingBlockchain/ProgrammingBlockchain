@@ -21,7 +21,7 @@ var key = new Key();
 Console.WriteLine(key.PubKey.WitHash.ScriptPubKey.Hash.ScriptPubKey);
 ```  
 
-> **Note:** that's quite and awesome line of code.  
+> **Note:** that's quite an awesome line of code.  
 
 Which gives us a well known P2SH **scriptPubKey**.  
 
@@ -44,23 +44,24 @@ Then, a signed transaction spending this output will look like:
   ],
 ```  
 
-The **scriptSig** is only the push of the P2SH redeem script of the previous ScriptPubKey. (in other words **key.PubKey.WitHash.ScriptPubKey**)The witness is exactly the same as a normal **P2WPKH** payment.
+The **scriptSig** is only the push of the P2SH redeem script of the previous ScriptPubKey (in other words **key.PubKey.WitHash.ScriptPubKey**). The witness is exactly the same as a normal **P2WPKH** payment.
 
-In NBitcoin, signing a P2SH(P2WPKH) is exactly similar as signing a normal P2SH with ScriptCoin.
+In NBitcoin, signing a **P2SH(P2WPKH)** is exactly similar as signing a normal P2SH with ScriptCoin.
 
 By following the same principle, let’s see how a **P2SH(P2WSH)** looks like. You need to understand that in this case we are dealing with two different redeem scripts: The **P2SH redeem script** that need to be put in the **scriptSig** of the spending transaction, AND the **P2WSH redeem script** that need to be put in the witness.
 
 Let’s print the **scriptPubKey** by following the first rule:
 
 1.  Replacing the **ScriptPubKey** by its P2SH equivalent.  
-```cs
+
+    ```cs
 var key = new Key();
 Console.WriteLine(key.PubKey.ScriptPubKey.WitHash.ScriptPubKey.Hash.ScriptPubKey);
-```  
-```
+    ```  
+    ```
 OP_HASH160 d06c0058175952afecc56d26ed16558b1ed40e42 OP_EQUAL
-```  
-> **Warning:** It makes sense, don't try whiny ragequitting!  
+    ```  
+    > **Warning:** It makes sense, don't try whiny ragequitting!  
 2.  The former **ScriptPubKey** will be placed as the only push in the **scriptSig** in the spending transaction,
 3.  All other data will be pushed in the witness of the spending transaction,
 
