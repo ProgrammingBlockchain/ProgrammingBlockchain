@@ -272,4 +272,7 @@ The **using** code block will take care of closing the connection to the node. T
 
 You can also connect directly to the Bitcoin network, however I advise you to connect to your own trusted node (faster and easier)  
   
-> **Tip:** Need more practice? Check out [this video tutorial](https://www.youtube.com/watch?v=X4ZwRWIF49w) on creating transaction with NBitcoin.
+## Need more practice?  
+Youtube: [How to make your first transaction with NBitcoin](https://www.youtube.com/watch?v=X4ZwRWIF49w)  
+CodeProject: [Create a Bitcoin transaction by hand.](http://www.codeproject.com/Articles/1151054/Create-a-Bitcoin-transaction-by-hand)  
+CodeProject: [DotNetWallet - Build your own Bitcoin wallet in C#](https://www.codeproject.com/script/Articles/ArticleVersion.aspx?waid=214550&aid=1115639)
