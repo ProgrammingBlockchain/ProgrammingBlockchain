@@ -2,7 +2,7 @@
 You might not know that as far as the Blockchain is concerned, there is no such thing as a Bitcoin Address. Internally, the Bitcoin protocol identifies the recipient of Bitcoin by a **ScriptPubKey**.  
 
 ![](../assets/ScriptPubKey.png)  
-A **ScriptPubKey** may looks like this:  
+A **ScriptPubKey** may look like this:  
 ```OP_DUP OP_HASH160 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf OP_EQUALVERIFY OP_CHECKSIG```  
 
 It is a short script that explains what conditions must be met to claim ownership of bitcoins. We will go into the types of operations in a **ScriptPubKey** as we move through the lessons of this book.  
@@ -25,7 +25,7 @@ Notice the **ScriptPubKey** for testnet and mainnet address is the same?
 Notice the **ScriptPubKey** contains the hash of the public key?  
 We will not go into the details yet, but note that the **ScriptPubKey** appears to have nothing to do with the Bitcoin Address, but it does show the hash of the public key.  
 
-Bitcoin Addresses are composed of a version byte which identify the network where to use the address and the hash of a public key. So we can go backward and generate a bitcoin address from the **ScriptPubKey** and the network identifier.
+Bitcoin Addresses are composed of a version byte which identifies the network where to use the address and the hash of a public key. So we can go backwards and generate a bitcoin address from the **ScriptPubKey** and the network identifier.
 
 ```cs
 var paymentScript = publicKeyHash.ScriptPubKey;
