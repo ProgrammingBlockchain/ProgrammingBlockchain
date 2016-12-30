@@ -1,6 +1,6 @@
 ## Why Blockchain Programming and not Bitcoin Programming? {#why-blockchain-programming-and-not-bitcoin-programming}
 
-The Blockchain is to gold what Bitcoin is to jewelry.
+The Blockchain is to Bitcoin as gold is to jewelry.
 
 We did not compare Bitcoin to a gold coin, but rather with a jewelry. That’s because gold’s first killer app was jewelry. Coins came later.
 
