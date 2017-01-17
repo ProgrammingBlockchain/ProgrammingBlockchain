@@ -6,7 +6,7 @@ When you call **new Key()**, under the hood, you are using a PRNG (Pseudo-Random
 
 On Android, I use the **SecureRandom**, and in fact, you can use your own implementation with **RandomUtils.Random**.
 
-On IOS, I have not implemented it and you need to create your **IRandom** implementation.
+On iOS, I have not implemented it and you need to create your **IRandom** implementation.
 
 For a computer, being random is hard. But the biggest issue is that it is impossible to know if a series of number is really random.
 
@@ -105,7 +105,7 @@ Console.ReadLine();
 
 Such encryption is used in two different cases:  
 
-*   You don not trust your storage provider (they can get hacked)  
+*   You do not trust your storage provider (they can get hacked)  
 *   You are storing the key on the behalf of somebody else (and you do not want to know his key)  
 
 If you own your storage, then encrypting at the database level might be enough.  
