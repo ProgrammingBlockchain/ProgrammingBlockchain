@@ -24,7 +24,7 @@ And let’s imagine that your clock has 1ms of resolution. (Reality is more ~15m
 If your attacker knows that you generated the key last week, then your seed has  
 1000 \* 60 \* 60 \* 24 \* 7 = 604800000 possibilities.
 
-For such attacker, the entropy is LOG(604800000;2) = 29.17 bits.
+For such attacker, the entropy is log<sub>2</sub>(604800000) = 29.17 bits.
 
 And enumerating such number on my home computer took less than 2 seconds. We call such enumeration “brute forcing”.
 
@@ -37,7 +37,7 @@ Now, let’s add the time when I turned on my computer, assuming the attacker kn
 Now the attacker needs to enumerate 604800000 \* 1024 \* 86400000 = 5,35088E+19 possibilities.  
 However, keep in mind that if the attacker infiltrate my computer, he can get this last piece of info, and bring down the number of possibilities, reducing entropy.
 
-Entropy is measured by **LOG(possibilities;2)** and so LOG(5,35088E+19; 2) = 65 bits.
+Entropy is measured by **log<sub>2</sub>(possibilities)** and so log<sub>2</sub>(5,35088E+19) = 65 bits.
 
 Is it enough? Probably. Assuming your attacker does not know more information about the realm of possibilities.
 
