@@ -22,11 +22,22 @@ If you are reading this book with GitBook, you can also create a quick inline co
 ## How can I write a new chapter? Aka extensive contribution
 1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
 2. Fork
+3. Clone your fork
+4. Download and install [Gitbook editor](https://www.gitbook.com/)
+5. Open Gitbook editor
+6. Select "Import" and select the folder where you cloned your fork
+7. Edit book
+8. Save files and Sync
+9. Make a pull request
+
+## How can I write a new chapter? Aka extensive contribution (for whom are literate in git and markdown)
+1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
+2. Fork
 3. Clone your fork to your computer
-4. Download and install [Atom editor](https://atom.io/)
+4. Download and install [Atom editor](https://atom.io/) ( or your favorite editors , notepad++ ,vim ,etc)
 5. Open Atom editor
 6. Select "Open Folder" and select the folder where you cloned your fork
-7. Edit book with help of the Markdown Preview pakcage (Cmd/Ctrl-Shift-M)
+7. Edit book with help of the Markdown Preview package (Cmd/Ctrl-Shift-M)
 8. Save files
 9. Commit and push to your remote repo with your favorite git client (Github Desktop,Gitbash,SourceTree and etc.)
 10. Make a pull request
