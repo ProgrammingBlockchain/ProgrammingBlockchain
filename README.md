@@ -11,7 +11,7 @@ Indonesian: [Read](https://nopara73.gitbooks.io/programmingblockchainindonesian/
 
 ## Quick feedback
 If you notice any mistakes, and don't want to fix them yourself, open an issue [on the Github page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
-If you are reading this book with GitBook, you can also create a quick inline comment.
+If you are reading this book with GitBook, you can also create a quick inline comment by clicking "+" button for the paragraph.
 
 ## How can I fix a typo? Aka quick contribution
 1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
@@ -29,6 +29,18 @@ If you are reading this book with GitBook, you can also create a quick inline co
 7. Edit book
 8. Save files and Sync
 9. Make a pull request
+
+## How can I write a new chapter? Aka extensive contribution (for whom are literate in git and markdown)
+1. Find [the book on Github](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
+2. Fork
+3. Clone your fork to your computer
+4. Download and install [Atom editor](https://atom.io/) ( or your favorite editors , notepad++ ,vim ,etc)
+5. Open Atom editor
+6. Select "Open Folder" and select the folder where you cloned your fork
+7. Edit book with help of the Markdown Preview package (Cmd/Ctrl-Shift-M)
+8. Save files
+9. Commit and push to your remote repo with your favorite git client (Github Desktop,Gitbash,SourceTree and etc.)
+10. Make a pull request
 
 ## Enhancing your learning process  
 Making contributions while you are reading is a good way to learn faster. If you have a hard time understanding something, try to reword it and make a pull request for other readers.
