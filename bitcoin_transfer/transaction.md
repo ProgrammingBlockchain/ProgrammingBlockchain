@@ -127,11 +127,11 @@ Every **TxOut** is uniquely addressed at the blockchain level by the ID of the t
 
 ![](../assets/OutPoint.png)
 
-For example, the **Outpoint** of the **TxOut** with 13.19683492 BTC in our transaction is (4788c5ef8ffd0463422bcafdfab240f5bf0be690482ceccde79c51cfce209edd, 0).  
+For example, the **Outpoint** of the **TxOut** with 13.19683492 BTC in our transaction is (f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94, 0).  
 
 ```cs
-OutPoint firstOutPoint = spentCoins.First().Outpoint;
-Console.WriteLine(firstOutPoint.Hash); // 4788c5ef8ffd0463422bcafdfab240f5bf0be690482ceccde79c51cfce209edd
+OutPoint firstOutPoint = recievedCoins.First().Outpoint;
+Console.WriteLine(firstOutPoint.Hash); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 Console.WriteLine(firstOutPoint.N); // 0
 ```  
 
