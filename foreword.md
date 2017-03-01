@@ -15,7 +15,7 @@ An extract in _Fountain Head_ by Ayn Rand resonated with me.
 > "Your strength?"  
 > "Your work." He tossed the branch aside. "The material the earth offers you and what you make of it..."  
 
-I think The Blockchain is like the tree branch. For outsiders, it feels like a boring and useless collection of bits. For programmers and entrepreneurs, it is a marvelous raw material that can be shaped with our imagination. We give it meaning and purpose.
+I think the Blockchain is like the tree branch. For outsiders, it feels like a boring and useless collection of bits. For programmers and entrepreneurs, it is a marvelous raw material that can be shaped with our imagination. We give it meaning and purpose.
 
 Just as you need to know about wood to make a bow, spear or cane from a branch, you need to learn about programming to shape the Blockchain. My hope is that you will discover how much your skill and intelligence can shape that useless collection of bits.
 
