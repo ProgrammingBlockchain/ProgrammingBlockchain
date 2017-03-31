@@ -8,6 +8,7 @@
 
 ## Other languages
 Indonesian: [Read](https://nopara73.gitbooks.io/programmingblockchainindonesian/content/) - [GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Indonesian) - [GitBook](https://www.gitbook.com/book/nopara73/programmingblockchainindonesian)  
+Japanese: [Read](https://programmingblockchain.gitbooks.io/programmingblockchain-japanese/content/) - [GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Japanese) - [GitBook](https://www.gitbook.com/book/programmingblockchain/programmingblockchain-japanese)  
 
 ## Quick feedback
 If you notice any mistakes and don't want to fix them yourself, open an issue [on the GitHub page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
