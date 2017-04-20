@@ -60,7 +60,7 @@ Console.WriteLine(transaction.GetHash()); // f13dc48fb035bbf0a6e989a26b3ecb57b84
 **GetTransactionResponse** has additional information about the transaction like the value and scriptPubKey of the inputs being spent in the transaction.
 
 The relevant parts for now are the **inputs** and **outputs**.  
-You can see there is only one output in our transaction. `13.19683492` bitcoins is sent to that ScriptPubKey.
+You can see there is only one output in our transaction. `13.19683492` bitcoins are sent to that ScriptPubKey.
 
 ```cs
 List<ICoin> receivedCoins = transactionResponse.ReceivedCoins;
