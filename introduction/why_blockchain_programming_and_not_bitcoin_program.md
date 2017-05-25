@@ -2,7 +2,7 @@
 
 The Blockchain is to Bitcoin as gold is to jewelry.
 
-We did not compare a bitcoin to a gold coin, but rather to jewelry. That’s because gold’s first killer app was jewellery. Coins came later.
+We did not compare a bitcoin to a gold coin, but rather to jewelry. That’s because gold’s first killer app was jewelry. Coins came later.
 
 Do not be fooled into thinking that Bitcoin is flawed while the Blockchain is valuable. If gold is valuable, would you throw away a gold necklace? The Blockchain is built on and thrives because of Bitcoin. Any increase in value of the Blockchain will increase the amount of bitcoins that is spent to use it, which will increase its demand.
 
