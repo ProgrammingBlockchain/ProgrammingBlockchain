@@ -25,7 +25,7 @@ Here is how to instantiate such Colored Coin in code:
 var coin = new Coin(
     fromTxHash: new uint256("fa6db7a2e478f3a8a0d1a77456ca5c9fa593e49fd0cf65c7e349e5a4cbe58842"),
     fromOutputIndex: 0,
-    amount: Money.Satoshis(2000000),
+    amount: Money.Satoshis(600),
     scriptPubKey: new Script(Encoders.Hex.DecodeData("76a914356facdac5f5bcae995d13e667bb5864fd1e7d5988ac")));
 BitcoinAssetId assetId = new BitcoinAssetId("AVAVfLSb1KZf9tJzrUVpktjxKUXGxUTD4e");
 ColoredCoin colored = coin.ToColoredCoin(assetId, 10);
