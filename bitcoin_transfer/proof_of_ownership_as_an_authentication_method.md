@@ -43,4 +43,4 @@ This constitutes proof that Nicolas Dorier owns the private key of the book.
 ### Sidenote
 Do you know how PGP works? Pretty similar, right?  
 Maybe this can be the foundation of a more user friendly PGP alternative.  
-Please build it on top of NBitcoin:-)
+Please build it on top of NBitcoin :-)
