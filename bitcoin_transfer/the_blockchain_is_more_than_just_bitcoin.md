@@ -6,6 +6,6 @@ It is also used by those who do not believe in the success of the currency, as a
 
 But there is one thing we all agree on: an immutable database that cannot be censored, tampered with, or erased that is duplicated all around the world will have tremendous impact on other industries.  
 
-Notaries who record facts that can be used in court could store their documents permanently in The Blockchain. Audits can become automatic and provable when assets and ownership are stored and transferred on The Blockchain. All Money Transmitters can prove their solvency publicly. Automatic trading scripts can trade between themselves without human intervention or authorization of a central authority.  
+Notaries who record facts that can be used in court could store their documents permanently in The Blockchain. Audits can become automatic and provable when assets and ownership are stored and transferred on The Blockchain. All Money Transmitters can prove their solvency publicly. Automatic trading scripts can trade between themselves without human intervention or the need for authorization from a central authority.  
 
 In the rest of this book we will explore the fundamentals required to enable all of these technologies and more. It all starts with spending a bitcoin.
