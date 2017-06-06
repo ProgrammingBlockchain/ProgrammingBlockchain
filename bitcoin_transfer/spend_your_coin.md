@@ -1,6 +1,6 @@
 ## Spend your coin {#spend-your-coin}
 
-So now that you know what a **bitcoin address**, a **ScriptPubKey**, a **private key**, and a **miner** are you will make your first **transaction** by hand.  
+So now that you know what a **bitcoin address**, a **ScriptPubKey**, a **private key** and a **miner** are you will make your first **transaction** by hand.  
 
 As you proceed through this lesson you will add code line by line as it is presented to build a method that will leave feedback for the book in a Twitter style message.  
 
@@ -8,7 +8,7 @@ Let’s start by looking at the **transaction** that contains the **TxOut** that
 
 Create a new **Console Project** (>.net45) and install **QBitNinja.Client** NuGet.  
 
-Have you already generated and noted a private key to yourself? Have you already get the corresponding bitcoin address and sent some funds there? If not, don't worry, I quickly reiterate how you can do it:  
+Have you already generated and noted down a private key yourself? Have you already get the corresponding bitcoin address and sent some funds there? If not, don't worry, I quickly reiterate how you can do it:  
 
 ```cs
 var network = Network.Main;
@@ -21,7 +21,7 @@ Console.WriteLine(bitcoinPrivateKey);
 Console.WriteLine(address);
 ```  
 
-Note the **bitcoinPrivateKey**, the **address**, send some coins there and note the transaction id (you can find it (probably) in your wallet software or with a blockexplorer, like [blockchain.info](http://blockchain.info/)).  
+Note the **bitcoinPrivateKey** and the **address**, send some coins there and note the transaction id (you can find it (probably) in your wallet software or with a blockexplorer, like [blockchain.info](http://blockchain.info/)).  
 
 Import your private key:  
 
@@ -45,7 +45,7 @@ Console.WriteLine(transactionResponse.TransactionId); // e44587cf08b4f03b0e8b4ae
 Console.WriteLine(transactionResponse.Block.Confirmations);
 ```  
 
-Now we have every information for creating our transactions. The main questions are: **from where, to where and how much?**
+Now we have every bit of information we need to create our transactions. The main questions are: **from where, to where and how much?**
 
 ### From where?
 
@@ -78,12 +78,12 @@ transaction.Inputs.Add(new TxIn()
 ### To where?
 
 Do you remember the main questions? **From where, to where and how much?**  
-Constructing **TxIn** and adding to the transaction was the answer the "from where" question.  
+Constructing **TxIn** and adding to the transaction is the answer to the "from where" question.  
 Constructing **TxOut** and adding to the transaction is the answer for the remaining ones.  
 
 The donation address of this book is: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://blockchain.info/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB)  
 This money goes into my "Coffee and Sushi Wallet" that will keep me fed and compliant while writing the rest of the book.  
-If you succeed to complete this challange you will be able to find your contribution among **Hall of the Makers** on http://n.bitcoin.ninja/ (ordered by generosity).  
+If you succeed in completing this challange you will be able to find your contribution amongst the **Hall of the Makers** on http://n.bitcoin.ninja/ (ordered by generosity).  
 ```cs
 var hallOfTheMakersAddress = new BitcoinPubKeyAddress("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
 ```  
@@ -93,7 +93,7 @@ var hallOfTheMakersAddress = BitcoinAddress.Create("mzp4No5cmCXjZUpf112B1XWsvWBf
 ```  
 
 ### How much?
-If you want to send **0.5 BTC** from a **transaction input** with **1 BTC** you actually have to spend all!   
+If you want to send **0.5 BTC** from a **transaction input** with **1 BTC** you actually have to spend it all!   
 As the diagram shows below, your **transaction output** specifies  **0.5** BTC to Hall of The Makers and **0.4999** back to you.  
 What happens to the remaining **0.0001 BTC**? This is the miner fee in order to incentivize them to add this transaction into their next block.
 
@@ -116,8 +116,8 @@ transaction.Outputs.Add(hallOfTheMakersTxOut);
 transaction.Outputs.Add(changeBackTxOut);
 ```  
 
-We can do some finetuning here.  
-You can check the address on a blockexplorer I am working with on this whole chapter example (I am working on the testnet):   http://tbtc.blockr.io/address/info/mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv  
+We can do some fine tuning here.  
+You can check the address I am working with in this chapter's examples on a blockexplorer (I am working on the testnet):   http://tbtc.blockr.io/address/info/mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv  
 
 ```cs
 // How much you want to TO
@@ -157,7 +157,7 @@ transaction.Outputs.Add(changeBackTxOut);
 ### Message on The Blockchain
 
 Now add your feedback! This must be less than 40 bytes, or it will crash the application.  
-This feedback, along with your transaction will appear (after transaction is confirmed) in the [Hall of The Makers](http://n.bitcoin.ninja/). 
+This feedback, along with your transaction will appear (after your transaction is confirmed) in the [Hall of The Makers](http://n.bitcoin.ninja/). 
 
 ```cs
 var message = "nopara73 loves NBitcoin!";
@@ -169,8 +169,8 @@ transaction.Outputs.Add(new TxOut()
 });
 ```  
 
-To sum up take a look at my whole transaction before signing:  
-I have 3 **TxOut**, 2 with **value**, 1 without **value** (with the message). You can notice the differences between the **scriptPubKey**s of the "normal" **TxOut**s and the **scriptPubKey** of the **TxOut** with the message:  
+To sum up take a look at my whole transaction before we sign it:  
+I have 3 **TxOut**, 2 with **value**, 1 without **value** (which contains the message). You can notice the differences between the **scriptPubKey**s of the "normal" **TxOut**s and the **scriptPubKey** of the **TxOut** with the message:  
 
 ```json
 {
@@ -207,7 +207,7 @@ I have 3 **TxOut**, 2 with **value**, 1 without **value** (with the message). Yo
 ```  
 
 Take a closer look at **TxIn**. We have **prev_out** and **scriptSig** there.  
-**Exercise:** try to figure out what will be and how to get the **scriptSig** in our code before you read further!  
+**Exercise:** try to figure out what **scriptSig** will be and how to get it in our code before you read further!  
 
 Let's check out the **hash** of **prev_out** in a blockexplorer: http://tbtc.blockr.io/tx/info/e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3  
 In **prev_out** **n** is 1. Since we are indexing from 0, this means I want to spend the second output of the transaction.  
@@ -224,13 +224,13 @@ Now that we have created the transaction, we must sign it. In other words, you w
 
 Signing can be [complicated](https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png), but we’ll make it simple.
 
-First let's revisit the **scriptSig** of **in**, how we can get it from code. Remember, we copypasted the address above from a blockexplorer, now let's get it from our QBitNinja transactionResponse:  
+First let's revisit the **scriptSig** of **in** and how we can get it from code. Remember, we copy/pasted the address above from a blockexplorer, now let's get it from our QBitNinja transactionResponse:  
 
 ```cs
 transaction.Inputs[0].ScriptSig =  bitcoinPrivateKey.ScriptPubKey;
 ```  
 
-Then you need to give your private key for signing:  
+Then you need to provide your private key in order to sign the transaction:  
 
 ```cs
 transaction.Sign(bitcoinPrivateKey, false);
@@ -270,9 +270,9 @@ using (var node = Node.ConnectToLocal(network)) //Connect to the node
 
 The **using** code block will take care of closing the connection to the node. That's it!
 
-You can also connect directly to the Bitcoin network, however I advise you to connect to your own trusted node (faster and easier)  
+You can also connect directly to the Bitcoin network, however I advise you to connect to your own trusted node as it is faster and easier.
   
 ## Need more practice?  
-Youtube: [How to make your first transaction with NBitcoin](https://www.youtube.com/watch?v=X4ZwRWIF49w)  
+YouTube: [How to make your first transaction with NBitcoin](https://www.youtube.com/watch?v=X4ZwRWIF49w)  
 CodeProject: [Create a Bitcoin transaction by hand.](http://www.codeproject.com/Articles/1151054/Create-a-Bitcoin-transaction-by-hand)  
 CodeProject: [DotNetWallet - Build your own Bitcoin wallet in C#](https://www.codeproject.com/script/Articles/ArticleVersion.aspx?waid=214550&aid=1115639)
