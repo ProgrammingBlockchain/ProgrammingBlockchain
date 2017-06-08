@@ -89,7 +89,7 @@ These 2 types of payment are referred as **P2PK** (pay to public key) and **P2PK
 
 Satoshi later decided to use P2PKH instead of P2PK for two reasons:
 
-*   Elliptic Curve Cryptography (the cryptography used by your **public key** and **private key**) is vulnerable to a modified Shor's algorithm for solving the discrete logarithm problem on elliptic curves. In plain English; it means that in the future a quantum computer might be able to **retrieve a private key from a public key**. By publishing the public key only when the coins are spent, such an attack is rendered ineffective (assuming that addresses are not reused). 
+*   Elliptic Curve Cryptography (the cryptography used by your **public key** and **private key**) is vulnerable to a modified Shor's algorithm for solving the discrete logarithm problem on elliptic curves. In plain English, it means that in the future a quantum computer might be able to **retrieve a private key from a public key**. By publishing the public key only when the coins are spent, such an attack is rendered ineffective (assuming that addresses are not reused). 
 *   With the hash being smaller (20 bytes) it is easier to print and easier to embed into small storage mediums like QR codes.
 
 Nowadays, there is no reason to use P2PK directly although it is still used in combination with P2SH... more on this later.  
