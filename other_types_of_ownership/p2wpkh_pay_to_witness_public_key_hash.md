@@ -7,7 +7,7 @@ There are several reasons why it is beneficial to use this new scheme, a summary
 *   **Third party Malleability Fix:** Previously, a third party could change the transaction id of your transaction before it was confirmed. This can not occur under Swgwit.
 *   **Linear sig hash scaling:** Signing a transaction used to require hashing the whole transaction for every input. This was a potential DDoS vector attack for large transactions.
 *   **Signing of input values:** The amount that is spent in an input is also signed, meaning that the signer can’t be tricked about the amount of fees that are actually being paid.
-*   **Capacity increase:** It will now be possible to have more than 1MB of transactions in each block (which are created every 10 minutes on average). Segwit increases this capacity by a factor of about 1.7, although this depends upon the types of transaction included in each block. More information can be found at [https://segwit.org/is-segwit-a-block-size-increase-705df6a8731d](https://segwit.org/is-segwit-a-block-size-increase-705df6a8731d).
+*   **Capacity increase:** It will now be possible to have more than 1MB of transactions in each block (which are created every 10 minutes on average). Segwit increases this capacity by a factor of about 2.1, based upon the average transaction profile from November 2016.
 *   **Fraud proof:** Will be developed later, but SPV wallets will be able to validate more consensus rules rather than just simply following the longest chain.
 
 Before Sewgit the transaction signature was used in the calculation of the transaction id.  
