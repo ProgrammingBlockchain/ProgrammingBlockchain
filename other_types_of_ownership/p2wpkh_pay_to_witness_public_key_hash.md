@@ -4,7 +4,7 @@ In 2015, Pieter Wuille introduced a new feature to bitcoin called **Segregated W
 
 There are several reasons why it is beneficial to use this new scheme, a summary of which are presented below. For more details visit [https://bitcoincore.org/en/2016/01/26/segwit-benefits/](https://bitcoincore.org/en/2016/01/26/segwit-benefits/).
 
-*   **Third party Malleability Fix:** Previously, a third party could change the transaction id of your transaction before it was confirmed. This can not occur under Swgwit.
+*   **Third party Malleability Fix:** Previously, a third party could change the transaction id of your transaction before it was confirmed. This can not occur under Segwit.
 *   **Linear sig hash scaling:** Signing a transaction used to require hashing the whole transaction for every input. This was a potential DDoS vector attack for large transactions.
 *   **Signing of input values:** The amount that is spent in an input is also signed, meaning that the signer can’t be tricked about the amount of fees that are actually being paid.
 *   **Capacity increase:** It will now be possible to have more than 1MB of transactions in each block (which are created every 10 minutes on average). Segwit increases this capacity by a factor of about 2.1, based upon the average transaction profile from November 2016.
