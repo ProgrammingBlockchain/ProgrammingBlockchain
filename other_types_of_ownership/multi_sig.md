@@ -1,9 +1,10 @@
 ## Multi Sig {#multi-sig}
 
-It is possible to have shared ownership over coins.  
-For that you will create a ```ScriptPubKey``` that represents a **m-of-n multi sig**, this means in order to spend the coins, **m** private keys will need to sign on the **n** different public key provided.
+It is possible to have shared ownership and control over coins. 
 
-Let’s create a multi sig with Bob, Alice, and Satoshi, where two of them are needed to spend a coin.  
+In order to demonstarte this we will create a ```ScriptPubKey``` that represents an **m-of-n multi sig**, this means that in order to spend the coins, **m** number of private keys will need to sign out of the **n** number of different public keys provided.
+
+Let’s create a multi sig with Bob, Alice and Satoshi, where two of them need to sign a transaction in order to spend a coin.  
 
 ```cs
 Key bob = new Key();
@@ -21,11 +22,11 @@ Console.WriteLine(scriptPubKey);
 2 0282213c7172e9dff8a852b436a957c1f55aa1a947f2571585870bfb12c0c15d61 036e9f73ca6929dec6926d8e319506cc4370914cd13d300e83fd9c3dfca3970efb 0324b9185ec3db2f209b620657ce0e9a792472d89911e0ac3fc1e5b5fc2ca7683d 3 OP_CHECKMULTISIG
 ```  
 
-As you can see, the ```scriptPubkey``` have the following form: ```<sigsRequired> <pubkeys…> <pubKeysCount> OP_CHECKMULTISIG```  
+As you can see, the ```scriptPubkey``` has the following form: ```<sigsRequired> <pubkeys…> <pubKeysCount> OP_CHECKMULTISIG```  
 
 The process for signing it is a little more complicated than just calling ```Transaction.Sign```, which does not work for multi sig.
 
-Even if we will talk more deeply about the subject, let’s use the ```TransactionBuilder``` for signing the transaction.
+Later we will talk more deeply about the subject but for now let’s use the ```TransactionBuilder``` for signing the transaction.
 
 Imagine the multi-sig ```scriptPubKey``` received a coin in a transaction called ```received```:
 
@@ -35,7 +36,7 @@ received.Outputs.Add(new TxOut(Money.Coins(1.0m), scriptPubKey));
 ```  
 
 Bob and Alice agree to pay Nico 1.0 BTC for his services.
-So they get the ```Coin``` they received from the transaction:  
+First they get the ```Coin``` they received from the transaction:  
 
 ```cs
 Coin coin = received.Outputs.AsCoins().First();
@@ -43,7 +44,7 @@ Coin coin = received.Outputs.AsCoins().First();
 
 ![](../assets/coin.png)  
 
-Then, with the ```TransactionBuilder```, create an **unsigned transaction**.  
+Then, with the ```TransactionBuilder```, they create an **unsigned transaction**.  
 
 ```cs
 BitcoinAddress nico = new Key().PubKey.GetAddress(Network.Main);
@@ -79,7 +80,7 @@ Transaction bobSigned =
 
 ![](../assets/bobSigned.png)  
 
-Now, Bob and Alice can combine their signature into one transaction.  
+Now, Bob and Alice can combine their signature into one transaction. This transaction will then be valid in terms of it's signatures as Bob and Alice have provided two of the signatures from the three that were initially provided. The requirements of the 'two-of-three' multi sig have therefore been met.
 
 ```cs
 Transaction fullySigned =
@@ -115,12 +116,12 @@ Console.WriteLine(fullySigned);
 }
 
 ```  
-The transaction is now ready to be sent on the network.
+The transaction is now ready to be sent to the network.
 
-Even if the Bitcoin network supports multi sig as explained here, one question worth asking is: How can you ask to a user who has no clue about bitcoin to pay on satoshi/alice/bob multi sig, since such ```scriptPubKey``` can’t be represented by easy to use Bitcoin Address like we have seen before?
+Even if the Bitcoin network supports multi sig as explained here, one question worth asking is: How can you ask a user who has no clue about bitcoin to pay using the satoshi/alice/bob multi sig as we have above, since such a ```scriptPubKey``` can’t be represented by a simple Bitcoin Address like the ones we have seen before?
 
-Don’t you think it would be cool if we could to represent such ```scriptPubKey``` as easily and compactly as a Bitcoin Address?
+Don’t you think it would be cool if we could represent such a ```scriptPubKey``` as easily and concisely as a regular Bitcoin Address?
 
-Well, this is possible and it is called a **Bitcoin Script Address** also called Pay to Script Hash. (P2SH)
+Well, this is possible using something called a **Bitcoin Script Address** (also called Pay to Script Hash or P2SH for short).
 
-Nowadays, **native Pay To Multi Sig** as you have seen here, and **native P2PK**, are never used directly as such, they are wrapped into **Pay To Script Hash** payment.
+Nowadays, **native Pay To Multi Sig** (as you have seen above) and **native P2PK** are never used directly. Instead they are wrapped into something called a **Pay To Script Hash** payment. We will look at this type of payment in the next section.
