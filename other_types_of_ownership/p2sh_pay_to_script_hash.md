@@ -1,8 +1,8 @@
 ## P2SH (Pay To Script Hash) {#p2sh-pay-to-script-hash}
 
-As seen previously, using multi-sig is easily done in code. However, before P2SH there was no way to ask someone to pay to a multi-sig ```scriptPubKey``` in as way that was as simple as just providing them with a regular ```BitcoinAddress```.  
+As seen in the previous section, using multi-sig is easily done in code. However, before P2SH there was no way to ask someone to pay to a multi-sig ```scriptPubKey``` in a way that was as simple as just providing them with a regular ```BitcoinAddress```.  
 
-**Pay To Script Hash** (or **P2SH** as it is often known), is an easy way to represent any ```scriptPubKey``` as a simple ```BitcoinScriptAddress```, no matter how complicated it is in terms of it's underlying m-of-n signature set up.
+**Pay To Script Hash** (or **P2SH** as it is often known), is an easy way to represent a ```scriptPubKey``` as a simple ```BitcoinScriptAddress```, no matter how complicated it is in terms of it's underlying m-of-n signature set up.
 
 In the previous part we generated this multi-sig:
 
@@ -97,4 +97,4 @@ ScriptCoin coin = received.Outputs.AsCoins().First()
 
 ![](../assets/ScriptCoin.png)  
 
-The rest of the code concerning transaction generation and signing is exactly the same as in the previous part about native multi sig.
+The rest of the code concerning transaction generation and signing is exactly the same as in the previous section about native multi sig.
