@@ -2,7 +2,7 @@
 
 It is possible to have shared ownership and control over coins. 
 
-In order to demonstarte this we will create a ```ScriptPubKey``` that represents an **m-of-n multi sig**, this means that in order to spend the coins, **m** number of private keys will need to sign out of the **n** number of different public keys provided.
+In order to demonstrate this we will create a ```ScriptPubKey``` that represents an **m-of-n multi sig**, this means that in order to spend the coins, **m** number of private keys will need to sign out of the **n** number of different public keys provided.
 
 Let’s create a multi sig with Bob, Alice and Satoshi, where two of them need to sign a transaction in order to spend a coin.  
 
