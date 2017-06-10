@@ -2,9 +2,9 @@
 
 It is possible to have shared ownership and control over coins. 
 
-In order to demonstrate this we will create a ```ScriptPubKey``` that represents an **m-of-n multi sig**, this means that in order to spend the coins, **m** number of private keys will need to sign out of the **n** number of different public keys provided.
+In order to demonstrate this we will create a ```ScriptPubKey``` that represents an **m-of-n multi sig**. This means that in order to spend the coins, **m** number of private keys will need to sign the spending transaction out of the **n** number of different public keys provided.
 
-Let’s create a multi sig with Bob, Alice and Satoshi, where two of them need to sign a transaction in order to spend a coin.  
+Let’s create a multi sig with Bob, Alice and Satoshi, where two of the three of them need to sign a transaction in order to spend a coin.  
 
 ```cs
 Key bob = new Key();
@@ -80,7 +80,7 @@ Transaction bobSigned =
 
 ![](../assets/bobSigned.png)  
 
-Now, Bob and Alice can combine their signature into one transaction. This transaction will then be valid in terms of it's signatures as Bob and Alice have provided two of the signatures from the three that were initially provided. The requirements of the 'two-of-three' multi sig have therefore been met.
+Now, Bob and Alice can combine their signature into one transaction. This transaction will then be valid in terms of it's signature as Bob and Alice have provided two of the signatures from the three owner signatures that were initially provided. The requirements of the 'two-of-three' multi sig have therefore been met.
 
 ```cs
 Transaction fullySigned =
@@ -118,7 +118,7 @@ Console.WriteLine(fullySigned);
 ```  
 The transaction is now ready to be sent to the network.
 
-Even if the Bitcoin network supports multi sig as explained here, one question worth asking is: How can you ask a user who has no clue about bitcoin to pay using the satoshi/alice/bob multi sig as we have above, since such a ```scriptPubKey``` can’t be represented by a simple Bitcoin Address like the ones we have seen before?
+Even if the Bitcoin network supports multi sig as explained here, one question worth asking is: How can you expect a user who has no clue about bitcoin to pay using the Alice/Bob/Satoshi multi-sig as we have done above?
 
 Don’t you think it would be cool if we could represent such a ```scriptPubKey``` as easily and concisely as a regular Bitcoin Address?
 
