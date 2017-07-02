@@ -140,7 +140,7 @@ Now let’s take a closer look at the inputs (aka **TxIn**) of the transaction:
 
 ![](../assets/TxIn.png)
 
-The **TxIn** is composed of the **Outpoint** of the **TxOut** being spent and of the **ScriptSig** ( we can see the ScriptSig as the “Proof of Ownership”) In our transaction there are actually 9 inputs.  
+The **TxIn** is composed of the **Outpoint** of the **TxOut** being spent and of the **ScriptSig** (we can see the ScriptSig as the “Proof of Ownership”). In our transaction there are actually 9 inputs.  
 
 ```cs
 Console.WriteLine(transaction.Inputs.Count); // 9
