@@ -78,8 +78,8 @@ transaction.Inputs.Add(new TxIn()
 ### To where?
 
 Do you remember the main questions? **From where, to where and how much?**  
-Constructing **TxIn** and adding to the transaction is the answer to the "from where" question.  
-Constructing **TxOut** and adding to the transaction is the answer for the remaining ones.  
+Constructing the **TxIn** and adding it to the transaction is the answer to the "from where" question.  
+Constructing the **TxOut** and adding it to the transaction is the answer to the remaining ones.  
 
 The donation address of this book is: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://blockchain.info/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB)  
 This money goes into my "Coffee and Sushi Wallet" that will keep me fed and compliant while writing the rest of the book.  
