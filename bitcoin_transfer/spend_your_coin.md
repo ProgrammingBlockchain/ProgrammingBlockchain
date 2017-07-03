@@ -83,7 +83,7 @@ Constructing **TxOut** and adding to the transaction is the answer for the remai
 
 The donation address of this book is: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://blockchain.info/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB)  
 This money goes into my "Coffee and Sushi Wallet" that will keep me fed and compliant while writing the rest of the book.  
-If you succeed in completing this challange you will be able to find your contribution amongst the **Hall of the Makers** on http://n.bitcoin.ninja/ (ordered by generosity).  
+If you succeed in completing this challenge you will be able to find your contribution amongst the **Hall of the Makers** on http://n.bitcoin.ninja/ (ordered by generosity).  
 ```cs
 var hallOfTheMakersAddress = new BitcoinPubKeyAddress("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
 ```  
