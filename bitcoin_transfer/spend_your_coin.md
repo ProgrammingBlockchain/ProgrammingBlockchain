@@ -21,7 +21,7 @@ Console.WriteLine(bitcoinPrivateKey);
 Console.WriteLine(address);
 ```  
 
-Note the **bitcoinPrivateKey** and the **address**, send some coins there and note the transaction id (you can find it (probably) in your wallet software or with a blockexplorer, like [blockchain.info](http://blockchain.info/)).  
+Note the **bitcoinPrivateKey** and the **address**, send some coins there and note the transaction id (you can find it, probably, in your wallet software or with a blockexplorer, like [blockchain.info](http://blockchain.info/)).  
 
 Import your private key:  
 
