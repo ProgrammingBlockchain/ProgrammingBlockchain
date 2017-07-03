@@ -1,6 +1,6 @@
 ## Spend your coin {#spend-your-coin}
 
-So now that you know what a **bitcoin address**, a **ScriptPubKey**, a **private key** and a **miner** are you will make your first **transaction** by hand.  
+So now that you know what a **bitcoin address**, a **ScriptPubKey**, a **private key** and a **miner** are, you will make your first **transaction** by hand.
 
 As you proceed through this lesson you will add code line by line as it is presented to build a method that will leave feedback for the book in a Twitter style message.  
 
