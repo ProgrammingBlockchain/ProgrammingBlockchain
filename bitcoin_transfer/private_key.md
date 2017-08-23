@@ -27,8 +27,8 @@ Console.WriteLine(samePrivateKey == privateKey); // True
 
 ```cs
 PubKey publicKey = privateKey.PubKey;
-BitcoinPubKeyAddress bitcoinPubicKey = publicKey.GetAddress(Network.Main); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
-//PubKey samePublicKey = bitcoinPubicKey.ItIsNotPossible;
+BitcoinPubKeyAddress bitcoinPublicKey = publicKey.GetAddress(Network.Main); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
+//PubKey samePublicKey = bitcoinPublicKey.ItIsNotPossible;
 ```  
 
 ### Exercise:
