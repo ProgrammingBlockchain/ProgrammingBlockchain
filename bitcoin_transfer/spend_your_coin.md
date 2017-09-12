@@ -244,8 +244,8 @@ BroadcastResponse broadcastResponse = client.Broadcast(transaction).Result;
 
 if (!broadcastResponse.Success)
 {
-    Console.WriteLine("ErrorCode: " + broadcastResponse.Error.ErrorCode);
-    Console.WriteLine("Error message: " + broadcastResponse.Error.Reason);
+    Console.Error.WriteLine("ErrorCode: " + broadcastResponse.Error.ErrorCode);
+    Console.Error.WriteLine("Error message: " + broadcastResponse.Error.Reason);
 }
 else
 {
