@@ -250,7 +250,7 @@ ExtKey newExtKey = new ExtKey(key, chainCode);
 
 The **base58** type equivalent of **ExtKey** is called **BitcoinExtKey**.
 
-But how can we solve our second problem: delegating address creation to a peer that can potentially be hacked (like a payment server)?
+But how can we solve our second problem: delegating key/address creation process to an untrusted peer that can potentially be hacked (like a payment server)?
 
 The trick is that you can “neuter” your master key, then you have a public (without private key) version of the master key. From this neutered version, a third party can generate public keys without knowing the private key.
 
