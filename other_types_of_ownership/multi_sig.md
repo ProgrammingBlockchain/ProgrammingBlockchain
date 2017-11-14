@@ -78,7 +78,7 @@ Transaction bobSigned =
         .SignTransaction(aliceSigned);
 ```  
 
-![](../assets/bobSigned.png)  
+![](https://i.imgur.com/xaxR9MV.png)  
 
 Now, Bob and Alice can combine their signature into one transaction. This transaction will then be valid in terms of it's signature as Bob and Alice have provided two of the signatures from the three owner signatures that were initially provided. The requirements of the 'two-of-three' multi sig have therefore been met.
 
