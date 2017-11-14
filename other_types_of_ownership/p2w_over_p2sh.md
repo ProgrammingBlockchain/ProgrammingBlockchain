@@ -65,7 +65,7 @@ OP_HASH160 d06c0058175952afecc56d26ed16558b1ed40e42 OP_EQUAL
 2.  The former **ScriptPubKey** will be placed as the only push in the **scriptSig** in the spending transaction,
 3.  All other data will be pushed in the witness of the spending transaction,
 
-For 3\. the **‘other data’**, in the context of a P2WSH payment means the parameters of the **P2WSH redeem script** followed by a push of the **P2WSH redeem script**.
+For 3, the **‘other data’**, in the context of a P2WSH payment, means the parameters of the **P2WSH redeem script** followed by a push of the **P2WSH redeem script**.
 
 ```json
   "in": [
