@@ -75,6 +75,8 @@ Transaction bobSigned =
     builder
         .AddCoins(coin)
         .AddKeys(bob)
+        //At this line, SignTransaction(unSigned) has the identical functionality with the SignTransaction(aliceSigned).
+        //It's because unsigned transaction has already been signed by Alice privateKey from above.
         .SignTransaction(aliceSigned);
 ```  
 
@@ -115,7 +117,41 @@ Console.WriteLine(fullySigned);
   ]
 }
 
-```  
+```
+Before sending the transaction to the network, examine the need of CombineSignatures() method. Try to compare a full detail of transaction between bobSigned and fullySigned. It will seem both are identical. For this reason, it seems like the CombineSignatures() method is needless because mulit-signing has achieved without the CombineSignatures() method.
+
+Let's look at the case that CombineSignatures() is required:
+```cs
+TransactionBuilder builderNew = new TransactionBuilder();
+TransactionBuilder builderForAlice = new TransactionBuilder();
+TransactionBuilder builderForBob = new TransactionBuilder();
+
+Transaction unsignedNew =
+                builderNew
+                    .AddCoins(coin)
+                    .Send(nico, Money.Coins(1.0m))
+                    .BuildTransaction(sign: false);
+
+            
+            Transaction aliceSigned =
+                builderForAlice
+                    .AddCoins(coin)
+                    .AddKeys(alice)
+                    .SignTransaction(unsignedNew);
+            
+            Transaction bobSigned =
+                builderForBob
+                    .AddCoins(coin)
+                    .AddKeys(bob)
+                    .SignTransaction(unsignedNew);
+					
+//In this case, the CombineSignatures() method is essentially needed.
+Transaction fullySigned =
+                builderNew
+                    .AddCoins(coin)
+                    .CombineSignatures(aliceSigned, bobSigned);
+```
+
 The transaction is now ready to be sent to the network.
 
 Even if the Bitcoin network supports multi sig as explained here, one question worth asking is: How can you expect a user who has no clue about bitcoin to pay using the Alice/Bob/Satoshi multi-sig as we have done above?
