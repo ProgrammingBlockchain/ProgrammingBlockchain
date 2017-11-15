@@ -2,9 +2,9 @@
 
 From Bitcoin 0.10, the **RedeemScript** can be arbitrary, which means that with the script language of Bitcoin, you can create your own definition of what “ownership” means.
 
-For example, I can give money to whoever either know my date of birth (dd/mm/yyyy) serialized in UTF8 either knows the private key of **1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB**.
+For example, I can give money to whoever knows either my date of birth (dd/mm/yyyy) serialized in UTF-8 or the private key of **1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB**.
 
-The details of the script language are out of scope, you can easily find the documentation on various websites, and it is a stack based language so everyone having done some assembler should be able to read it.  
+The details of the script language are out of scope. You can easily find the documentation on various websites. The Bitcoin script language is a stack based language so everyone having done some assembler should be able to read it.  
 
 > **Note:** ([nopara73](https://github.com/nopara73)) I find [Davide De Rosa's tutorial](http://davidederosa.com/basic-blockchain-programming/bitcoin-script-language-part-one/) as the most enjoyable one.
 
@@ -24,7 +24,7 @@ Script redeemScript = new Script(
     "OP_ENDIF");
 ```
 
-This **RedeemScript** means that there is 2 way of spending such **ScriptCoin**: either you know the data that give **birthHash** (my birthdate), either you own the bitcoin address.
+This **RedeemScript** means that there are 2 ways of spending such **ScriptCoin**: Either you know the data that gives **birthHash** (my birthdate) or you own the bitcoin address.
 
 Let’s say I sent money to such **redeemScript**:  
 
@@ -34,7 +34,7 @@ tx.Outputs.Add(new TxOut(Money.Parse("0.0001"), redeemScript.Hash));
 ScriptCoin scriptCoin = tx.Outputs.AsCoins().First().ToScriptCoin(redeemScript);
 ```  
 
-So let’s create a transaction that want to spend such output:  
+So let’s create a transaction that wants to spend such output:  
 
 ```cs
 //Create spending transaction
@@ -56,7 +56,7 @@ spending.Inputs[0].ScriptSig = scriptSig;
 You can see that in the **scriptSig** I push **OP_1** so I enter in the **OP_IF** of my **RedeemScript**.  
 Since there is no backed-in template, for creating such **scriptSig**, you can see how to build a P2SH **scriptSig** by hand.
 
-Then you can check that the **scriptSig** prove the ownership of the **scriptPubKey**:  
+Then you can check that the **scriptSig** proves the ownership of the **scriptPubKey**:  
 
 ```cs
 //Verify the script pass
