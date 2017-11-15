@@ -33,4 +33,4 @@ With what was previously in the ```scriptSig``` (signature + redeem script), mov
 
 ```
 
-As the P2SH payment explained previously, P2WSH use ```ScriptCoin``` in exactly the same way to be signed.
+As the P2SH payment explained previously, P2WSH uses ```ScriptCoin``` in exactly the same way to be signed.
