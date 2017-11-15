@@ -18,7 +18,7 @@ Simply, you can get an idea that a public key is generated from a private key.
 ![](../assets/PrivKeyPubKey.png)  
 ```cs 
 publicKey = keyObj.privateKey.publicKey;
-```  
+```
 Note that above code is not a real syntax to generate a public key. It's just an example for depicting the meaning. 
 The more details for generating a private key is shown in the coming section, "Private key".
 
