@@ -27,7 +27,7 @@ The **TransactionBuilder** will figure out what **Coin** to use and what to sign
 The usage of the builder is done in four steps:  
 *   You gather the **Coins** that will be spent,
 *   You gather the **Keys** that you own,
-*   You enumerate how much **Money** you want to send to what **scriptPubKey** indicates,
+*   You enumerate how much **Money** you want to send to what **scriptPubKey**,
 *   You build and sign the **transaction**,
 *   **Optional**: you give the **transaction** to somebody else, then he will sign or continue to build it.
 
