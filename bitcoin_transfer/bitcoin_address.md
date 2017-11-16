@@ -95,7 +95,7 @@ Console.WriteLine(testNetAddress);
 There is a one binary-to-text encoding scheme which is called Base64.
 Base64 represents binary data in an ASCII string format with 64 characters composed of A-Z, a-z, 0-9, and +(plus) ,/(slash).
 
-Base58 is a modification of Base64 which was first suggested by Satoshi Nakamoto for Bitcoin implementation.
+Base58 is a modification of Base64 which was first suggested by Satoshi Nakamoto for Bitcoin system implementation.
 Base58 uses 58 characters by eleminating 6 characters from Base64 such as 0(zero), O(uppercase o), I(uppercase i), l(lowercase L), +(plus), and /(slash) to avoid a mistake by an ambiguity of characters.
 
 The Base58Check, a modification of Base58, encoding scheme has some neat features, such as checksums to prevent typos aside from a lack of ambiguous characters such as '0' and 'O' from Base58.  
