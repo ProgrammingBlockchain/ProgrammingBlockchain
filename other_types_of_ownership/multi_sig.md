@@ -116,6 +116,7 @@ Console.WriteLine(fullySigned);
     }
   ]
 }
+```
 
 Before sending the transaction to the network, examine the need of CombineSignatures() method. Try to compare a full detail of transaction between bobSigned and fullySigned. It will seem both are identical. For this reason, it seems like the CombineSignatures() method is needless because mulit-sig has achieved without the CombineSignatures() method.
 
@@ -133,13 +134,13 @@ Transaction unsignedNew =
                     .BuildTransaction(sign: false);
 
             
-            Transaction aliceSigned =
+Transaction aliceSigned =
                 builderForAlice
                     .AddCoins(coin)
                     .AddKeys(alice)
                     .SignTransaction(unsignedNew);
             
-            Transaction bobSigned =
+Transaction bobSigned =
                 builderForBob
                     .AddCoins(coin)
                     .AddKeys(bob)
