@@ -66,7 +66,7 @@ Console.WriteLine(publicKey.GetAddress(Network.TestNet));
 ```  
 Note that a Bitcoin address for MainNet starts with "1", and a Bitcoin address for TestNet starts with "m" or "n".
 
-**To be precise, a Bitcoin address is made up of a version byte which is different on both networks(MainNet, TestNet) and your public key’s hash bytes. Both of these bytes are concatenated and then encoded into a Base58Check encoding scheme which has an additional 4 bytes checksum data, compared to a Base58:**  
+**To be precise, a Bitcoin address is made up of a "version byte" which is different on both networks(MainNet, TestNet) but identifies the network type and your "public key’s hash bytes". Both of these bytes are concatenated and then encoded into a Base58Check encoding scheme which has an additional 4 bytes checksum data, compared to a Base58:**  
 
 In other words, it means that a generated Bitcoin address is always in Base58Check encoding scheme.(If this is wrong, please edit it.)
 
