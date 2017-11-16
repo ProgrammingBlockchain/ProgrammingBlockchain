@@ -19,7 +19,7 @@ Simply, you can get an idea that a public key is generated from a private key.
 ```cs 
 publicKey = keyObj.privateKey.publicKey;
 ```
-Note that above code is neither a real syntax to generate a public key nor a private key. It's just an example for depicting the meaning. 
+Note that above code is not a real syntax to generate both a public key and a private key. It's just an example for depicting the meaning. 
 The more details for generating a private key are shown in the coming section, "Private key".
 
 NBitcoin provides a sugar syntax to generate a public key simply by applying PubKey property on a key object.
