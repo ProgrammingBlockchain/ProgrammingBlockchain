@@ -4,7 +4,7 @@
 
 A transaction may have no recipient, or it may have several. **The same can be said for senders!** On the Blockchain, the sender and recipient are always abstracted with a ScriptPubKey, as we demonstrated in previous chapters.  
 
-If you use Bitcoin Core your Transactions tab will show the transaction, like this:
+If you use Bitcoin Core, your Transactions tab will show the transaction, like this:
 
 ![](../assets/BitcoinCoreTransaction.png)  
 
@@ -14,12 +14,16 @@ For now we are interested in the **Transaction ID**. In this case, it is ```f13d
 
 > **Note:** Do NOT use the Transaction ID to handle unconfirmed transactions. The Transaction ID can be manipulated before it is confirmed. This is known as “Transaction Malleability.”
 
-You can review the transaction on a block explorer like Blockchain.info: https://blockchain.info/tx/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94 
+You can review a specify transaction on a block explorer like Blockchain.info: 
+https://blockchain.info/tx/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
+
 But as a developer you will probably want a service that is easier to query and parse.  
 As a C# developer and an NBitcoin user Nicolas Dorier's [QBit Ninja](http://docs.qbitninja.apiary.io/) will definitely be your best choice. It is an open source web service API to query the blockchain and for tracking wallets.  
-QBit Ninja depends on [NBitcoin.Indexer](https://github.com/MetacoSA/NBitcoin.Indexer) which relies on Microsoft Azure Storage. C# developers are expected to use the [NuGet client package](http://www.nuget.org/packages/QBitninja.Client) instead of developing a wrapper around this API.  
+QBitNinja depends on [NBitcoin.Indexer](https://github.com/MetacoSA/NBitcoin.Indexer) which relies on Microsoft Azure Storage. C# developers are expected to use the [NuGet client package](http://www.nuget.org/packages/QBitninja.Client) instead of developing a wrapper around this API.  
 
-If you go to http://api.qbit.ninja/transactions/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94 you will see the raw bytes of your transaction.  
+If you go to:
+http://api.qbit.ninja/transactions/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
+you will see the raw bytes of your transaction.  
 
 ![](../assets/RawTx.png)  
 
@@ -33,12 +37,12 @@ Quickly close the tab, before it scares you away, QBit Ninja queries the API and
 
 ![](../assets/QBitNuGet.png)  
 
-Query the transaction by id:
+Query the transaction by ID:
 
 ```cs
 // Create a client
 QBitNinjaClient client = new QBitNinjaClient(Network.Main);
-// Parse transaction id to NBitcoin.uint256 so the client can eat it
+// Parse transaction ID to NBitcoin.uint256 so the client can eat it
 var transactionId = uint256.Parse("f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94");
 // Query the transaction
 GetTransactionResponse transactionResponse = client.GetTransaction(transactionId).Result;
@@ -50,11 +54,16 @@ The type of **transactionResponse** is **GetTransactionResponse**. It lives unde
 NBitcoin.Transaction transaction = transactionResponse.Transaction;
 ```  
  
-Let's see an example getting back the transaction id with both classes:  
+Let's see an example getting back the transaction ID by both classes, GetTransactionResponse and Transaction:
+
 
 ```cs
-Console.WriteLine(transactionResponse.TransactionId); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
-Console.WriteLine(transaction.GetHash()); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
+Console.WriteLine(transactionResponse.TransactionId); 
+//Output:
+//f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
+Console.WriteLine(transaction.GetHash()); 
+//Output:
+//f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 ```  
 
 **GetTransactionResponse** has additional information about the transaction like the value and scriptPubKey of the inputs being spent in the transaction.
@@ -62,24 +71,29 @@ Console.WriteLine(transaction.GetHash()); // f13dc48fb035bbf0a6e989a26b3ecb57b84
 The relevant parts for now are the **inputs** and **outputs**.  
 You can see there is only one output in our transaction. `13.19683492` bitcoins are sent to that ScriptPubKey.
 
+
+## Examine the RECEIVED COINS by using QBitNinja's GetTransactionResponse class
 ```cs
 List<ICoin> receivedCoins = transactionResponse.ReceivedCoins;
 foreach (var coin in receivedCoins)
 {
     Money amount = (Money) coin.Amount;
-
     Console.WriteLine(amount.ToDecimal(MoneyUnit.BTC));
     var paymentScript = coin.TxOut.ScriptPubKey;
-    Console.WriteLine(paymentScript);  // It's the ScriptPubKey
-    var address = paymentScript.GetDestinationAddress(Network.Main);
-    Console.WriteLine(address); // 1HfbwN6Lvma9eDsv7mdwp529tgiyfNr7jc
+    //Print each ScriptPubKey by executing foreach loop.
+    Console.WriteLine(paymentScript);
+    //Get a Bitcoin address.
+    //Recall we can get a Bitcoin address from a ScriptPubKey by specifying a network type by processing backwards.
+    var bitcoinAddressWithQG = paymentScript.GetDestinationAddress(Network.Main);
+    Console.WriteLine(bitcoinAddressWithQG);
+    //Output:
+    //1HfbwN6Lvma9eDsv7mdwp529tgiyfNr7jc
     Console.WriteLine();
 }
 ```  
 
-We have written out some information about the RECEIVED COINS using QBitNinja's GetTransactionResponse class.
-**Exercise**: Write out the same information about the SPENT COINS using QBitNinja's GetTransactionResponse class!  
 
+## Examine the RECEIVED COINS by using NBitcoin's Transaction class
 Let's see how we can get the same information about the RECEIVED COINS using NBitcoin's Transaction class.
 
 ```cs
@@ -90,14 +104,22 @@ foreach (TxOut output in outputs)
 
     Console.WriteLine(amount.ToDecimal(MoneyUnit.BTC));
     var paymentScript = output.ScriptPubKey;
-    Console.WriteLine(paymentScript);  // It's the ScriptPubKey
-    var address = paymentScript.GetDestinationAddress(Network.Main);
-    Console.WriteLine(address);
+    //It's the ScriptPubKey.
+    Console.WriteLine(paymentScript);  
+    var bitcoinAddressWithNT = paymentScript.GetDestinationAddress(Network.Main);
+    Console.WriteLine(bitcoinAddressWithNT);
+    //Output:
+    //1HfbwN6Lvma9eDsv7mdwp529tgiyfNr7jc
     Console.WriteLine();
 }
-```  
+```
 
-Now let's examine the **inputs**. If you look at them you will notice a previous output is referenced. Each input shows you which previous out has been spent in order to fund this transaction.
+We have written out some informations about the RECEIVED COINS using QBitNinja's GetTransactionResponse class and NBitcoins's Transaction class.
+
+**Exercise**: Write out the same information about the SPENT COINS using QBitNinja's GetTransactionResponse class!
+
+
+Now let's examine the **inputs**. If you look at them, you will notice a previous output is referenced. Each input shows you which previous out has been spent in order to fund this transaction.
 
 ```cs
 var inputs = transaction.Inputs;
