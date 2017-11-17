@@ -136,7 +136,7 @@ If you are developing a web wallet and generate keys on behalf of your users, an
 
 ## BIP38 (Part 2) {#bip38-part-2}
 
-We already looked at using BIP38 to encrypt a key. However this BIP is in reality two ideas in one document.  
+We already looked at using BIP38 to encrypt a key. However, this BIP is in reality two ideas in one document.  
 
 The second part of the BIP shows how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concerns.  
 
