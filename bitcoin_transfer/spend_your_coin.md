@@ -28,7 +28,7 @@ Import your private key:
 ```cs
 var bitcoinPrivateKey = new 
 BitcoinSecret("cSZjE4aJNPpBtU6xvJ6J4iBzDgTmzTjbq8w2kqnYvAprBCyTsG4x");
-var network = bitcoinPrivateKey.Network;
+var network = bitcoinPrivateKey.Network; 
 var address = bitcoinPrivateKey.GetAddress();
 
 Console.WriteLine(bitcoinPrivateKey); 
