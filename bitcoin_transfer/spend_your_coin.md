@@ -240,7 +240,7 @@ Now that we have created the transaction, we must sign it. In other words, you w
 
 Signing can be [complicated](https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png), but we’ll make it simple.
 
-First let's revisit the **scriptSig** of **input** and see how we can get it from codes. Remember, we copy/pasted the address above from a blockexplorer, As we've already seen how to get and set a ScriptSig from above code, similarly, now let's get set a ScriptPubKey from a private key via a ScriptPubKey, using our QBitNinja transactionResponse:  
+First let's revisit the **scriptSig** of **input** and see how we can get it from codes. Remember, we copy/pasted the address above from a blockexplorer, As we've already seen how to get and set a ScriptSig from above code, similarly, now let's get set a ScriptPubKey from a private key via a ScriptPubKey, using our QBitNinja transactionResponse:
 
 ```cs
 transaction.Inputs[0].ScriptSig =  bitcoinPrivateKey.ScriptPubKey;
