@@ -99,13 +99,18 @@ What happens to the remaining **0.0001 BTC**? This is the miner fee in order to 
 
 ![](../assets/SpendTx.png)  
 
+By this codes, we're going to generate TxOuts with hardcoded amounts of coins.
 ```cs
+//Generate a TxOut for hallOfTheMakers.
 TxOut hallOfTheMakersTxOut = new TxOut()
 {
+    //Set 0.5 bitcoins to be sent.
     Value = new Money((decimal)0.5, MoneyUnit.BTC),
+    //Set a ScriptPubKey for the recipient.
     ScriptPubKey = hallOfTheMakersAddress.ScriptPubKey
 };
 
+//Generate a TxOut for changeBack(1-0.5-fee).
 TxOut changeBackTxOut = new TxOut()
 {
     Value = new Money((decimal)0.4999, MoneyUnit.BTC),
@@ -121,16 +126,18 @@ You can check the address I am working with in this chapter's examples on a bloc
 I am working on the testnet: 
 http://tbtc.blockr.io/address/info/mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv  
 
+By this codes, we're going to generate TxOuts by calculating coins not with hardcoded amounts of ones.
+
 ```cs
-// How much you want to TO
+//First, set the amount of coin to be sent.
 var hallOfTheMakersAmount = new Money(0.5m, MoneyUnit.BTC);
-/* At the time of writing the mining fee is 0.05usd
- * Depending on the market price and
- * On the currently advised mining fee,
- * You may consider to increase or decrease it
-*/
+
+//Secend, set the amount of a transaction fee which will be sent to the miner who created the block including a transaction I'm writing.
+//At the time of writing, the mining fee is 0.05usd, depending on the market price and on the currently advised mining fee.
+//You may consider to increase or decrease it.
 var minerFee = new Money(0.0001m, MoneyUnit.BTC);
-// How much you want to spend FROM
+
+//Get the entire coins that are sent from a specific TxOut(in this case, second one since its index number is 1) of another previous transaction.
 var txInAmount = receivedCoins[(int) outPointToSpend.N].TxOut.Amount;
 Money changeBackAmount = txInAmount - hallOfTheMakersAmount - minerFee;
 ```
