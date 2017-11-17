@@ -65,13 +65,13 @@ Then when you generate a new number:
 
 However, what is most important is not the number of possibilities. It is the time that an attacker would need to successfully break your key. That’s where KDF enters the game.
 
-KDF, or **Key Derivation Function** is a way to have a stronger key, even if your entropy is low.
+KDF, or **Key Derivation Function**, is a way to have a stronger key, even if your entropy is low.
 
-Imagine that you want to generate a seed, and the attacker knows that there are 10.000.000 possibilities.  
+Imagine that you want to generate a seed, and the attacker knows that there are 10,000,000 possibilities.  
 Such a seed would be normally cracked pretty easily.
 
 But what if you could make the enumeration slower?  
-A KDF is a hash function that waste computing resources on purpose.  
+A KDF is a hash function that wastes computing resources on purpose.  
 Here is an example:
 
 ```cs
@@ -79,13 +79,13 @@ var derived = SCrypt.BitcoinComputeDerivedKey("hello", new byte[] { 1, 2, 3 });
 RandomUtils.AddEntropy(derived);
 ```  
 
-Even if your attacker knows that your source of entropy is 5 letters, he will need to run Scrypt to check each possibility, which take 5 seconds on my computer.
+Even if your attacker knows that your source of entropy is 5 letters, he will need to run Scrypt to check each possibility, which takes 5 seconds on my computer.
 
 The bottom line is: There is nothing paranoid in distrusting a PRNG, and you can mitigate an attack by both adding entropy and also using a KDF.  
 Keep in mind that an attacker can decrease entropy by gathering information about you or your system.  
-If you use the timestamp as entropy source, then an attacker can decrease the entropy by knowing you generated the key last week, and that you only use your computer between 9am and 6pm.
+If you use the timestamp as entropy source, then an attacker can decrease the entropy by knowing the fact that you generated the key last week, and that you only use your computer between 9am and 6pm.
 
-In the previous part I talked briefly about a special KDF called **Scrypt.** As I said, the goal of a KDF is to make brute force costly.  
+In the previous part I talked briefly about a special KDF called **Scrypt.** As I said, the goal of a KDF is to make "brute forcing" costly.  
 
 So it should be no surprise for you that a standard already exists for encrypting your private key with a password using a KDF. This is [BIP38](http://www.codeproject.com/Articles/775226/NBitcoin-Cryptography-Part).  
 
@@ -106,11 +106,11 @@ Console.ReadLine();
 Such encryption is used in two different cases:  
 
 *   You do not trust your storage provider (they can get hacked)  
-*   You are storing the key on the behalf of somebody else (and you do not want to know thier key)  
+*   You are storing the key on the behalf of somebody else (and you do not want to know their key)  
 
 If you own your storage, then encrypting at the database level might be enough.  
 
-Be careful if your server takes care of decrypting the key, an attacker might attempt to DDOS your server by forcing it to decrypt lots of keys.  
+Be careful if your server takes care of decrypting the key. An attacker might attempt a DDoS attack to your server by forcing it to decrypt lots of keys.  
 
 Delegate decryption to the ultimate end user when you can.  
 
