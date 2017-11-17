@@ -2,7 +2,7 @@
 
 You know that your **Bitcoin Address** is what you share to the world to get paid.  
 ![](../assets/BitcoinAddress.png)  
-You probably know that your wallet software uses a **private key** to spend the money you received on this address.
+You probably know that your wallet software uses a **private key** to spend the money you received on this address.  
 ![](../assets/PrivateKey.png)  
 
 The keys are not stored on the network and they can be generated without access to the Internet.  
@@ -10,9 +10,9 @@ The keys are not stored on the network and they can be generated without access 
 This is how you generate a private key with NBitcoin:  
 ```cs  
 // Generate a random private key.
-Key keyObj = new Key(); 
+Key privateKey = new Key(); 
 ```  
-From the private key, we use a one-way cryptographic function, to generate a **public key**. 
+From a private key, we use a one-way cryptographic function, to generate a **public key**. 
 
 ![](../assets/PrivKeyPubKey.png)  
 ```cs 
