@@ -10,11 +10,11 @@ On iOS, I have not implemented it and you will need to create your own **IRandom
 
 For a computer, being random is hard. But the biggest issue is that it is impossible to know if a series of numbers is really random.
 
-If malware modifies your PRNG (and so, can predict the numbers you will generate), you won’t see it until it is too late.
+If malware modifies your PRNG so that it can predict the numbers you will generate, you won’t see it until it is too late.
 
 It means that a cross platform and naïve implementation of PRNG (like using the computer’s clock combined with CPU speed) is dangerous. But you won’t see it until it is too late.
 
-For performance reasons, most PRNG works the same way: a random number, called a **Seed**, is chosen, then a predictable formula generates the next number each time you ask for it.
+For performance reasons, most PRNG works the same way: a random number which is called a **Seed** is chosen, then a predictable formula generates the next number each time you ask for it.
 
 The amount of randomness of the seed is defined by a measure we call **Entropy**, but the amount of **Entropy** also depends on the observer.
 
@@ -26,24 +26,24 @@ If your attacker knows that you generated the key last week, then your seed has
 
 For such attacker, the entropy is log<sub>2</sub>(604800000) = 29.17 bits.
 
-And enumerating such a number on my home computer took less than 2 seconds. We call such enumeration “brute forcing”.
+And enumerating such all possibilities with corresponding entropy took less than 2 seconds on my home computer. We call such enumeration “brute forcing”.
 
-However let’s say, you use the clock time + the process id for generating the seed.  
-Let’s imagine that there are 1024 different process ids.
+However, let’s say, you use the clock time + the process ID for generating the seed.  
+Let’s imagine that there are 1024 different process IDs.
 
 So now, the attacker needs to enumerate 604800000 \* 1024 possibilities, which take around 2000 seconds.  
-Now, let’s add the time when I turned on my computer, assuming the attacker knows I turned it on today, it adds 86400000 possibilities.  
+Now, let’s add the time on it. When I turned on my computer, assuming the attacker knows I turned it on today, it adds 86400000 possibilities.  
 
 Now the attacker needs to enumerate 604800000 \* 1024 \* 86400000 = 5,35088E+19 possibilities.  
 However, keep in mind that if the attacker has infiltrated my computer, he can get this last piece of info, and bring down the number of possibilities, reducing entropy.
 
 Entropy is measured by **log<sub>2</sub>(possibilities)** and so log<sub>2</sub>(5,35088E+19) = 65 bits.
 
-Is it enough? Probably, assuming your attacker does not know more information about the realm of possibilities used to generate the seed.
+Is it enough? Probably, only when you assuming your attacker does not know more information about the realm of possibilities used to generate the seed.
 
 But since the hash of a public key is 20 bytes (160 bits), it is smaller than the total universe of the addresses. You might do better.
 
-> **Note:** Adding entropy is linearly harder, cracking entropy is exponentially harder
+> **Note:** Adding entropy is linearly harder. On the other hand, cracking entropy is exponentially harder.
 
 An interesting way of generating entropy quickly is by incorporating human intervention, such as moving the mouse.
 
