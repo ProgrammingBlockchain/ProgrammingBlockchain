@@ -31,8 +31,12 @@ BitcoinSecret("cSZjE4aJNPpBtU6xvJ6J4iBzDgTmzTjbq8w2kqnYvAprBCyTsG4x");
 var network = bitcoinPrivateKey.Network;
 var address = bitcoinPrivateKey.GetAddress();
 
-Console.WriteLine(bitcoinPrivateKey); // cSZjE4aJNPpBtU6xvJ6J4iBzDgTmzTjbq8w2kqnYvAprBCyTsG4x
-Console.WriteLine(address); // mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv
+Console.WriteLine(bitcoinPrivateKey); 
+//Output: 
+//cSZjE4aJNPpBtU6xvJ6J4iBzDgTmzTjbq8w2kqnYvAprBCyTsG4x
+Console.WriteLine(address); 
+//Output:
+//mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv
 ```  
 
 And finally get the transaction info:  
@@ -41,7 +45,9 @@ var client = new QBitNinjaClient(network);
 var transactionId = uint256.Parse("e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3");
 var transactionResponse = client.GetTransaction(transactionId).Result;
 
-Console.WriteLine(transactionResponse.TransactionId); // e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3
+Console.WriteLine(transactionResponse.TransactionId); 
+//Output:
+//e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3
 Console.WriteLine(transactionResponse.Block.Confirmations);
 ```  
 
@@ -132,7 +138,7 @@ By this codes, we're going to generate TxOuts by calculating coins not with hard
 //First, set the amount of coin to be sent.
 var hallOfTheMakersAmount = new Money(0.5m, MoneyUnit.BTC);
 
-//Secend, set the amount of a transaction fee which will be sent to the miner who created the block including a transaction I'm writing.
+//Secend, set the amount of a transaction fee which will be sent to the miner who created the block including a transaction I'm writing here.
 //At the time of writing, the mining fee is 0.05usd, depending on the market price and on the currently advised mining fee.
 //You may consider to increase or decrease it.
 var minerFee = new Money(0.0001m, MoneyUnit.BTC);
