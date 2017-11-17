@@ -172,7 +172,7 @@ transaction.Outputs.Add(changeBackTxOut);
 ### Message on The Blockchain
 
 Now add your feedback! This must be less than 40 bytes, or it will crash the application.  
-This feedback, along with your transaction will appear after your transaction is confirmed in the [Hall of The Makers](http://n.bitcoin.ninja/). 
+This feedback along with your transaction will appear after your transaction is confirmed in the [Hall of The Makers](http://n.bitcoin.ninja/). 
 
 ```cs
 var message = "nopara73 loves NBitcoin!";
