@@ -136,9 +136,9 @@ If you are developing a web wallet and generate keys on behalf of your users, an
 
 ## BIP38 (Part 2) {#bip38-part-2}
 
-We already looked at using BIP38 to encrypt a key, however this BIP is in reality two ideas in one document.  
+We already looked at using BIP38 to encrypt a key. However this BIP is in reality two ideas in one document.  
 
-The second part of the BIP, shows how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concerns.  
+The second part of the BIP shows how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concerns.  
 
 **The idea is to generate a PassphraseCode to the key generator. With this PassphraseCode, they will be able to generate encrypted keys on your behalf, without knowing your password, nor any private key. ** 
 
@@ -164,21 +164,27 @@ The third party will then generate new encrypted keys for you.
 EncryptedKeyResult encryptedKeyResult = passphraseCode.GenerateEncryptedSecret();
 ```  
 
-This **EncryptedKeyResult** has lots of information:  
+This **EncryptedKeyResult** class has lots of information:  
 
 ![](../assets/EncryptedKeyResult.png)  
 
-First: the **generated bitcoin address**,  
+First is the **generated bitcoin address**,  
 ```cs
-var generatedAddress = encryptedKeyResult.GeneratedAddress; // 14KZsAVLwafhttaykXxCZt95HqadPXuz73
+var generatedAddress = encryptedKeyResult.GeneratedAddress;
+//Output:
+//14KZsAVLwafhttaykXxCZt95HqadPXuz73
 ```  
-then the **EncryptedKey** itself, (as we have seen in the previous, **Key Encryption** lesson),  
+Second is the **EncryptedKey** itself as we have seen in the previous, **Key Encryption** lesson.  
 ```cs
-var encryptedKey = encryptedKeyResult.EncryptedKey; // 6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
+var encryptedKey = encryptedKeyResult.EncryptedKey; 
+//Output:
+//6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
 ```  
-and last but not least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond  to your password.
+And last but not least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond to my password.
 ```cs
-var confirmationCode = encryptedKeyResult.ConfirmationCode; // cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
+var confirmationCode = encryptedKeyResult.ConfirmationCode; 
+//Output:
+//cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
 ```  
 
 As the owner, once you receive this information, you need to check that the key generator did not cheat by using **ConfirmationCode.Check**, then get your private key with your password:
@@ -190,7 +196,8 @@ Console.WriteLine(bitcoinPrivateKey.GetAddress() == generatedAddress); // True
 Console.WriteLine(bitcoinPrivateKey); // KzzHhrkr39a7upeqHzYNNeJuaf1SVDBpxdFDuMvFKbFhcBytDF1R
 ```  
 
-So, we have just seen how the third party can generate encrypted keys on your behalf, without knowing your password and private key.
+So, we have just seen how the third party can generate encrypted keys on your behalf, without them knowing your password and private key.
+In other words, you've delegated a Key and Address generation to an untrusted peer, the third party.
 
 ![](../assets/ThirdPartyKeyGeneration.png)  
 
@@ -198,7 +205,7 @@ However, one problem remains:
 
 *   All backups of your wallet that you have will become outdated when you generate a new key.
 
-BIP 32, or Hierarchical Deterministic Wallets (HD wallets) proposes another solution, which is more widely supported.
+BIP 32, or Hierarchical Deterministic Wallets (HD wallets), proposes another solution which is more widely supported.
 
 ## HD Wallet (BIP 32) {#hd-wallet-bip-32}
 
