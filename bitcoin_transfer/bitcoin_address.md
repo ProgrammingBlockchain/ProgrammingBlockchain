@@ -9,7 +9,7 @@ The keys are not stored on the network and they can be generated without access 
 
 This is how you generate a private key with NBitcoin:  
 ```cs  
-// Generate a random private key.
+//Generate a random private key.
 Key privateKey = new Key(); 
 ```  
 From a private key, we use a one-way cryptographic function, to generate a **public key**. 
@@ -22,6 +22,28 @@ Console.WriteLine(publicKey);
 //0251036303164f6c458e9f7abecb4e55e5ce9ec2b2f1d06d633c9653a07976560c
 ```
 
+## Dive into more details of "new Key()", a private key, a public key. {#dive-into-more-details-of-an-key-object}
+You probably wonder when you see a "new Key()" from above code, saying "Is it just a key object rather than specifying it as a private key?
+
+Yes, it is a key object. If you print a privateKey variable by Console.WriteLine(privateKey);, you'll see the output like this:
+NBitcoin.Key
+
+Moreover, you can do lots of tasks by this key object. Try to examine what you can do by this key object by using IntelliSense like this:
+Console.WriteLine(privateKey.);
+
+You're going to be sure it's a key object once you examine Key class, because Key class looks like an ordinary class including lots of its members.
+
+It's true that an object which is created by "new Key()" is a key object.
+
+**However, in the NBitcoin, we use an object which is created by "new Key()" as a private key.**
+
+When you instantiate a Key class by invoking a Key constructor, under the hood, you also invoke RNGCryptoServiceProvider which is a .NET wrapper around the Windows Cryto API. 
+
+For more details, reference a "Is it random enough?" chapter of "Key generation and encryption" part and the [NBitcoin repository](https://github.com/MetacoSA/NBitcoin) by examining a Key.cs, a BitcoinSecret.cs, and a Base58Data.cs etc files.
+
+A key object generated in this way contains a randomly generated key in the object, and this object containing a key data is used in generating other types of keys such as a public key, BitcoinSecret(=WIF), a ScriptPubKey and so on.
+
+
 ## Bitcoin network and Bitcoin address {#bitcoin-network-and-bitcoin-address}
 There are two Bitcoin **networks**: 
 * **TestNet** is a Bitcoin network for development purposes. Bitcoins on this network worth nothing.  
@@ -29,7 +51,7 @@ There are two Bitcoin **networks**:
 
 > **Note:** You can acquire testnet coins quickly by using **faucets**. Just google "get testnet bitcoins".  
 
-You can easily get your **bitcoin address** from your public key and the **network** on which this address should be used. 
+You can easily get your **Bitcoin address** from your public key and the **network** on which this address should be used. 
 
 ![](../assets/PubKeyToAddr.png)  
 
@@ -41,15 +63,15 @@ Console.WriteLine(publicKey.GetAddress(Network.TestNet));
 //Output:
 //n3zWAo2eBnxLr3ueohXnuAa8mTVBhxmPhq
 ```  
-Note that a bitcoin address for mainnet starts with "1", and a bitcoin address for testnet starts with "m" or "n".
+Note that a Bitcoin address for mainnet starts with "1", and a Bitcoin address for testnet starts with "m" or "n".
 
-**To be precise, a bitcoin address is made up of a "version byte" which is different on both networks(mainnet, testnet). But this version byte identifies the network type. And a bitcoin address is also made of your "public key’s hash bytes". Both of these bytes are concatenated and then encoded into a Base58Check encoding scheme which has an additional 4 bytes checksum data, compared to a Base58:**  
+**To be precise, a Bitcoin address is made up of a "version byte" which is different on both networks(mainnet, testnet). But this version byte identifies the network type. And a Bitcoin address is also made of your "public key’s hash bytes". Both of these bytes are concatenated and then encoded into a Base58Check encoding scheme which has an additional 4 bytes checksum data, compared to a Base58:**  
 
-In other words, it means that a generated bitcoin address is always in Base58Check encoding scheme.(If this is wrong, please edit it.)
+In other words, it means that a generated Bitcoin address is always in Base58Check encoding scheme.(If this is wrong, please edit it.)
 
 ![](../assets/PubKeyHashToBitcoinAddress.png)  
 
-The above illustration shows a standard way of generating a bitcoin address by processing entire steps(Public key -> Public key hash + Network => Bitcoin address), with not using a sugar syntax for generating a bitcoin address(Public key + Network => Bitcoin address).
+The above illustration shows a standard way of generating a Bitcoin address by processing entire steps(Public key -> Public key hash + Network => Bitcoin address), with not using a sugar syntax for generating a Bitcoin address(Public key + Network => Bitcoin address).
 
 ```cs 
 var publicKeyHash = publicKey.Hash;
@@ -57,7 +79,7 @@ Console.WriteLine(publicKeyHash);
 //Output:
 //f6889b21b5540353a29ed18c45ea0031280c42cf
 
-//Get a bitcoin address for a mainnet by publicKeyHash and network identifier.
+//Get a Bitcoin address for a mainnet by publicKeyHash and network identifier.
 var mainNetAddress = publicKeyHash.GetAddress(Network.Main);
 var testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
 
