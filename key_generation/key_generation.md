@@ -217,7 +217,7 @@ Let’s keep in mind the problems that we want to resolve:
 A “Deterministic” wallet would fix our backup problem. With such a wallet, you would have to save only the seed. From this seed, you can generate the same series of private keys over and over.  
 
 This is what the “Deterministic” stands for.  
-As you can see, from the master key, I can generate new keys:  
+As you can see below the codes, from a master key, I can generate new keys which are derived child keys from the master key:  
 
 ```cs
 ExtKey masterKey = new ExtKey();
@@ -241,7 +241,7 @@ Key 5 : xprv9tvBA4Kt8UTuTdiEhN8iVDr5rfAPSVsCKpDia4GtEsb87eHr8yRVveRhkeLEMvo3XWL3
 
 You only need to save the **masterKey**, since you can generate the same suite of private keys over and over.  
 
-As you can see, these keys are **ExtKey** and not **Key** as you are used to. However, this should not stop you since you have the real private key inside:  
+As you can see, these keys are **ExtKey** and not **Key** as you are used to. However, this should not stop you since you have a real private key inside of these keys:  
 
 ![](../assets/ExtKey.png)  
 
@@ -250,19 +250,22 @@ You can go back from a **Key** to an **ExtKey** by supplying the **Key** and the
 ```cs
 ExtKey extKey = new ExtKey();
 byte[] chainCode = extKey.ChainCode;
-Key key = extKey.PrivateKey;
-
-ExtKey newExtKey = new ExtKey(key, chainCode);
+Key privateKeyFromExtKey = extKey.PrivateKey;
+//Supply a private key and a chain code to the ExtKey constructor to go back from a Key to an ExtKey.
+ExtKey newExtKey = new ExtKey(privateKeyFromExtKey, chainCode);
 ```  
 
-The **base58** type equivalent of **ExtKey** is called **BitcoinExtKey**.
+The **Base58** type equivalent of **ExtKey** is called **BitcoinExtKey**.
 
-But how can we solve our second problem: delegating key/address creation process to an untrusted peer that can potentially be hacked (like a payment server)?
+But how can we solve our second problem: Delegating key/address creation process to an untrusted peer that can potentially be hacked like a payment server?
 
 The trick is that you can “neuter” your master key, then you have a public (without private key) version of the master key. From this neutered version, a third party can generate public keys without knowing the private key.
 
 ```cs
+//Neuter the master key, then you get a master public key.
 ExtPubKey masterPubKey = masterKey.Neuter();
+
+//Genarate 5 derived public keys from the master public key.
 for (int i = 0 ; i < 5 ; i++)
 {
     ExtPubKey pubkey = masterPubKey.Derive((uint)i);
@@ -278,19 +281,19 @@ PubKey 3 : xpub67uQd5a6WCY6HQKya2Mwwb7bpSNB5XhWCR76kRaPxchE3Y1Y2MAiSjhRGftmeWyX8
 PubKey 4 : xpub67uQd5a6WCY6JddPfiPKdrR49KYEuXUwwJJsL5rWGDDQkpPctdkrwMhXgQ2zWopsSV7buz61e5mGSYgDisqA3D5vyvMtKYP8S3EiBn5c1u4
 ```  
 
-So imagine that your payment server generates pubkey1, you can get the corresponding private key with your private master key.
+So imagine that your payment server generates pubkey1, and then you can get the corresponding private key by your private master key.
 
 ```cs
 masterKey = new ExtKey();
 masterPubKey = masterKey.Neuter();
 
-//The payment server generate pubkey1
+//The payment server generates the pubkey1.
 ExtPubKey pubkey1 = masterPubKey.Derive((uint)1);
 
-//You get the private key of pubkey1
+//You get the private key of pubkey1.
 ExtKey key1 = masterKey.Derive((uint)1);
 
-//Check it is legit
+//Check if it is legit.
 Console.WriteLine("Generated address : " + pubkey1.PubKey.GetAddress(Network.Main));
 Console.WriteLine("Expected address : " + key1.PrivateKey.PubKey.GetAddress(Network.Main));
 ```  
@@ -304,11 +307,13 @@ Expected address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
 
 ![](../assets/ExtPubKey.png)  
 
-Now we have seen how Deterministic keys solve our problems, let’s speak about what the “hierarchical” is for.
+Now that we have seen how Deterministic keys solve our problems, let’s speak about what the “Hierarchical” is for.
 
-In the previous exercise, we have seen that by combining master key + index we could generate another key. We call this process **Derivation**, the master key is the **parent key**, and any generated keys are called **child keys**.
+In the previous exercise, we have seen that we could generate another derived keys based on a master key by invoking Derive() method on the master key passing integer numbers into an argument.
 
-However, you can also derivate children from the child key. This is what the “hierarchical” stands for.
+We call this process a **Derivation**. And, in this scheme, a master key is a **parent key**, and any generated keys based on the master key are called **child keys**.
+
+However, you can also derivate children from the child key. This is what the “Hierarchical” stands for.
 
 This is why conceptually more generally you can say: Parent Key + KeyPath => Child Key  
 
@@ -335,32 +340,31 @@ So in summary:
 
 ![](../assets/DeriveKeyPath.png)  
 
-It works the same for **ExtPubKey**.  
+It works indentically for **ExtPubKey**.  
 
-Why do you need hierarchical keys? Because it might be a nice way to classify the type of your keys for multiple accounts. More on [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
+Why do you need hierarchical keys? It's because it might be a nice way to classify the type of your keys for multiple accounts. More on [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
 
 It also permits segmenting account rights across an organization.
 
-Imagine you are CEO of a company. You want control over all wallets, but you don’t want the Accounting department to spend the money from the Marketing department.
+Imagine you are the CEO of a company. You want control over all wallets, but you don’t want the Accounting department to spend the money from the Marketing department.
 
-So your first idea would be to generate one hierarchy for each department.  
+So, for implementing this constraint, your first idea would be to generate one hierarchy for each department.  
 
 ![](../assets/CeoMarketingAccounting.png)  
 
-However, in such a case, **Accounting** and **Marketing** would be able to recover the CEO’s private key.
-
-We define such child keys as **non-hardened**.  
+However, in such a case, **Accounting** and **Marketing** would be able to recover the CEO’s private key, because we defined such child keys as **non-hardened**.  
 
 ![](../assets/NonHardened.png)  
 
 ```cs
 ExtKey ceoKey = new ExtKey();
 Console.WriteLine("CEO: " + ceoKey.ToString(Network.Main));
+//Note the hardened is false.
 ExtKey accountingKey = ceoKey.Derive(0, hardened: false);
 
 ExtPubKey ceoPubkey = ceoKey.Neuter();
 
-//Recover ceo key with accounting private key and ceo public key
+//Recover the CEO key with accounting private key and CEO public key.
 ExtKey ceoKeyRecovered = accountingKey.GetParentExtKey(ceoPubkey);
 Console.WriteLine("CEO recovered: " + ceoKeyRecovered.ToString(Network.Main));
 ```  
@@ -370,9 +374,9 @@ CEO: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuF
 CEO recovered: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuFVFpYaAt3gztYtZyXmy2hCVyVyxumdxfDBpoC
 ```  
 
-In other words, a **non-hardened key** can “climb” the hierarchy. **Non-hardened keys** should only be used for categorizing accounts that belongs to a point of **single control**.
+In other words, a **non-hardened key** can “climb” the hierarchy. **Non-hardened keys** should only be used for categorizing accounts that belong to a point of **single control**.
 
-So in our case, the CEO should create a **hardened key**, so the accounting department will not be able to climb the hierarchy.
+So, in our case, the CEO should create child keys as **hardened** ones, so the accounting department will not be able to climb the hierarchy.
 
 ```cs
 ExtKey ceoKey = new ExtKey();
