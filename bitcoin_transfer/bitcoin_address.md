@@ -25,11 +25,19 @@ Console.WriteLine(publicKey);
 ## Dive into more details of "new Key()", a private key, a public key. {#dive-into-more-details-of-an-key-object}
 You probably wonder when you see a "new Key()" from above code, saying "Is it just a key object rather than specifying it as a private key?
 
-Yes, it is a key object. If you print a privateKey variable by Console.WriteLine(privateKey);, you'll see the output like this:
+Yes, it is a key object. If you print a privateKey variable by:
+```cs
+Console.WriteLine(privateKey);
+```
+, you'll see the output like this:
+```cs
 NBitcoin.Key
+```
 
 Moreover, you can do lots of tasks by this key object. Try to examine what you can do by this key object by using IntelliSense like this:
+```cs
 Console.WriteLine(privateKey.);
+```
 
 You're going to be sure it's a key object once you examine Key class, because Key class looks like an ordinary class including lots of its members.
 
