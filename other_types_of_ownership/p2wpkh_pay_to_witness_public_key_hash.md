@@ -9,7 +9,7 @@ There are several reasons why it is beneficial to use this new scheme, a summary
 *   **Signing of input values:** The amount that is spent in an input is also signed, meaning that the signer can’t be tricked about the amount of fees that are actually being paid.
 *   **Capacity increase:** It will now be possible to have more than 1MB of transactions in each block (which are created every 10 minutes on average). Segwit increases this capacity by a factor of about 2.1, based upon the average transaction profile from November 2016.
 *   **Fraud proof:** Will be developed later, but SPV wallets will be able to validate more consensus rules rather than just simply following the longest chain.
-
+ 
 Before Sewgit the transaction signature was used in the calculation of the transaction id.  
 
 ![](../assets/segwit.png)
