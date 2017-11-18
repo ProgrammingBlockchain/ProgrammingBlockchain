@@ -39,7 +39,7 @@ Moreover, you can do lots of tasks by this key object. Try to examine what you c
 Console.WriteLine(privateKey.);
 ```
 
-You're going to be sure it's a key object once you examine Key class, because Key class looks like an ordinary class including lots of its members.
+You're going to be sure it's a key object once you examine a Key class, because a Key class looks like an ordinary class including lots of its members.
 
 It's true that an object which is created by "new Key()" is a key object.
 
@@ -49,7 +49,7 @@ When you instantiate a Key class by invoking a Key constructor, under the hood, 
 
 For more details, reference a "Is it random enough?" chapter of "Key generation and encryption" part and the [NBitcoin repository](https://github.com/MetacoSA/NBitcoin) by examining a Key.cs, a BitcoinSecret.cs, and a Base58Data.cs etc files.
 
-A key object generated in this way contains a randomly generated key in the object, and this object containing a key data is used in generating other types of keys such as a public key, BitcoinSecret(=WIF), a ScriptPubKey and so on.
+A key object generated in this way contains a randomly generated key data in the object, and this object is often used in generating other types of keys such as a public key, BitcoinSecret(=WIF), a ScriptPubKey and so on.
 
 
 ## Bitcoin network and Bitcoin address {#bitcoin-network-and-bitcoin-address}
