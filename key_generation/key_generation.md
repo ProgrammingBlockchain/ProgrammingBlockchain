@@ -435,7 +435,8 @@ mnemo = new Mnemonic("minute put grant neglect anxiety case globe win famous cor
 hdRoot = mnemo.DeriveExtKey("my password");
 ```  
 
-Currently supported languages for **wordlist** are, English, Japanese, Spanish, Chinese (simplified and traditional).  
+Currently supported languages for wordlist are English, Japanese, Korean, Spanish, Chinese (simplified and traditional), French, Italian.
+Check [here](https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md).  
 
 ## Dark Wallet {#dark-wallet}
 
