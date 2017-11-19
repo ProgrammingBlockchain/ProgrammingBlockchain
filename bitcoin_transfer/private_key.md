@@ -27,7 +27,10 @@ Console.WriteLine(WifIsBitcoinSecret);
 //True
 ```  
 
-Note that it is easy to go from **BitcoinSecret** to private **Key**. On the other hand, it is impossible to go from a Bitcoin Address to Public Key because the Bitcoin Address contains a hash of the Public Key, not the Public Key itself.  
+Note that it is easy to go from a **Bitcoin secret** to a **private key**.
+Recall that a Bitcoin secret is nothing but a private key but a representation in Base58Check of a private key, which is human-readable and often used in UI layer in Bitcoin system such as via wallet software. In the NBitcoin, a private key which is used in code is a data which is stored in a key object which is instantiated by a "new Key()" with, under the hood, also invoking RNGCryptoServiceProvider to generate a random data for a private key.
+On the other hand, it is impossible to go from a Bitcoin address to a public key because the Bitcoin address contains a hash of the public key, not the public key itself.  
+
 Process this information by examining the similarities between these two codeblocks:  
 
 ```cs
@@ -44,6 +47,6 @@ BitcoinPubKeyAddress bitcoinPublicKey = publicKey.GetAddress(Network.Main); // 1
 ```  
 
 ### Exercise:
-1. Generate a private key on the mainnet and note it.
-2. Get the corresponding address.
+1. Generate a private key on the MainNet and note it.
+2. Get the corresponding Bitcoin address.
 3. Send bitcoins to it. As much as you cannot afford to lose, so it will keep you focused and motivated to get them back during the following lessons.
