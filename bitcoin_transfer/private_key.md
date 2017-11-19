@@ -34,15 +34,23 @@ On the other hand, it is impossible to go from a Bitcoin address to a public key
 Process this information by examining the similarities between these two codeblocks:  
 
 ```cs
-Key privateKey = new Key(); // generate a random private key
-BitcoinSecret bitcoinSecret = privateKey.GetWif(Network.Main); // L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn
+//Generate a random private key.
+Key privateKey = new Key(); 
+//Generate a Bitcoin secret also known as WIF, by GetWif() method on the private key.
+BitcoinSecret bitcoinSecret = privateKey.GetWif(Network.Main); 
+//Output:
+//L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn
 Key samePrivateKey = bitcoinSecret.PrivateKey;
-Console.WriteLine(samePrivateKey == privateKey); // True
+Console.WriteLine(samePrivateKey == privateKey); 
+//Output:
+//True
 ```  
 
 ```cs
 PubKey publicKey = privateKey.PubKey;
-BitcoinPubKeyAddress bitcoinPublicKey = publicKey.GetAddress(Network.Main); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
+BitcoinPubKeyAddress bitcoinPublicKey = publicKey.GetAddress(Network.Main); 
+//Output:
+//1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
 //PubKey samePublicKey = bitcoinPublicKey.ItIsNotPossible;
 ```  
 
