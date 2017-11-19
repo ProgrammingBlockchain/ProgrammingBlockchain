@@ -2,7 +2,7 @@
 
 From Bitcoin 0.10, the **RedeemScript** can be arbitrary, which means that with the script language of Bitcoin, you can create your own definition of what “ownership” means.
 
-For example, in this scheme, imagine someone sends the coins to the Bitcoin address of this book, **1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB**, with adding an arbitrary redeem ScriptPubKey containing custum scripts which partially contain the hash value of my birth date. And whoever either knows "my date of birth" in the format of "dd/mm/yyyy", serialized in UTF-8 or the "private key" related to the Bitcoin address of this book can spend the coins by prooving the ownership for that one.
+For example, in this scheme, imagine I send the coins to the Bitcoin address of this book, **1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB**, with adding an arbitrary redeem ScriptPubKey containing custom scripts which partially contain the hash value of my birth date. And whoever either knows "my date of birth" in the format of "dd/mm/yyyy", serialized in UTF-8 or the "private key" related to the Bitcoin address of this book, **1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB**, can spend the coins by prooving the ownership for that one.
 
 The details of the script language are out of scope of this book. You can easily find the documentation for the Bitcoin script language on various websites. And it is a stack based language so everyone having done with some assembler should be able to read it.  
 
