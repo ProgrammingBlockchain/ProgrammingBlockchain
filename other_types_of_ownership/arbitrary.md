@@ -17,11 +17,11 @@ BitcoinAddress bitcoinAddressOfThisBook = BitcoinAddress.Create("1KF8kUVHK42Xzgc
 var birthDate = Encoding.UTF8.GetBytes("18/07/1988");
 var birthDateHash = Hashes.Hash256(birthDate);
 Script redeemScript = new Script(
-    "OP_IF "
-        + "OP_HASH256 " + Op.GetPushOp(birthDateHash.ToBytes()) + " OP_EQUAL " +
-    "OP_ELSE "
-        + address.ScriptPubKey + " " +
-    "OP_ENDIF");
+                "OP_IF "
+                    + "OP_HASH256 " + Op.GetPushOp(birthDateHash.ToBytes()) + " OP_EQUAL " +
+                "OP_ELSE "
+                    + address.ScriptPubKey + " " +
+                "OP_ENDIF");
 ```
 
 This **RedeemScript** means that there are 2 ways of spending such **ScriptCoin**:  
@@ -32,7 +32,11 @@ Let’s say I sent money with such **redeemScriptPubKeyForSendingCoinToBook**:
 ```cs
 var txForSendingCoinToBook = new Transaction();
 txForSendingCoinToBook.Outputs.Add(new TxOut(Money.Parse("0.0001"), redeemScriptPubKeyForSendingCoinToBook.Hash));
-ScriptCoin scriptCoinForSendingToBook = txForSendingCoinToBook.Outputs.AsCoins().First().ToScriptCoin(redeemScriptPubKeyForSendingCoinToBook);
+ScriptCoin scriptCoinForSendingToBook = txForSendingCoinToBook
+                .Outputs
+                .AsCoins()
+                .First()
+                .ToScriptCoin(redeemScriptPubKeyForSendingCoinToBook);
 ```  
 
 So let’s create a transaction that want to spend such output:  
