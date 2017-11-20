@@ -33,7 +33,7 @@ Console.WriteLine(publicKey);
 
 ## Section2. Dive into more details of "new Key()", a private key, a public key.
 
-You probably wonder when you see a "new Key()" from above code, saying "Is it just a key object rather than specifying it as a private key?
+You're probably doubtful when you see a "Key privateKey = new Key()" from above code, saying "Should the variable name be named by keyObject rather than a privateKey?
 
 Yes, it is a key object. If you print a privateKey variable by:
 ```cs
@@ -55,7 +55,7 @@ It's true that an object which is created by "new Key()" is a key object.
 
 **However, in the NBitcoin, we often use an object which is created by "new Key()" as a private key.**
 
-When you instantiate a Key class by invoking a Key constructor, under the hood, you also invoke RNGCryptoServiceProvider which is a .NET wrapper around the Windows Cryto API. 
+When you instantiate a key object, under the hood, in the case of the .NET, you should invoke RNGCryptoServiceProvider to generate a random key data composed of the byte array and store it into a key object, which is a .NET wrapper around the Windows Cryto API. However, in the .NET, particular RNGCryptoServiceProvider is not mandatory, you can choose different generators you want to use. And also, since the RNGCryptoServiceProvider wouldn't work on the non-Windows platform, you should choose appropriate generators on each platform.  
 
 For more details, reference a "Is it random enough?" chapter of "Key generation and encryption" part and the [NBitcoin repository](https://github.com/MetacoSA/NBitcoin) by examining a Key.cs, a BitcoinSecret.cs, and a Base58Data.cs etc files.
 
