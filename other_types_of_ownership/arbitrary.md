@@ -3,9 +3,9 @@
 From Bitcoin 0.10, the **RedeemScript** can be arbitrary, which means that with the script language of Bitcoin, you can create your own definition of what “ownership” means.
 
 
-For example, I can give money to whoever knows either my date of birth (dd/mm/yyyy) serialized in UTF-8 or the private key of **1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB**.
+For example, in this scheme, imagine someone sends the coins to the Bitcoin address of this book, **1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB**, with adding an arbitrary redeem ScriptPubKey containing custum scripts which partially contain the hash value of my birth date. And whoever either knows "my date of birth" in the format of "dd/mm/yyyy", serialized in UTF-8 or the "private key" related to the Bitcoin address of this book can spend the coins by prooving the ownership for that one.
 
-The details of the script language are out of scope. You can easily find the documentation on various websites. The Bitcoin script language is a stack based language so everyone having done some assembler should be able to read it.  
+The details of the script language are out of scope of this book. You can easily find the documentation for the Bitcoin script language on various websites. And since it is a stack based language so everyone having done with some assembler should be able to read it.  
 
 
 > **Note:** ([nopara73](https://github.com/nopara73)) I find [Davide De Rosa's tutorial](http://davidederosa.com/basic-blockchain-programming/bitcoin-script-language-part-one/) as the most enjoyable one.
@@ -27,7 +27,7 @@ Script redeemScript = new Script(
 ```
 
 
-This **RedeemScript** means that there are 2 ways of spending such **ScriptCoin**: Either you know the data that gives **birthHash** (my birthdate) or you own the bitcoin address.
+This **RedeemScript** means that there are 2 ways of spending such **ScriptCoin**: It can be spent by anyone in either case he knows the data(birthDate) that can generate birthDateHash, or knows the private key related to the Bitcoin address of this book.
 
 
 Let’s say I sent money with such **redeemScriptPubKeyForSendingCoinToBook**:
