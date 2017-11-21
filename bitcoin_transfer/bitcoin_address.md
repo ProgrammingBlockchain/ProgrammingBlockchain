@@ -55,11 +55,11 @@ It's true that an object which is created by "new Key()" is a key object.
 
 **However, in the NBitcoin, we often use an object which is created by "new Key()" as a private key.**
 
-When you instantiate a key object, under the hood, in the case of the .NET, you should invoke RNGCryptoServiceProvider to generate a random key data composed of the byte array and store it into a key object, which is a .NET wrapper around the Windows Cryto API. However, in the .NET, particular RNGCryptoServiceProvider is not mandatory, you can choose different generators you want to use. And also, since the RNGCryptoServiceProvider wouldn't work on the non-Windows platform, you should choose appropriate generators on each platform.  
+When you instantiate a key object, under the hood, in the case of the NBitcoin which is run on the .NET environment, you invoke by default a secure RNG to generate a random key data and store it into a key object.  
 
-For more details, reference a "Is it random enough?" chapter of "Key generation and encryption" part and the [NBitcoin repository](https://github.com/MetacoSA/NBitcoin) by examining a Key.cs, a BitcoinSecret.cs, and a Base58Data.cs etc files.
+For more details, reference a "Is it random enough?" chapter of "Key generation and encryption" part.
 
-A key object generated in this way contains a randomly generated key data in the object, and this object is often used in generating other types of keys such as a public key, BitcoinSecret(nothing but a private key represented in Base58Check to use it in the UI layer such as a wallet software, and Bitcoin secret is exactly identical concept wit a WIF except for its called name.), a ScriptPubKey and so on.
+As mentioned above, a key object generated in this way contains a randomly generated key data in the object, and this object is often used in generating other types of keys such as a public key, BitcoinSecret(nothing but a private key represented in Base58Check to use it in the UI layer such as a wallet software, and Bitcoin secret is exactly identical concept with a WIF except for its differently called name.), a ScriptPubKey and so on.
 
 
 ## Section3. Bitcoin network and Bitcoin address
