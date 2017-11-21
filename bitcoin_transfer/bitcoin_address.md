@@ -55,7 +55,7 @@ It's true that an object which is created by "new Key()" is a key object.
 
 **However, in the NBitcoin, we often use an object which is created by "new Key()" as a private key.**
 
-When you instantiate a key object, under the hood, in the case of the NBitcoin which is run on the .NET environment, you invoke by default a secure RNG to generate a random key data and store it into a key object.  
+When you instantiate a key object, under the hood, in the case of the NBitcoin, you simultaneously invoke a secure PRNG(Pseudo-Random Number Generator) by default to generate a random key data and store it into a key object.  
 
 For more details, reference a "Is it random enough?" chapter of "Key generation and encryption" part.
 
