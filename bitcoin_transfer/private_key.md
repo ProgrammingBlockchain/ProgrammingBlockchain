@@ -1,6 +1,6 @@
-## Private key {#private-key}
+## Chapter3. Private key {#private-key}
 
-Private keys are often represented in Base58Check encoding scheme. And a private key represented in Base58Check is called a **Bitcoin Secret**. Bitcoin secret is also known as a **Wallet Import Format** or simply **WIF**, because a Bitcoin secret is usually used with a Bitcoin wallet which is a kind of an UI tool, along with a Bitcoin address. Usually a Bitcoin secret is used for signing a signature and proof of ownership for the coin, and a Bitcoin address is used for representing a recipient to which the coin will be sent, both for the UI for a Bitcoin transaction.
+Private keys are often represented in Base58Check encoding scheme, to use the encoded private key in the UI layer. And a private key represented in Base58Check is called a **Bitcoin Secret**. Bitcoin secret is also known as a **Wallet Import Format** or simply **WIF**, because a Bitcoin secret is usually used with a Bitcoin wallet which is a kind of an UI tool, along with a Bitcoin address. Usually a Bitcoin secret is used for signing a signature and proof of ownership for the coin, and a Bitcoin address is used for representing a recipient to which the coin will be sent. The Bitcoin secret and Bitcoin address, both plays a role for the UI layer in creating a Bitcoin transaction.  
 
 ![](../assets/BitcoinSecret.png)  
 
@@ -28,8 +28,8 @@ Console.WriteLine(WifIsBitcoinSecret);
 ```  
 
 Note that it is easy to go from a **Bitcoin secret** to a **private key**.
-Recall that a Bitcoin secret is nothing but a private key but a representation in Base58Check of a private key, which is human-readable and often used in UI layer in Bitcoin system such as via wallet software. In the NBitcoin, a private key which is used in code is a data which is stored in a key object which is instantiated by a "new Key()" with, under the hood, also invoking RNGCryptoServiceProvider to generate a random data for a private key.
-On the other hand, it is impossible to go from a Bitcoin address to a public key because the Bitcoin address contains a hash of the public key, not the public key itself.  
+Recall that a Bitcoin secret is nothing but a private key but a representation in Base58Check of a private key, which is human-readable unlike the private key represented in byte array stored in a key object and often used in UI layer in Bitcoin system such as via wallet software. In the NBitcoin, when you instantiate a key object by a "new Key()", under the hood, you also invoke a secure PRNG to generate a random key data for a private key which will be stored in the key object.
+On the other hand, it is impossible to go from a Bitcoin address to a public key because the Bitcoin address is generated from a hash of the public key(and + network identifier), not the public key itself.  
 
 Process this information by examining the similarities between these two codeblocks:  
 
