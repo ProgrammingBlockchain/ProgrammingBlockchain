@@ -59,7 +59,7 @@ The following is the looking of one transaction:
 Note that one block can have multiple transactions.
 
 A transaction is composed of several data:  
-1.TxIn.
+1.TxIn.  
 A TxIn can have input(s). One input is composed of "prev_out" pointing to unspent output located in different transaction by specifying that output with the hash value of that transaction and the index number of that output in the correspond transaction and "scriptSig" playing a role of the signature.  
 2. TxOut.  
 A TxOut is composed of output(s). One output is composed of the value for an amount of coins which will be sent and a value of ScriptPubKey.  
