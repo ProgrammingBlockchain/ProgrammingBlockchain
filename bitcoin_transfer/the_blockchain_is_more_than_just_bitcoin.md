@@ -1,11 +1,15 @@
-## “The Blockchain is more than just Bitcoin” {#the-blockchain-is-more-than-just-bitcoin}
+## Chapter6. “The Blockchain is more than just the Bitcoin” {#the-blockchain-is-more-than-just-bitcoin}
 
-The interesting thing is that this same sentence is used by two different groups of people.  
-It is used by Bitcoin-As-A-Currency believers as argument for their bullish prediction of Bitcoin’s value.  
-It is also used by those who do not believe in the success of the currency, as an attempt to explain why Bitcoin has so much interest.  
+“The Blockchain is more than just the Bitcoin”  
 
-But there is one thing we all agree on: an immutable database that cannot be censored, tampered with, or erased that is duplicated all around the world will have tremendous impact on other industries.  
+The interesting thing is that this sentence is used by two different groups of people.  
+It is used by Bitcoin-As-a-Currency believers as an argument for their bullish prediction of Bitcoin’s value.  
+It is also used by those who do not believe in the success of the Bitcoin as a currency, attempting to explain why Bitcoin has so much interests rather than just a currency aspect of a Bitcoin.  
 
-Notaries who record facts that can be used in court could store their documents permanently in The Blockchain. Audits can become automatic and provable when assets and ownership are stored and transferred on The Blockchain. All Money Transmitters can prove their solvency publicly. Automatic trading scripts can trade between themselves without human intervention or the need for authorization from a central authority.  
+But there is one thing we all agree on: an immutable database that cannot be censored, tampered with, or erased, but that is duplicated all around the world will have tremendous impact on other industries.  
+
+Notaries who record facts that can be used in court could store their documents permanently in the Blockchain.  
+Audits can become automatic and provable when assets and ownership are stored and transferred on the Blockchain.  
+All Money Transmitters can prove their solvency publicly. Automatic trading scripts can trade between themselves without a human intervention or a need for authorization from a central authority.  
 
 In the rest of this book we will explore the fundamentals required to enable all of these technologies and more. It all starts with spending a bitcoin.
