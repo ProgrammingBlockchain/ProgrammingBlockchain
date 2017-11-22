@@ -101,5 +101,5 @@ As a user, you can verify that a specific transaction exists in the Blockchain i
 *   Ask for a partial Merkel tree, which are a few kilobytes in size. We will talk about merkel trees later in relation to Simple Payment Verification.
 
 
-Ref.
+Ref.  
 https://en.bitcoin.it/wiki/Protocol_documentation#Block_Headers
