@@ -4,7 +4,7 @@
 
 A Blockchain is composed of blocks. And each block shapes the chain by referencing the previous block. A block is composed of a block header and transaction(s). 
 
-See the illustraion depicting a block and a blockchain, drawn by Youngmin Park(Youngmtool), in the following link:
+See the illustration depicting a block and a blockchain, drawn by Young-min Park(Youngmtool), in the following link:
 https://youngmtool.gitbooks.io/csharpdotnetconceptsandillustrations/blockchain.html
 
 A header is composed of several data such as version(block version information.), prev_block(the hash value of the previous block, being used to reference the previous block.), merkle_root(the reference to a merkle tree collection which is a hash of all transactions related to this block.), timestamp(a timestamp recording when this block was created.), bits(the calculated difficulty target being used for this block.), nonce(the nonce used to generate this block… to allow variations of the header and compute different hashes.), txn_count(number of transaction entries, this value is always 0.).
