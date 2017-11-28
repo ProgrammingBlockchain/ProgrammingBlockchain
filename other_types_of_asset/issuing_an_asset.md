@@ -1,24 +1,24 @@
-## Issuing an Asset {#issuing-an-asset}
+## Chapter2. Issuing an Asset {#issuing-an-asset}
 
-### Objective {#objective}
+### Section1. Objective {#objective}
 
 For the purpose of this exercise, I will emit **BlockchainProgramming coins**.  
 
-You get **one of these BlockchainProgramming coins** for every **0.004 bitcoin** you send me.  
-**One more**  if you add some kind words.  
-Furthermore this is a great opportunity to make it to the [Hall of The Makers](http://n.bitcoin.ninja/). 
+You'll get **one of these BlockchainProgramming coins** for every **0.004 bitcoins** you send me.  
+**One more**, if you add some kind words.  
+Furthermore, this is a great opportunity to make it to the [Hall of The Makers](http://n.bitcoin.ninja/). 
 
 Let’s see how I would code such feature.
 
-### Issuance Coin {#issuance-coin}
+### Section2. Issuance Coin {#issuance-coin}
 
 In Open Asset, the Asset ID is derived from the issuer's **ScriptPubKey**.  
 If you want to issue a Colored Coin, you need to prove ownership of such **ScriptPubKey**. And the only way to do that on the Blockchain is by spending a coin belonging to such **ScriptPubKey**.
 
 The coin that you will choose to spend for issuing colored coins is called “**Issuance Coin**” in **NBitcoin**.  
-I want to emit an Asset from the book bitcoin address: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://www.smartbit.com.au/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB).
+I want to emit an Asset from the Bitcoin address for this book: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://www.smartbit.com.au/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB).
 
-Take a look at my balance, I decided to use the following coin for issuing assets.  
+Take a look at my balance. I decided to use the following coin (2,000,000 satoshis) as Issuance Coin for issuing assets.  
 
 ```json
 {
@@ -42,7 +42,7 @@ var coin = new Coin(
 var issuance = new IssuanceCoin(coin);
 ```  
 
-Now I need to build transaction and sign the transaction with the help of the **TransactionBuilder**.  
+Now I need to build a transaction and sign the transaction with the help of the **TransactionBuilder**.  
 
 ```cs
 var nico = BitcoinAddress.Create("15sYbVpRh6dyWycZMwPdxJWD4xbfxReeHe");
@@ -86,10 +86,10 @@ Here is the format of the data in the OP_RETURN.
 
 ![](../assets/ColorMaker.png)  
 
-In our case, Quantities have only 10, which is the number of Asset I issued to ```nico```. Metadata is arbitrary data. We will see that we can put an url that points to an “Asset Definition”.  
-An **Asset Definition** is a document that describes what the Asset is. It is optional, we are not using it in our case. (We’ll come back later on it in the Ricardian Contract part.)  
+In our case, Quantities have only 10 which is the number of Asset I issued to **nico**. Metadata is arbitrary data. We will see that we can put a URL that points to an “Asset Definition”.  
+An **Asset Definition** is a document that describes what the Asset is. Since it is optional, we are not using it in our case. We’ll come back later on it in the Ricardian Contract part.  
 
-For more information check out the [Open Asset Specification](https://github.com/OpenAssets/open-assets-protocol/blob/master/specification.mediawiki).
+For more information, check out the [Open Asset Specification](https://github.com/OpenAssets/open-assets-protocol/blob/master/specification.mediawiki).
 
 After transaction verifications it is ready to be sent to the network.  
 
@@ -126,17 +126,16 @@ using (var node = Node.ConnectToLocal(Network.Main)) //Connect to the node
     Thread.Sleep(500); //Wait a bit
 }
 ```
-
-My Bitcoin Wallet have both, the book address and the “Nico” address.  
+My Bitcoin Wallet has both, the Bitcoin address for this book and “Nico”.  
 
 ![](../assets/NicoWallet.png)  
 
-As you can see, Bitcoin Core only shows the 0.0001 BTC of fees I paid, and ignore the 600 Satoshi coin because of spam prevention feature.
+As you can see, Bitcoin Core only shows the 0.0001 BTC of fees I paid, and ignores the 600 Satoshi coins because of a spam prevention feature.
 
 This classical bitcoin wallet knows nothing about Colored Coins.  
-Worse: If a classical bitcoin wallet spend a colored coin, it will destroy the underlying asset and transfer only the bitcoin value of the **TxOut**. (600 satoshi)
+Worse: If a classical bitcoin wallet spends a colored coin, it will destroy the underlying asset and transfer only the bitcoin value of the **TxOut**. (600 satoshi)
 
-For preventing a user from sending Colored Coin to a wallet that do not support it, Open Asset have its own address format, that only colored coin wallets understand.  
+For preventing a user from sending Colored Coin to a wallet which does not support it, Open Asset has its own address format which only colored coin wallets understand.  
 
 ```cs
 nico = BitcoinAddress.Create("15sYbVpRh6dyWycZMwPdxJWD4xbfxReeHe");
@@ -147,11 +146,11 @@ Console.WriteLine(nico.ToColoredAddress());
 akFqRqfdmAaXfPDmvQZVpcAQnQZmqrx4gcZ
 ```  
 
-Now, you can take a look on an Open Asset compatible wallet like Coinprism, and see my asset correctly detected:  
+Now, you can take a look at on an Open Asset compatible wallet like Coinprism, and see if my asset is correctly detected:  
 
 ![](../assets/Coinprism.png)  
 
-As I have told you before, the Asset ID is derived from the issuer’s **ScriptPubKey**, here is how to get it in code:  
+As I have told you before, the Asset ID is derived from the issuer’s ScriptPubKey. Here is how to get it in code:  
 
 ```cs
 var book = BitcoinAddress.Create("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");

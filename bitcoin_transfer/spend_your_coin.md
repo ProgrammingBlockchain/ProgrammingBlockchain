@@ -21,18 +21,22 @@ Console.WriteLine(bitcoinPrivateKey);
 Console.WriteLine(address);
 ```  
 
-Note the **bitcoinPrivateKey** and the **address**, send some coins there and note the transaction id (you can find it, probably, in your wallet software or with a blockexplorer, like [blockchain.info](http://blockchain.info/)).  
+Note the **bitcoinPrivateKey** and the **address** from above codes. And send some coins there and note the transaction id (you can find it, probably, in your wallet software or with a blockexplorer like [blockchain.info](http://blockchain.info/)).  
 
 Import your private key:  
 
 ```cs
 var bitcoinPrivateKey = new 
 BitcoinSecret("cSZjE4aJNPpBtU6xvJ6J4iBzDgTmzTjbq8w2kqnYvAprBCyTsG4x");
-var network = bitcoinPrivateKey.Network;
+var network = bitcoinPrivateKey.Network; 
 var address = bitcoinPrivateKey.GetAddress();
 
-Console.WriteLine(bitcoinPrivateKey); // cSZjE4aJNPpBtU6xvJ6J4iBzDgTmzTjbq8w2kqnYvAprBCyTsG4x
-Console.WriteLine(address); // mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv
+Console.WriteLine(bitcoinPrivateKey); 
+//Output: 
+//cSZjE4aJNPpBtU6xvJ6J4iBzDgTmzTjbq8w2kqnYvAprBCyTsG4x
+Console.WriteLine(address); 
+//Output:
+//mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv
 ```  
 
 And finally get the transaction info:  
@@ -41,7 +45,9 @@ var client = new QBitNinjaClient(network);
 var transactionId = uint256.Parse("e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3");
 var transactionResponse = client.GetTransaction(transactionId).Result;
 
-Console.WriteLine(transactionResponse.TransactionId); // e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3
+Console.WriteLine(transactionResponse.TransactionId); 
+//Output:
+//e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3
 Console.WriteLine(transactionResponse.Block.Confirmations);
 ```  
 
@@ -83,7 +89,7 @@ Constructing the **TxOut** and adding it to the transaction is the answer to the
 
 The donation address of this book is: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://blockchain.info/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB)  
 This money goes into my "Coffee and Sushi Wallet" that will keep me fed and compliant while writing the rest of the book.  
-If you succeed in completing this challenge you will be able to find your contribution amongst the **Hall of the Makers** on http://n.bitcoin.ninja/ (ordered by generosity).  
+If you succeed in completing this challenge, you will be able to find your contribution amongst the **Hall of the Makers** on http://n.bitcoin.ninja/ (ordered by generosity).  
 ```cs
 var hallOfTheMakersAddress = new BitcoinPubKeyAddress("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
 ```  
@@ -93,19 +99,25 @@ var hallOfTheMakersAddress = BitcoinAddress.Create("mzp4No5cmCXjZUpf112B1XWsvWBf
 ```  
 
 ### How much?
-If you want to send **0.5 BTC** from a **transaction input** with **1 BTC** you actually have to spend it all!   
+If you want to send **0.5** BTC from an **unspent output** which holds 1 BTC, you actually have to spend it all!
+And you will get the changes back to your Bitcoin address.   
 As the diagram shows below, your **transaction output** specifies  **0.5** BTC to Hall of The Makers and **0.4999** back to you.  
-What happens to the remaining **0.0001 BTC**? This is the miner fee in order to incentivize them to add this transaction into their next block.
+What happens to the remaining **0.0001** BTC? This is the miner fee in order to incentivize them to add this transaction into their next block.
 
 ![](../assets/SpendTx.png)  
 
+By this codes, we're going to generate TxOuts with hardcoded amounts of coins.
 ```cs
+//Generate a TxOut for hallOfTheMakers.
 TxOut hallOfTheMakersTxOut = new TxOut()
 {
+    //Set 0.5 bitcoins to be sent.
     Value = new Money((decimal)0.5, MoneyUnit.BTC),
+    //Set a ScriptPubKey for the recipient.
     ScriptPubKey = hallOfTheMakersAddress.ScriptPubKey
 };
 
+//Generate a TxOut for changeBack(1-0.5-fee).
 TxOut changeBackTxOut = new TxOut()
 {
     Value = new Money((decimal)0.4999, MoneyUnit.BTC),
@@ -117,18 +129,22 @@ transaction.Outputs.Add(changeBackTxOut);
 ```  
 
 We can do some fine tuning here.  
-You can check the address I am working with in this chapter's examples on a blockexplorer (I am working on the testnet):   http://tbtc.blockr.io/address/info/mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv  
+You can check the address I am working with in this chapter's examples on a blockexplorer.
+I am working on the testnet: 
+http://tbtc.blockr.io/address/info/mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv  
+
+By this codes, we're going to generate TxOuts by calculating coins not with hardcoded amounts of ones.
 
 ```cs
-// How much you want to TO
+//First, set the amount of coin to be sent.
 var hallOfTheMakersAmount = new Money(0.5m, MoneyUnit.BTC);
-/* At the time of writing the mining fee is 0.05usd
- * Depending on the market price and
- * On the currently advised mining fee,
- * You may consider to increase or decrease it
-*/
+
+//Secend, set the amount of a transaction fee which will be sent to the miner who created the block including a transaction I'm writing here.
+//At the time of writing, the mining fee is 0.05usd, depending on the market price and on the currently advised mining fee.
+//You may consider to increase or decrease it.
 var minerFee = new Money(0.0001m, MoneyUnit.BTC);
-// How much you want to spend FROM
+
+//Get the entire coins that are sent from a specific TxOut(in this case, second one since its index number is 1) of another previous transaction.
 var txInAmount = receivedCoins[(int) outPointToSpend.N].TxOut.Amount;
 Money changeBackAmount = txInAmount - hallOfTheMakersAmount - minerFee;
 ```
@@ -157,7 +173,7 @@ transaction.Outputs.Add(changeBackTxOut);
 ### Message on The Blockchain
 
 Now add your feedback! This must be less than 40 bytes, or it will crash the application.  
-This feedback, along with your transaction will appear (after your transaction is confirmed) in the [Hall of The Makers](http://n.bitcoin.ninja/). 
+This feedback along with your transaction will appear after your transaction is confirmed in the [Hall of The Makers](http://n.bitcoin.ninja/). 
 
 ```cs
 var message = "nopara73 loves NBitcoin!";
@@ -170,7 +186,7 @@ transaction.Outputs.Add(new TxOut()
 ```  
 
 To sum up take a look at my whole transaction before we sign it:  
-I have 3 **TxOut**, 2 with **value**, 1 without **value** (which contains the message). You can notice the differences between the **scriptPubKey**s of the "normal" **TxOut**s and the **scriptPubKey** of the **TxOut** with the message:  
+I have 3 **TxOut**, 2 with **value**, 1 without **value** which contains just a message. You can notice the differences between the **scriptPubKey**s of the "normal" **TxOut**s and the **scriptPubKey** of the **TxOut** with the message:  
 
 ```json
 {
@@ -206,12 +222,13 @@ I have 3 **TxOut**, 2 with **value**, 1 without **value** (which contains the me
 }
 ```  
 
-Take a closer look at **TxIn**. We have **prev_out** and **scriptSig** there.  
-**Exercise:** try to figure out what **scriptSig** will be and how to get it in our code before you read further!  
+Take a closer look at **TxIn**. We have **prev_out** and **scriptSig** there. 
+
+**Exercise:** Try to figure out what **scriptSig** will be and how to get it in our code before you read further!  
 
 Let's check out the **hash** of **prev_out** in a blockexplorer: http://tbtc.blockr.io/api/v1/tx/info/e44587cf08b4f03b0e8b4ae7562217796ec47b8c91666681d71329b764add2e3  
-In **prev_out** **n** is 1. Since we are indexing from 0, this means I want to spend the second output of the transaction.  
-In the blockexplorer we can see the corresponding address is ```mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv``` and I can get the scriptSig from the address like this:  
+In **prev_out**, **n** is 1. Since we are indexing from 0, this means I want to spend the second output of the transaction.  
+In the blockexplorer we can see the corresponding address is ```mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv``` and I can get and set a scriptSig from the address via a ScriptPubKey like this:  
 
 ```cs
 var address = BitcoinAddress.Create("mzK6Jy5mer3ABBxfHdcxXEChsn3mkv8qJv");
@@ -220,17 +237,17 @@ transaction.Inputs[0].ScriptSig = address.ScriptPubKey;
 
 ### Sign your transaction
 
-Now that we have created the transaction, we must sign it. In other words, you will have to prove that you own the TxOut that you referenced in the input.  
+Now that we have created the transaction, we must sign it. In other words, you will have to prove that you own the TxOut located in another previous transaction, that you referenced in the input.  
 
 Signing can be [complicated](https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png), but we’ll make it simple.
 
-First let's revisit the **scriptSig** of **in** and how we can get it from code. Remember, we copy/pasted the address above from a blockexplorer, now let's get it from our QBitNinja transactionResponse:  
+First let's revisit the **scriptSig** of **input** and see how we can get it from codes. Remember, we copy/pasted the address above from a blockexplorer, As we've already seen how to get and set a ScriptSig from above code, similarly, now let's get set a ScriptPubKey from a private key via a ScriptPubKey, using our QBitNinja transactionResponse:
 
 ```cs
 transaction.Inputs[0].ScriptSig =  bitcoinPrivateKey.ScriptPubKey;
 ```  
 
-Then you need to provide your private key in order to sign the transaction:  
+Then, you need to provide your private key in order to sign the transaction:  
 
 ```cs
 transaction.Sign(bitcoinPrivateKey, false);
@@ -238,6 +255,7 @@ transaction.Sign(bitcoinPrivateKey, false);
 
 ### Propagate your transactions
 Congratulations, you have signed your first transaction! Your transaction is ready to roll! All that is left is to propagate it to the network so the miners can see it.  
+
 #### With QBitNinja:  
 ```cs
 BroadcastResponse broadcastResponse = client.Broadcast(transaction).Result;

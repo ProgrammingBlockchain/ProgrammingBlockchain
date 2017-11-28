@@ -1,45 +1,77 @@
-## Private key {#private-key}
+## Chapter3. Private key {#private-key}
 
-Private keys are often represented in Base58Check called a **Bitcoin Secret** (also known as **Wallet Import Format** or simply **WIF**), like Bitcoin Addresses.  
+Private keys are often represented in Base58Check encoding scheme, to use the encoded private key in the UI layer. And private key represented in Base58Check is especially called a **Bitcoin Secret**. Bitcoin secret is also known as a **Wallet Import Format** or simply **WIF** because a "Bitcoin secret" is usually used with a Bitcoin wallet which is a kind of an UI tool, along with a "Bitcoin address". Usually a Bitcoin secret is used for signing a signature for the coin and proof of ownership for the coin. And a Bitcoin address in the UI layer is used for representing a recipient to which the coin will be sent.   
 
 ![](../assets/BitcoinSecret.png)  
 
 ```cs  
-Key privateKey = new Key(); // generate a random private key
-BitcoinSecret mainNetPrivateKey = privateKey.GetBitcoinSecret(Network.Main);  // generate our Bitcoin secret(also known as Wallet Import Format or simply WIF) from our private key for the mainnet
-BitcoinSecret testNetPrivateKey = privateKey.GetBitcoinSecret(Network.TestNet);  // generate our Bitcoin secret(also known as Wallet Import Format or simply WIF) from our private key for the testnet
-Console.WriteLine(mainNetPrivateKey); // L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn
-Console.WriteLine(testNetPrivateKey); // cVY5auviDh8LmYUW8AfafseD6p6uFoZrP7GjS3rzAerpRKE9Wmuz
+//Generate one random private key.
+Key privateKey = new Key();  
 
-bool WifIsBitcoinSecret = mainNetPrivateKey == privateKey.GetWif(Network.Main);
-Console.WriteLine(WifIsBitcoinSecret); // True
+//Generate a Bitcoin secret for the MainNet, which is nothing but a private key represented in Base58Check binary-to-text encoding scheme.
+BitcoinSecret privateKeyForMainNet = privateKey.GetBitcoinSecret(Network.Main);
+//Generate a Bitcoin secret for the TestNet, which is nothing but a private key represented in Base58Check binary-to-text encoding scheme.
+BitcoinSecret privateKeyForTestNet = privateKey.GetBitcoinSecret(Network.TestNet);
+
+Console.WriteLine($"privateKeyForMainNet: {privateKeyForMainNet}");
+//Output:
+//L5DZpEdbDDhhk3EqtktmGXKv3L9GxttYTecxDhM5huLd82qd9uvo
+Console.WriteLine($"privateKeyForTestNet: {privateKeyForTestNet}");
+//Output:
+//cVaZH9dSeHPxuUi7HAhtdqpyfZSgdLzEXgmRL7obD1zdNmxcW9aL
+
+//You can also generate a private key by invoking GetWif() on the private key by additionally specifying a network identifier.  
+//Note that we're using the same private key generated from above.  
+BitcoinSecret privateKeyByGetWifMethod = privateKey.GetWif(Network.Main);
+Console.WriteLine(privateKeyByGetWifMethod);
+//Output:
+//L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn
+
+bool wifIsPrivateKey = privateKeyForMainNet == privateKey.GetWif(Network.Main);
+Console.WriteLine(wifIsPrivateKey);
+//Output:
+//True
 ```  
 
-Note that it is easy to go from **BitcoinSecret** to private **Key**. On the other hand, it is impossible to go from a Bitcoin Address to Public Key because the Bitcoin Address contains a hash of the Public Key, not the Public Key itself.  
+Note that it is easy to go from a **Bitcoin secret** to a **private key**.
+Recall that a Bitcoin secret is nothing but a private key just represented in Base58Check from a private key, which is often used in UI layer in Bitcoin system such as via wallet software. In the NBitcoin, when you instantiate a key object by a "new Key()", under the hood, you also invoke a secure PRNG to generate a random key data for a private key which will be stored in the key object.
+On the other hand, it is impossible to go from a Bitcoin address to a public key because the Bitcoin address is generated from a hash of the public key(and + network identifier), not the public key itself.  
+
 Process this information by examining the similarities between these two codeblocks:  
 
 ```cs
-Key privateKey = new Key(); // generate a random private key
-BitcoinSecret bitcoinSecret = privateKey.GetWif(Network.Main); // L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn
-Key samePrivateKey = bitcoinSecret.PrivateKey;
-Console.WriteLine(samePrivateKey == privateKey); // True
+//Get the Bitcoin secret by invoking GetWif() on the private key with passing additionally the network identifier.
+BitcoinSecret bitcoinSecretByGetWif = privateKey.GetWif(Network.Main);
+//Get the Bitcoin secret by invoking GetBitcoinSecret() on the private key with passing additionally the network identifier.
+BitcoinSecret bitcoinSecretByGetBitcoinSecret = privateKey.GetBitcoinSecret(Network.Main);
+
+//Get the private key from the Bitcoin secret.
+var privateKeyFromBsByGetWif = bitcoinSecretByGetWif.PrivateKey;
+var privateKeyFromBsByGetBitcoinSecret = bitcoinSecretByGetBitcoinSecret.PrivateKey;
+
+Console.WriteLine($"privateKeyFromBsByGetWif: {privateKeyFromBsByGetWif.ToString(Network.Main)}");
+Console.WriteLine($"privateKeyFromBsByGetBitcoinSecret: {privateKeyFromBsByGetBitcoinSecret.ToString(Network.Main)}");
+//L5DZpEdbDDhhk3EqtktmGXKv3L9GxttYTecxDhM5huLd82qd9uvo
+//L5DZpEdbDDhhk3EqtktmGXKv3L9GxttYTecxDhM5huLd82qd9uvo
+Console.WriteLine(privateKey==privateKeyFromBsByGetWif);
+//Output:
+//True
 ```  
+
+You can get the Bitcoin address from the public key by additionally specifying the network identifier.
+But it's impossible to get the public key from the Bitcoin address because the Bitcoin address is generated from the public key hash value(plus network identifier), not public key itself.
 
 ```cs
 PubKey publicKey = privateKey.PubKey;
-BitcoinPubKeyAddress bitcoinPublicKey = publicKey.GetAddress(Network.Main); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
-//PubKey samePublicKey = bitcoinPublicKey.ItIsNotPossible;
+BitcoinPubKeyAddress bitcoinAddress = publicKey.GetAddress(Network.Main);
+Console.WriteLine($"bitcoinAddress: {bitcoinAddress}");
+//Output:
+//1ErHHqvzRT6WgVzX5J7tin5LaDGev2UobP
+
+//PubKey publicKeyFromBitcoinAddress = bitcoinAddress.ItIsNotPossible;
 ```  
 
 ### Exercise:
-1. Generate a private key on the mainnet and note it.
-2. Get the corresponding address.
-3. Send bitcoins to it. As much as you cannot afford to lose, so it will keep you focused and motivated to get them back during the following lessons. 
-
-
- 
-
-
-
-
-
+1. Generate a private key on the MainNet and note it.
+2. Get the Bitcoin address related to that private key.
+3. Send bitcoins to that Bitcoin address. As much as you cannot afford to lose, so it will keep you focused and motivated to get them back during the following lessons.

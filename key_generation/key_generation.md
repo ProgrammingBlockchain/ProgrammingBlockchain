@@ -10,11 +10,11 @@ On iOS, I have not implemented it and you will need to create your own **IRandom
 
 For a computer, being random is hard. But the biggest issue is that it is impossible to know if a series of numbers is really random.
 
-If malware modifies your PRNG (and so, can predict the numbers you will generate), you won’t see it until it is too late.
+If malware modifies your PRNG so that it can predict the numbers you will generate, you won’t see it until it is too late.
 
 It means that a cross platform and naïve implementation of PRNG (like using the computer’s clock combined with CPU speed) is dangerous. But you won’t see it until it is too late.
 
-For performance reasons, most PRNG works the same way: a random number, called a **Seed**, is chosen, then a predictable formula generates the next number each time you ask for it.
+For performance reasons, most PRNG works the same way: a random number which is called a **Seed** is chosen, then a predictable formula generates the next number each time you ask for it.
 
 The amount of randomness of the seed is defined by a measure we call **Entropy**, but the amount of **Entropy** also depends on the observer.
 
@@ -26,24 +26,24 @@ If your attacker knows that you generated the key last week, then your seed has
 
 For such attacker, the entropy is log<sub>2</sub>(604800000) = 29.17 bits.
 
-And enumerating such a number on my home computer took less than 2 seconds. We call such enumeration “brute forcing”.
+And enumerating such all possibilities with corresponding entropy took less than 2 seconds on my home computer. We call such enumeration “brute forcing”.
 
-However let’s say, you use the clock time + the process id for generating the seed.  
-Let’s imagine that there are 1024 different process ids.
+However, let’s say, you use the clock time + the process ID for generating the seed.  
+Let’s imagine that there are 1024 different process IDs.
 
 So now, the attacker needs to enumerate 604800000 \* 1024 possibilities, which take around 2000 seconds.  
-Now, let’s add the time when I turned on my computer, assuming the attacker knows I turned it on today, it adds 86400000 possibilities.  
+Now, let’s add the time on it. When I turned on my computer, assuming the attacker knows I turned it on today, it adds 86400000 possibilities.  
 
 Now the attacker needs to enumerate 604800000 \* 1024 \* 86400000 = 5,35088E+19 possibilities.  
 However, keep in mind that if the attacker has infiltrated my computer, he can get this last piece of info, and bring down the number of possibilities, reducing entropy.
 
 Entropy is measured by **log<sub>2</sub>(possibilities)** and so log<sub>2</sub>(5,35088E+19) = 65 bits.
 
-Is it enough? Probably, assuming your attacker does not know more information about the realm of possibilities used to generate the seed.
+Is it enough? Probably, only when you assuming your attacker does not know more information about the realm of possibilities used to generate the seed.
 
 But since the hash of a public key is 20 bytes (160 bits), it is smaller than the total universe of the addresses. You might do better.
 
-> **Note:** Adding entropy is linearly harder, cracking entropy is exponentially harder
+> **Note:** Adding entropy is linearly harder. On the other hand, cracking entropy is exponentially harder.
 
 An interesting way of generating entropy quickly is by incorporating human intervention, such as moving the mouse.
 
@@ -65,13 +65,13 @@ Then when you generate a new number:
 
 However, what is most important is not the number of possibilities. It is the time that an attacker would need to successfully break your key. That’s where KDF enters the game.
 
-KDF, or **Key Derivation Function** is a way to have a stronger key, even if your entropy is low.
+KDF, or **Key Derivation Function**, is a way to have a stronger key, even if your entropy is low.
 
-Imagine that you want to generate a seed, and the attacker knows that there are 10.000.000 possibilities.  
+Imagine that you want to generate a seed, and the attacker knows that there are 10,000,000 possibilities.  
 Such a seed would be normally cracked pretty easily.
 
 But what if you could make the enumeration slower?  
-A KDF is a hash function that waste computing resources on purpose.  
+A KDF is a hash function that wastes computing resources on purpose.  
 Here is an example:
 
 ```cs
@@ -79,13 +79,13 @@ var derived = SCrypt.BitcoinComputeDerivedKey("hello", new byte[] { 1, 2, 3 });
 RandomUtils.AddEntropy(derived);
 ```  
 
-Even if your attacker knows that your source of entropy is 5 letters, he will need to run Scrypt to check each possibility, which take 5 seconds on my computer.
+Even if your attacker knows that your source of entropy is 5 letters, he will need to run Scrypt to check each possibility, which takes 5 seconds on my computer.
 
 The bottom line is: There is nothing paranoid in distrusting a PRNG, and you can mitigate an attack by both adding entropy and also using a KDF.  
 Keep in mind that an attacker can decrease entropy by gathering information about you or your system.  
-If you use the timestamp as entropy source, then an attacker can decrease the entropy by knowing you generated the key last week, and that you only use your computer between 9am and 6pm.
+If you use the timestamp as entropy source, then an attacker can decrease the entropy by knowing the fact that you generated the key last week, and that you only use your computer between 9am and 6pm.
 
-In the previous part I talked briefly about a special KDF called **Scrypt.** As I said, the goal of a KDF is to make brute force costly.  
+In the previous part I talked briefly about a special KDF called **Scrypt.** As I said, the goal of a KDF is to make "brute forcing" costly.  
 
 So it should be no surprise for you that a standard already exists for encrypting your private key with a password using a KDF. This is [BIP38](http://www.codeproject.com/Articles/775226/NBitcoin-Cryptography-Part).  
 
@@ -106,11 +106,11 @@ Console.ReadLine();
 Such encryption is used in two different cases:  
 
 *   You do not trust your storage provider (they can get hacked)  
-*   You are storing the key on the behalf of somebody else (and you do not want to know thier key)  
+*   You are storing the key on the behalf of somebody else (and you do not want to know their key)  
 
 If you own your storage, then encrypting at the database level might be enough.  
 
-Be careful if your server takes care of decrypting the key, an attacker might attempt to DDOS your server by forcing it to decrypt lots of keys.  
+Be careful if your server takes care of decrypting the key. An attacker might attempt a DDoS attack to your server by forcing it to decrypt lots of keys.  
 
 Delegate decryption to the ultimate end user when you can.  
 
@@ -136,9 +136,9 @@ If you are developing a web wallet and generate keys on behalf of your users, an
 
 ## BIP38 (Part 2) {#bip38-part-2}
 
-We already looked at using BIP38 to encrypt a key, however this BIP is in reality two ideas in one document.  
+We already looked at using BIP38 to encrypt a key. However, this BIP is in reality two ideas in one document.  
 
-The second part of the BIP, shows how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concerns.  
+The second part of the BIP shows how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concerns.  
 
 **The idea is to generate a PassphraseCode to the key generator. With this PassphraseCode, they will be able to generate encrypted keys on your behalf, without knowing your password, nor any private key. ** 
 
@@ -164,21 +164,27 @@ The third party will then generate new encrypted keys for you.
 EncryptedKeyResult encryptedKeyResult = passphraseCode.GenerateEncryptedSecret();
 ```  
 
-This **EncryptedKeyResult** has lots of information:  
+This **EncryptedKeyResult** class has lots of information:  
 
 ![](../assets/EncryptedKeyResult.png)  
 
-First: the **generated bitcoin address**,  
+First is the **generated bitcoin address**,  
 ```cs
-var generatedAddress = encryptedKeyResult.GeneratedAddress; // 14KZsAVLwafhttaykXxCZt95HqadPXuz73
+var generatedAddress = encryptedKeyResult.GeneratedAddress;
+//Output:
+//14KZsAVLwafhttaykXxCZt95HqadPXuz73
 ```  
-then the **EncryptedKey** itself, (as we have seen in the previous, **Key Encryption** lesson),  
+Second is the **EncryptedKey** itself as we have seen in the previous, **Key Encryption** lesson.  
 ```cs
-var encryptedKey = encryptedKeyResult.EncryptedKey; // 6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
+var encryptedKey = encryptedKeyResult.EncryptedKey; 
+//Output:
+//6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
 ```  
-and last but not least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond  to your password.
+And last but not least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond to my password.
 ```cs
-var confirmationCode = encryptedKeyResult.ConfirmationCode; // cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
+var confirmationCode = encryptedKeyResult.ConfirmationCode; 
+//Output:
+//cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
 ```  
 
 As the owner, once you receive this information, you need to check that the key generator did not cheat by using **ConfirmationCode.Check**, then get your private key with your password:
@@ -190,7 +196,8 @@ Console.WriteLine(bitcoinPrivateKey.GetAddress() == generatedAddress); // True
 Console.WriteLine(bitcoinPrivateKey); // KzzHhrkr39a7upeqHzYNNeJuaf1SVDBpxdFDuMvFKbFhcBytDF1R
 ```  
 
-So, we have just seen how the third party can generate encrypted keys on your behalf, without knowing your password and private key.
+So, we have just seen how the third party can generate encrypted keys on your behalf, without them knowing your password and private key.
+In other words, you've delegated a Key and Address generation to an untrusted peer, the third party.
 
 ![](../assets/ThirdPartyKeyGeneration.png)  
 
@@ -198,7 +205,7 @@ However, one problem remains:
 
 *   All backups of your wallet that you have will become outdated when you generate a new key.
 
-BIP 32, or Hierarchical Deterministic Wallets (HD wallets) proposes another solution, which is more widely supported.
+BIP 32, or Hierarchical Deterministic Wallets (HD wallets), proposes another solution which is more widely supported.
 
 ## HD Wallet (BIP 32) {#hd-wallet-bip-32}
 
@@ -210,7 +217,7 @@ Let’s keep in mind the problems that we want to resolve:
 A “Deterministic” wallet would fix our backup problem. With such a wallet, you would have to save only the seed. From this seed, you can generate the same series of private keys over and over.  
 
 This is what the “Deterministic” stands for.  
-As you can see, from the master key, I can generate new keys:  
+As you can see below the codes, from a master key, I can generate new keys which are derived child keys from the master key:  
 
 ```cs
 ExtKey masterKey = new ExtKey();
@@ -234,7 +241,7 @@ Key 5 : xprv9tvBA4Kt8UTuTdiEhN8iVDr5rfAPSVsCKpDia4GtEsb87eHr8yRVveRhkeLEMvo3XWL3
 
 You only need to save the **masterKey**, since you can generate the same suite of private keys over and over.  
 
-As you can see, these keys are **ExtKey** and not **Key** as you are used to. However, this should not stop you since you have the real private key inside:  
+As you can see, these keys are **ExtKey** and not **Key** as you are used to. However, this should not stop you since you have a real private key inside of these keys:  
 
 ![](../assets/ExtKey.png)  
 
@@ -243,19 +250,22 @@ You can go back from a **Key** to an **ExtKey** by supplying the **Key** and the
 ```cs
 ExtKey extKey = new ExtKey();
 byte[] chainCode = extKey.ChainCode;
-Key key = extKey.PrivateKey;
-
-ExtKey newExtKey = new ExtKey(key, chainCode);
+Key privateKeyFromExtKey = extKey.PrivateKey;
+//Supply a private key and a chain code to the ExtKey constructor to go back from a Key to an ExtKey.
+ExtKey newExtKey = new ExtKey(privateKeyFromExtKey, chainCode);
 ```  
 
-The **base58** type equivalent of **ExtKey** is called **BitcoinExtKey**.
+The **Base58** type equivalent of **ExtKey** is called **BitcoinExtKey**.
 
-But how can we solve our second problem: delegating address creation to a peer that can potentially be hacked (like a payment server)?
+But how can we solve our second problem: Delegating key/address creation process to an untrusted peer that can potentially be hacked like a payment server?
 
 The trick is that you can “neuter” your master key, then you have a public (without private key) version of the master key. From this neutered version, a third party can generate public keys without knowing the private key.
 
 ```cs
+//Neuter the master key, then you get a master public key.
 ExtPubKey masterPubKey = masterKey.Neuter();
+
+//Genarate 5 derived public keys from the master public key.
 for (int i = 0 ; i < 5 ; i++)
 {
     ExtPubKey pubkey = masterPubKey.Derive((uint)i);
@@ -271,19 +281,19 @@ PubKey 3 : xpub67uQd5a6WCY6HQKya2Mwwb7bpSNB5XhWCR76kRaPxchE3Y1Y2MAiSjhRGftmeWyX8
 PubKey 4 : xpub67uQd5a6WCY6JddPfiPKdrR49KYEuXUwwJJsL5rWGDDQkpPctdkrwMhXgQ2zWopsSV7buz61e5mGSYgDisqA3D5vyvMtKYP8S3EiBn5c1u4
 ```  
 
-So imagine that your payment server generates pubkey1, you can get the corresponding private key with your private master key.
+So imagine that your payment server generates pubkey1, and then you can get the corresponding private key by your private master key.
 
 ```cs
 masterKey = new ExtKey();
 masterPubKey = masterKey.Neuter();
 
-//The payment server generate pubkey1
+//The payment server generates the pubkey1.
 ExtPubKey pubkey1 = masterPubKey.Derive((uint)1);
 
-//You get the private key of pubkey1
+//You get the private key of pubkey1.
 ExtKey key1 = masterKey.Derive((uint)1);
 
-//Check it is legit
+//Check if it is legit.
 Console.WriteLine("Generated address : " + pubkey1.PubKey.GetAddress(Network.Main));
 Console.WriteLine("Expected address : " + key1.PrivateKey.PubKey.GetAddress(Network.Main));
 ```  
@@ -297,11 +307,13 @@ Expected address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
 
 ![](../assets/ExtPubKey.png)  
 
-Now we have seen how Deterministic keys solve our problems, let’s speak about what the “hierarchical” is for.
+Now that we have seen how Deterministic keys solve our problems, let’s speak about what the “Hierarchical” is for.
 
-In the previous exercise, we have seen that by combining master key + index we could generate another key. We call this process **Derivation**, the master key is the **parent key**, and any generated keys are called **child keys**.
+In the previous exercise, we have seen that we could generate another derived keys based on a master key by invoking Derive() method on the master key passing integer numbers into an argument.
 
-However, you can also derivate children from the child key. This is what the “hierarchical” stands for.
+We call this process a **Derivation**. And, in this scheme, a master key is a **parent key**, and any generated keys based on the master key are called **child keys**.
+
+However, you can also derivate children from the child key. This is what the “Hierarchical” stands for.
 
 This is why conceptually more generally you can say: Parent Key + KeyPath => Child Key  
 
@@ -328,32 +340,31 @@ So in summary:
 
 ![](../assets/DeriveKeyPath.png)  
 
-It works the same for **ExtPubKey**.  
+It works indentically for **ExtPubKey**.  
 
-Why do you need hierarchical keys? Because it might be a nice way to classify the type of your keys for multiple accounts. More on [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
+Why do you need hierarchical keys? It's because it might be a nice way to classify the type of your keys for multiple accounts. More on [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
 
 It also permits segmenting account rights across an organization.
 
-Imagine you are CEO of a company. You want control over all wallets, but you don’t want the Accounting department to spend the money from the Marketing department.
+Imagine you are the CEO of a company. You want control over all wallets, but you don’t want the Accounting department to spend the money from the Marketing department.
 
-So your first idea would be to generate one hierarchy for each department.  
+So, for implementing this constraint, your first idea would be to generate one hierarchy for each department.  
 
 ![](../assets/CeoMarketingAccounting.png)  
 
-However, in such a case, **Accounting** and **Marketing** would be able to recover the CEO’s private key.
-
-We define such child keys as **non-hardened**.  
+However, in such a case, **Accounting** and **Marketing** would be able to recover the CEO’s private key, because we defined such child keys as **non-hardened**.  
 
 ![](../assets/NonHardened.png)  
 
 ```cs
 ExtKey ceoKey = new ExtKey();
 Console.WriteLine("CEO: " + ceoKey.ToString(Network.Main));
+//Note the hardened is false.
 ExtKey accountingKey = ceoKey.Derive(0, hardened: false);
 
 ExtPubKey ceoPubkey = ceoKey.Neuter();
 
-//Recover ceo key with accounting private key and ceo public key
+//Recover the CEO key with accounting private key and CEO public key.
 ExtKey ceoKeyRecovered = accountingKey.GetParentExtKey(ceoPubkey);
 Console.WriteLine("CEO recovered: " + ceoKeyRecovered.ToString(Network.Main));
 ```  
@@ -363,9 +374,9 @@ CEO: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuF
 CEO recovered: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuFVFpYaAt3gztYtZyXmy2hCVyVyxumdxfDBpoC
 ```  
 
-In other words, a **non-hardened key** can “climb” the hierarchy. **Non-hardened keys** should only be used for categorizing accounts that belongs to a point of **single control**.
+In other words, a **non-hardened key** can “climb” the hierarchy. **Non-hardened keys** should only be used for categorizing accounts that belong to a point of **single control**.
 
-So in our case, the CEO should create a **hardened key**, so the accounting department will not be able to climb the hierarchy.
+So, in our case, the CEO should create child keys as **hardened** ones, so the accounting department will not be able to climb the hierarchy.
 
 ```cs
 ExtKey ceoKey = new ExtKey();
@@ -424,7 +435,8 @@ mnemo = new Mnemonic("minute put grant neglect anxiety case globe win famous cor
 hdRoot = mnemo.DeriveExtKey("my password");
 ```  
 
-Currently supported languages for **wordlist** are, English, Japanese, Spanish, Chinese (simplified and traditional).  
+Currently supported languages for wordlist are English, Japanese, Korean, Spanish, Chinese (simplified and traditional), French, Italian.
+Check [here](https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md).  
 
 ## Dark Wallet {#dark-wallet}
 
