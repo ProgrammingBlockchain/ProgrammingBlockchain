@@ -65,7 +65,7 @@ Coin aliceCoin = coins[1];
 Coin bobAliceCoin = coins[2];
 ```  
 
-Now let’s say ```bob``` wants to sends 0.2 BTC, ```alice``` 0.3 BTC, and they agree to use ```bobAlice``` to send 0.5 BTC.  
+Now let’s say ```bob``` wants to send 0.2 BTC, ```alice``` 0.3 BTC, and they agree to use ```bobAlice``` to send 0.5 BTC.  
 
 ```cs
 var builder = new TransactionBuilder();
