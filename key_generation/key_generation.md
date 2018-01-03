@@ -527,7 +527,7 @@ The code explaining how, as a Scanner, to scan a transaction and how, as a Recei
 
 It should be noted that a **StealthAddress** can have multiple **spend pubkeys**, in which case, the address represents a multi sig.
 
-One limit of Dark Wallet is the use of **OP_RETURN**, so we can’t easily embed arbitrary data in the transaction as we did in the **Bitcoin transfer** section. (Current bitcoin rules allows only one OP_RETURN of 40 bytes, soon 80, per transaction)  
+One limit of Dark Wallet is the use of **OP_RETURN**, so we can’t easily embed arbitrary data in the transaction as we did in the **Bitcoin transfer** section. (Current bitcoin rules allows only one OP_RETURN of 80 bytes per transaction)  
 
 > ([Stackoverflow](http://bitcoin.stackexchange.com/a/29648/26859)) As I understand it, the "stealth address" is intended to address a very specific problem. If you wish to solicit payments from the public, say by posting a donation address on your website, then everyone can see on the block chain that all those payments went to you, and perhaps try to track how you spend them.  
 > 
