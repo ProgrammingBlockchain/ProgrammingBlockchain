@@ -15,4 +15,4 @@ The Blockchain is a database, and you give meaning to its data. As you will soon
 As a user, you can verify that a specific transaction exists in the Blockchain in two different ways:
 
 *   Check the entire Blockchain, which at the time of this writing is several gigabytes in size.
-*   Ask for a partial Merkel tree, which are a few kilobytes in size. We will talk about merkel trees later in relation to Simple Payment Verification.
+*   Ask for a partial Merkle tree, which are a few kilobytes in size. We will talk about Merkle trees later in relation to Simple Payment Verification (SPV).
