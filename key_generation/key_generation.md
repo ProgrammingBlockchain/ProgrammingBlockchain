@@ -67,7 +67,7 @@ However, what is most important is not the number of possibilities. It is the ti
 
 KDF, or **Key Derivation Function** is a way to have a stronger key, even if your entropy is low.
 
-Imagine that you want to generate a seed, and the attacker knows that there are 10.000.000 possibilities.  
+Imagine that you want to generate a seed, and the attacker knows that there are 10,000,000 possibilities.  
 Such a seed would be normally cracked pretty easily.
 
 But what if you could make the enumeration slower?  
@@ -85,7 +85,7 @@ The bottom line is: There is nothing paranoid in distrusting a PRNG, and you can
 Keep in mind that an attacker can decrease entropy by gathering information about you or your system.  
 If you use the timestamp as entropy source, then an attacker can decrease the entropy by knowing you generated the key last week, and that you only use your computer between 9am and 6pm.
 
-In the previous part I talked briefly about a special KDF called **Scrypt.** As I said, the goal of a KDF is to make brute force costly.  
+In the previous part I talked briefly about a special KDF called **Scrypt**. As I said, the goal of a KDF is to make brute force costly.  
 
 So it should be no surprise for you that a standard already exists for encrypting your private key with a password using a KDF. This is [BIP38](http://www.codeproject.com/Articles/775226/NBitcoin-Cryptography-Part).  
 
@@ -106,7 +106,7 @@ Console.ReadLine();
 Such encryption is used in two different cases:  
 
 *   You do not trust your storage provider (they can get hacked)  
-*   You are storing the key on the behalf of somebody else (and you do not want to know thier key)  
+*   You are storing the key on the behalf of somebody else (and you do not want to know their key)  
 
 If you own your storage, then encrypting at the database level might be enough.  
 
@@ -132,7 +132,7 @@ However, you have two problems with that:
 *   All backups of your wallet that you have will become outdated when you generate a new key.  
 *   You cannot delegate the address creation process to an untrusted peer.  
 
-If you are developing a web wallet and generate keys on behalf of your users, and one user get hacked, they will immediately start suspecting you.  
+If you are developing a web wallet and generate keys on behalf of your users, and one user gets hacked, they will immediately start suspecting you.  
 
 ## BIP38 (Part 2) {#bip38-part-2}
 
@@ -172,16 +172,16 @@ First: the **generated bitcoin address**,
 ```cs
 var generatedAddress = encryptedKeyResult.GeneratedAddress; // 14KZsAVLwafhttaykXxCZt95HqadPXuz73
 ```  
-then the **EncryptedKey** itself, (as we have seen in the previous, **Key Encryption** lesson),  
+then the **EncryptedKey** itself (as we have seen in the previous, **Key Encryption** lesson),  
 ```cs
 var encryptedKey = encryptedKeyResult.EncryptedKey; // 6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
 ```  
-and last but not least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond  to your password.
+and last but not least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond to your password.
 ```cs
 var confirmationCode = encryptedKeyResult.ConfirmationCode; // cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
 ```  
 
-As the owner, once you receive this information, you need to check that the key generator did not cheat by using **ConfirmationCode.Check**, then get your private key with your password:
+As the owner, once you receive this information, you need to check that the key generator did not cheat by using **ConfirmationCode.Check()**, then get your private key with your password:
 
 ```cs
 Console.WriteLine(confirmationCode.Check("my secret", generatedAddress)); // True
@@ -443,7 +443,7 @@ It is a real shame that it was labeled as **dark** since it solves partially the
 
 In Dark Wallet terminology, here are the different actors:
 
-*   The **Payer** knows the **StealthAddress** of the **Receiver**
+*   The **Payer** knows the **StealthAddress** of the **Receiver**.
 *   The **Receiver** knows the **Spend Key**, a secret that will allow him to spend the coins he receives from such a transaction.
 *   **Scanner** knows the **Scan Key**, a secret that allows him to detect the transactions that belong to the **Receiver**.
 
