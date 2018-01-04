@@ -1,8 +1,8 @@
-## Multi Sig {#multi-sig}
+﻿## Multi Sig {#multi-sig}
 
-It is possible to have shared ownership and control over coins. 
+Bitcoin allows us to have shared ownership and control over coins with multi-signature transactions or multisig for short. 
 
-In order to demonstrate this we will create a ```ScriptPubKey``` that represents an **m-of-n multi sig**. This means that in order to spend the coins, **m** number of private keys will need to sign the spending transaction out of the **n** number of different public keys provided.
+In order to demonstrate this we will create a ```ScriptPubKey``` that represents an **m-of-n multisig**. This means that in order to spend the coins, **m** number of private keys will be needed to sign the spending transaction out of the **n** number of different public keys provided.
 
 Let’s create a multi sig with Bob, Alice and Satoshi, where two of the three of them need to sign a transaction in order to spend a coin.  
 
@@ -17,18 +17,18 @@ var scriptPubKey = PayToMultiSigTemplate
 
 Console.WriteLine(scriptPubKey);
 ```  
-
+Generates this script which you can use as a public key (coin destination address):
 ```
 2 0282213c7172e9dff8a852b436a957c1f55aa1a947f2571585870bfb12c0c15d61 036e9f73ca6929dec6926d8e319506cc4370914cd13d300e83fd9c3dfca3970efb 0324b9185ec3db2f209b620657ce0e9a792472d89911e0ac3fc1e5b5fc2ca7683d 3 OP_CHECKMULTISIG
 ```  
 
 As you can see, the ```scriptPubkey``` has the following form: ```<sigsRequired> <pubkeys…> <pubKeysCount> OP_CHECKMULTISIG```  
 
-The process for signing it is a little more complicated than just calling ```Transaction.Sign```, which does not work for multi sig.
+The process for signing it (in order to be able to spend it) is a little more complicated than just calling ```Transaction.Sign```, which does not work for multisig.
 
 Later we will talk more deeply about the subject but for now let’s use the ```TransactionBuilder``` for signing the transaction.
 
-Imagine the multi-sig ```scriptPubKey``` received a coin in a transaction called ```received```:
+Imagine the multisig ```scriptPubKey``` received a coin in a transaction called ```received```:
 
 ```cs
 var received = new Transaction();
@@ -80,9 +80,9 @@ Transaction bobSigned =
         .SignTransaction(aliceSigned);
 ```  
 
-![](https://i.imgur.com/xaxR9MV.png)  
+![](../assets/bobSigned.png)  
 
-Now, Bob and Alice can combine their signature into one transaction. This transaction will then be valid in terms of it's signature as Bob and Alice have provided two of the signatures from the three owner signatures that were initially provided. The requirements of the 'two-of-three' multi sig have therefore been met.
+Now, Bob and Alice can combine their signature into one transaction. This transaction will then be valid, because two (Bob and Alice) signatures were used from the three (Alice, Bob and Satoshi) signatures that were initially provided. The requirements of the 'two-of-three' multisig have therefore been met. If it wasn't be the case the network would not accept this transaction, because it rejects all unsigned or partially signed transactions by default.
 
 ```cs
 Transaction fullySigned =
@@ -118,9 +118,9 @@ Console.WriteLine(fullySigned);
 }
 
 ```
-Before sending the transaction to the network, examine the need of CombineSignatures() method. Try to compare a full detail of transaction between bobSigned and fullySigned. It will seem both are identical. For this reason, it seems like the CombineSignatures() method is needless because mulit-signing has achieved without the CombineSignatures() method.
+Before sending the transaction to the network, examine the need of CombineSignatures() method: compare the two transactions 'bobSigned' and 'fullySigned' thoroughly. It will seem like they are identical. It seems like the CombineSignatures() method is needless in this case because the transaction got signed properly without the CombineSignatures() method.
 
-Let's look at the case that CombineSignatures() is required:
+Let's look at a case where CombineSignatures() is required:
 ```cs
 TransactionBuilder builderNew = new TransactionBuilder();
 TransactionBuilder builderForAlice = new TransactionBuilder();
@@ -152,9 +152,11 @@ Transaction fullySigned =
                     .CombineSignatures(aliceSigned, bobSigned);
 ```
 
-The transaction is now ready to be sent to the network.
+The transaction is now ready to be sent to the network, but notice that the CombineSignatures() method was critical here, because both the aliceSigned and the bobSigned transactions were only partially signed, therefore not acceptable by the network. CombineSignatures() combined the two partially signed transactions into one fully signed transaction.  
 
-Even if the Bitcoin network supports multi sig as explained here, one question worth asking is: How can you expect a user who has no clue about bitcoin to pay using the Alice/Bob/Satoshi multi-sig as we have done above?
+> Sidenote: there is an inherent difficulty which arises from this situation. You need to send the newly created, unsigned multi-sig transaction to every signer and after their signed it, you also need to collect the partially signed transactions from them and combine them into one, so that you can publish that on the network. This problem is partially solved by the [BIP-0174](https://github.com/bitcoin/bips/blob/master/bip-0174.mediawiki), because it at least standardizes the data format, but you still need to implement your own way to distribute the data between the signing parties.
+
+Although the Bitcoin network supports multisig as explained above, the one question worth asking is: How can you expect a user who has no clue about Bitcoin to pay to a complicated multisig script address containing Alice's, Bob's Satoshi's public keys as we have done?
 
 Don’t you think it would be cool if we could represent such a ```scriptPubKey``` as easily and concisely as a regular Bitcoin Address?
 
