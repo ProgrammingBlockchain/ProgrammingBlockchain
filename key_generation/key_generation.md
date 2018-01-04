@@ -1,4 +1,4 @@
-# Key generation and encryption {#key-generation-encryption}  
+﻿# Key generation and encryption {#key-generation-encryption}  
 
 ## Is it random enough? {#is-it-random-enough}
 
@@ -428,7 +428,7 @@ Currently supported languages for **wordlist** are, English, Japanese, Spanish, 
 
 ## Dark Wallet {#dark-wallet}
 
-This name is unfortunate since there is nothing dark about it, and it attracts unwanted attention and concerns. Dark Wallet is a practical solution that fixes our two initial problems:
+Although Dark Wallets are not in use anymore, it is still valuable to understand the concepts presented here. Its name is unfortunate since there is nothing dark about it, and it attracts unwanted attention and concerns. Dark Wallet is a practical solution that fixes our two initial problems:
 
 *   Prevent outdated backups
 *   Delegating key / address generation to an untrusted peer
@@ -439,7 +439,7 @@ You have to share only one address with the world (called **StealthAddress**), w
 
 Let’s remind ourselves that if you share one **BitcoinAddress** with everybody, then all can see your balance by consulting the blockchain… That’s not the case with a **StealthAddress**.
 
-It is a real shame that it was labeled as **dark** since it solves partially the important problem of privacy leaking caused by the pseudo-anonymity of Bitcoin. A better name would have been: **One Address**.
+It is a real shame that it was labeled as **dark** since it solves partially the important problem of privacy leaking caused by the pseudo-anonymity of Bitcoin. A better name would have been: **One Address**, because the Receiver of the coins needs to share only one address with the Payer. Using that address the Payer is able to generate many new addresses and the coins sent to these addresses will be spendable by the Receiver. Only the Payer and the Receiver know that these addresses are related, a third party investigating the public blockchain doesn't.
 
 In Dark Wallet terminology, here are the different actors:
 
@@ -464,7 +464,7 @@ BitcoinStealthAddress stealthAddress
         network: Network.Main);
 ```  
 
-The **payer**, will take your **StealthAddress**, generate a temporary key called **Ephem Key** and will generate a **Stealth Pub Key**, from which the Bitcoin address to which the payment will be made is generated.  
+The **payer**, will take your **StealthAddress**, generate a temporary key called **Ephem Key** and will generate a **Stealth Pub Key**, from which the Bitcoin address to which the payment will be made is generated. Please note, that this Bitcoin address is a special base58 address which isn't recognized by the standard Bitcoin implementations like the Bitcoin Core.   
 
 ![](../assets/EphemKey.png) 
 
