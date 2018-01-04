@@ -1,4 +1,4 @@
-﻿## Multi Sig {#multi-sig}
+﻿## MultiSig {#multi-sig}
 
 Bitcoin allows us to have shared ownership and control over coins with multi-signature transactions or multisig for short. 
 
@@ -82,7 +82,7 @@ Transaction bobSigned =
 
 ![](../assets/bobSigned.png)  
 
-Now, Bob and Alice can combine their signature into one transaction. This transaction will then be valid, because two (Bob and Alice) signatures were used from the three (Alice, Bob and Satoshi) signatures that were initially provided. The requirements of the 'two-of-three' multisig have therefore been met. If it wasn't be the case the network would not accept this transaction, because it rejects all unsigned or partially signed transactions by default.
+Now, Bob and Alice can combine their signature into one transaction. This transaction will then be valid, because two (Bob and Alice) signatures were used from the three (Bob, Alice and Satoshi) signatures that were initially provided. The requirements of the 'two-of-three' multisig have therefore been met. If it wasn't be the case the network would not accept this transaction, because the nodes reject all unsigned or partially signed transactions.
 
 ```cs
 Transaction fullySigned =
@@ -154,7 +154,8 @@ Transaction fullySigned =
 
 The transaction is now ready to be sent to the network, but notice that the CombineSignatures() method was critical here, because both the aliceSigned and the bobSigned transactions were only partially signed, therefore not acceptable by the network. CombineSignatures() combined the two partially signed transactions into one fully signed transaction.  
 
-> Sidenote: there is an inherent difficulty which arises from this situation. You need to send the newly created, unsigned multi-sig transaction to every signer and after their signed it, you also need to collect the partially signed transactions from them and combine them into one, so that you can publish that on the network. This problem is partially solved by the [BIP-0174](https://github.com/bitcoin/bips/blob/master/bip-0174.mediawiki), because it at least standardizes the data format, but you still need to implement your own way to distribute the data between the signing parties.
+> Sidenote: there is an inherent difficulty which arises from this situation. You need to send the newly created, unsigned multi-sig transaction to every signer and after their signed it, you also need to collect the partially signed transactions from them and combine them into one, so that you can publish that on the network. This problem is partially solved by the [BIP-0174](https://github.com/bitcoin/bips/blob/master/bip-0174.mediawiki), because it at least standardizes the data format, but you still need to implement your own way to distribute the data between the signing parties.  
+> NBitcoin doesn't have an implementation for BIP-0174 or for the off-chain data distribution _yet_.
 
 Although the Bitcoin network supports multisig as explained above, the one question worth asking is: How can you expect a user who has no clue about Bitcoin to pay to a complicated multisig script address containing Alice's, Bob's Satoshi's public keys as we have done?
 
