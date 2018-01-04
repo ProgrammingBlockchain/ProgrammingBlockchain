@@ -102,7 +102,7 @@ var hallOfTheMakersAddress = BitcoinAddress.Create("mzp4No5cmCXjZUpf112B1XWsvWBf
 
 Bitcoin has [several units to use](https://en.bitcoin.it/wiki/Units). 1 bitcoin (BTC) is 1'000 milli-bitcoins/millibits. 1 milli-bitcoin (mBTC) is 1'000 micro-bitcoins/bits. And finally 1 (&micro;BTC) micro-bitcoin is 100 satoshis. 1 satoshi (sat) is the smallest unit on the Bitcoin network.  
 
-If you want to send **400 &micro;BTC** (a few dollars) from a **transaction input** with **1'000 &micro;BTC** you actually have to spend it all!  
+If you want to send **400 &micro;BTC** (a few dollars) from an **unspent output**, which holds **1'000 &micro;BTC**, you actually have to spend it all!  
 As the diagram shows below, your **transaction output** specifies  **400 &micro;BTC** to [Hall of The Makers](http://n.bitcoin.ninja/) and **530 &micro;BTC** back to you.  
 What happens to the remaining **70 &micro;BTC**? This is the _miner fee_.  
 The miner fee incentivizes the miners to add this transaction into their next block. The higher the miner fee the more motivated the miner is to include your transaction in the next block, meaning that your transaction will be confirmed faster. If you set the miner fee to zero, your transaction might never be confirmed.
