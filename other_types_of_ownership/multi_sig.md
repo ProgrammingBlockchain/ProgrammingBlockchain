@@ -82,7 +82,7 @@ Transaction bobSigned =
 
 ![](../assets/bobSigned.png)  
 
-Now, Bob and Alice can combine their signature into one transaction. This transaction will then be valid, because two (Bob and Alice) signatures were used from the three (Bob, Alice and Satoshi) signatures that were initially provided. The requirements of the 'two-of-three' multisig have therefore been met. If it wasn't be the case the network would not accept this transaction, because the nodes reject all unsigned or partially signed transactions.
+Now, Bob and Alice can combine their signature into one transaction. This transaction will then be valid, because two (Bob and Alice) signatures were used from the three (Bob, Alice and Satoshi) signatures that were initially provided. The requirements of the 'two-of-three' multisig have therefore been met. If this wasn't the case, the network would not accept this transaction, because the nodes reject all unsigned or partially signed transactions.
 
 ```cs
 Transaction fullySigned =
