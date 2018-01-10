@@ -102,9 +102,9 @@ var hallOfTheMakersAddress = BitcoinAddress.Create("mzp4No5cmCXjZUpf112B1XWsvWBf
 
 Bitcoin has [several units to use](https://en.bitcoin.it/wiki/Units), but there are three you should know about: bitcoins, bits and satoshis. 1 bitcoin (BTC) is 1'000'000 bits and 100 satoshis are 1 bit. 1 satoshi (sat) is the smallest unit on the Bitcoin network.  
 
-If you want to send **400 bits** (a few dollars) from an **unspent output**, which holds **1'000 bits**, you actually have to spend it all!  
-As the diagram shows below, your **transaction output** specifies  **400 bits** to [Hall of The Makers](http://n.bitcoin.ninja/) and **530 bits** back to you.  
-What happens to the remaining **70 bits**? This is the _miner fee_.  
+If you want to send **0.0004 BTC** (a few dollars) from an **unspent output**, which holds **0.001 BTC**, you actually have to spend it all!  
+As the diagram shows below, your **transaction output** specifies  **0.0004 BTC** to [Hall of The Makers](http://n.bitcoin.ninja/) and **0.00053 BTC** back to you.  
+What happens to the remaining **0.00007 BTC**? This is the _miner fee_.  
 The miner fee incentivizes the miners to add this transaction into their next block. The higher the miner fee the more motivated the miner is to include your transaction in the next block, meaning that your transaction will be confirmed faster. If you set the miner fee to zero, your transaction might never be confirmed.
 
 ![](../assets/SpendTx.png)
@@ -112,13 +112,13 @@ The miner fee incentivizes the miners to add this transaction into their next bl
 ```cs
 TxOut hallOfTheMakersTxOut = new TxOut()
 {
-    Value = new Money(400, MoneyUnit.Bit),
+    Value = new Money(0.0004m, MoneyUnit.BTC),
     ScriptPubKey = hallOfTheMakersAddress.ScriptPubKey
 };
 
 TxOut changeTxOut = new TxOut()
 {
-    Value = new Money(530, MoneyUnit.Bit),
+    Value = new Money(0.00053m, MoneyUnit.BTC),
     ScriptPubKey = bitcoinPrivateKey.ScriptPubKey
 };
 
@@ -130,14 +130,14 @@ We can do some fine tuning here, let's calculate the change based on the miner f
 
 ```cs
 // How much you want to spend
-var hallOfTheMakersAmount = new Money(400, MoneyUnit.Bit);
+var hallOfTheMakersAmount = new Money(0.0004m, MoneyUnit.BTC);
 
 // How much miner fee you want to pay
 /* Depending on the market price and
  * the currently advised mining fee,
  * you may consider to increase or decrease it.
  */
-var minerFee = new Money(70, MoneyUnit.Bit);
+var minerFee = new Money(0.00007m, MoneyUnit.BTC);
 
 // How much you want to get back as change
 var txInAmount = (Money)receivedCoins[(int) outPointToSpend.N].Amount;
@@ -223,7 +223,7 @@ We have 3 **TxOut**, 2 with **value**, 1 without **value** \(which contains the 
 Take a closer look at **TxIn**. We have **prev\_out** and **scriptSig** there.  
 **Exercise:** try to figure out what **scriptSig** will be and how to get it in our code before you read further!
 
-Let's check out the **hash** of **prev\_out** in a TestNet blockexplorer: [prev\_out tx details](https://testnet.smartbit.com.au/tx/0acb6e97b228b838049ffbd528571c5e3edd003f0ca8ef61940166dc3081b78a).  You can see that 0.001 BTC, so 1'000 bits was transferred to our address.
+Let's check out the **hash** of **prev\_out** in a TestNet blockexplorer: [prev\_out tx details](https://testnet.smartbit.com.au/tx/0acb6e97b228b838049ffbd528571c5e3edd003f0ca8ef61940166dc3081b78a).  You can see that 0.001 BTC was transferred to our address.
 
 In **prev\_out** **n** is 0. Since we are indexing from 0, this means that we want to spend the first output of the transaction (the second one is the 1.0989548 BTC change from the transaction).  
 
