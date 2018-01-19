@@ -116,7 +116,7 @@ TxOut hallOfTheMakersTxOut = new TxOut()
     ScriptPubKey = hallOfTheMakersAddress.ScriptPubKey
 };
 
-TxOut changeTxOut = new TxOut()
+TxOut changeBackTxOut = new TxOut()
 {
     Value = new Money(0.00053m, MoneyUnit.BTC),
     ScriptPubKey = bitcoinPrivateKey.ScriptPubKey
