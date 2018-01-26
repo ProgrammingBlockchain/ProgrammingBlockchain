@@ -15,7 +15,7 @@ Local Merchant invested into a nice store, advertising and their reputation. Unh
 On the internet, where the creation of an identity is so cheap, all merchants are potentially as the travelling one from the middle age.  
 The solution of market providers was to gather the real identity of every participant in the market, so law enforcement become possible.
 
-If you get scammed on Amazon of Ebay, your bank will most likely refund you, because they have a way to find the thief by contacting Amazon and Ebay.
+If you get scammed on Amazon or Ebay, your bank will most likely refund you, because they have a way to find the thief by contacting Amazon and Ebay.
 
 In a purely P2P market using Bitcoin, we do not have that. If you get scam, you lose money.  
 So how a buyer can trust the traveling merchant?  
