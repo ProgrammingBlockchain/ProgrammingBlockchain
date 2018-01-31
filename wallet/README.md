@@ -1,4 +1,4 @@
-# Create your own wallet {#create-your-own-wallet}crea
+# Create your own wallet {#create-your-own-wallet}
 
 Creating a wallet in Bitcoin is incredibly tricky. Depending on your need, there is various tools that will help you to reach your goal.
 
