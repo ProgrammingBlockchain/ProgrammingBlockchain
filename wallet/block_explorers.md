@@ -4,6 +4,7 @@ A block explorer can get you started very quickly. You used `QBitNinja` already 
 A block explorer is a self-hosted or third-party hosted solution which provide you informations about blocks, transactions and addresses in the chain.
 
 ![Explorer](../assets/Wallet-Explorer.png)
+
 A block explorer basically connect to a bitcoin node, index the data of the blockchain and expose an easy to use JSON API.
 Solutions include: `QBitNinja`, `Blockcypher`, `Smartbit`, `Electrum server`, `Insight`, `NBXplorer`.
 
