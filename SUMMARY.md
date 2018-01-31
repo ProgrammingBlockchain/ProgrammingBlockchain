@@ -49,5 +49,7 @@
    * [Proof of Burn and Reputation](other_types_of_asset/proof_of_burn_and_reputation.md)
    * [Protecting your private keys](security/protecting_your_private_keys.md)
 * [Create your own wallet](wallet/README.md)
-   * [Bitcoin Core Wallet](wallet/bitcoin_core_wallet.md)
+   * [Full Node](wallet/full-node.md)
+   * [Pruned Node](wallet/pruned-node.md)
+   * [Full SPV Node](wallet/full-spv-node.md)
    * [Block explorers](wallet/block_explorers.md)
