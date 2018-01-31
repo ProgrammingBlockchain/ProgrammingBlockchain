@@ -1,4 +1,4 @@
-# Full Node {#bitcoin-core-wallet}
+# Full Node {#full-node}
 
 This is the oldest and the most recommended solution.  
 You may use [Bitcoin Core's RPC](https://bitcoin.org/en/developer-reference#remote-procedure-calls-rpcs) through NBitcoin or the [C# Bitcoin Full Node](https://github.com/stratisproject/StratisBitcoinFullNode), created by Stratis.   
