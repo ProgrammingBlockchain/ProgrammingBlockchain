@@ -2,7 +2,7 @@
 
 This is the oldest and the most recommended solution.  
 You may use [Bitcoin Core's RPC](https://bitcoin.org/en/developer-reference#remote-procedure-calls-rpcs) through NBitcoin or the [C# Bitcoin Full Node](https://github.com/stratisproject/StratisBitcoinFullNode), created by Stratis.   
-Its pros are trustlessness and high network level privacy, while its cons are high storage, bandwidth, CPU and time requirements.  
+Its pros are trustlessness and high network level privacy, while its cons are high storage, bandwidth, CPU and time requirements.   
 In the rest of this document we will discuss Bitcoin Core's RPC API. First you need to fully syncronize your Bitcoin Core node, then you can do all operations above by calling RPC commands on your Bitcoin Core instance.  
 
 ![Bitcoin Core](../assets/Wallet-Bitcoin-Core.png)
