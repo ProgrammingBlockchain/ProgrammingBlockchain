@@ -1,19 +1,17 @@
-# Create your own wallet {#create-your-own-wallet}
+# Create your own wallet {#create-your-own-wallet}crea
 
-Creating a wallet in Bitcoin is incredibly tricky.
-Luckily, depending on your need, there is various tools that will help you to reach your goal.
+Creating a wallet in Bitcoin is incredibly tricky. Depending on your need, there is various tools that will help you to reach your goal.
 
 A Bitcoin wallet must do the following:
 
-1. Generate addresses,
-2. Recognizing transaction output sending money to these addresses,
-3. Detect when a received transaction output is spent,
-4. Recommend fees,
-5. Broadcast a transaction,
-6. Show the history of the transactions involving this wallet
-7. Handle reorgs
-8. Handle conflicts
-9. Signing transactions
+1. Generate addresses.
+2. Recognize transactions spent to these addresses.
+3. Detect transactions, those are spending from these addresses.
+4. Show the history of the transactions involving this wallet.
+5. Handle reorgs.
+6. Handle conflicts.
+7. Dynamically calculate transaction fees.
+8. Build and sign transactions.
+9. Broadcast transactions.
 
-Doing all of this by yourself from scratch require serious skills and experience. Luckily there is solutions you can use to help you.
-
+Doing all of this by yourself from scratch requires serious skills and experience. Luckily there are tools you can utilize.
