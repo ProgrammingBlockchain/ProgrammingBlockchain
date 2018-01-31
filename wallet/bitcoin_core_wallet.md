@@ -29,4 +29,5 @@ Disadvantages are:
 * Need to restart `bitcoind` for adding additional wallet,
 * Supports limited number of wallets. (Less than 10?)
 
-I advise this solution if you have low volume of transactions, and your system does not require you to create wallets dynamically.
+I advise this solution if you have low volume of transactions, and your system does not require you to create wallets dynamically.  
+Older versions of Bitcoin Core supported wallet accounts. While this is not the case anymore, you can either implement accounts by yourself on top of RPC or use [Bitcoin Knots](https://github.com/bitcoinknots/bitcoin), what is luke-jr's Bitcoin Core fork, where he is still maintaining the account functionalities.
