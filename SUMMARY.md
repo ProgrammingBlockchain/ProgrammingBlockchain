@@ -52,4 +52,5 @@
    * [Full Node](wallet/full-node.md)
    * [Pruned Node](wallet/pruned-node.md)
    * [Full SPV Node](wallet/full-spv-node.md)
+   * [SPV Node](wallet/spv-node.md)
    * [Web API/ Block Explorer](wallet/web-api.md)
