@@ -19,7 +19,7 @@ The disadvantages are:
 
 * If it is hosted by third party, and there is a contentious fork, you don't have the choice of which fork to follow,
 * Sometimes, their services are not enough to handle everything you need for a full wallet,
-* Non-existent privacy: the server knows everything about the clients. This doesn't apply to self hosted one.
+* Non-existent privacy: the server knows everything about the clients. This doesn't apply to self-hosted type.
 
 Different block explorers expose different APIs and features. For example most block explorer uses HTTP web APIs, while Electrum uses [the Stratum](http://docs.electrum.org/en/latest/protocol.html) protocol. Block explorers never have the private keys of the wallet.  
 
