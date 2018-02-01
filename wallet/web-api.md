@@ -1,4 +1,4 @@
-# Web API {#web-api}
+# Web API/ Block Explorer {#web-api}
 
 A block explorers, or more specifically the web APIs, usually provided by block explorers can get you started very quickly. You used `QBitNinja` already in this book, but many more exist.  
 A block explorer is a self-hosted or third-party hosted solution which provides you information about blocks, transactions and addresses in the chain.  
@@ -19,7 +19,7 @@ The disadvantages are:
 
 * If it is hosted by third party, and there is a contentious fork, you don't have the choice of which fork to follow,
 * Sometimes, their services are not enough to handle everything you need for a full wallet,
-* Non-existent privacy: the server knows everything about the clients.
+* Non-existent privacy: the server knows everything about the clients. This doesn't apply to self hosted one.
 
 Different block explorers expose different APIs and features. For example most block explorer uses HTTP web APIs, while Electrum uses [the Stratum](http://docs.electrum.org/en/latest/protocol.html) protocol. Block explorers never have the private keys of the wallet.  
 
