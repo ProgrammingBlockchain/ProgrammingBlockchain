@@ -9,7 +9,7 @@
 
 ### Tools {#tools}
 
-*   [Visual Studio Community Edition](https://www.visualstudio.com/) on Windows or [Xamarin Studio](https://store.xamarin.com) on Mac and Linux (both free).
+*   [Visual Studio Community Edition](https://www.visualstudio.com/) on Windows or [Xamarin Studio](https://store.xamarin.com)/[Visual Studio Code](https://code.visualstudio.com) on Mac and Linux (both free).
 *   [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) - Ideally you have it, but you can just proceed without it.
 
 > **Tip:** If disk space is an issue, consider running Bitcoin Core in pruning mode. It is practically the same as a full node (including security), except it throws away some of the old history.
