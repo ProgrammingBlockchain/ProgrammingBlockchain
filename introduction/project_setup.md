@@ -2,7 +2,7 @@
 
 Before we begin with the instruction, we should describe how we expect your projects to be set up.
 
-1.  Create a new Console Application Project in Visual Studio (.NET 4.5 or higher)
+1.  Create a new Console Application Project in Visual Studio (.NET 4.5.2 or higher)
 2.  Right click on “Dependencies” in Solution Explorer and select “Manage NuGet Packages…”
 3.  Search for “**NBitcoin”** and install it (or NBitcoin.Mono on MAC and Linux.)
 ![](../assets/nuget.png)  
