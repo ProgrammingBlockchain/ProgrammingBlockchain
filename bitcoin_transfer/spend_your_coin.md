@@ -8,7 +8,7 @@ Let’s start by looking at the **transaction** that contains the **TxOut** that
 
 Create a new **Console Project** \(&gt;.net45\) and install **QBitNinja.Client** NuGet.
 
-Have you already generated and noted down a private key yourself? Have you already get the corresponding bitcoin address and sent some funds there? If not, don't worry, I quickly reiterate how you can do it:
+Have you already generated and noted down a private key yourself? Did you already get the corresponding bitcoin address and sent some funds there? If not, don't worry, I quickly reiterate how you can do it:
 
 ```cs
 // Replace this with Network.Main to do this on Bitcoin MainNet
