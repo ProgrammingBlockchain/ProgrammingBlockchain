@@ -1,14 +1,14 @@
 ## Unit tests {#unit-tests}
 
 You can see that previously I hard coded the properties of **ColoredCoin**.  
-The reason is that I wanted only to show you how to construct a **Transaction** out of **ColoredCoin** coins.  
+The reason is that I only wanted to show you how to construct a **Transaction** out of **ColoredCoin** coins.  
 
-In real life, you would either depend on a third party API to fetch the colored coins of a transaction or a balance. Which might be not a good idea, because it add a trust dependency to your program with the API provider.  
+In real life, you would either depend on a third party API to fetch the colored coins of a transaction or a balance. Which might not be a good idea, because it add a trust dependency to your program with the API provider.  
 
 **NBitcoin** allows you either to depend on a web service, either to provide your own implementation for fetching the color of a **Transaction**. This allows you to have a flexible way to unit test your code, use another implementation or your own.  
 
 Let’s introduce two issuers: Silver and Gold. And three participants: Bob, Alice and Satoshi.  
-Let’s create a fake transaction that give some bitcoins to Silver, Gold and Satoshi.  
+Let’s create a fake transaction that gives some bitcoins to Silver, Gold and Satoshi.  
 
 ```cs
 var gold = new Key();
@@ -54,15 +54,15 @@ You see that it depends on a **IColoredTransactionRepository**.
 An implementation of **IColoredTransactionRepository** is **CoinprismColoredTransactionRepository** which is a public API for colored coins operations.  
 However, you can easily do your own, here is how **FetchColors** works.  
 
-The simplest case is: The **IColoredTransactionRepository** knows the color, in such case **FetchColors** only return that result.  
+The simplest case is: The **IColoredTransactionRepository** knows the color, in such case **FetchColors** only returns that result.  
 
 ![](../assets/FetchColors.png)  
 
 The second case is that the **IColoredTransactionRepository** does not know anything about the color of the transaction.  
 So **FetchColors** will need to compute the color itself according to the open asset specification.  
 
-However, for computing the color, **FetchColors** need the color of the parent transactions.  
-So it fetch each of them on the **ITransactionRepository**, and call **FetchColors** on each of them.  
+However, for computing the color, **FetchColors** needs the color of the parent transactions.  
+So it fetches each of them on the **ITransactionRepository**, and calls **FetchColors** on each of them.  
 Once **FetchColors** has resolved the color of the parent’s recursively, it computes the transaction color, and caches the result back in the **IColoredTransactionRepository**.  
 
 ![](../assets/FetchColors2.png)  
@@ -83,7 +83,7 @@ Now, we can put our **init** transaction inside.
 repo.Transactions.Put(init);
 ```  
 
-Note that Put is an extension methods, so you will need to add  
+Note that Put is an extension method, so you will need to add  
 
 ```cs
 using NBitcoin.OpenAsset;
@@ -150,7 +150,7 @@ First, he will fetch the **ColoredCoin** out of the transaction.
 var goldCoin = ColoredCoin.Find(sendGoldToSatoshi, color).FirstOrDefault();
 ```  
 
-Then, build a transaction like that:  
+Then, build a transaction like this:  
 
 ```cs
 builder = new TransactionBuilder();
@@ -166,7 +166,7 @@ var sendToBobAndAlice =
 Except you will get the exception **NotEnoughFundsException**.  
 The reason is that the transaction is composed of 600 satoshi in input (the **goldCoin**), and 1200 satoshi in output. (One **TxOut** for sending assets to Alice, and one for sending back the change to Satoshi.)
 
-This means that you are out of 600 satoshi.  
+This means that you are short 600 satoshi.  
 You can fix the problem by adding the last **Coin** of 1 BTC in the **init** transaction that belongs to **satoshi**.
 
 ```cs
@@ -258,4 +258,4 @@ We have finally made a unit test that emits and transfers some assets without an
 
 You can make your own **IColoredTransactionRepository** if you don’t want to depend on a third party service.
 
-You can find more complex scenarios in [NBitcoin tests](https://github.com/NicolasDorier/NBitcoin/blob/master/NBitcoin.Tests/transaction_tests.cs), and also one of my article “[Build them all](http://www.codeproject.com/Articles/835098/NBitcoin-Build-Them-All)” in codeproject. (Like multi sig issuance and colored coin swaps.)
+You can find more complex scenarios in [NBitcoin tests](https://github.com/NicolasDorier/NBitcoin/blob/master/NBitcoin.Tests/transaction_tests.cs), and also in one of my articles “[Build them all](http://www.codeproject.com/Articles/835098/NBitcoin-Build-Them-All)” in codeproject. (Like multi sig issuance and colored coin swaps.)
