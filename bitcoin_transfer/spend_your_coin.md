@@ -1,4 +1,4 @@
-\#\# Spend your coin {\#spend-your-coin}
+## Spend your coin {\#spend-your-coin}
 
 So now that you know what a **bitcoin address**, a **ScriptPubKey**, a **private key** and a **miner** are, you will make your first **transaction** by hand.
 
@@ -22,7 +22,7 @@ Console.WriteLine(bitcoinPrivateKey);
 Console.WriteLine(address);
 ```
 
-Note that we use the TestNet first, but you will probably do this on the MainNet as well, so you are going to spend real money! In any case, write down the **bitcoinPrivateKey** and the address! Send a few dollars of coins there and save the transaction ID \(you can find it in your wallet software or with a blockexplorer, like SmartBit for [MainNet](http://smartbit.com.au/) and [TestNet](https://testnet.smartbit.com.au/)\).
+Note that we use the TestNet first, but you will probably do this on the MainNet as well, so you are going to spend real money! In any case, write down the **bitcoinPrivateKey** and the address! Send a few dollars of coins there and save the transaction ID \(you can find it in your wallet software or with a blockexplorer, like SmartBit for [MainNet](http://smartbit.com.au/) and [TestNet](https://testnet.smartbit.com.au/)).
 
 Import your private key \(replace the "cN5Y...K2RS" string with yours\):
 
