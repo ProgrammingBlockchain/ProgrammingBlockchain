@@ -1,4 +1,4 @@
-﻿## Spend your coin {#spend-your-coin}
+\#\# Spend your coin {\#spend-your-coin}
 
 So now that you know what a **bitcoin address**, a **ScriptPubKey**, a **private key** and a **miner** are, you will make your first **transaction** by hand.
 
@@ -22,9 +22,9 @@ Console.WriteLine(bitcoinPrivateKey);
 Console.WriteLine(address);
 ```
 
-Note that we use the TestNet first, but you will probably do this on the MainNet as well, so you are going to spend real money! In any case, write down the **bitcoinPrivateKey** and the address! Send a few dollars of coins there and save the transaction ID \(you can find it in your wallet software or with a blockexplorer, like SmartBit for [MainNet](http://smartbit.com.au/) and [TestNet](https://testnet.smartbit.com.au/)).
+Note that we use the TestNet first, but you will probably do this on the MainNet as well, so you are going to spend real money! In any case, write down the **bitcoinPrivateKey** and the address! Send a few dollars of coins there and save the transaction ID \(you can find it in your wallet software or with a blockexplorer, like SmartBit for [MainNet](http://smartbit.com.au/) and [TestNet](https://testnet.smartbit.com.au/)\).
 
-Import your private key (replace the "cN5Y...K2RS" string with yours):
+Import your private key \(replace the "cN5Y...K2RS" string with yours\):
 
 ```cs
 var bitcoinPrivateKey = new BitcoinSecret("cN5YQMWV8y19ntovbsZSaeBxXaVPaK4n7vapp4V56CKx5LhrK2RS");
@@ -35,7 +35,7 @@ Console.WriteLine(bitcoinPrivateKey); // cN5YQMWV8y19ntovbsZSaeBxXaVPaK4n7vapp4V
 Console.WriteLine(address); // mkZzCmjAarnB31n5Ke6EZPbH64Cxexp3Jp
 ```
 
-And finally get the transaction info (replace the "0acb...b78a" with the one you got from your wallet software or blockchain explorer after you sent the coins):
+And finally get the transaction info \(replace the "0acb...b78a" with the one you got from your wallet software or blockchain explorer after you sent the coins\):
 
 ```cs
 var client = new QBitNinjaClient(network);
@@ -84,10 +84,11 @@ Constructing the **TxIn** and adding it to the transaction is the answer to the 
 Constructing the **TxOut** and adding it to the transaction is the answer to the remaining ones.
 
 > The donation address of this book is: [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://www.smartbit.com.au/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB)  
-This money goes into Nicolas' "Coffee and Sushi Wallet" that will keep him fed and compliant while writing the rest of the book.  
-If you succeed in completing this challenge on the MainNet you will be able to find your contribution among the **Hall of the Makers** on [http://n.bitcoin.ninja/](http://n.bitcoin.ninja/) \(ordered by generosity\).
+> This money goes into Nicolas' "Coffee and Sushi Wallet" that will keep him fed and compliant while writing the rest of the book.  
+> If you succeed in completing this challenge on the MainNet you will be able to find your contribution among the **Hall of the Makers** on [http://n.bitcoin.ninja/](http://n.bitcoin.ninja/) \(ordered by generosity\).
 
 To get our MainNet address:
+
 ```cs
 var hallOfTheMakersAddress = new BitcoinPubKeyAddress("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
 ```
@@ -100,9 +101,9 @@ var hallOfTheMakersAddress = BitcoinAddress.Create("mzp4No5cmCXjZUpf112B1XWsvWBf
 
 ### How much?
 
-Bitcoin has [several units to use](https://en.bitcoin.it/wiki/Units), but there are three you should know about: bitcoins, bits and satoshis. 1 bitcoin (BTC) is 1,000,000 bits and 100 satoshis are 1 bit. 1 satoshi (sat) is the smallest unit on the Bitcoin network.  
+Bitcoin has [several units to use](https://en.bitcoin.it/wiki/Units), but there are three you should know about: bitcoins, bits and satoshis. 1 bitcoin \(BTC\) is 1,000,000 bits and 100 satoshis are 1 bit. 1 satoshi \(sat\) is the smallest unit on the Bitcoin network.
 
-If you want to send **0.0004 BTC** (a few dollars) from an **unspent output**, which holds **0.001 BTC**, you actually have to spend it all!  
+If you want to send **0.0004 BTC** \(a few dollars\) from an **unspent output**, which holds **0.001 BTC**, you actually have to spend it all!  
 As the diagram shows below, your **transaction output** specifies  **0.0004 BTC** to [Hall of The Makers](http://n.bitcoin.ninja/) and **0.00053 BTC** back to you.  
 What happens to the remaining **0.00007 BTC**? This is the _miner fee_.  
 The miner fee incentivizes the miners to add this transaction into their next block. The higher the miner fee the more motivated the miner is to include your transaction in the next block, meaning that your transaction will be confirmed faster. If you set the miner fee to zero, your transaction might never be confirmed.
@@ -126,7 +127,7 @@ transaction.Outputs.Add(hallOfTheMakersTxOut);
 transaction.Outputs.Add(changeBackTxOut);
 ```
 
-We can do some fine tuning here, let's calculate the change based on the miner fee.  
+We can do some fine tuning here, let's calculate the change based on the miner fee.
 
 ```cs
 // How much you want to spend
@@ -170,7 +171,7 @@ transaction.Outputs.Add(changeTxOut);
 ### Message on The Blockchain
 
 Now add your personal feedback! This must be less than or equal to 80 bytes or your transaction will get rejected.  
-This message along with your transaction will appear \(after your transaction is confirmed\) in the [Hall of The Makers](http://n.bitcoin.ninja/)! :)
+This message along with your transaction will appear \(after your transaction is confirmed\) in the [Hall of The Makers](http://n.bitcoin.ninja/)! :\)
 
 ```cs
 var message = "Long live NBitcoin and its makers!";
@@ -183,6 +184,7 @@ transaction.Outputs.Add(new TxOut()
 ```
 
 ### Summary
+
 To sum up, let's take a look at the whole transaction before we sign it:  
 We have 3 **TxOut**, 2 with **value**, 1 without **value** \(which contains the message\). You can notice the differences between the **scriptPubKey**s of the "normal" **TxOut**s and the **scriptPubKey** of the **TxOut** within the message:
 
@@ -225,7 +227,7 @@ Take a closer look at **TxIn**. We have **prev\_out** and **scriptSig** there.
 
 Let's check out the **hash** of **prev\_out** in a TestNet blockexplorer: [prev\_out tx details](https://testnet.smartbit.com.au/tx/0acb6e97b228b838049ffbd528571c5e3edd003f0ca8ef61940166dc3081b78a).  You can see that 0.001 BTC was transferred to our address.
 
-In **prev\_out** **n** is 0. Since we are indexing from 0, this means that we want to spend the first output of the transaction (the second one is the 1.0989548 BTC change from the transaction).  
+In **prev\_out** **n** is 0. Since we are indexing from 0, this means that we want to spend the first output of the transaction \(the second one is the 1.0989548 BTC change from the transaction\).
 
 ### Sign your transaction
 
@@ -250,7 +252,18 @@ Then you need to provide your private key in order to sign the transaction:
 ```cs
 transaction.Sign(bitcoinPrivateKey, false);
 ```
-After this command the ScriptSig property of the input will be replaced by the signature, making the transaction signed.  
+
+---
+
+_The IDE or compiler will most likely show you the following warning:_
+
+> 'Transaction.Sign\(Key, bool\)' is obsolete: 'Use Sign\(Key,ICoin\[\]\) instead\)'
+
+_For learning purposes it is ok to ignore the warning at this point. Later on in the book a better alternative will be shown_
+
+---
+
+After this command the ScriptSig property of the input will be replaced by the signature, making the transaction signed.
 
 You can check out our TestNet transaction on the blockchain explorer [here](https://testnet.smartbit.com.au/tx/eeffd48b317e7afa626145dffc5a6e851f320aa8bb090b5cd78a9d2440245067).
 
