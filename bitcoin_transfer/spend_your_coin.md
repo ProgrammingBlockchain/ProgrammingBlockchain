@@ -259,7 +259,7 @@ _The IDE or compiler will most likely show you the following warning:_
 
 > 'Transaction.Sign\(Key, bool\)' is obsolete: 'Use Sign\(Key,ICoin\[\]\) instead\)'
 
-_For learning purposes it is ok to ignore the warning at this point. Later on in the book a better alternative will be shown_
+_For learning purposes it is ok to ignore the warning at this point. Later on in the book a better alternative will be shown._
 
 ---
 
