@@ -24,7 +24,7 @@ If you are reading this book with GitBook, you can also create a quick inline co
 1. Find [the book on GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)
 2. Fork
 3. Clone your fork
-4. Download and install [GitBook Editor](https://www.gitbook.com/editor)
+4. Download and install [GitBook Editor](https://legacy.gitbook.com/editor)
 5. Open GitBook Editor
 6. Select "Import" and select the folder where you cloned your fork
 7. Edit book
