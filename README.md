@@ -58,6 +58,6 @@ For every donation on this address, you will appear on [http://n.bitcoin.ninja/]
 ## Links
 
 [The book on GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
-[The book on GitBook](https://www.gitbook.com/book/programmingblockchain/programmingblockchain) (you can download pdf, epub and mobi versions here.)  
+[The book on GitBook](https://www.gitbook.com/book/programmingblockchain/programmingblockchain)
 [Code examples on GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchainCodeExamples/)  
 [Hall of the Makers](http://n.bitcoin.ninja/) (here are the true makers: those that succeeded in completing the challenges of this book.)
