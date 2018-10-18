@@ -154,8 +154,8 @@ Console.WriteLine(firstPreviousTransaction.IsCoinBase); // False
 ```  
 
 We could continue to trace the transaction IDs back in this manner until we reach a **coinbase transaction**, the transaction including the newly mined coin by a miner.  
-**Exercise:** Follow the first input of this transaction and its ancestors until you find a coinbase transaction!  
-Hint: After a few minutes and 30-40 transaction, I gave up tracing back.  
+**Exercise:** Follow the first input of this transaction and its ancestors until you find a coinbase transaction.
+Hint: There are many steps so it might take a minute or two, but be patient!
 Yes, you've guessed right, it is not the most efficient way to do this, but a good exercise.  
 
 In our example, the outputs were for a total of 13.19**70**3492 BTC.  
