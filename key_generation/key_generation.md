@@ -1,8 +1,8 @@
-﻿# Key generation and encryption {#key-generation-encryption}  
+﻿# Key generation and encryption {#key-generation-encryption}
 
 ## Is it random enough? {#is-it-random-enough}
 
-When you call **new Key()**, under the hood, you are using a PRNG (Pseudo-Random-Number-Generator) to generate your private key. On windows, it uses the **RNGCryptoServiceProvider**, a .NET wrapper around the Windows Crypto API.
+When you call **new Key()**, under the hood, you are using a PRNG ([Pseudo-Random-Number-Generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator)) to generate your private key. On Windows, it uses the **RNGCryptoServiceProvider**, a .NET wrapper around the Windows Crypto API.
 
 On Android, I use the **SecureRandom** class, and in fact, you can use your own implementation with **RandomUtils.Random**.
 
@@ -18,23 +18,23 @@ For performance reasons, most PRNG works the same way: a random number, called a
 
 The amount of randomness of the seed is defined by a measure we call **Entropy**, but the amount of **Entropy** also depends on the observer.
 
-Let’s say you generate a seed from your clock time.  
-And let’s imagine that your clock has 1ms of resolution. (Reality is more ~15ms.)
+Let’s say you generate a seed from your clock time.
+And let’s suppose, for simplicity, that your clock has a 1ms resolution. (Actually, it is a bit more - about 15ms.)
 
-If your attacker knows that you generated the key last week, then your seed has  
+If your attacker knows that you generated the key last week, then your seed has
 1000 \* 60 \* 60 \* 24 \* 7 = 604800000 possibilities.
 
 For such attacker, the entropy is log<sub>2</sub>(604800000) = 29.17 bits.
 
 And enumerating such a number on my home computer took less than 2 seconds. We call such enumeration “brute forcing”.
 
-However let’s say, you use the clock time + the process id for generating the seed.  
+However let’s say, you use the clock time + the process id for generating the seed.
 Let’s imagine that there are 1024 different process ids.
 
-So now, the attacker needs to enumerate 604800000 \* 1024 possibilities, which take around 2000 seconds.  
-Now, let’s add the time when I turned on my computer, assuming the attacker knows I turned it on today, it adds 86400000 possibilities.  
+So now, the attacker needs to enumerate 604800000 \* 1024 possibilities, which take around 2000 seconds.
+Now, let’s add the time when I turned on my computer, assuming the attacker knows I turned it on today, it adds 86400000 possibilities.
 
-Now the attacker needs to enumerate 604800000 \* 1024 \* 86400000 = 5,35088E+19 possibilities.  
+Now, the attacker needs to enumerate 604800000 \* 1024 \* 86400000 = 5,35088E+19 possibilities.
 However, keep in mind that if the attacker has infiltrated my computer, he can get this last piece of info, and bring down the number of possibilities, reducing entropy.
 
 Entropy is measured by **log<sub>2</sub>(possibilities)** and so log<sub>2</sub>(5,35088E+19) = 65 bits.
@@ -47,18 +47,18 @@ But since the hash of a public key is 20 bytes (160 bits), it is smaller than th
 
 An interesting way of generating entropy quickly is by incorporating human intervention, such as moving the mouse.
 
-If you don’t completely trust the platform PRNG (which is [not so paranoic](http://android-developers.blogspot.fr/2013/08/some-securerandom-thoughts.html)), you can add entropy to the PRNG output that NBitcoin is using.  
+If you don’t completely trust the platform PRNG (which is [not so paranoic](http://android-developers.blogspot.fr/2013/08/some-securerandom-thoughts.html)), you can add entropy to the PRNG output that NBitcoin is using.
 
 ```cs
 RandomUtils.AddEntropy("hello");
 RandomUtils.AddEntropy(new byte[] { 1, 2, 3 });
 var nsaProofKey = new Key();
-```  
+```
 
-What NBitcoin does when you call **AddEntropy(data)** is:  
+What NBitcoin does when you call **AddEntropy(data)** is:
 **additionalEntropy = SHA(SHA(data) ^ additionalEntropy)**
 
-Then when you generate a new number:  
+Then when you generate a new number:
 **result = SHA(PRNG() ^ additionalEntropy)**
 
 ## Key Derivation Function {#key-derivation-function}
@@ -67,29 +67,29 @@ However, what is most important is not the number of possibilities. It is the ti
 
 KDF, or **Key Derivation Function** is a way to have a stronger key, even if your entropy is low.
 
-Imagine that you want to generate a seed, and the attacker knows that there are 10,000,000 possibilities.  
+Imagine that you want to generate a seed, and the attacker knows that there are 10,000,000 possibilities.
 Such a seed would be normally cracked pretty easily.
 
-But what if you could make the enumeration slower?  
-A KDF is a hash function that waste computing resources on purpose.  
+But what if you could make the enumeration slower?
+A KDF is a hash function that waste computing resources on purpose.
 Here is an example:
 
 ```cs
 var derived = SCrypt.BitcoinComputeDerivedKey("hello", new byte[] { 1, 2, 3 });
 RandomUtils.AddEntropy(derived);
-```  
+```
 
 Even if your attacker knows that your source of entropy is 5 letters, he will need to run Scrypt to check each possibility, which take 5 seconds on my computer.
 
-The bottom line is: There is nothing paranoid in distrusting a PRNG, and you can mitigate an attack by both adding entropy and also using a KDF.  
-Keep in mind that an attacker can decrease entropy by gathering information about you or your system.  
+The bottom line is: There is nothing paranoid in distrusting a PRNG, and you can mitigate an attack by both adding entropy and also using a KDF.
+Keep in mind that an attacker can decrease entropy by gathering information about you or your system.
 If you use the timestamp as entropy source, then an attacker can decrease the entropy by knowing you generated the key last week, and that you only use your computer between 9am and 6pm.
 
-In the previous part I talked briefly about a special KDF called **Scrypt**. As I said, the goal of a KDF is to make brute force costly.  
+In the previous part I talked briefly about a special KDF called **Scrypt**. As I said, the goal of a KDF is to make brute force costly.
 
-So it should be no surprise for you that a standard already exists for encrypting your private key with a password using a KDF. This is [BIP38](http://www.codeproject.com/Articles/775226/NBitcoin-Cryptography-Part).  
+So it should be no surprise for you that a standard already exists for encrypting your private key with a password using a KDF. This is [BIP38](http://www.codeproject.com/Articles/775226/NBitcoin-Cryptography-Part).
 
-![](../assets/EncryptedKey.png)  
+![](../assets/EncryptedKey.png)
 
 ```cs
 var privateKey = new Key();
@@ -101,54 +101,54 @@ var decryptedBitcoinPrivateKey = encryptedBitcoinPrivateKey.GetSecret("password"
 Console.WriteLine(decryptedBitcoinPrivateKey); // L1tZPQt7HHj5V49YtYAMSbAmwN9zRjajgXQt9gGtXhNZbcwbZk2r
 
 Console.ReadLine();
-```  
+```
 
-Such encryption is used in two different cases:  
+Such encryption is used in two different cases:
 
-*   You do not trust your storage provider (they can get hacked)  
-*   You are storing the key on the behalf of somebody else (and you do not want to know their key)  
+*   You do not trust your storage provider (they can get hacked)
+*   You are storing the key on the behalf of somebody else (and you do not want to know their key)
 
-If you own your storage, then encrypting at the database level might be enough.  
+If you own your storage, then encrypting at the database level might be enough.
 
-Be careful if your server takes care of decrypting the key, an attacker might attempt to DDOS your server by forcing it to decrypt lots of keys.  
+Be careful if your server takes care of decrypting the key, an attacker might attempt to DDOS your server by forcing it to decrypt lots of keys.
 
-Delegate decryption to the ultimate end user when you can.  
+Delegate decryption to the ultimate end user when you can.
 
 ## Like the good ol’ days {#like-the-good-ol-days}
 
-First, why generate several keys?  
-The main reason is privacy. Since you can see the balance of all addresses, it is better to use a new address for each transaction.  
+First, why generate several keys?
+The main reason is privacy. Since you can see the balance of all addresses, it is better to use a new address for each transaction.
 
-However, in practice, you can also generate keys for each contact which makes this a simple way to identify your payer without leaking too much privacy.  
+However, in practice, you can also generate keys for each contact which makes this a simple way to identify your payer without leaking too much privacy.
 
 You can generate a key, like you did at the beginning:
 
 ```cs
 var privateKey = new Key()
-```  
+```
 
-However, you have two problems with that:  
+However, you have two problems with that:
 
-*   All backups of your wallet that you have will become outdated when you generate a new key.  
-*   You cannot delegate the address creation process to an untrusted peer.  
+*   All backups of your wallet that you, have will become outdated when you generate a new key.
+*   You cannot delegate the address creation process to an untrusted peer.
 
-If you are developing a web wallet and generate keys on behalf of your users, and one user gets hacked, they will immediately start suspecting you.  
+If you are developing a web wallet and generate keys on behalf of your users, and one user gets hacked, they will immediately start suspecting you.
 
 ## BIP38 (Part 2) {#bip38-part-2}
 
-We already looked at using BIP38 to encrypt a key, however this BIP is in reality two ideas in one document.  
+We already looked at using BIP38 to encrypt a key, however this BIP is in reality two ideas in one document.
 
-The second part of the BIP, shows how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concerns.  
+The second part of the BIP, shows how you can delegate Key and Address creation to an untrusted peer. It will fix one of our concerns.
 
-**The idea is to generate a PassphraseCode to the key generator. With this PassphraseCode, they will be able to generate encrypted keys on your behalf, without knowing your password, nor any private key. ** 
+**The idea is to generate a PassphraseCode to the key generator. With this PassphraseCode, they will be able to generate encrypted keys on your behalf, without knowing your password, nor any private key.**
 
-This **PassphraseCode** can be given to your key generator in WIF format.  
+This **PassphraseCode** can be given to your key generator in WIF format.
 
-> **Tip**: In NBitcoin, all types prefixed by “Bitcoin” are Base58 (WIF) data.  
+> **Tip**: In NBitcoin, all types prefixed by “Bitcoin” are Base58 (WIF) data.
 
 So, as a user that wants to delegate key creation, first you will create the **PassphraseCode**.
 
-![](../assets/PassphraseCode.png)  
+![](../assets/PassphraseCode.png)
 
 ```cs
 var passphraseCode = new BitcoinPassphraseCode("my secret", Network.Main, null);
@@ -158,28 +158,28 @@ var passphraseCode = new BitcoinPassphraseCode("my secret", Network.Main, null);
 
 The third party will then generate new encrypted keys for you.
 
-![](../assets/PassphraseCodeToEncryptedKeys.png)  
+![](../assets/PassphraseCodeToEncryptedKeys.png)
 
 ```cs
 EncryptedKeyResult encryptedKeyResult = passphraseCode.GenerateEncryptedSecret();
-```  
+```
 
-This **EncryptedKeyResult** has lots of information:  
+This **EncryptedKeyResult** has lots of information:
 
-![](../assets/EncryptedKeyResult.png)  
+![](../assets/EncryptedKeyResult.png)
 
-First: the **generated bitcoin address**,  
+First: the **generated bitcoin address**,
 ```cs
 var generatedAddress = encryptedKeyResult.GeneratedAddress; // 14KZsAVLwafhttaykXxCZt95HqadPXuz73
-```  
-then the **EncryptedKey** itself (as we have seen in the previous, **Key Encryption** lesson),  
+```
+then the **EncryptedKey** itself (as we have seen in the previous, **Key Encryption** lesson),
 ```cs
 var encryptedKey = encryptedKeyResult.EncryptedKey; // 6PnWtBokjVKMjuSQit1h1Ph6rLMSFz2n4u3bjPJH1JMcp1WHqVSfr5ebNS
-```  
-and last but not least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond to your password.
+```
+and, last but not least, the **ConfirmationCode**, so that the third party can prove that the generated key and address correspond to your password.
 ```cs
 var confirmationCode = encryptedKeyResult.ConfirmationCode; // cfrm38VUcrdt2zf1dCgf4e8gPNJJxnhJSdxYg6STRAEs7QuAuLJmT5W7uNqj88hzh9bBnU9GFkN
-```  
+```
 
 As the owner, once you receive this information, you need to check that the key generator did not cheat by using **ConfirmationCode.Check()**, then get your private key with your password:
 
@@ -188,11 +188,11 @@ Console.WriteLine(confirmationCode.Check("my secret", generatedAddress)); // Tru
 var bitcoinPrivateKey = encryptedKey.GetSecret("my secret");
 Console.WriteLine(bitcoinPrivateKey.GetAddress() == generatedAddress); // True
 Console.WriteLine(bitcoinPrivateKey); // KzzHhrkr39a7upeqHzYNNeJuaf1SVDBpxdFDuMvFKbFhcBytDF1R
-```  
+```
 
 So, we have just seen how the third party can generate encrypted keys on your behalf, without knowing your password and private key.
 
-![](../assets/ThirdPartyKeyGeneration.png)  
+![](../assets/ThirdPartyKeyGeneration.png)
 
 However, one problem remains:
 
@@ -204,13 +204,13 @@ BIP 32, or Hierarchical Deterministic Wallets (HD wallets) proposes another solu
 
 Let’s keep in mind the problems that we want to resolve:
 
-*   Prevent outdated backups
-*   Delegating key / address generation to an untrusted peer
+*   Prevent outdated backups.
+*   Delegating key / address generation to an untrusted peer.
 
-A “Deterministic” wallet would fix our backup problem. With such a wallet, you would have to save only the seed. From this seed, you can generate the same series of private keys over and over.  
+A “Deterministic” wallet would fix our backup problem. With such a wallet, you would have to save only the seed. From this seed, you can generate the same series of private keys over and over.
 
-This is what the “Deterministic” stands for.  
-As you can see, from the master key, I can generate new keys:  
+This is what the “Deterministic” stands for.
+As you can see, from the master key, I can generate new keys:
 
 ```cs
 ExtKey masterKey = new ExtKey();
@@ -220,7 +220,7 @@ for (int i = 0; i < 5; i++)
     ExtKey key = masterKey.Derive((uint)i);
     Console.WriteLine("Key " + i + " : " + key.ToString(Network.Main));
 }
-```  
+```
 
 ```
 Master key : xprv9s21ZrQH143K3JneCAiVkz46BsJ4jUdH8C16DccAgMVfy2yY5L8A4XqTvZqCiKXhNWFZXdLH6VbsCsqBFsSXahfnLajiB6ir46RxgdkNsFk
@@ -230,15 +230,15 @@ Key 2 : xprv9tvBA4Kt8UTuLoEZPpW9fBEzC3gfTdj6QzMp8DzMbAeXgDHhSMmdnxSFHCQXycFu8Fcq
 Key 3 : xprv9tvBA4Kt8UTuPwJQyxuZoFj9hcEMCoz7DAWLkz9tRMwnBDiZghWePdD7etfi9RpWEWQjKCM8wHvKQwQ4uiGk8XhdKybzB8n2RVuruQ97Vna
 Key 4 : xprv9tvBA4Kt8UTuQoh1dQeJTXsmmTFwCqi4RXWdjBp114rJjNtPBHjxAckQp3yeEFw7Gf4gpnbwQTgDpGtQgcN59E71D2V97RRDtxeJ4rVkw4E
 Key 5 : xprv9tvBA4Kt8UTuTdiEhN8iVDr5rfAPSVsCKpDia4GtEsb87eHr8yRVveRhkeLEMvo3XWL3GjzZvncfWVKnKLWUMNqSgdxoNm7zDzzD63dxGsm
-```  
+```
 
-You only need to save the **masterKey**, since you can generate the same suite of private keys over and over.  
+You only need to save the **masterKey**, since you can generate the same suite of private keys over and over.
 
-As you can see, these keys are **ExtKey** and not **Key** as you are used to. However, this should not stop you since you have the real private key inside:  
+As you can see, these keys are **ExtKey** and not **Key** as you are used to. However, this should not stop you since you have the real private key inside:
 
-![](../assets/ExtKey.png)  
+![](../assets/ExtKey.png)
 
-You can go back from a **Key** to an **ExtKey** by supplying the **Key** and the **ChainCode** to the **ExtKey** constructor. This works as follows:  
+You can go back from a **Key** to an **ExtKey** by supplying the **Key** and the **ChainCode** to the **ExtKey** constructor. This works as follows:
 
 ```cs
 ExtKey extKey = new ExtKey();
@@ -246,7 +246,7 @@ byte[] chainCode = extKey.ChainCode;
 Key key = extKey.PrivateKey;
 
 ExtKey newExtKey = new ExtKey(key, chainCode);
-```  
+```
 
 The **base58** type equivalent of **ExtKey** is called **BitcoinExtKey**.
 
@@ -269,7 +269,7 @@ PubKey 1 : xpub67uQd5a6WCY6CUeDMBvPX6QhGMoMMNKhEzt66hrH6sv7rxujt7igGf9AavEdLB73Z
 PubKey 2 : xpub67uQd5a6WCY6Dxbqk9Jo9iopKZUqg8pU1bWXbnesppsR3Nem8y4CVFjKnzBUkSVLGK4defHzKZ3jjAqSzGAKoV2YH4agCAEzzqKzeUaWJMW
 PubKey 3 : xpub67uQd5a6WCY6HQKya2Mwwb7bpSNB5XhWCR76kRaPxchE3Y1Y2MAiSjhRGftmeWyX8cJ3kL7LisJ3s4hHDWvhw3DWpEtkihPpofP3dAngh5M
 PubKey 4 : xpub67uQd5a6WCY6JddPfiPKdrR49KYEuXUwwJJsL5rWGDDQkpPctdkrwMhXgQ2zWopsSV7buz61e5mGSYgDisqA3D5vyvMtKYP8S3EiBn5c1u4
-```  
+```
 
 So imagine that your payment server generates pubkey1, you can get the corresponding private key with your private master key.
 
@@ -286,16 +286,16 @@ ExtKey key1 = masterKey.Derive((uint)1);
 //Check it is legit
 Console.WriteLine("Generated address : " + pubkey1.PubKey.GetAddress(Network.Main));
 Console.WriteLine("Expected address : " + key1.PrivateKey.PubKey.GetAddress(Network.Main));
-```  
+```
 
 ```
 Generated address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
 Expected address : 1Jy8nALZNqpf4rFN9TWG2qXapZUBvquFfX
-```  
+```
 
 **ExtPubKey** is similar to **ExtKey** except that it holds a **PubKey** and not a **Key**.
 
-![](../assets/ExtPubKey.png)  
+![](../assets/ExtPubKey.png)
 
 Now we have seen how Deterministic keys solve our problems, let’s speak about what the “hierarchical” is for.
 
@@ -303,32 +303,32 @@ In the previous exercise, we have seen that by combining master key + index we c
 
 However, you can also derivate children from the child key. This is what the “hierarchical” stands for.
 
-This is why conceptually more generally you can say: Parent Key + KeyPath => Child Key  
+This is why conceptually more generally you can say: Parent Key + KeyPath => Child Key.
 
-![](../assets/Derive1.png)  
+![](../assets/Derive1.png)
 
-![](../assets/Derive2.png)  
+![](../assets/Derive2.png)
 
 
-In this diagram, you can derivate Child(1,1) from parent in two different way:  
+In this diagram, you can derivate Child(1,1) from parent in two different way:
 
 ```cs
 ExtKey parent = new ExtKey();
 ExtKey child11 = parent.Derive(1).Derive(1);
-```  
+```
 
-Or  
+Or
 
 ```cs
 ExtKey parent = new ExtKey();
 ExtKey child11 = parent.Derive(new KeyPath("1/1"));
-```  
+```
 
-So in summary:  
+So in summary:
 
-![](../assets/DeriveKeyPath.png)  
+![](../assets/DeriveKeyPath.png)
 
-It works the same for **ExtPubKey**.  
+It works the same for **ExtPubKey**.
 
 Why do you need hierarchical keys? Because it might be a nice way to classify the type of your keys for multiple accounts. More on [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
 
@@ -336,15 +336,15 @@ It also permits segmenting account rights across an organization.
 
 Imagine you are CEO of a company. You want control over all wallets, but you don’t want the Accounting department to spend the money from the Marketing department.
 
-So your first idea would be to generate one hierarchy for each department.  
+So your first idea would be to generate one hierarchy for each department.
 
-![](../assets/CeoMarketingAccounting.png)  
+![](../assets/CeoMarketingAccounting.png)
 
 However, in such a case, **Accounting** and **Marketing** would be able to recover the CEO’s private key.
 
-We define such child keys as **non-hardened**.  
+We define such child keys as **non-hardened**.
 
-![](../assets/NonHardened.png)  
+![](../assets/NonHardened.png)
 
 ```cs
 ExtKey ceoKey = new ExtKey();
@@ -356,12 +356,12 @@ ExtPubKey ceoPubkey = ceoKey.Neuter();
 //Recover ceo key with accounting private key and ceo public key
 ExtKey ceoKeyRecovered = accountingKey.GetParentExtKey(ceoPubkey);
 Console.WriteLine("CEO recovered: " + ceoKeyRecovered.ToString(Network.Main));
-```  
+```
 
 ```
 CEO: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuFVFpYaAt3gztYtZyXmy2hCVyVyxumdxfDBpoC
 CEO recovered: xprv9s21ZrQH143K2XcJU89thgkBehaMqvcj4A6JFxwPs6ZzGYHYT8dTchd87TC4NHSwvDuexuFVFpYaAt3gztYtZyXmy2hCVyVyxumdxfDBpoC
-```  
+```
 
 In other words, a **non-hardened key** can “climb” the hierarchy. **Non-hardened keys** should only be used for categorizing accounts that belongs to a point of **single control**.
 
@@ -375,18 +375,18 @@ ExtKey accountingKey = ceoKey.Derive(0, hardened: true);
 ExtPubKey ceoPubkey = ceoKey.Neuter();
 
 ExtKey ceoKeyRecovered = accountingKey.GetParentExtKey(ceoPubkey); //Crash
-```  
+```
 
 You can also create hardened keys via the **ExtKey.Derivate**(**KeyPath)**, by using an apostrophe after a child’s index:
 
 ```cs
 var nonHardened = new KeyPath("1/2/3");
 var hardened = new KeyPath("1/2/3'");
-```  
+```
 
 So let’s imagine that the Accounting Department generates 1 parent key for each customer, and a child for each of the customer’s payments.
 
-As the CEO, you want to spend the money on one of these addresses. Here is how you would proceed.  
+As the CEO, you want to spend the money on one of these addresses. Here is how you would proceed.
 
 ```cs
 ceoKey = new ExtKey();
@@ -396,42 +396,42 @@ int paymentId = 50;
 KeyPath path = new KeyPath(accounting + "/" + customerId + "/" + paymentId);
 //Path : "1'/5/50"
 ExtKey paymentKey = ceoKey.Derive(path);
-```  
+```
 
 ## Mnemonic Code for HD Keys (BIP39) {#mnemonic-code-for-hd-keys-bip39}
 
 As you have seen, generating HD keys is easy. However, what if we want an easy way to transmit such a key by telephone or hand writing?
 
-Cold wallets like Trezor, generate the HD Keys from a sentence that can easily be written down. They call such a sentence “the seed” or “mnemonic”. And it can eventually be protected by a password or a PIN.  
-![](../assets/Trezor.png)  
+Cold wallets like Trezor, generate the HD Keys from a sentence that can easily be written down. They call such a sentence “the seed” or “mnemonic”. And it can eventually be protected by a password or a PIN.
+![](../assets/Trezor.png)
 
-The language that you use to generate your 'easy to write' sentence is called a **Wordlist**  
+The language that you use to generate your 'easy to write' sentence is called a **Wordlist**.
 
-![](../assets/RootKey.png)  
+![](../assets/RootKey.png)
 ```cs
 Mnemonic mnemo = new Mnemonic(Wordlist.English, WordCount.Twelve);
 ExtKey hdRoot = mnemo.DeriveExtKey("my password");
 Console.WriteLine(mnemo);
-```  
+```
 
-```minute put grant neglect anxiety case globe win famous correct turn link```  
+```minute put grant neglect anxiety case globe win famous correct turn link```
 
-Now, if you have the mnemonic and the password, you can recover the **hdRoot** key.  
+Now, if you have the mnemonic and the password, you can recover the **hdRoot** key.
 
 ```cs
 mnemo = new Mnemonic("minute put grant neglect anxiety case globe win famous correct turn link",
                 Wordlist.English);
 hdRoot = mnemo.DeriveExtKey("my password");
-```  
+```
 
-Currently supported languages for **wordlist** are, English, Japanese, Spanish, Chinese (simplified and traditional).  
+Currently supported languages for **wordlist** are, English, Japanese, Spanish, Chinese (simplified and traditional).
 
 ## Dark Wallet {#dark-wallet}
 
 Although Dark Wallets are not in use anymore, it is still valuable to understand the concepts presented here. Its name is unfortunate since there is nothing dark about it, and it attracts unwanted attention and concerns. Dark Wallet is a practical solution that fixes our two initial problems:
 
-*   Prevent outdated backups
-*   Delegating key / address generation to an untrusted peer
+*   Prevent outdated backups.
+*   Delegating key / address generation to an untrusted peer.
 
 But it has a bonus killer feature.
 
@@ -447,9 +447,9 @@ In Dark Wallet terminology, here are the different actors:
 *   The **Receiver** knows the **Spend Key**, a secret that will allow him to spend the coins he receives from such a transaction.
 *   **Scanner** knows the **Scan Key**, a secret that allows him to detect the transactions that belong to the **Receiver**.
 
-The rest is operational details. Underneath, this **StealthAddress** is composed of one or several **Spend PubKey**s (for multi sig), and one **Scan PubKey**.  
+The rest is operational details. Underneath, this **StealthAddress** is composed of one or several **Spend PubKey**s (for multi sig), and one **Scan PubKey**.
 
-![](../assets/StealthAddress.png)  
+![](../assets/StealthAddress.png)
 
 ```cs
 var scanKey = new Key();
@@ -462,32 +462,32 @@ BitcoinStealthAddress stealthAddress
         signatureCount: 1,
         bitfield: null,
         network: Network.Main);
-```  
+```
 
-The **payer**, will take your **StealthAddress**, generate a temporary key called **Ephem Key** and will generate a **Stealth Pub Key**, from which the Bitcoin address to which the payment will be made is generated. Please note, that this Bitcoin address is a special base58 address which isn't recognized by the standard Bitcoin implementations like the Bitcoin Core.   
+The **payer**, will take your **StealthAddress**, generate a temporary key called **Ephem Key** and will generate a **Stealth Pub Key**, from which the Bitcoin address to which the payment will be made is generated. Please note, that this Bitcoin address is a special base58 address which isn't recognized by the standard Bitcoin implementations like the Bitcoin Core.
 
-![](../assets/EphemKey.png) 
+![](../assets/EphemKey.png)
 
 Then, they will package the **Ephem PubKey** in a **Stealth Metadata** object embedded in the OP_RETURN of the transaction (as we did for the first challenge)
 
-They will also add the output to the generated bitcoin address. (the address of the **Stealth pub key**) 
+They will also add the output to the generated bitcoin address. (the address of the **Stealth pub key**)
 
-![](../assets/StealthMetadata.png)  
+![](../assets/StealthMetadata.png)
 
 ```cs
 var ephemKey = new Key();
 Transaction transaction = new Transaction();
 stealthAddress.SendTo(transaction, Money.Coins(1.0m), ephemKey);
 Console.WriteLine(transaction);
-```  
+```
 
-The creation of the **EphemKey** is an implementation detail and you can omit it as NBitcoin will generate one automatically:  
+The creation of the **EphemKey** is an implementation detail and you can omit it as NBitcoin will generate one automatically:
 
 ```cs
 Transaction transaction = new Transaction();
 stealthAddress.SendTo(transaction, Money.Coins(1.0m));
 Console.WriteLine(transaction);
-```  
+```
 
 ```json
 {
@@ -509,32 +509,33 @@ Console.WriteLine(transaction);
     }
   ]
 }
-```  
+```
 
 Then the payer adds and signs the inputs, then sends the transaction on the network.
 
-The **Scanner** knowing the **StealthAddress** and the **Scan Key** can recover the **Stealth PubKey** and the expected **BitcoinAddress** payment.  
+The **Scanner** knowing the **StealthAddress** and the **Scan Key** can recover the **Stealth PubKey** and the expected **BitcoinAddress** payment.
 
-![](../assets/ScannerRecover.png)  
+![](../assets/ScannerRecover.png)
 
 Then the scanner checks if one of the outputs of the transaction corresponds to that address. If it does, then **Scanner** notifies the **Receiver** about the transaction.
 
-The **Receiver** can then get the private key of the address with their **Spend Key**.  
+The **Receiver** can then get the private key of the address with their **Spend Key**.
 
-![](../assets/ReceiverStealth.png)  
+![](../assets/ReceiverStealth.png)
 
 The code explaining how, as a Scanner, to scan a transaction and how, as a Receiver, to uncover the private key, will be explained later in the **TransactionBuilder** (Other types of ownership) section.
 
 It should be noted that a **StealthAddress** can have multiple **spend pubkeys**, in which case, the address represents a multi sig.
 
-One limit of Dark Wallet is the use of **OP_RETURN**, so we can’t easily embed arbitrary data in the transaction as we did in the **Bitcoin transfer** section. (Current bitcoin rules allows only one OP_RETURN of 80 bytes per transaction)  
+One limit of Dark Wallet is the use of **OP_RETURN**, so we can’t easily embed arbitrary data in the transaction as we did in the **Bitcoin transfer** section. (Current bitcoin rules allows only one OP_RETURN of 80 bytes per transaction).
 
-> ([Stackoverflow](http://bitcoin.stackexchange.com/a/29648/26859)) As I understand it, the "stealth address" is intended to address a very specific problem. If you wish to solicit payments from the public, say by posting a donation address on your website, then everyone can see on the block chain that all those payments went to you, and perhaps try to track how you spend them.  
-> 
-With a stealth address, you ask payers to generate a unique address in such a way that you (using some additional data which is attached to the transaction) can deduce the corresponding private key. So although you publish a single "stealth address" on your website, the block chain sees all your incoming payments as going to separate addresses and has no way to correlate them. (Of course, any individual payer knows their payment went to you, and can trace how you spend it, but they don't learn anything about other people's payments to you.)  
-> 
-But you can get the same effect another way: just give each payer a unique address. Rather than posting a single public donation address on your website, have a button that generates a new unique address and saves the private key, or selects the next address from a long list of pre-generated addresses (whose private keys you hold somewhere safe). Just as before, the payments all go to separate addresses and there is no way to correlate them, nor for one payer to see that other payments went to you. 
-> 
-So the only difference with stealth addresses is essentially to move the chore of producing a unique address from the server to the client. Indeed, in some ways stealth addresses may be worse, since very few people use them, and if you are known to be one of them, it will be easier to connect stealth transactions with you.  
-> 
+[Stackoverflow](http://bitcoin.stackexchange.com/a/29648/26859):
+> As I understand it, the "stealth address" is intended to address a very specific problem. If you wish to solicit payments from the public, say by posting a donation address on your website, then everyone can see on the block chain that all those payments went to you, and perhaps try to track how you spend them.
+>
+With a stealth address, you ask payers to generate a unique address in such a way that you (using some additional data which is attached to the transaction) can deduce the corresponding private key. So although you publish a single "stealth address" on your website, the block chain sees all your incoming payments as going to separate addresses and has no way to correlate them. (Of course, any individual payer knows their payment went to you, and can trace how you spend it, but they don't learn anything about other people's payments to you.)
+>
+But you can get the same effect another way: just give each payer a unique address. Rather than posting a single public donation address on your website, have a button that generates a new unique address and saves the private key, or selects the next address from a long list of pre-generated addresses (whose private keys you hold somewhere safe). Just as before, the payments all go to separate addresses and there is no way to correlate them, nor for one payer to see that other payments went to you.
+>
+So the only difference with stealth addresses is essentially to move the chore of producing a unique address from the server to the client. Indeed, in some ways stealth addresses may be worse, since very few people use them, and if you are known to be one of them, it will be easier to connect stealth transactions with you.
+>
 It doesn't provide "100% anonymity". The fundamental anonymity weakness of Bitcoin remains - that everyone can follow the chain of payments, and if you know something about one transaction or the parties to it, you can deduce something about where those coins came from or where they went.
