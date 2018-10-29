@@ -1,6 +1,6 @@
 # Web API/ Block Explorer {#web-api}
 
-A block explorers, or more specifically the web APIs, usually provided by block explorers can get you started very quickly. You used `QBitNinja` already in this book, but many more exist.  
+Block explorers, or more specifically the web APIs, usually provided by block explorers can get you started very quickly. You used `QBitNinja` already in this book, but many more exist.  
 A block explorer is a self-hosted or third-party hosted solution which provides you information about blocks, transactions and addresses in the chain.  
 
 ![Explorer](../assets/Wallet-Explorer.png)
@@ -21,19 +21,21 @@ The disadvantages are:
 * Sometimes, their services are not enough to handle everything you need for a full wallet,
 * Non-existent privacy: the server knows everything about the clients. This doesn't apply to self-hosted type.
 
-Different block explorers expose different APIs and features. For example most block explorer uses HTTP web APIs, while Electrum uses [the Stratum](http://docs.electrum.org/en/latest/protocol.html) protocol. Block explorers never have the private keys of the wallet.  
+Different block explorers expose different APIs and features. For example most block explorers use HTTP web APIs, while Electrum uses [the Stratum](http://docs.electrum.org/en/latest/protocol.html) protocol. Block explorers never have the private keys of the wallet.  
 
 With `QBitNinja`, it is difficult to track a wallet which always changes addresses, because you need to poll all the addresses belonging to the same wallet to detect any change. 
 
 However, `Electrum` or `NBXplorer` and `SmartBit` exposes notifications via websockets or long polling so you don't need to poll all the addresses of the wallet.  
-`Insight` is not well maintained, `Blockcypher`, `QBitNinja` or `Smartbit` are third-party hosted. If you are interested in building a wallet such way take a look at nopara73's CodeProject article: [Build your own Bitcoin wallet with QBitNinja in C#](https://www.codeproject.com/Articles/1115639/Build-your-own-Bitcoin-wallet).  
+`Insight` is not well maintained. `Blockcypher`, `QBitNinja` and `Smartbit` are third-party hosted. If you are interested in building a wallet such way take a look at nopara73's CodeProject article: [Build your own Bitcoin wallet with QBitNinja in C#](https://www.codeproject.com/Articles/1115639/Build-your-own-Bitcoin-wallet).  
 
-[NBxplorer](https://github.com/dgarage/NBXplorer/) has been created to have a very simple API, is self hostable, and track only what is needed for your wallet. 
-Contrary to `QBitNinja`, it relies on you having a full node, but it provides websocket notifications and easy way to query the balances of a wallet. 
+[NBxplorer](https://github.com/dgarage/NBXplorer/) has been created to have a very simple API, is self hostable, and tracks only what is needed for your wallet. 
+Contrary to `QBitNinja`, it relies on you having a full node, but it provides websocket notifications and an easy way to query the balances of a wallet. 
 
-NBXplorer is also multi crypto currency on a single server. As of January of 2018, it supports Bitcoin and Litecoin. It integrates seamlessly with `NBitcoin`.
+NBXplorer is also multi crypto currency on a single server. As of October 2018, it supports Bitcoin, Litecoin, BCash, 
+BGold, BitCore, Dash, Dogecoin, Dystem, Feathercoin, Groestlcoin, Monacoin, Polis, UFO, Viacoin and Zclassic.
+It integrates seamlessly with `NBitcoin`.
 
-To setup NBXplorer's, you need a fully synced `bitcoind` node with default parameters.  
+To setup NBXplorer, you need a fully synced `bitcoind` node with default parameters.  
 Then clone and run [NBXplorer](https://github.com/dgarage/NBXplorer) with default parameters.
 
 Reference the `NBXplorer.Client` nuget package then you need to notify the `NBXplorer` to track the user wallet:
