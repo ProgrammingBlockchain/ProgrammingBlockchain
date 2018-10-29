@@ -31,8 +31,8 @@ However, `Electrum` or `NBXplorer` and `SmartBit` exposes notifications via webs
 [NBxplorer](https://github.com/dgarage/NBXplorer/) has been created to have a very simple API, is self hostable, and tracks only what is needed for your wallet. 
 Contrary to `QBitNinja`, it relies on you having a full node, but it provides websocket notifications and an easy way to query the balances of a wallet. 
 
-NBXplorer is also multi crypto currency on a single server. As of October 2018, it supports Bitcoin, Litecoin, BCash, 
-BGold, BitCore, Dash, Dogecoin, Dystem, Feathercoin, Groestlcoin, Monacoin, Polis, UFO, Viacoin and Zclassic.
+NBXplorer is also multi crypto currency on a single server. As of October 2018, it supports Bitcoin, Litecoin, Bitcoin Cash, 
+Bitcoin Gold, Dash, Dogecoin, Dystem, Feathercoin, Groestlcoin, Monacoin, Polis, UFO, Viacoin and Zclassic.
 It integrates seamlessly with `NBitcoin`.
 
 To setup NBXplorer, you need a fully synced `bitcoind` node with default parameters.  
