@@ -79,7 +79,7 @@ Script redeemScript =
 ////Console.WriteLine(redeemScript.Hash.ScriptPubKey);
 //Console.WriteLine(redeemScript.Hash.GetAddress(Network.Main));
             
-Transaction received = new Transaction();
+Transaction received = Transaction.Create(Network.Main)
 //Pay to the script hash
 received.Outputs.Add(new TxOut(Money.Coins(1.0m), redeemScript.Hash));
 ```  
