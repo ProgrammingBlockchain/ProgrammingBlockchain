@@ -31,7 +31,7 @@ Later we will talk more deeply about the subject but for now let’s use the ```
 Imagine the multisig ```scriptPubKey``` received a coin in a transaction called ```received```:
 
 ```cs
-var received = new Transaction();
+var received = Transaction.Create(Network.Main)
 received.Outputs.Add(new TxOut(Money.Coins(1.0m), scriptPubKey));
 ```  
 
@@ -48,7 +48,7 @@ Then, with the ```TransactionBuilder```, they create an **unsigned transaction**
 
 ```cs
 BitcoinAddress nico = new Key().PubKey.GetAddress(Network.Main);
-TransactionBuilder builder = new TransactionBuilder();
+TransactionBuilder builder = Network.Main.CreateTransactionBuilder();
 Transaction unsigned = 
     builder
       .AddCoins(coin)
@@ -122,9 +122,9 @@ Before sending the transaction to the network, examine the need of CombineSignat
 
 Let's look at a case where CombineSignatures() is required:
 ```cs
-TransactionBuilder builderNew = new TransactionBuilder();
-TransactionBuilder builderForAlice = new TransactionBuilder();
-TransactionBuilder builderForBob = new TransactionBuilder();
+TransactionBuilder builderNew = Network.Main.CreateTransactionBuilder();
+TransactionBuilder builderForAlice = Network.Main.CreateTransactionBuilder();
+TransactionBuilder builderForBob = Network.Main.CreateTransactionBuilder();
 
 Transaction unsignedNew =
                 builderNew
