@@ -70,7 +70,7 @@ Console.WriteLine("We want to spend {0}. outpoint:", outPointToSpend.N + 1);
 For the payment you will need to reference this outpoint in the transaction. You create a transaction as follows:
 
 ```cs
-var transaction = new Transaction();
+var transaction = Transaction.Create(network);
 transaction.Inputs.Add(new TxIn()
 {
     PrevOut = outPointToSpend
