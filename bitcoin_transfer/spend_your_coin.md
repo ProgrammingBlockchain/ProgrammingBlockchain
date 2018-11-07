@@ -70,7 +70,7 @@ Console.WriteLine("We want to spend {0}. outpoint:", outPointToSpend.N + 1);
 For the payment you will need to reference this outpoint in the transaction. You create a transaction as follows:
 
 ```cs
-var transaction = new Transaction();
+var transaction = Transaction.Create(network);
 transaction.Inputs.Add(new TxIn()
 {
     PrevOut = outPointToSpend
@@ -248,7 +248,7 @@ transaction.Inputs[0].ScriptSig =  bitcoinPrivateKey.ScriptPubKey;
 Then you need to provide your private key in order to sign the transaction:
 
 ```cs
-transaction.Sign(bitcoinPrivateKey, false);
+transaction.Sign(bitcoinPrivateKey, receivedCoins.ToArray());
 ```
 After this command the ScriptSig property of the input will be replaced by the signature, making the transaction signed.  
 
