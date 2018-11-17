@@ -54,6 +54,12 @@ client.Track(userDerivationScheme);
 
 Change `ChainType.Main` if you want to use Testnet or Regtest.
 
+If you want a new unused address:
+
+```cs
+Console.WriteLine(client.GetUnused(userDerivationScheme, DerivationFeature.Deposit).Address);
+```
+
 Then you can query the UTXOs of your user and spend them the following way:
 
 ```cs
