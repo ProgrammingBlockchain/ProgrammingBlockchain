@@ -2,7 +2,7 @@
 
 While using **witness scriptPubKey** for your scripting needs is appealing, the reality is that most of nowadays wallets only support P2PKH or P2SH addresses.
 
-To harness the advantages of segwit, while being compatible with old software, P2W over P2SH is allowed. For old node, it will look like a normal P2SH payment.
+To harness the advantages of segwit, while being compatible with old software, P2W over P2SH is allowed. For old nodes, it will look like a normal P2SH payment.
 
 You can transform any **P2W*** to a **P2W* over** **P2SH** by:
 
@@ -10,7 +10,7 @@ You can transform any **P2W*** to a **P2W* over** **P2SH** by:
 2.  The former **ScriptPubKey** will be placed as the only push in the **scriptSig** in the spending transaction,
 3.  All other data will be pushed in the witness of the spending transaction.
 
-Don’t worry, if this sound complicated, the TransactionBuilder will allow you to abstract the plumbing effectively.
+Don’t worry, if this sounds complicated, the TransactionBuilder will allow you to abstract the plumbing effectively.
 
 Let’s take the example of P2WPKH over P2SH, also called with the sweet name of **P2SH(P2WPKH)**.
 
@@ -48,7 +48,7 @@ The **scriptSig** is only the push of the P2SH redeem script of the previous Scr
 
 In NBitcoin, signing a **P2SH(P2WPKH)** is exactly similar as signing a normal P2SH with ScriptCoin.
 
-By following the same principle, let’s see how a **P2SH(P2WSH)** looks like. You need to understand that in this case we are dealing with two different redeem scripts: The **P2SH redeem script** that need to be put in the **scriptSig** of the spending transaction, AND the **P2WSH redeem script** that need to be put in the witness.
+By following the same principle, let’s see how a **P2SH(P2WSH)** looks like. You need to understand that in this case we are dealing with two different redeem scripts: The **P2SH redeem script** that needs to be put in the **scriptSig** of the spending transaction, AND the **P2WSH redeem script** that needs to be put in the witness.
 
 Let’s print the **scriptPubKey** by following the first rule:
 
@@ -81,7 +81,7 @@ For 3, the **‘other data’**, in the context of a P2WSH payment, means the pa
 
 ```  
 
-In summary, the P2SH Redeem Script is hashed to get the P2WSH scriptPubKey as normal P2WSH payment. Then, as a normal P2SH payment the P2WSH scriptPubKey is replaced by hashed and used to create the actual P2SH.
+In summary, the P2SH Redeem Script is hashed to get the P2WSH scriptPubKey as normal P2WSH payment. Then, as a normal P2SH payment, the P2WSH scriptPubKey is replaced by, hashed and used to create the actual P2SH.
 
 If P2SH/P2WSH/P2SH(P2WSH)/P2SH(P2WPKH) sounds complicated to you, fear not.  
 NBitcoin, for **all of those payments type**, only requires you to create a **ScriptCoin** by supplying the Redeem (P2WSH redeem or P2SH redeem) and the ScriptPubKey, exactly as explained in the **P2SH** part.
