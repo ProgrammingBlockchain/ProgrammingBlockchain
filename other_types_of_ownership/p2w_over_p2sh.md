@@ -81,7 +81,7 @@ For 3, the **‘other data’**, in the context of a P2WSH payment, means the pa
 
 ```  
 
-In summary, the P2SH Redeem Script is hashed to get the P2WSH scriptPubKey as normal P2WSH payment. Then, as a normal P2SH payment, the P2WSH scriptPubKey is replaced by, hashed and used to create the actual P2SH.
+In summary, the P2SH Redeem Script is hashed to get the P2WSH scriptPubKey as normal P2WSH payment. Then, as a normal P2SH payment, the P2WSH scriptPubKey gets hashed to create the actual P2SH scriptPubKey.
 
 If P2SH/P2WSH/P2SH(P2WSH)/P2SH(P2WPKH) sounds complicated to you, fear not.  
 NBitcoin, for **all of those payments type**, only requires you to create a **ScriptCoin** by supplying the Redeem (P2WSH redeem or P2SH redeem) and the ScriptPubKey, exactly as explained in the **P2SH** part.
