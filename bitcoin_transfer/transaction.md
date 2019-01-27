@@ -120,7 +120,7 @@ As illustration let's create a txout with 21 bitcoin from the first ScriptPubKey
 
 ```cs  
 Money twentyOneBtc = new Money(21, MoneyUnit.BTC);
-var scriptPubKey = transaction.Outputs.First().ScriptPubKey;
+var scriptPubKey = transaction.Outputs[0].ScriptPubKey;
 TxOut txOut = new TxOut(twentyOneBtc, scriptPubKey);
 ```  
 
@@ -131,7 +131,7 @@ Every **TxOut** is uniquely addressed at the blockchain level by the ID of the t
 For example, the **Outpoint** of the **TxOut** with 13.19683492 BTC in our transaction is (f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94, 0).  
 
 ```cs
-OutPoint firstOutPoint = receivedCoins.First().Outpoint;
+OutPoint firstOutPoint = receivedCoins[0].Outpoint;
 Console.WriteLine(firstOutPoint.Hash); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 Console.WriteLine(firstOutPoint.N); // 0
 ```  
@@ -148,7 +148,7 @@ Console.WriteLine(transaction.Inputs.Count); // 9
 
 With the previous outpoint's transaction ID we can review the information associated with that transaction.  
 ```cs
-OutPoint firstPreviousOutPoint = transaction.Inputs.First().PrevOut;
+OutPoint firstPreviousOutPoint = transaction.Inputs[0].PrevOut;
 var firstPreviousTransaction = client.GetTransaction(firstPreviousOutPoint.Hash).Result.Transaction;
 Console.WriteLine(firstPreviousTransaction.IsCoinBase); // False
 ```  
@@ -158,10 +158,12 @@ We could continue to trace the transaction IDs back in this manner until we reac
 Hint: There are many steps so it might take a minute or two, but be patient!
 Yes, you've guessed right, it is not the most efficient way to do this, but a good exercise.  
 
-In our example, the outputs were for a total of 13.19**70**3492 BTC.  
+In our example, the outputs were for a total of 13.19**68**3492 BTC.  
 
 ```cs
 Money spentAmount = Money.Zero;
+var spentCoins = transactionResponse.SpentCoins;
+
 foreach (var spentCoin in spentCoins)
 {
     spentAmount = (Money)spentCoin.Amount.Add(spentAmount);
@@ -169,7 +171,7 @@ foreach (var spentCoin in spentCoins)
 Console.WriteLine(spentAmount.ToDecimal(MoneyUnit.BTC)); // 13.19703492
 ```  
 
-In this transaction 13.19**68**3492 BTC were received.  
+In this transaction 13.19**70**3492 BTC were received.  
 
 **Exercise:** Get the total received amount, as I have been done with the spent amount.  
 
