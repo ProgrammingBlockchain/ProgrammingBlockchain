@@ -120,7 +120,7 @@ As illustration let's create a txout with 21 bitcoin from the first ScriptPubKey
 
 ```cs  
 Money twentyOneBtc = new Money(21, MoneyUnit.BTC);
-var scriptPubKey = transaction.Outputs.First().ScriptPubKey;
+var scriptPubKey = transaction.Outputs[0].ScriptPubKey;
 TxOut txOut = new TxOut(twentyOneBtc, scriptPubKey);
 ```  
 
