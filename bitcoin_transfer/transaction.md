@@ -32,6 +32,11 @@ Transaction tx = new Transaction("0100000...");
 Quickly close the tab, before it scares you away, QBit Ninja queries the API and parses the information so go ahead and install **QBitNinja.Client** NuGet package.  
 
 ![](../assets/QBitNuGet.png)  
+and using it.
+'''cs
+using QBitNinja.Client;
+using QBitNinja.Client.Models;
+'''
 
 Query the transaction by id:
 
