@@ -46,7 +46,7 @@ var forFees = new Coin(
     amount: Money.Satoshis(4425000),
     scriptPubKey: new Script(Encoders.Hex.DecodeData("76a914356facdac5f5bcae995d13e667bb5864fd1e7d5988ac")));
 
-TransactionBuilder builder = new TransactionBuilder();
+var builder = Network.Main.CreateTransactionBuilder();
 var tx = builder
     .AddKeys(nicoSecret)
     .AddCoins(colored, forFees)

@@ -26,7 +26,7 @@ If you go to http://api.qbit.ninja/transactions/f13dc48fb035bbf0a6e989a26b3ecb57
 You can parse the transaction from hex with the following code:  
 
 ```cs
-Transaction tx = new Transaction("0100000...");
+Transaction tx = Transaction.Parse("0100000...", Network.Main);
 ```
 
 Quickly close the tab, before it scares you away, QBit Ninja queries the API and parses the information so go ahead and install **QBitNinja.Client** NuGet package.  
@@ -126,7 +126,7 @@ As illustration let's create a txout with 21 bitcoin from the first ScriptPubKey
 ```cs  
 Money twentyOneBtc = new Money(21, MoneyUnit.BTC);
 var scriptPubKey = transaction.Outputs[0].ScriptPubKey;
-TxOut txOut = new TxOut(twentyOneBtc, scriptPubKey);
+TxOut txOut = transaction.Outputs.CreateNewTxOut(twentyOneBtc, scriptPubKey);
 ```  
 
 Every **TxOut** is uniquely addressed at the blockchain level by the ID of the transaction which include it and its index inside it. We call such reference an **Outpoint**.  

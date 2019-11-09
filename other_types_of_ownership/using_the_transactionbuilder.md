@@ -44,10 +44,10 @@ Script bobAlice =
         2, 
         bob.PubKey, alice.PubKey);
 
-var init = new Transaction();
-init.Outputs.Add(new TxOut(Money.Coins(1m), bob.PubKey)); // P2PK
-init.Outputs.Add(new TxOut(Money.Coins(1m), alice.PubKey.Hash)); // P2PKH
-init.Outputs.Add(new TxOut(Money.Coins(1m), bobAlice));
+var init = Network.Main.CreateTransaction();
+init.Outputs.Add(Money.Coins(1m), bob.PubKey); // P2PK
+init.Outputs.Add(Money.Coins(1m), alice.PubKey.Hash); // P2PKH
+init.Outputs.Add(Money.Coins(1m), bobAlice);
 ```
 
 Now let’s say they want to use the ```coins``` of this transaction to pay Satoshi.  
@@ -68,7 +68,7 @@ Coin bobAliceCoin = coins[2];
 Now let’s say ```bob``` wants to send 0.2 BTC, ```alice``` 0.3 BTC, and they agree to use ```bobAlice``` to send 0.5 BTC.  
 
 ```cs
-var builder = new TransactionBuilder();
+var builder = Network.Main.CreateTransactionBuilder();
 Transaction tx = builder
         .AddCoins(bobCoin)
         .AddKeys(bob)
@@ -99,8 +99,8 @@ The nice thing about this model is that it works the same way for **P2SH, P2WSH,
 ![](../assets/ScriptCoinFromCoin.png)  
 
 ```cs
-init = new Transaction();
-init.Outputs.Add(new TxOut(Money.Coins(1.0m), bobAlice.Hash));
+init = Network.Main.CreateTransaction();
+init.Outputs.Add(Money.Coins(1.0m), bobAlice.Hash);
 
 coins = init.Outputs.AsCoins().ToArray();
 ScriptCoin bobAliceScriptCoin = coins[0].ToScriptCoin(bobAlice);
@@ -109,7 +109,7 @@ ScriptCoin bobAliceScriptCoin = coins[0].ToScriptCoin(bobAlice);
 Then the signature:  
 
 ```cs
-builder = new TransactionBuilder();
+builder = Network.Main.CreateTransactionBuilder();
 tx = builder
         .AddCoins(bobAliceScriptCoin)
         .AddKeys(bob, alice)
@@ -143,7 +143,7 @@ Let’s say someone sent this transaction:
 
 ```cs
 //Someone sent to darkAliceBob
-init = new Transaction();
+init = Network.Main.CreateTransaction();
 darkAliceBob
     .SendTo(init, Money.Coins(1.0m));
 ```  

@@ -20,15 +20,10 @@ var bob = new Key();
 var alice = new Key();
 var satoshi = new Key();
 
-var init = new Transaction()
-{
-    Outputs =
-	{
-		new TxOut("1.0", gold),
-		new TxOut("1.0", silver),
-		new TxOut("1.0", satoshi)
-	}
-};
+var init = Network.Main.CreateTransaction();
+init.Outputs.Add(Money.Coins(1.0m), gold);
+init.Outputs.Add(Money.Coins(1.0m), silver);
+init.Outputs.Add(Money.Coins(1.0m), satoshi);
 ```  
 
 **Init** does not contain any Colored Coin issuance and Transfer. But imagine that you want to be sure of it, how would you proceed?  
@@ -153,7 +148,7 @@ var goldCoin = ColoredCoin.Find(sendGoldToSatoshi, color).FirstOrDefault();
 Then, build a transaction like this:  
 
 ```cs
-builder = new TransactionBuilder();
+builder = Network.Main.CreateTransactionBuilder();
 var sendToBobAndAlice =
         builder
         .AddKeys(satoshi)
@@ -171,7 +166,7 @@ You can fix the problem by adding the last **Coin** of 1 BTC in the **init** tra
 
 ```cs
 var satoshiBtc = init.Outputs.AsCoins().Last();
-builder = new TransactionBuilder();
+builder = Network.Main.CreateTransactionBuilder();
 var sendToAlice =
         builder
         .AddKeys(satoshi)

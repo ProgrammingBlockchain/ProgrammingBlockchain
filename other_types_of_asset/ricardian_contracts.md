@@ -1,5 +1,7 @@
 ## Ricardian contracts {#ricardian-contracts}
 
+** WARNING: This is not really used anymore, this section is for pure curiosity **
+
 This part is a copy of an article I wrote on [Coinprism’s blog](http://blog.coinprism.com/2014/12/10/colored-coins-and-ricardian-contracts/). At the time of this writing, NBitcoin do not have any code related to Ricardian Contracts.
 
 ### What is a Ricardian Contract {#what-is-a-ricardian-contract}

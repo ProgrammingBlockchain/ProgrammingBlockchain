@@ -32,18 +32,13 @@ The technical details will surely vary and change over time, but here is an exam
 var alice = new Key();
 
 //Giving some money to alice
-var init = new Transaction()
-{
-    Outputs = 
-    {
-        new TxOut(Money.Coins(1.0m), alice),
-    }
-};
+var init = Network.Main.CreateTransaction();
+init.Outputs.Add(Money.Coins(1.0m), alice);
 
 var coin = init.Outputs.AsCoins().First();
 
 //Burning the coin
-var burn = new Transaction();
+var burn = Network.Main.CreateTransaction();
 burn.Inputs.Add(new TxIn(coin.Outpoint)
 {
     ScriptSig = coin.ScriptPubKey
@@ -53,7 +48,7 @@ var message = "Burnt for \"Alice Bakery\"";
 var opReturn = TxNullDataTemplate
                 .Instance
                 .GenerateScriptPubKey(Encoding.UTF8.GetBytes(message));
-burn.Outputs.Add(new TxOut(Money.Coins(1.0m), opReturn));
+burn.Outputs.Add(Money.Coins(1.0m), opReturn);
 burn.Sign(alice, false);
 
 Console.WriteLine(burn);

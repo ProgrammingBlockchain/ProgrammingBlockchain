@@ -1,5 +1,7 @@
 ## Dark Wallet {#dark-wallet}
 
+** WARNING: Dark Wallet is not really used anymore, this section is for pure curiosity **
+
 Although Dark Wallets are not in use anymore, it is still valuable to understand the concepts presented here. Its name is unfortunate since there is nothing dark about it, and it attracts unwanted attention and concerns. Dark Wallet is a practical solution that fixes our two initial problems:
 
 *   Prevent outdated backups.
@@ -48,7 +50,7 @@ They will also add the output to the generated bitcoin address. (the address of 
 
 ```cs
 var ephemKey = new Key();
-Transaction transaction = new Transaction();
+Transaction transaction = Network.Main.CreateTransaction();
 stealthAddress.SendTo(transaction, Money.Coins(1.0m), ephemKey);
 Console.WriteLine(transaction);
 ```
@@ -56,7 +58,7 @@ Console.WriteLine(transaction);
 The creation of the **EphemKey** is an implementation detail and you can omit it as NBitcoin will generate one automatically:
 
 ```cs
-Transaction transaction = new Transaction();
+Transaction transaction = Network.Main.CreateTransaction();
 stealthAddress.SendTo(transaction, Money.Coins(1.0m));
 Console.WriteLine(transaction);
 ```

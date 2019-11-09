@@ -89,7 +89,7 @@ If you succeed in completing this challenge on the MainNet you will be able to f
 
 To get our MainNet address:
 ```cs
-var hallOfTheMakersAddress = new BitcoinPubKeyAddress("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
+var hallOfTheMakersAddress = new BitcoinPubKeyAddress("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB", Network.Main);
 ```
 
 Or if you are working on TestNet, send the TestNet coins to any address. I used [mzp4No5cmCXjZUpf112B1XWsvWBfws5bbB](https://testnet.smartbit.com.au/address/mzp4No5cmCXjZUpf112B1XWsvWBfws5bbB).
@@ -110,20 +110,9 @@ The miner fee incentivizes the miners to add this transaction into their next bl
 ![](../assets/SpendTx.png)
 
 ```cs
-TxOut hallOfTheMakersTxOut = new TxOut()
-{
-    Value = new Money(0.0004m, MoneyUnit.BTC),
-    ScriptPubKey = hallOfTheMakersAddress.ScriptPubKey
-};
-
-TxOut changeBackTxOut = new TxOut()
-{
-    Value = new Money(0.00053m, MoneyUnit.BTC),
-    ScriptPubKey = bitcoinPrivateKey.ScriptPubKey
-};
-
-transaction.Outputs.Add(hallOfTheMakersTxOut);
-transaction.Outputs.Add(changeBackTxOut);
+transaction.Outputs.Add(Money.Coins(0.0004m), hallOfTheMakersAddress.ScriptPubKey);
+// Send the change back
+transaction.Outputs.Add(new Money(0.00053m, MoneyUnit.BTC), bitcoinPrivateKey.ScriptPubKey);
 ```
 
 We can do some fine tuning here, let's calculate the change based on the miner fee.  
@@ -144,27 +133,12 @@ var txInAmount = (Money)receivedCoins[(int) outPointToSpend.N].Amount;
 var changeAmount = txInAmount - hallOfTheMakersAmount - minerFee;
 ```
 
-Let's add our calculated values to our TxOuts:
+Let's use our calculated values for our TxOuts instead:
 
 ```cs
-TxOut hallOfTheMakersTxOut = new TxOut()
-{
-    Value = hallOfTheMakersAmount,
-    ScriptPubKey = hallOfTheMakersAddress.ScriptPubKey
-};
-
-TxOut changeTxOut = new TxOut()
-{
-    Value = changeAmount,
-    ScriptPubKey = bitcoinPrivateKey.ScriptPubKey
-};
-```
-
-And add them to our transaction:
-
-```cs
-transaction.Outputs.Add(hallOfTheMakersTxOut);
-transaction.Outputs.Add(changeTxOut);
+transaction.Outputs.Add(hallOfTheMakersAmount, hallOfTheMakersAddress.ScriptPubKey);
+// Send the change back
+transaction.Outputs.Add(changeAmount, bitcoinPrivateKey.ScriptPubKey);
 ```
 
 ### Message on The Blockchain
@@ -175,11 +149,7 @@ This message along with your transaction will appear \(after your transaction is
 ```cs
 var message = "Long live NBitcoin and its makers!";
 var bytes = Encoding.UTF8.GetBytes(message);
-transaction.Outputs.Add(new TxOut()
-{
-    Value = Money.Zero,
-    ScriptPubKey = TxNullDataTemplate.Instance.GenerateScriptPubKey(bytes)
-});
+transaction.Outputs.Add(Money.Zero, TxNullDataTemplate.Instance.GenerateScriptPubKey(bytes));
 ```
 
 ### Summary

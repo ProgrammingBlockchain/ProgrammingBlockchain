@@ -81,7 +81,7 @@ Script redeemScript =
             
 Transaction received = Transaction.Create(Network.Main)
 //Pay to the script hash
-received.Outputs.Add(new TxOut(Money.Coins(1.0m), redeemScript.Hash));
+received.Outputs.Add(Money.Coins(1.0m), redeemScript.Hash);
 ```  
 
 > Warning: The payment is sent to ```redeemScript.Hash``` and not to ```redeemScript```!  

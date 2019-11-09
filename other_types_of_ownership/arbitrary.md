@@ -13,7 +13,7 @@ So first, let’s build the **RedeemScript**,
 > **Note:** For this code to work right click **References** ->** Add Reference...** -> Find **System.Numerics**
 
 ```cs
-BitcoinAddress address = BitcoinAddress.Create("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
+BitcoinAddress address = BitcoinAddress.Create("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB", Network.Main);
 var birth = Encoding.UTF8.GetBytes("18/07/1988");
 var birthHash = Hashes.Hash256(birth);
 Script redeemScript = new Script(
@@ -29,8 +29,8 @@ This **RedeemScript** means that there are 2 ways of spending such **ScriptCoin*
 Let’s say I sent money to such **redeemScript**:  
 
 ```cs
-var tx = new Transaction();
-tx.Outputs.Add(new TxOut(Money.Parse("0.0001"), redeemScript.Hash));
+var tx = Network.Main.CreateTransaction();
+tx.Outputs.Add(Money.Parse("0.0001"), redeemScript.Hash);
 ScriptCoin scriptCoin = tx.Outputs.AsCoins().First().ToScriptCoin(redeemScript);
 ```  
 
@@ -38,7 +38,7 @@ So let’s create a transaction that wants to spend such output:
 
 ```cs
 //Create spending transaction
-Transaction spending = new Transaction();
+Transaction spending = Network.Main.CreateTransaction();
 spending.AddInput(new TxIn(new OutPoint(tx, 0)));
 ```  
 

@@ -71,7 +71,7 @@ If you want to spend those UTXOs:
 ```cs
 var coins = utxos.GetUnspentCoins();
 var keys = utxos.GetKeys(userExtKey);
-TransactionBuilder builder = new TransactionBuilder();
+TransactionBuilder builder = Network.Main.CreateTransaction();
 builder.AddCoins(coins);
 builder.AddKeys(keys);
 builder.Send(new Key(), Money.Coins(0.5m));
@@ -98,7 +98,7 @@ while(true)
 {    
     var coins = utxos.GetUnspentCoins();
     var keys = utxos.GetKeys(userExtKey);
-    TransactionBuilder builder = new TransactionBuilder();
+    TransactionBuilder builder = Network.Main.CreateTransactionBuilder();
     builder.AddCoins(coins);
     builder.AddKeys(keys);
     builder.Send(new Key(), Money.Coins(0.5m));

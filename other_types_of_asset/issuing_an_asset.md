@@ -45,9 +45,9 @@ var issuance = new IssuanceCoin(coin);
 Now I need to build transaction and sign the transaction with the help of the **TransactionBuilder**.  
 
 ```cs
-var nico = BitcoinAddress.Create("15sYbVpRh6dyWycZMwPdxJWD4xbfxReeHe");
-var bookKey = new BitcoinSecret("???????");
-TransactionBuilder builder = new TransactionBuilder();
+var nico = BitcoinAddress.Create("15sYbVpRh6dyWycZMwPdxJWD4xbfxReeHe", Network.Main);
+var bookKey = new BitcoinSecret("???????", Network.Main);
+var builder = Network.Main.CreateTransactionBuilder();
             
 var tx = builder
     .AddKeys(bookKey)
@@ -139,7 +139,7 @@ Worse: If a classical bitcoin wallet spend a colored coin, it will destroy the u
 For preventing a user from sending Colored Coin to a wallet that do not support it, Open Asset have its own address format, that only colored coin wallets understand.  
 
 ```cs
-nico = BitcoinAddress.Create("15sYbVpRh6dyWycZMwPdxJWD4xbfxReeHe");
+nico = BitcoinAddress.Create("15sYbVpRh6dyWycZMwPdxJWD4xbfxReeHe", Network.Main);
 Console.WriteLine(nico.ToColoredAddress());
 ```
 
@@ -154,7 +154,7 @@ Now, you can take a look on an Open Asset compatible wallet like Coinprism, and 
 As I have told you before, the Asset ID is derived from the issuer’s **ScriptPubKey**, here is how to get it in code:  
 
 ```cs
-var book = BitcoinAddress.Create("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
+var book = BitcoinAddress.Create("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB", Network.Main);
 var assetId = new AssetId(book).GetWif(Network.Main);
 Console.WriteLine(assetId); // AVAVfLSb1KZf9tJzrUVpktjxKUXGxUTD4e
 ```  

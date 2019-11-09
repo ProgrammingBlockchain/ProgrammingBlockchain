@@ -14,8 +14,8 @@ We are able to generate the ScriptPubKey from the Bitcoin Address. This is a ste
 ```cs 
 var publicKeyHash = new KeyId("14836dbe7f38c5ac3d49e8d790af808a4ee9edcf");
 
-var testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
-var mainNetAddress = publicKeyHash.GetAddress(Network.Main);
+var testNetAddress = publicKeyHash.GetAddress(ScriptPubKeyType.Legacy, Network.TestNet);
+var mainNetAddress = publicKeyHash.GetAddress(ScriptPubKeyType.Legacy, Network.Main);
 
 Console.WriteLine(mainNetAddress.ScriptPubKey); // OP_DUP OP_HASH160 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf OP_EQUALVERIFY OP_CHECKSIG
 Console.WriteLine(testNetAddress.ScriptPubKey); // OP_DUP OP_HASH160 14836dbe7f38c5ac3d49e8d790af808a4ee9edcf OP_EQUALVERIFY OP_CHECKSIG

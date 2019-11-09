@@ -32,7 +32,7 @@ Imagine the multisig ```scriptPubKey``` received a coin in a transaction called 
 
 ```cs
 var received = Transaction.Create(Network.Main)
-received.Outputs.Add(new TxOut(Money.Coins(1.0m), scriptPubKey));
+received.Outputs.Add(Money.Coins(1.0m), scriptPubKey);
 ```  
 
 Bob and Alice agree to pay Nico 1.0 BTC for his services.
@@ -47,7 +47,7 @@ Coin coin = received.Outputs.AsCoins().First();
 Then, with the ```TransactionBuilder```, they create an **unsigned transaction**.  
 
 ```cs
-BitcoinAddress nico = new Key().PubKey.GetAddress(Network.Main);
+BitcoinAddress nico = new Key().PubKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main);
 TransactionBuilder builder = Network.Main.CreateTransactionBuilder();
 Transaction unsigned = 
     builder

@@ -41,16 +41,11 @@ var powerCoin = new Key();
 var alice = new Key();
 var bob = new Key();
 var satoshi = new Key();
-var init = new Transaction()
-{
-    Outputs = 
-    {
-        new TxOut(Money.Coins(1.0m), powerCoin),
-        new TxOut(Money.Coins(1.0m), alice),
-        new TxOut(Money.Coins(1.0m), bob),
-        new TxOut(Money.Coins(1.0m), satoshi),
-    }
-};
+var init = Network.Main.CreateTransaction();
+init.Outputs.Add(Money.Coins(1.0m), powerCoin);
+init.Outputs.Add(Money.Coins(1.0m), alice);
+init.Outputs.Add(Money.Coins(1.0m), bob);
+init.Outputs.Add(Money.Coins(1.0m), satoshi);
 
 var repo = new NoSqlColoredTransactionRepository();
 repo.Transactions.Put(init);
@@ -64,7 +59,7 @@ Imagine that Alice buy 2 Power coins, here is how to create such transaction.
 var issuance = GetCoins(init,powerCoin)
                 .Select(c=> new IssuanceCoin(c))
                 .ToArray();
-var builder = new TransactionBuilder();
+var builder = Network.Main.CreateTransaction();
 var toAlice =
     builder
     .AddCoins(issuance)
@@ -111,13 +106,8 @@ First, I need to create some funds for **votingCoin**.
 
 ```cs
 var votingCoin = new Key();
-var init2 = new Transaction()
-{
-    Outputs = 
-    {
-        new TxOut(Money.Coins(1.0m), votingCoin),
-    }
-};
+var init2 = Network.Main.CreateTransaction();
+init2.Outputs.Add(Money.Coins(1.0m), votingCoin);
 repo.Transactions.Put(init2);
 ```  
 
@@ -125,7 +115,7 @@ Then, issue the voting coins.
 
 ```cs
 issuance = GetCoins(init2, votingCoin).Select(c => new IssuanceCoin(c)).ToArray();
-builder = new TransactionBuilder();
+builder = Network.CreateTransactionBuilder();
 var toVoters =
     builder
     .AddCoins(issuance)
@@ -149,7 +139,7 @@ Her decision is to handout her voting coin to someone she trusts having a better
 var aliceVotingCoin = ColoredCoin.Find(toVoters,repo)
                         .Where(c=>c.ScriptPubKey == alice.ScriptPubKey)
                         .ToArray();
-builder = new TransactionBuilder();
+builder = Network.Main.CreateTransactionBuilder();
 var toBob =
     builder
     .AddCoins(aliceVotingCoin)
@@ -179,7 +169,7 @@ var bobVotingCoin = ColoredCoin.Find(toVoters, repo)
     .Where(c => c.ScriptPubKey == bob.ScriptPubKey)
     .ToArray();
 
-builder = new TransactionBuilder();
+builder = Network.Main.CreateTransactionBuilder();
 var vote =
     builder
     .AddCoins(bobVotingCoin)
@@ -205,7 +195,7 @@ The only piece of code that would have changed is during the issuance of the Vot
 ```cs
 issuance = GetCoins(init2, votingCoin).Select(c => new IssuanceCoin(c)).ToArray();
 issuance[0].DefinitionUrl = new Uri("http://boss.com/vote01.json");
-builder = new TransactionBuilder();
+builder = Network.Main.CreateTransactionBuilder();
 var toVoters =
     builder
     .AddCoins(issuance)
