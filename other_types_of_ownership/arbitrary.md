@@ -69,9 +69,9 @@ Console.WriteLine(result); // True
 ```  
 
 The second way of spending the coin is by proving ownership of **1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB**.  
-```
+```cs
 ////Option 2 : Spender knows my private key
-BitcoinSecret secret = new BitcoinSecret("...");
+BitcoinSecret secret = new BitcoinSecret("...", Network.Mainnet);
 var sig = spending.SignInput(secret, scriptCoin);
 var p2pkhProof = PayToPubkeyHashTemplate
     .Instance

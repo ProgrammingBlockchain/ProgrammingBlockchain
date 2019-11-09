@@ -37,7 +37,7 @@ The asset transfer is actually very easy with the **TransactionBuilder**.
 
 ```cs
 var book = BitcoinAddress.Create("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB");
-var nicoSecret = new BitcoinSecret("??????????");
+var nicoSecret = new BitcoinSecret("??????????", Network.Mainnet);
 var nico = nicoSecret.GetAddress(); //15sYbVpRh6dyWycZMwPdxJWD4xbfxReeHe
 
 var forFees = new Coin(

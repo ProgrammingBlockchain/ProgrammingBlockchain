@@ -27,7 +27,7 @@ Note that we use the TestNet first, but you will probably do this on the MainNet
 Import your private key (replace the "cN5Y...K2RS" string with yours):
 
 ```cs
-var bitcoinPrivateKey = new BitcoinSecret("cN5YQMWV8y19ntovbsZSaeBxXaVPaK4n7vapp4V56CKx5LhrK2RS");
+var bitcoinPrivateKey = new BitcoinSecret("cN5YQMWV8y19ntovbsZSaeBxXaVPaK4n7vapp4V56CKx5LhrK2RS", Network.Testnet);
 var network = bitcoinPrivateKey.Network;
 var address = bitcoinPrivateKey.GetAddress();
 
@@ -211,7 +211,7 @@ var address = BitcoinAddress.Create("mkZzCmjAarnB31n5Ke6EZPbH64Cxexp3Jp", Networ
 transaction.Inputs[0].ScriptSig = address.ScriptPubKey;
 
 // OR we can also use the private key 
-var bitcoinPrivateKey = new BitcoinSecret("cN5YQMWV8y19ntovbsZSaeBxXaVPaK4n7vapp4V56CKx5LhrK2RS");
+var bitcoinPrivateKey = new BitcoinSecret("cN5YQMWV8y19ntovbsZSaeBxXaVPaK4n7vapp4V56CKx5LhrK2RS", Network.TestNet);
 transaction.Inputs[0].ScriptSig =  bitcoinPrivateKey.ScriptPubKey;
 ```
 
