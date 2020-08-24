@@ -7,7 +7,7 @@
 [![Gitter](https://badges.gitter.im/MetacoSA/NBitcoin.svg)](https://gitter.im/MetacoSA/NBitcoin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Other languages
-Indonesian: [Read](https://nopara73.gitbooks.io/programmingblockchainindonesian/content/) - [GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Indonesian) - [GitBook](https://www.gitbook.com/book/nopara73/programmingblockchainindonesian)  
+Indonesian: [Read](https://programmingblockchain.gitbooks.io/programmingblockchainindonesian/content/) - [GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Indonesian) - [GitBook](https://www.gitbook.com/book/nopara73/programmingblockchainindonesian)  
 Japanese: [Read](https://programmingblockchain.gitbooks.io/programmingblockchain-japanese/content/) - [GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Japanese) - [GitBook](https://www.gitbook.com/book/programmingblockchain/programmingblockchain-japanese)  
 
 ## Quick feedback
