@@ -15,7 +15,7 @@ So first, let’s build the **RedeemScript**,
 ```cs
 BitcoinAddress address = BitcoinAddress.Create("1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB", Network.Main);
 var birth = Encoding.UTF8.GetBytes("18/07/1988");
-var birthHash = Hashes.Hash256(birth);
+var birthHash = Hashes.DoubleSHA256(birth);
 Script redeemScript = new Script(
     "OP_IF "
         + "OP_HASH256 " + Op.GetPushOp(birthHash.ToBytes()) + " OP_EQUAL " +

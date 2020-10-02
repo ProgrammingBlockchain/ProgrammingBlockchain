@@ -54,7 +54,7 @@ var tx = builder
     .AddCoins(issuance)
     .IssueAsset(nico, new AssetMoney(issuance.AssetId, quantity: 10))
     .SendFees(Money.Coins(0.0001m))
-    .SetChange(bookKey.GetAddress())
+    .SetChange(bookKey.GetAddress(ScriptPubKeyType.Legacy))
     .BuildTransaction(true);
 
 Console.WriteLine(tx);
