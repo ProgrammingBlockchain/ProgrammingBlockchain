@@ -41,7 +41,7 @@ Then clone and run [NBXplorer](https://github.com/dgarage/NBXplorer) with defaul
 Reference the `NBXplorer.Client` nuget package then you need to notify the `NBXplorer` to track the user wallet:
 
 ```cs
-var network = new NBXplorerNetworkProvider(ChainType.Main).GetBTC();
+var network = new NBXplorerNetworkProvider(NetworkType.Mainnet).GetBTC();
 var userExtKey = new ExtKey();
 var userDerivationScheme = network.DerivationStrategyFactory.CreateDirectDerivationStrategy(userExtKey.Neuter(), new DerivationStrategyOptions()
 {
