@@ -34,4 +34,4 @@ BitcoinPubKeyAddress bitcoinPublicKey = publicKey.GetAddress(ScriptPubKeyType.Le
 ### Exercise:
 1. Generate a private key on the mainnet and note it.
 2. Get the corresponding address.
-3. Send bitcoins to it. More than you can afford to lose, so it will keep you focused and motivated to get them back during the following lessons.
+3. Send bitcoins to it. More than what you can afford to lose, so it will keep you focused and motivated to get them back during the following lessons.
