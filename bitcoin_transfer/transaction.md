@@ -33,10 +33,10 @@ Quickly close the tab, before it scares you away, QBit Ninja queries the API and
 
 ![](../assets/QBitNuGet.png)  
 and using it.
-'''cs
+```cs
 using QBitNinja.Client;
 using QBitNinja.Client.Models;
-'''
+```
 
 Query the transaction by id:
 
