@@ -178,7 +178,7 @@ Console.WriteLine(spentAmount.ToDecimal(MoneyUnit.BTC)); // 13.19703492
 
 In this transaction 13.19**70**3492 BTC were received.  
 
-**Exercise:** Get the total received amount, as I have been done with the spent amount.  
+**Exercise:** Get the total received amount, as I have done with the spent amount.
 
 That means 0.0002 BTC (or 13.19**70**3492 - 13.19**68**3492) is not accounted for! The difference between the inputs and outputs are called **Transaction Fees** or **Miner’s Fees**. This is the money that the miner collects for including a given transaction in a block.  
 
