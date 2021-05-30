@@ -188,4 +188,4 @@ Console.WriteLine(fee);
 ```
 
 You should note that a **coinbase transaction** is the only transaction where the total output value is larger than the total input value. This effectively correspond to coin creation. So by definition there is no fee in a coinbase transaction. The coinbase transaction is the first transaction of every block.  
-The consensus rules enforce that the sum of output's value in the coinbase transaction does not exceed the sum of transaction fees in the block plus the mining reward.  
+The consensus rules enforce that the sum of output's value in the coinbase transaction does not exceed the mining reward (the subsidy plus the sum of transaction fees in the block).
