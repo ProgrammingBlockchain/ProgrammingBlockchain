@@ -41,10 +41,13 @@ Nicolas Dorier Book Funding Address
 H1jiXPzun3rXi0N9v9R5fAWrfEae9WPmlL5DJBj1eTStSvpKdRR8Io6/uT9tGH/3OnzG6ym5yytuWoA9ahkC3dQ=  
 
 이것은 Nicolas Dorier가 책의 개인 키를 소유하고 있다는 증거입니다.
+
 **Exercise:** Nicolas sensei가 거짓말을하고 있지 않은지 확인하세요!
 
 ### Sidenote
 
 PGP가 어떻게 작동하는지 아십니까? 꽤 비슷 하죠?
+
 아마도 이것은보다 사용자 친화적 인 PGP 대안의 기초가 될 수 있습니다.
+
 NBitcoin 위에 구축 해주세요 :-)
