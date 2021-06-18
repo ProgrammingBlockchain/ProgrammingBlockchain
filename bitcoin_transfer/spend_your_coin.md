@@ -5,13 +5,13 @@
 
 이 레슨을 진행하면서 Twitter 스타일 메시지에 책에 대한 피드백을 남길 방법을 빌드하기 위해 제시된대로 코드를 한 줄씩 추가합니다.
 
-먼저 TestNet에서 지침을 따르고 메인 비트 코인 네트워크에서 다시 수행하는 것이 좋습니다.
+먼저 TestNet에서 지침을 따르고 메인 비트코인 네트워크에서 다시 수행하는 것이 좋습니다.
 
 이전과 같이 지출하려는 **TxOut**이 포함 된 **transaction**을 살펴 보겠습니다 .
 
 새 **Console Project** (.net45)를 만들고 QBitNinja.Client NuGet을 설치 합니다.
 
-이미 개인 키를 생성하고 기록해 두셨습니까? 해당 비트 코인 주소를 이미 받고 거기에 자금을 보냈습니까? 그렇지 않다면 걱정하지 마십시오. 어떻게 할 수 있는지 빠르게 다시 알려 주겠습니다:
+이미 개인 키를 생성하고 기록해 두셨습니까? 해당 비트코인 주소를 이미 받고 거기에 자금을 보냈습니까? 그렇지 않다면 걱정하지 마십시오. 어떻게 할 수 있는지 빠르게 다시 알려 주겠습니다:
 
 
 ```cs
@@ -40,7 +40,7 @@ Console.WriteLine(bitcoinPrivateKey); // cN5YQMWV8y19ntovbsZSaeBxXaVPaK4n7vapp4V
 Console.WriteLine(address); // mkZzCmjAarnB31n5Ke6EZPbH64Cxexp3Jp
 ```
 
-마지막으로 거래 정보를 얻습니다 ( "0acb ... b78a"를 코인을 보낸 후 지갑 소프트웨어 또는 블록 체인 탐색기에서 얻은 정보로 대체):
+마지막으로 거래 정보를 얻습니다 ( "0acb ... b78a"를 코인을 보낸 후 지갑 소프트웨어 또는 블록체인 탐색기에서 얻은 정보로 대체):
 
 ```cs
 var client = new QBitNinjaClient(network);
@@ -104,7 +104,7 @@ var hallOfTheMakersAddress = BitcoinAddress.Create("mzp4No5cmCXjZUpf112B1XWsvWBf
 
 ### How much?
 
-비트 코인은 [사용할 수있는 여러 단위](https://en.bitcoin.it/wiki/Units)가 있지만, 알아야 할 세 가지가 있습니다 : 비트 코인, 비트 및 사토시. 1 비트 코인 (BTC)은 1,000,000 비트이고 100 사토시는 1 비트입니다. 1 satoshi (sat)는 비트 코인 네트워크에서 가장 작은 단위입니다.
+비트코인은 [사용할 수있는 여러 단위](https://en.bitcoin.it/wiki/Units)가 있지만, 알아야 할 세 가지가 있습니다 : 비트코인, 비트 및 사토시. 1 비트코인 (BTC)은 1,000,000 비트이고 100 사토시는 1 비트입니다. 1 satoshi (sat)는 비트코인 네트워크에서 가장 작은 단위입니다.
 
 **0.001 BTC**를 보유하고 있는 경우, **사용되지 않은 출력(unspent)**에서 **0.0004 BTC** (a few dollars)를 보내려면, 실제로는 전부를 보내게 됩니다!
 아래 다이어그램에서 볼 수 있듯이 **transaction output**은 [Hall of The Makers](http://n.bitcoin.ninja/)에 **0.0004 BTC**를 할당하고 **0.00053 BTC**는 반환됩니다.
@@ -232,7 +232,7 @@ transaction.Sign(bitcoinPrivateKey, receivedCoins.ToArray());
 
 이 명령 후에 입력의 ScriptSig 속성이 서명으로 대체되고, 트랜잭션이 서명 완료 됩니다.
 
-블록 체인 탐색기 [여기](https://testnet.smartbit.com.au/tx/eeffd48b317e7afa626145dffc5a6e851f320aa8bb090b5cd78a9d2440245067)에서 TestNet 트랜잭션을 확인할 수 있습니다. 
+블록체인 탐색기 [여기](https://testnet.smartbit.com.au/tx/eeffd48b317e7afa626145dffc5a6e851f320aa8bb090b5cd78a9d2440245067)에서 TestNet 트랜잭션을 확인할 수 있습니다. 
 
 
 ### Propagate your transactions (거래 전파)
@@ -272,7 +272,7 @@ using (var node = Node.ConnectToLocal(network)) //Connect to the node
 
 **using** 코드 블록은 노드에 대한 연결 종료를 보장 합니다.
 
-비트 코인 네트워크에 직접 연결할 수도 있지만, 더 빠르고 쉽게 신뢰할 수있는 노드에 연결하는 것이 좋습니다. 
+비트코인 네트워크에 직접 연결할 수도 있지만, 더 빠르고 쉽게 신뢰할 수있는 노드에 연결하는 것이 좋습니다. 
 
 ## Need more practice?
 
