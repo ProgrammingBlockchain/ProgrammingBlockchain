@@ -1,13 +1,13 @@
 # Second (Community) Edition {#second-community-edition}
 
-([nopara73](https://github.com/nopara73)) I first heard about Bitcoin in 2013. At the time people were constantly talking about the infinite opportunities for software developers in the space, but I got none of that. Every time I tried to build something, I bumped into walls, countless missing building blocks and I found myself doing endless work that was needed to be done before I could even start working on my ideas.  
+([nopara73](https://github.com/nopara73)) 저는 2013 년에 비트 코인에 대해 처음 들었습니다. 그 당시 사람들은 이 분야에서 소프트웨어 개발자를 위한 무한한 기회에 대해 끊임없이 이야기하고 있었지만, 저는 그 어떤 것도 얻지 못했습니다. 무언가를 만들려고 할 때마다 벽에 부딪혔고 수많은 누락 된 빌딩 블록이 있었고 아이디어 작업을 시작하기 전에 완료해야 할 끝없는 작업을 하고 있었습니다.
 
-Fast forward a few years I noticed someone has already done this work. Someone has finally broken down the crypto voodoo into object oriented niceness, and called it **NBitcoin**. It is an open source and cross platform Bitcoin library, written in .NET/C#. But this code wasn't just thrown out in the wild. The mysterious creator even wrote a book about it! And here was I, I got everything I wished for, I got the chance to work with a powerful, well documented Bitcoin library in my favorite programming language.  
+몇 년 후 누군가 이미 이 작업을 수행 한 것을 발견했습니다. 누군가 마침내 암호화 부두를 객체 지향의 멋짐으로 나누고 ** NBitcoin** 이라고 불렀습니다. .NET / C #으로 작성된 오픈 소스 및 크로스 플랫폼 비트 코인 라이브러리입니다. 그러나이 코드는 단순히 야생에 던져진 것이 아닙니다. 신비한 창조자는 심지어 그것에 관한 책을 썼습니다! 그리고 여기에 내가 원하는 모든 것을 얻었고 내가 좋아하는 프로그래밍 언어로 강력하고 잘 문서화 된 비트 코인 라이브러리로 작업 할 수있는 기회를 얻었습니다.
 
-But my excitement and severe Bitcoin addiction did not let me stop here. I contacted the French gentleman and I found myself on a flight heading towards the mysterious and exotic Far East, to Tokyo/Japan, so I can fully devote myself to studying the Art of Bitcoin Development under the guidance of **Nicolas Dorier** until my savings run out and I have to find a job.
+그러나 나의 흥분과 비트 코인 심각한 중독은 여기서 멈추지 못했습니다. 나는 프랑스 신사에게 연락을 취했고 신비롭고 이국적인 극동, 도쿄/일본으로 향하는 비행기를 탔습니다. 그래서 ** Nicolas Dorier **의지도 아래 비트 코인 개발의 예술을 공부하는 데 전념 할 수 있습니다. 저축 한 돈이 없어서 일자리를 찾아야합니다.
 
-This move resulted in the Second Edition of the book that you are reading right now, and also in a very messy room as I could not even find time to unpack my luggages.
+이 움직임으로 인해 당신이 지금 읽고있는 책의 제 2 판이 만들어졌고, 짐을 풀 시간조차 찾을 수 없었기 때문에 매우 지저분한 방이되었습니다.
 
-Oh, yes... about the book... Compared to the first edition, I have updated it by introducing Nicolas' latest works, fixed a bunch of typos, and left just as many, zoomed into parts of it and expanded upon them in order to make it understandable by mere mortals like me and last but not least I ported all of it to GitHub, so now the community itself can get involved in the development and maintenance of the book.  
+아, 그래요 ... 책에 대해서 ... 초판에 비해 니콜라스의 최신작을 소개하여 업데이트하고 오타를 많이 수정하고, 많이 남겨두고, 일부를 확대하고 확대했습니다. 저와 같은 단순한 필사자가 이해할 수 있도록하기 위해 마지막으로 모든 것을 GitHub에 이식 했으므로 이제 커뮤니티 자체가 책의 개발 및 유지 관리에 참여할 수 있습니다.
 
-If I had to describe the book in one sentence it would be this one: **Let's not talk Bitcoin, let's do Bitcoin!**
+이 책을 한 문장으로 설명해야한다면 다음과 같을 것입니다. ** 비트 코인에 대해 이야기하지 말고, 비트 코인을 합시다! **

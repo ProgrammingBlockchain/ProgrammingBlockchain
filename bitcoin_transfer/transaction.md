@@ -1,44 +1,52 @@
 ## Transaction {#transaction}
 
-> ([Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook/)) Transactions are the most important part of the bitcoin system. Everything else in bitcoin is designed to ensure that transactions can be created, propagated on the network, validated, and finally added to the global ledger of transactions (the blockchain). Transactions are data structures that encode the transfer of value between participants in the bitcoin system. Each transaction is a public entry in bitcoin’s blockchain, the global double-entry bookkeeping ledger.
+> ([Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook/)) 트랜잭션은 비트코인 시스템에서 가장 중요한 부분입니다. 비트코인의 나머지 기능은 거래가 생성되고, 네트워크에서 전파되고, 검증되고, 최종적으로 글로벌 거래원장 (블록체인)에 추가 되도록 설계되었습니다. 트랜잭션은 비트코인 시스템 참가자간에 가치를 이전 하기위해 인코드 된 데이터 구조입니다. 각각의 거래는 복식부기 원장인 블록체인에 공개 기록 됩니다.
 
-A transaction may have no recipient, or it may have several. **The same can be said for senders!** On the Blockchain, the sender and recipient are always abstracted with a ScriptPubKey, as we demonstrated in previous chapters.  
 
-If you use Bitcoin Core your Transactions tab will show the transaction, like this:
+한개의 트랜잭션은 수신자가 없거나 여러명의 수신자를 가지게 됩니다. **발신자도 마찬가지입니다!** 블록 체인에서, 발신자와 수신자는 이전 장에서 설명한 것처럼 항상 ScriptPubKey로 추상화 됩니다.
+
+Bitcoin Core를 사용하는 경우 거래 탭에 다음과 같은 거래가 표시됩니다:
+
 
 ![](../assets/BitcoinCoreTransaction.png)  
 
-For now we are interested in the **Transaction ID**. In this case, it is ```f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94```  
+**Transaction ID**를 주목하세요. 이 경우 거래ID는 ```f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94``` 입니다.
 
-> **Note:** The Transaction ID is defined by SHA256(SHA256(txbytes))
+> **Note:** 트랜잭션 ID는 "SHA256(SHA256(txbytes))"로 정의 할 수 있습니다.
 
-> **Note:** Do NOT use the Transaction ID to handle unconfirmed transactions. The Transaction ID can be manipulated before it is confirmed. This is known as “Transaction Malleability.”
+> **Note:** 확인되지 않은 거래(unconfirmed)를 처리하기 위해 Transaction ID를 사용하지 마십시오. Transaction ID는 확인(confirmed) 되기 전에 조작 할 수 있습니다. 이를 "거래 가단성"이라고 합니다.
 
-You can review the transaction on a block explorer like Blockchain.info: https://blockchain.info/tx/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94 
-But as a developer you will probably want a service that is easier to query and parse.  
-As a C# developer and an NBitcoin user Nicolas Dorier's [QBit Ninja](http://docs.qbitninja.apiary.io/) will definitely be your best choice. It is an open source web service API to query the blockchain and for tracking wallets.  
-QBit Ninja depends on [NBitcoin.Indexer](https://github.com/MetacoSA/NBitcoin.Indexer) which relies on Microsoft Azure Storage. C# developers are expected to use the [NuGet client package](http://www.nuget.org/packages/QBitninja.Client) instead of developing a wrapper around this API.  
 
-If you go to http://api.qbit.ninja/transactions/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94 you will see the raw bytes of your transaction.  
+Blockchain.info 같은 블록 탐색기를 이용하면 트랜잭션을 확인 할 수 있습니다: https://blockchain.info/tx/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
+그러나 개발자는 더 쉽게 쿼리를 실행하거나 구문을 분석 할 수 있는 서비스를 원할 것입니다.
+
+C# 개발자이자 NBitcoin 사용자 인 Nicolas Dorier의 [QBit Ninja](http://docs.qbitninja.apiary.io/)가 최적의 선택이라고 생각합니다. 블록체인을 조회하고 지갑을 추적하기 위한 오픈 소스 웹 서비스 API입니다.
+
+QBit Ninja는 Microsoft Azure Storage를 기반으로 하는 [NBitcoin.Indexer](https://github.com/MetacoSA/NBitcoin.Indexer)에 의존하고 있습니다. C# 개발자는 이 API의 래퍼를 직접 개발하는 대신 클라이언트 라이브러리인 [NuGet client package](http://www.nuget.org/packages/QBitninja.Client)를 사용하는 것을 추천 합니다.
+
+http://api.qbit.ninja/transactions/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94에 액세스 해 보면 트랜잭션의 내용을 볼 수 있습니다.
+
 
 ![](../assets/RawTx.png)  
 
-You can parse the transaction from hex with the following code:  
+다음 코드를 사용하면 16 진수(hex) 표현의 트랜잭션을 해석 할 수 있습니다:
 
 ```cs
 Transaction tx = Transaction.Parse("0100000...", Network.Main);
 ```
 
-Quickly close the tab, before it scares you away, QBit Ninja queries the API and parses the information so go ahead and install **QBitNinja.Client** NuGet package.  
+두려워 지기전에 탭을 닫고, 다음 진행을 위해 QBit Ninja가 API를 쿼리하고 정보를 구문 분석 하도록 만든 **QBitNinja.Client** NuGet 패키지를 설치합니다.
 
 ![](../assets/QBitNuGet.png)  
-and using it.
+
+다음과 같이 사용 합니다.
+
 ```cs
 using QBitNinja.Client;
 using QBitNinja.Client.Models;
 ```
 
-Query the transaction by id:
+id를 이용 트랙젝션을 쿼리 합니다:
 
 ```cs
 // Create a client
@@ -49,23 +57,25 @@ var transactionId = uint256.Parse("f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e7
 GetTransactionResponse transactionResponse = client.GetTransaction(transactionId).Result;
 ```  
 
-The type of **transactionResponse** is **GetTransactionResponse**. It lives under QBitNinja.Client.Models namespace. You can get **NBitcoin.Transaction** type from it:  
+**transactionResponse**의 형식은 **GetTransactionResponse** 입니다. QBitNinja.Client.Models 네임스페이스에 있습니다. **transactionResponse**로 **NBitcoin.Transaction** 형식을 얻을 수 있습니다:
 
 ```cs
 NBitcoin.Transaction transaction = transactionResponse.Transaction;
 ```  
  
-Let's see an example getting back the transaction id with both classes:  
+두 클래스를 사용하여 트랜잭션 ID를 반환하는 예를 살펴 보겠습니다:
 
 ```cs
 Console.WriteLine(transactionResponse.TransactionId); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 Console.WriteLine(transaction.GetHash()); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 ```  
 
-**GetTransactionResponse** has additional information about the transaction like the value and scriptPubKey of the inputs being spent in the transaction.
+**GetTransactionResponse**에는 트랜잭션에 사용되는 입력 값 및 scriptPubKey와 같은 트랜잭션에 대한 추가 정보가 있습니다.
 
-The relevant parts for now are the **inputs** and **outputs**.  
-You can see there is only one output in our transaction. `13.19683492` bitcoins are sent to that ScriptPubKey.
+현재 관련 부분은 **입력(inputs)** 과 **출력(outputs)** 입니다.
+
+우리 트랜잭션에는 하나의 출력 만 있음을 알 수 있습니다. `13.19683492` 비트코인은 해당 ScriptPubKey로 전송됩니다.
+
 
 ```cs
 List<ICoin> receivedCoins = transactionResponse.ReceivedCoins;
@@ -82,10 +92,11 @@ foreach (var coin in receivedCoins)
 }
 ```  
 
-We have written out some information about the RECEIVED COINS using QBitNinja's GetTransactionResponse class.
-**Exercise**: Write out the same information about the SPENT COINS using QBitNinja's GetTransactionResponse class!  
+QBitNinja의 GetTransactionResponse 클래스를 사용하여 RECEIVED COINS에 대한 정보를 작성했습니다. 
 
-Let's see how we can get the same information about the RECEIVED COINS using NBitcoin's Transaction class.
+**Exercise**: QBitNinja의 GetTransactionResponse 클래스를 사용하여 SPENT COINS에 대한 동일한 정보를 작성하십시오!
+
+NBitcoin의 Transaction 클래스를 사용하여 RECEIVED COINS에 대해 동일한 정보를 얻는 방법을 살펴 보겠습니다.
 
 ```cs
 var outputs = transaction.Outputs;
@@ -102,7 +113,7 @@ foreach (TxOut output in outputs)
 }
 ```  
 
-Now let's examine the **inputs**. If you look at them you will notice a previous output is referenced. Each input shows you which previous out has been spent in order to fund this transaction.
+이제 **inputs**을 살펴 보겠습니다. 그것을 들여다 보면 이전 출력이 참조 된 것을 알 수 있습니다. 각 입력들은 거래에 자금을 사용하기 위해 어떤 출력을 사용하고 있는지를 보여줍니다.
 
 ```cs
 var inputs = transaction.Inputs;
@@ -115,13 +126,15 @@ foreach (TxIn input in inputs)
 }
 ```  
 
-The terms **TxOut**, **Output** and **out** are synonymous.  
-Not to be confused with **OutPoint**, but more on this later.
+**TxOut**, **Output** 및 **out** 이라는 용어는 동의어입니다. 
+**OutPoint**와 혼동하지 말아야 합니다, 나중에 좀더 자세히 설명하겠습니다.
 
-In summary, the TxOut represents an amount of bitcoin and a **ScriptPubKey**. (Recipient)  
+요약하자면, TxOut는 비트코인의 양과 **ScriptPubKey**를 나타냅니다. (수신측)
+
 
 ![](../assets/TxOut.png)  
-As illustration let's create a txout with 21 bitcoin from the first ScriptPubKey in our current transaction:  
+
+그림 처럼 현재 트랜잭션의 첫 번째 ScriptPubKey에서 21 비트코인으로 txout을 생성 해 보겠습니다:
 
 ```cs  
 Money twentyOneBtc = new Money(21, MoneyUnit.BTC);
@@ -129,11 +142,12 @@ var scriptPubKey = transaction.Outputs[0].ScriptPubKey;
 TxOut txOut = transaction.Outputs.CreateNewTxOut(twentyOneBtc, scriptPubKey);
 ```  
 
-Every **TxOut** is uniquely addressed at the blockchain level by the ID of the transaction which include it and its index inside it. We call such reference an **Outpoint**.  
+모든 **TxOut** 은 블록체인 수준에서 이를 포함하는 트랜잭션의 ID와 내부 인덱스에 의해 고유하게 처리됩니다. 이러한 참조를 **Outpoint**라고 합니다.
 
 ![](../assets/OutPoint.png)
 
-For example, the **Outpoint** of the **TxOut** with 13.19683492 BTC in our transaction is (f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94, 0).  
+예를 들어, 거래에서 13.19683492 BTC 가 있는 **TxOut**의 **Outpoint**는 (f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94, 0)입니다.
+
 
 ```cs
 OutPoint firstOutPoint = receivedCoins[0].Outpoint;
@@ -141,29 +155,34 @@ Console.WriteLine(firstOutPoint.Hash); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85
 Console.WriteLine(firstOutPoint.N); // 0
 ```  
 
-Now let’s take a closer look at the inputs (aka **TxIn**) of the transaction:  
+이제 트랜잭션의 입력 (일명 **TxIn**)을 자세히 살펴 보겠습니다:
 
 ![](../assets/TxIn.png)
 
-The **TxIn** is composed of the **Outpoint** of the **TxOut** being spent and of the **ScriptSig** (we can see the ScriptSig as the “Proof of Ownership”). In our transaction there are actually 9 inputs.  
+**TxIn**은 **TxOut**의 **Outpoint**와 또는, 소비 될 **ScriptSig**로 구성됩니다 (ScriptSig를 "소유권 증명(Proof of Ownership)"으로 볼 수 있음). 우리 거래에는 실제로 9 개의 입력이 있습니다.
 
 ```cs
 Console.WriteLine(transaction.Inputs.Count); // 9
 ```  
 
-With the previous outpoint's transaction ID we can review the information associated with that transaction.  
+이전 outpoint의 트랜잭션 ID를 사용하여 해당 트랜잭션과 관련된 정보를 검토 할 수 있습니다.
+
+
 ```cs
 OutPoint firstPreviousOutPoint = transaction.Inputs[0].PrevOut;
 var firstPreviousTransaction = client.GetTransaction(firstPreviousOutPoint.Hash).Result.Transaction;
 Console.WriteLine(firstPreviousTransaction.IsCoinBase); // False
 ```  
 
-We could continue to trace the transaction IDs back in this manner until we reach a **coinbase transaction**, the transaction including the newly mined coin by a miner.  
-**Exercise:** Follow the first input of this transaction and its ancestors until you find a coinbase transaction.
-Hint: There are many steps so it might take a minute or two, but be patient!
-Yes, you've guessed right, it is not the most efficient way to do this, but a good exercise.  
+우리는 채굴자가 새로 채굴 한 코인을 포함하는 **coinbase transaction**에 도달 할 때까지 이러한 방식으로 트랜잭션 ID를 계속 추적 할 수 있습니다.
 
-In our example, the outputs were for a total of 13.19**68**3492 BTC.  
+**Exercise:** 코인베이스 거래를 찾을 때 까지 해당 거래와 그 조상의 첫 번째 입력을 따르십시오. 
+
+Hint: 많은 단계가 있으므로 1~2 분 정도 걸릴 수 있지만 인내심을 가지세요! 
+
+네, 맞습니다. 가장 효율적인 방법은 아니지만 좋은 연습입니다.
+
+이 예에서 출력은 총 13.19683492 BTC입니다.
 
 ```cs
 Money spentAmount = Money.Zero;
@@ -176,16 +195,17 @@ foreach (var spentCoin in spentCoins)
 Console.WriteLine(spentAmount.ToDecimal(MoneyUnit.BTC)); // 13.19703492
 ```  
 
-In this transaction 13.19**70**3492 BTC were received.  
+이 거래에서는 13.19703492 BTC가 수신되었습니다.
 
-**Exercise:** Get the total received amount, as I have done with the spent amount.
+**Exercise:** 지출 금액으로 한 것 처럼 총 수령 금액을 가져옵니다.
 
-That means 0.0002 BTC (or 13.19**70**3492 - 13.19**68**3492) is not accounted for! The difference between the inputs and outputs are called **Transaction Fees** or **Miner’s Fees**. This is the money that the miner collects for including a given transaction in a block.  
+이는 0.0002 BTC (또는 13.19703492 - 13.19683492)가 계산되지 않음을 의미합니다! 입력과 출력의 차이를 **거래 수수료(Transaction Fees)** 또는 **채굴 수수료(Miner’s Fees)** 라고 합니다. 이것은 채굴자가 수집한 거래를 주어진 블록에 포함킨 money(코인) 입니다.
+
 
 ```cs
 var fee = transaction.GetFee(spentCoins.ToArray());
 Console.WriteLine(fee);
 ```
 
-You should note that a **coinbase transaction** is the only transaction where the total output value is larger than the total input value. This effectively corresponds to coin creation. So by definition there is no fee in a coinbase transaction. The coinbase transaction is the first transaction of every block.
-The consensus rules enforce that the sum of output's value in the coinbase transaction does not exceed the mining reward (the subsidy plus the sum of transaction fees in the block).
+**coinbase transaction**은 총 output이 전체 input보다 큰 유일한 트랜잭션입니다. 이것은 코인 생성을 위한 효과적인 방법입니다. 따라서 정의에 따라 코인베이스 거래에는 수수료가 없습니다. 
+코인베이스 트랜잭션은 모든 블록의 첫 번째 트랜잭션입니다. 합의 규칙은 코인베이스 거래에서 산출물 가치의 합계가 채굴 보상 (보조금과 블록의 거래 수수료 합계)을 초과하지 않도록 강제합니다.

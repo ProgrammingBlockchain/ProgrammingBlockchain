@@ -1,6 +1,6 @@
-## Private key {#private-key}
+## 개인 키 {#private-key}
 
-Private keys are often represented in Base58Check called a **Bitcoin Secret** (also known as **Wallet Import Format** or simply **WIF**), like Bitcoin Addresses.  
+개인 키는 때때로 비트코인 주소와 같이 **Bitcoin Secret** (**Wallet Import Format** 또는 간단히 **WIF** 라고도 함) 으로 불리어지는 Base58Check로 표시됩니다 .
 
 ![](../assets/BitcoinSecret.png)  
 
@@ -15,8 +15,8 @@ bool WifIsBitcoinSecret = mainNetPrivateKey == privateKey.GetWif(Network.Main);
 Console.WriteLine(WifIsBitcoinSecret); // True
 ```  
 
-Note that it is easy to go from **BitcoinSecret** to private **Key**. On the other hand, it is impossible to go from a Bitcoin Address to Public Key because the Bitcoin Address contains a hash of the Public Key, not the Public Key itself.  
-Process this information by examining the similarities between these two codeblocks:  
+**BitcoinSecret**를 사용하면 개인 **Key**를 쉽게 생성 할 수 있습니다. 반면에, 비트코인 주소에는 공개 키 값이 아닌 공개 키의 해시 값을 가지고 있기 때문에 비트코인 주소로 공개 키 값을 생성 할 수 없습니다.
+다음 두 코드 블록 간의 유사성을 비교하면 위의 차이를 이해 할 수 있습니다:
 
 ```cs
 Key privateKey = new Key(); // generate a random private key
@@ -31,7 +31,7 @@ BitcoinAddress bitcoinAddress = publicKey.GetAddress(ScriptPubKeyType.Legacy, Ne
 //PubKey samePublicKey = bitcoinAddress.ItIsNotPossible;
 ```  
 
-### Exercise:
-1. Generate a private key on the mainnet and note it.
-2. Get the corresponding address.
-3. Send bitcoins to it. More than what you can afford to lose, so it will keep you focused and motivated to get them back during the following lessons.
+### 연습:
+1. 메인 넷에서 개인 키를 생성하고 기록해 둡니다.
+2. 해당 주소를 가져옵니다.
+3. 그것에 비트코인을 보냅니다. 잃어 버려도 될 만큼만 보내세요, 차후 수업에서 다시 찾을 수 있도록 집중력과 동기가 부여 될 것입니다.
