@@ -1,28 +1,38 @@
-# Foreword {#foreword}
+# 머리말 {#foreword}
 
-An extract in _Fountain Head_ by Ayn Rand resonated with me.
+Ayn Rand의 _Fountain Head_에서 발췌 한 내용에 공감합니다.
 
 
-> Gail Wynand, the powerful puppet master of the world, and Howard Roark, the protagonist building architect discussed together. Gail finds a strange relief when he is with Roark, not knowing where it comes from, he questions him.  
-> Wynand asked:  
-> "Howard, have you ever been in love?"  
-> Roark turned to look straight at him and answer quietly:  
-> "I still am."  
-> "But when you walk through a building, what you feel is greater than that?"  
-> "Much greater, Gail"  
-> "I was thinking of people who say that happiness is impossible on earth. Look how hard they all try to find some joy in life. Look how they struggle for it. Why should any living creature exist in pain? By what conceivable right can anyone demand that a human being exist for anything but his own joy? Every one of them wants it. Every part of him wants it. But they never find it. I wonder why. They whine and say they don't understand the meaning of life. There's a particular kind of people that I despise. Those who seek some sort of a higher purpose or 'universal goal,' who don't know what to live for, who moan that they must ‘find themselves.’ You hear it all around us. That seems to be the official bromide of our century. Every book you open. Every drooling self-confession. It seems to be the noble thing to confess. I'd think it would be the most shameful one."  
-> "Look, Gail". Roark got up, reached out, tore a thick branch off a tree, held it in both hands, one fist closed at each end; then, his wrists and knuckles tensed against the resistance, he bent the branch slowly into an arc. "Now I can make what I want of it: a bow, a spear, a cane, a railing. That's the meaning of life."  
-> "Your strength?"  
-> "Your work." He tossed the branch aside. "The material the earth offers you and what you make of it..."  
+> 세상에서 강력한 인형 마스터인 Gail Wynand와 건축 설계사인 Howard Roark가 함께 대화했습니다. 게일은 Roark와 함께있을 때 어딘지 모르게 편안 함을 느낌니다.
 
-I think the Blockchain is like the tree branch. For outsiders, it feels like a boring and useless collection of bits. For programmers and entrepreneurs, it is a marvelous raw material that can be shaped with our imagination. We give it meaning and purpose.
+> Wynand:
 
-Just as you need to know about wood to make a bow, spear or cane from a branch, you need to learn about programming to shape the Blockchain. My hope is that you will discover how much your skill and intelligence can shape that useless collection of bits.
+> "하워드, 사랑에 빠진 적이 있나요?"
 
-Let me warn you: learning about Bitcoin is like taking the red pill from _The Matrix._ You may find yourself ready to quit your job to work on it full time.  
+> Roark는 그를 물끄러미 쳐다 보며 조용히 대답했습니다:
 
-This book will take you from basic to advanced use of the Blockchain. It will not teach you how to use an API (such as the RPC API provided with Bitcoin Core), but it will teach you how to make such an API.  
+> "아뇨 아직"
 
-> Satoshi Nakamoto once described Bitcoin as “boring grey in colour.”
+> "하지만 건물을 걸을 때 그 보다 더 큰 느낌이 듭니까?"
 
-While programming to an API can assist in getting an application up quickly, the developer is limited to innovations that can take place against the API. By fully understanding the Blockchain, the developer is empowered to unleash its full potential.
+> "훨씬 커요, 게일"
+
+> "저는 세상에서 불행하다고 말하는 사람들을 생각하고 있었습니다. 그들 모두가 삶에서 기쁨을 찾으려고 얼마나 열심히 노력하는지 보세요. ​​그들이 어떻게 그것을 위해 고군분투 하는지 보세요. ​​왜 어떤 생물이 고통 속에 존재해야 합니까? 상상할 수 있는 권리는 무엇으로 할 수 있습니까? 누구든지 자신의 기쁨이 아닌 다른 것을 위해 인간이 존재하라고 요구합니까? 모두가 그것을 원합니다. 그의 모든 부분이 그것을 원합니다. 그러나 그들은 그것을 결코 찾지 못합니다. 나는 왜 그런지 궁금합니다. 그들은 우는 소리를 내며 그 의미를 이해하지 못한다고 말합니다. 내가 경멸하는 특별한 종류의 사람들이 있습니다. 어떤 종류의 더 높은 목적이나 '보편적 인 목표'를 추구하는 사람들, 무엇을 위해 살아야 할지 모르는 사람들, '자신을 찾아야 한다'고 신음하는 사람들이 있습니다. 그것은 우리 세기의 공식적인 브로마이드 인 것 같습니다. 당신이 펴는 모든 책. 침 튀기는 모든 자기 고백. 고백하는 것이 고귀한 것 입니다. 가장 부끄러운 일이라고 생각합니다."
+
+> "게일 봐". Roark는 일어나서 손을 뻗어 나무에서 두꺼운 가지를 찢어 양손으로 잡고 한쪽 주먹을 양쪽 끝에서 닫았습니다. 그런 후 손목에 힘을 주어 나뭇 가지를 천천히 둥그렇게 구부렸습니다. "이제 내가 원하는 것을 만들 수 있습니다 : 활, 창, 지팡이, 난간, 그것이 삶의 의미입니다."
+
+> "당신의 힘?"
+
+> "당신의 일" 그는 가지를 옆으로 버렸다. "지구가 당신에게 제공하는 물질과 당신이 그것을 만드는 것 ..."
+
+블록 체인은 나뭇 가지와 같다고 생각합니다. 외부인에게는 지루하고 쓸모없는 비트 모음처럼 느껴집니다. 프로그래머와 기업가들에게 그것은 우리의 상상력으로 만들 수 있는 놀라운 원료입니다. 의미와 목적을 부여합니다.
+
+나뭇 가지를 이용해 활, 창 또는 지팡이를 만들기 위해 나무에 대해 알아야 하는 것 처럼 블록 체인을 형성하는 프로그래밍에 대해 배워야합니다. 내 희망은 당신의 기술과 지능이 쓸모없는 비트 모음을 얼마나 많이 만들 수 있는지 당신이 발견하는 것입니다.
+
+경고 할게요: 비트 코인에 대해 배우는 것은 매트릭스에서 빨간 약을 복용하는 것과 같습니다. 직장을 그만두고 풀 타임으로 일하게 될 것입니다.
+
+이 책은 블록 체인의 기본에서 고급 사용으로 안내합니다. API (예: Bitcoin Core와 함께 제공되는 RPC API)를 사용하는 방법을 가르치지는 않지만 그러한 API를 만드는 방법을 알려줍니다.
+
+> Satoshi Nakamoto는 비트 코인을 "지루한 회색"이라고 설명했습니다.
+
+API 프로그래밍은 애플리케이션을 빠르게 시작하는 데 도움이 될 수 있지만 개발자는 API에 대해 발생할 수 있는 혁신으로 제한됩니다. 블록 체인을 완전히 이해함으로써 개발자는 잠재력을 최대한 발휘할 수 있습니다.
