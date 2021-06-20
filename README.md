@@ -23,18 +23,18 @@ GitBook으로이 책을 읽는 경우 단락의 "+" 버튼을 클릭하여 인�
 ## 오타를 수정하려면 어떻게해야하나요? 일명 빠른 기여
 
 1. [GitHub에서 책](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Korean)을 찾습니다.
-2. 포크
+2. 포크(fork)
 3. 파일 편집
 4. 병합 요청 만들기
 
 ## 새 챕터는 어떻게 작성하나요? 일명 광범위한 기여
 
 1. [GitHub에서 책](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Korean)을 찾습니다.
-2. 포크
-3. 포크 복제
+2. 포크(fork)
+3. 포크(fork) 복제
 4. [깃북 에디터](https://legacy.gitbook.com/editor) 다운로드 및 설치
 5. GitBook 편집기 열기
-6. "가져 오기"를 선택하고 포크를 복제 한 폴더를 선택합니다.
+6. "가져 오기"를 선택하고 포크(fork)를 복제 한 폴더를 선택합니다.
 7. 책 편집
 8. 파일 저장 및 동기화
 9. 병합 요청 만들기
@@ -42,11 +42,11 @@ GitBook으로이 책을 읽는 경우 단락의 "+" 버튼을 클릭하여 인�
 ## 새 챕터는 어떻게 작성하나요? 일명 광범위한 기여 (git 및 markdown에 능숙한 사람들을 위해)
 
 1. [GitHub에서 책](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Korean)을 찾습니다.
-2. 포크
-3. 포크를 컴퓨터에 복제
+2. 포크(fork)
+3. 포크(fork)를 컴퓨터에 복제
 4. [Atom 편집기](https://atom.io/) (또는 좋아하는 편집기 : notepad ++, vim 등)를 다운로드하여 설치합니다.
 5. 오픈 아톰
-6. "폴더 열기"를 선택하고 포크를 복제 한 폴더를 선택하십시오.
+6. "폴더 열기"를 선택하고 포크(fork)를 복제 한 폴더를 선택하십시오.
 7. Markdown Preview 패키지 (Cmd/Ctrl-Shift-M)를 사용하여 책을 편집합니다.
 8. 파일 저장
 9. 좋아하는 git 클라이언트 (GitHub Desktop, Git BASH, SourceTree 등)를 사용하여 원격 저장소에 커밋하고 푸시합니다.

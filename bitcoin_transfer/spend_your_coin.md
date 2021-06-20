@@ -26,7 +26,7 @@ Console.WriteLine(bitcoinPrivateKey);
 Console.WriteLine(address);
 ```
 
-먼저 TestNet을 사용하지만 MainNet에서도 이 작업을 수행하므로 실제 돈을 지출하게됩니다! 어떤 경우든, **bitcoinPrivateKey** 및 주소를 기록해 두세요! 거기에 몇 달러의 코인을 보내고 트랜젝션 ID를 저장하십시오 (지갑 소프트웨어 또는 SmartBit for [MainNet](http://smartbit.com.au/) 및 [TestNet](https://testnet.smartbit.com.au/) 과 같은 블록 탐색기에서 찾을 수 있음).
+먼저 TestNet을 사용하지만 MainNet에서도 이 작업을 수행하므로 실제 돈을 지출하게됩니다! 어떤 경우든, **bitcoinPrivateKey** 및 주소를 기록해 두세요! 거기에 몇 달러의 코인을 보내고 트랜잭션 ID를 저장하십시오 (지갑 소프트웨어 또는 SmartBit for [MainNet](http://smartbit.com.au/) 및 [TestNet](https://testnet.smartbit.com.au/) 과 같은 블록 탐색기에서 찾을 수 있음).
 
 개인 키를 가져옵니다 ( "cN5Y ... K2RS" 문자열을 귀하의 것으로 대체):
 
@@ -72,7 +72,7 @@ if(outPointToSpend == null)
 Console.WriteLine("We want to spend {0}. outpoint:", outPointToSpend.N + 1);
 ```
 
-지불을 위해 거래에서 이 아웃 포인트를 참조해야합니다. 다음과 같이 트랜젝션을 생성합니다:
+지불을 위해 거래에서 이 아웃 포인트를 참조해야합니다. 다음과 같이 트랜잭션을 생성합니다:
 
 ```cs
 var transaction = Transaction.Create(network);
@@ -85,8 +85,8 @@ transaction.Inputs.Add(new TxIn()
 ### To where?
 
 주요 질문을 기억하십니까? **From where, to where and how much?** 
-**TxIn**을 구성하고 트랜젝션에 추가하는 것이 "from where" 질문에 대한 답입니다.
-**TxOut**을 구성하고 트랜젝션에 추가하는 것이 나머지 항목에 대한 답입니다. 
+**TxIn**을 구성하고 트랜잭션에 추가하는 것이 "from where" 질문에 대한 답입니다.
+**TxOut**을 구성하고 트랜잭션에 추가하는 것이 나머지 항목에 대한 답입니다. 
 
 > 이 책의 기부 주소 : [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://www.smartbit.com.au/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB) 이 돈은 Nicolas의 "Coffee and Sushi Wallet"으로 입금되서 그가 나머지 책을 쓰는 동안 그를 지원하게 될 것입니다. MainNet에서 이 챌린지를 성공적으로 완료하면 [http://n.bitcoin.ninja/](http://n.bitcoin.ninja/) 상의 제작자의 전당 **Hall of the Makers**에서 기여한 내용을 찾을 수 있습니다 (기여 순서로 정렬).
 
@@ -201,13 +201,13 @@ transaction.Outputs.Add(Money.Zero, TxNullDataTemplate.Instance.GenerateScriptPu
 
 TestNet blockexplorer에서 **prev\_out**의 **hash**를 확인해 봅시다: [prev\_out tx details](https://testnet.smartbit.com.au/tx/0acb6e97b228b838049ffbd528571c5e3edd003f0ca8ef61940166dc3081b78a). 0.001 BTC가 우리 주소로 전송되었음을 알 수 있습니다.
 
-**prev\_out** **n**은 0입니다. 0에서 인덱싱하므로 트랜젝션의 첫 번째 출력을 사용한다는 의미입니다 (두 번째 출력은 트랜젝션의 1.0989548 BTC 입니다). 
+**prev\_out** **n**은 0입니다. 0에서 인덱싱하므로 트랜잭션의 첫 번째 출력을 사용한다는 의미입니다 (두 번째 출력은 트랜잭션의 1.0989548 BTC 입니다). 
 
 
 ### Sign your transaction
 
 
-이제 트랜젝션을 생성 했으므로 서명해야합니다. 즉, 입력에서 참조한 TxOut을 소유하고 있음을 증명해야합니다.
+이제 트랜잭션을 생성 했으므로 서명해야합니다. 즉, 입력에서 참조한 TxOut을 소유하고 있음을 증명해야합니다.
 
 서명은 [복잡](https://en.bitcoin.it/w/images/en/7/70/Bitcoin_OpCheckSig_InDetail.png) 할 수 있지만 간단하게 만들겠습니다.
 
@@ -230,9 +230,9 @@ transaction에 서명하려면 개인 키가 필요 합니다:
 transaction.Sign(bitcoinPrivateKey, receivedCoins.ToArray());
 ```
 
-이 명령 후에 입력의 ScriptSig 속성이 서명으로 대체되고, 트랜젝션이 서명 완료 됩니다.
+이 명령 후에 입력의 ScriptSig 속성이 서명으로 대체되고, 트랜잭션이 서명 완료 됩니다.
 
-블록체인 탐색기 [여기](https://testnet.smartbit.com.au/tx/eeffd48b317e7afa626145dffc5a6e851f320aa8bb090b5cd78a9d2440245067)에서 TestNet 트랜젝션을 확인할 수 있습니다. 
+블록체인 탐색기 [여기](https://testnet.smartbit.com.au/tx/eeffd48b317e7afa626145dffc5a6e851f320aa8bb090b5cd78a9d2440245067)에서 TestNet 트랜잭션을 확인할 수 있습니다. 
 
 
 ### Propagate your transactions (거래 전파)
