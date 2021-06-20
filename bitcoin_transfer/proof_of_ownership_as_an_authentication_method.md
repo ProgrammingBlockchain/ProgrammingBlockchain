@@ -29,7 +29,7 @@ Console.WriteLine("Is Craig Wright Satoshi? " + isCraigWrightSatoshi);
 
 스포일러 경고! 결과 값은 거짓입니다.
 
-다음은 동전을 이동하지 않고 주소의 소유자임을 증명하는 방법입니다:
+다음은 코인을 이동하지 않고 주소의 소유자임을 증명하는 방법입니다:
 
 **Address:**  
 [1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB](https://blockchain.info/address/1KF8kUVHK42XzgcmJF4Lxz4wcL5WDL97PB)  

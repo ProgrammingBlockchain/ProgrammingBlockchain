@@ -1,11 +1,11 @@
-## Why Blockchain Programming and not Bitcoin Programming? {#why-blockchain-programming-and-not-bitcoin-programming}
+## 왜 비트코인 프로그래밍이 아닌 블록체인 프로그래밍인가? {#why-blockchain-programming-and-not-bitcoin-programming}
 
-The Blockchain is to Bitcoin as gold is to jewelry.
+금이 보석이듯이 비트코인은 블록체인의 보석입니다.
 
-We did not compare a bitcoin to a gold coin, but rather to jewelry. That’s because gold’s first killer app was jewelry. Coins came later.
+우리는 비트코인을 금이라 하지 않고 보석이라 칭했습니다. 금의 첫 번째 킬러 앱이 보석이었기 때문입니다. 나중에 코인이 나왔습니다.
 
-Do not be fooled into thinking that Bitcoin is flawed while the Blockchain is valuable. If gold is valuable, would you throw away a gold necklace? The Blockchain is built on and thrives because of Bitcoin. Any increase in value of the Blockchain will increase the amount of bitcoins that is spent to use it, which will increase its demand.
+블록체인이 가치 있는 반면 비트코인은 결함이 있다고 속지 마세요. 만약 금이 가치가 있다면, 금 목걸이를 버리시겠습니까? 블록체인은 비트코인으로 인해 구축되고 번성합니다. 블록체인의 가치가 높아지면 이를 사용하기 위해 소비하는 비트코인의 양이 늘어나 수요가 증가 할 것입니다.
 
-Whether or not your app will use the “Bitcoin as a currency” feature is your own decision.
+앱이 "통화로서의 비트코인" 기능을 사용할지 여부는 사용자가 직접 결정할 수 있습니다.
 
-Blockchain is the raw material. Bitcoin is the fuel. Bitcoin as a currency is a feature that emerges every time someone thinks this fuel is also a good medium of exchange. You can do a lot more with the Blockchain than exchange value. You don’t even have to believe in the currency. We will show you how to use Bitcoin as a currency in this book, but that’s not all!
+블록체인은 원료(raw material)입니다. 비트코인은 연료(fuel)입니다. 통화로서의 비트코인(as a currency)은 비트코인이 좋은 교환 매체라고 생각하는 사람들만이 가지는 기능 일 뿐니다. 블록체인은 가치를 교환하는 것 뿐만 아니고, 더 많은 일을 할 수 있습니다. 화폐의 기능(in the currency)이 전부가 아닙니다. 이 책에서는 비트코인을 통화로 사용하는 방법을 보여 드리지만 그게 다가 아닙니다!

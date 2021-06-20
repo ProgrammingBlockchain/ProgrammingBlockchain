@@ -1,7 +1,7 @@
 ﻿## 코인 사용 {#spend-your-coin}
 
 
-**bitcoin address**,**ScriptPubKey**,**private key** 그리고 **miner**에 대해서 알게 되었고, 이제 직접 첫 번째 **transaction**을 만들게 될 것이다.
+**bitcoin address**,**ScriptPubKey**,**private key** 그리고 **miner**에 대해서 알게 되었고, 이제 직접 첫 번째 **transaction**을 만들게 될 것입니다.
 
 이 레슨을 진행하면서 Twitter 스타일 메시지에 책에 대한 피드백을 남길 방법을 빌드하기 위해 제시된대로 코드를 한 줄씩 추가합니다.
 

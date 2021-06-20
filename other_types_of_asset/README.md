@@ -1,3 +1,4 @@
-# Other types of asset {#other-types-of-asset}
+# 다른 유형의 저작물 {#other-types-of-asset}
 
-In the previous chapters, we have seen several type of ownership. You have seen all the different kind of ownership and proof of ownership, and understand how bitcoin can be coded to invent new kinds of ownership.
+앞 장에서 우리는 몇 가지 유형의 소유권을 보았습니다. 
+당신은 모든 소유권의 종류와 소유권 증명 방법을 보았고, 새로운 종류의 소유권을 발명하기 위해 비트코인이 어떻게 코딩 되었는지 이해 했습니다.

@@ -1,5 +1,7 @@
-# Case studies {#implementations} 
+# 사례 연구 {#implementations} 
 
-In this chapter you will see how existing implementations are made on top of NBitcoin.  
-You will be guided through the code and the design decisions the developer had to make.  
-This section is more practical. What you learn here will come handy when you face similar challenges the developers of specific implementations has already faced.
+이 챕터에서는 NBitcoin 위에 기존 구현이 어떻게 이루어지는지 살펴보겠습니다.
+
+개발자가 결정해야 했던 코딩 및 설계에 대해 안내를 받게 됩니다.
+
+이 섹션은 좀 더 쓸모가 있습니다. 여기서 학습한 내용은 개발자가 과거에 직면했던 유사한 문제를 다시 구현시 유용합니다.

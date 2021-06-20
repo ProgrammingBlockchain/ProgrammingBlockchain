@@ -1,1 +1,1 @@
-﻿# Key generation and encryption {#key-generation-encryption}
+﻿# 키 생성 및 암호화 {#key-generation-encryption}

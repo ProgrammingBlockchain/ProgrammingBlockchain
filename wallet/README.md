@@ -1,17 +1,19 @@
-# Create your own wallet {#create-your-own-wallet}
+# 나만의 지갑 만들기 {#create-your-own-wallet}
 
-Creating a wallet in Bitcoin is incredibly tricky. Depending on your need, there is various tools that will help you to reach your goal.
+비트코인에서 지갑을 만드는 것은 쉽지 않습니다. 도움이 되는 다양한 도구가 있습니다.
 
-A Bitcoin wallet must do the following:
+비트코인 지갑은 다음 목록의 작업을 수행합니다:
 
-1. Generate addresses.
-2. Recognize transactions spent to these addresses.
-3. Detect transactions, those are spending from these addresses.
-4. Show the history of the transactions involving this wallet.
-5. Handle reorgs.
-6. Handle conflicts.
-7. Dynamically calculate transaction fees.
-8. Build and sign transactions.
-9. Broadcast transactions.
+1. 주소를 생성합니다.
+2. 이러한 주소에서 사용 된 트랜젝션을 인식합니다.
+3. 또한 이들 주소에서 사용 되어지는 트랜젝션를 감지합니다.
+4. 지갑과 관련된 거래 내역을 보여줍니다.
+5. reorgs를 처리합니다.
+6. 중복을 처리합니다.
+7. 거래 수수료를 계산합니다.
+8. 트랜잭션을 생성하고 서명(sign)합니다.
+9. 트랜젝션을 모든 노드에 알립니다(broadcasting).
 
-Doing all of this by yourself from scratch requires serious skills and experience. Luckily there are tools you can utilize.
+이 모든 것을 처음 부터 혼자서 하려면 많은 기술과 경험이 필요합니다.
+
+다행스럽게도 당신이 활용 할 수 있는 도구가 이미 마련 되어 있습니다.
