@@ -7,8 +7,9 @@
 [![Gitter](https://badges.gitter.im/MetacoSA/NBitcoin.svg)](https://gitter.im/MetacoSA/NBitcoin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Other languages
-Indonesian: [Read](https://programmingblockchain.gitbooks.io/programmingblockchainindonesian/content/) - [GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Indonesian) - [GitBook](https://programmingblockchain.gitbook.io/programmingblockchainindonesian/)  
-Japanese: [Read](https://programmingblockchain.gitbooks.io/programmingblockchain-japanese/content/) - [GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Japanese) - [GitBook](https://www.gitbook.com/book/programmingblockchain/programmingblockchain-japanese)  
+- Indonesian: [Read](https://programmingblockchain.gitbooks.io/programmingblockchainindonesian/content/) - [GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Indonesian) - [GitBook](https://programmingblockchain.gitbook.io/programmingblockchainindonesian/)  
+- Japanese: [Read](https://programmingblockchain.gitbooks.io/programmingblockchain-japanese/content/) - [GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Japanese) - [GitBook](https://www.gitbook.com/book/programmingblockchain/programmingblockchain-japanese)
+- Korean: [GitHub](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain-Korean) 
 
 ## Quick feedback
 If you notice any mistakes and don't want to fix them yourself, open an issue [on the GitHub page of the book.](https://github.com/ProgrammingBlockchain/ProgrammingBlockchain)  
