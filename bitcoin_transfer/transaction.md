@@ -102,12 +102,13 @@ foreach (TxOut output in outputs)
 }
 ```  
 
-Now let's examine the **inputs**. If you look at them you will notice a previous output is referenced. Each input shows you which previous out has been spent in order to fund this transaction.
+Now let's examine the **inputs**. If you look at them, you will notice a previous output is referenced. Each input shows you which previous out has been spent in order to fund this transaction.
 
 ```cs
 var inputs = transaction.Inputs;
 foreach (TxIn input in inputs)
 {
+    //Get each previous output which is referenced from another previous transaction.
     OutPoint previousOutpoint = input.PrevOut;
     Console.WriteLine(previousOutpoint.Hash); // hash of prev tx
     Console.WriteLine(previousOutpoint.N); // idx of out from prev tx, that has been spent in the current tx
