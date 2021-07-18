@@ -3,9 +3,11 @@
 You can see that previously I hard coded the properties of **ColoredCoin**.  
 The reason is that I only wanted to show you how to construct a **Transaction** out of **ColoredCoin** coins.  
 
-In real life, you would either depend on a third party API to fetch the colored coins of a transaction or a balance. Which might not be a good idea, because it add a trust dependency to your program with the API provider.  
+In real life you could use a third party API to fetch the colored coins of a transaction or balance.
+Keep in mind though that this adds a trust depenency with the API provider to your program.
 
-**NBitcoin** allows you either to depend on a web service, either to provide your own implementation for fetching the color of a **Transaction**. This allows you to have a flexible way to unit test your code, use another implementation or your own.  
+**NBitcoin** allows you to either depend on a webservice or provide your own implementation to fetch the color of a transaction.  
+Providing your own implementation is useful to unit test your code.
 
 Let’s introduce two issuers: Silver and Gold. And three participants: Bob, Alice and Satoshi.  
 Let’s create a fake transaction that gives some bitcoins to Silver, Gold and Satoshi.  
