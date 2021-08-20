@@ -57,7 +57,7 @@ var receivedCoins = transactionResponse.ReceivedCoins;
 OutPoint outPointToSpend = null;
 foreach (var coin in receivedCoins)
 {
-    if (coin.TxOut.ScriptPubKey == bitcoinPrivateKey.ScriptPubKey)
+    if (coin.TxOut.ScriptPubKey == bitcoinPrivateKey.GetAddress(ScriptPubKeyType.Legacy).ScriptPubKey)
     {
         outPointToSpend = coin.Outpoint;
     }
