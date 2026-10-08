@@ -8,5 +8,5 @@ Creator of NBitcoin, The .NET Bitcoin Framework_
 _Co-authored with Bill Strait  
 Founder of Billd Labs_
 
-_And nopara73  
+_And [nopara73](https://adamficsor.com/)  
 Just a geek_
